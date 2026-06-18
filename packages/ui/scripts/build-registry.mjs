@@ -142,6 +142,7 @@ const main = () => {
   const items = []
 
   // ── 1. Styles (registry:style) ─────────────────
+  // 사용자 프로젝트의 ./src/styles/*.css에 설치 (target 명시)
   const stylesDir = join(SRC, 'styles')
   for (const f of readdirSync(stylesDir).filter((x) => x.endsWith('.css'))) {
     const base = f.replace(/\.css$/, '')
@@ -154,7 +155,8 @@ const main = () => {
       files: [
         {
           path: relativeFrom(OUT, join(stylesDir, f)),
-          type: 'registry:style'
+          type: 'registry:style',
+          target: `~/src/styles/${f}`
         }
       ]
     })
@@ -175,10 +177,12 @@ const main = () => {
   if (existsSync(tokensFile)) libFiles.push(tokensFile)
 
   for (const full of libFiles) {
-    const base = basename(full).replace(/\.(ts|tsx)$/, '')
-    const itemName = full.includes(`${join('tokens', 'index.ts')}`)
-      ? 'lib-tokens'
-      : `lib-${base}`
+    const fileName = basename(full)
+    const base = fileName.replace(/\.(ts|tsx)$/, '')
+    const isTokens = full.includes(`${join('tokens', 'index.ts')}`)
+    const itemName = isTokens ? 'lib-tokens' : `lib-${base}`
+    // tokens는 이름 충돌 방지를 위해 별도 파일명으로 (사용자 lib/에 tokens.ts로 설치)
+    const targetFileName = isTokens ? 'tokens.ts' : fileName
     const deps = collectDeps(full)
     items.push({
       name: itemName,
@@ -192,7 +196,8 @@ const main = () => {
       files: [
         {
           path: relativeFrom(OUT, full),
-          type: 'registry:lib'
+          type: 'registry:lib',
+          target: `@lib/${targetFileName}`
         }
       ]
     })
@@ -217,7 +222,8 @@ const main = () => {
         files: [
           {
             path: relativeFrom(OUT, full),
-            type: 'registry:hook'
+            type: 'registry:hook',
+            target: `@hooks/${f}`
           }
         ]
       })
@@ -242,7 +248,8 @@ const main = () => {
       files: [
         {
           path: relativeFrom(OUT, full),
-          type: 'registry:ui'
+          type: 'registry:ui',
+          target: `@ui/${f}`
         }
       ]
     })
