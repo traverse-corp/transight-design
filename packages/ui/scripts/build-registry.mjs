@@ -38,6 +38,58 @@ const REGISTRY_HOMEPAGE = 'https://github.com/traverse-corp/transight-design'
  */
 const REGISTRY_DEP_PREFIX = 'traverse-corp/transight-design'
 
+/**
+ * shadcn 표준 base 컴포넌트 화이트리스트 (PHASE_0_INVENTORY.md §3.1).
+ * apps/registry/src/lib/registry.ts의 BASE_COMPONENTS와 동일하게 유지할 것.
+ * 이 목록에 속하면 'base' 폴더, 그 외 registry:ui 아이템은 'custom' 폴더로 설치된다.
+ */
+export const BASE_COMPONENTS = new Set([
+  'accordion',
+  'alert',
+  'alert-dialog',
+  'avatar',
+  'badge',
+  'button',
+  'calendar',
+  'card',
+  'carousel',
+  'checkbox',
+  'command',
+  'dialog',
+  'dropdown-menu',
+  'empty',
+  'field',
+  'hover-card',
+  'icon',
+  'input',
+  'input-group',
+  'input-otp',
+  'label',
+  'pagination',
+  'popover',
+  'preview-card',
+  'radio-group',
+  'resizable',
+  'scroll-area',
+  'select',
+  'separator',
+  'sheet',
+  'sidebar',
+  'skeleton',
+  'sonner',
+  'spinner',
+  'switch',
+  'table',
+  'tabs',
+  'textarea',
+  'toggle',
+  'toggle-group',
+  'tooltip'
+])
+
+/** 컴포넌트 이름 → 'base' | 'custom' */
+export const categoryFor = (name) => (BASE_COMPONENTS.has(name) ? 'base' : 'custom')
+
 // 외부 의존성 화이트리스트 — package.json의 runtime + optional peer
 const EXTERNAL_DEPS = new Set([
   '@base-ui/react',
@@ -263,7 +315,7 @@ const main = () => {
         {
           path: relativeFrom(OUT, full),
           type: 'registry:ui',
-          target: `@ui/${f}`
+          target: `~/src/components/${categoryFor(base)}/${f}`
         }
       ]
     })

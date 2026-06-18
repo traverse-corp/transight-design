@@ -227,7 +227,7 @@
         {
           "path": "src/components/accordion.tsx",
           "type": "registry:ui",
-          "target": "@ui/accordion.tsx"
+          "target": "~/src/components/base/accordion.tsx"
         }
       ]
     },
@@ -253,7 +253,7 @@
         {
           "path": "src/components/alert-dialog.tsx",
           "type": "registry:ui",
-          "target": "@ui/alert-dialog.tsx"
+          "target": "~/src/components/base/alert-dialog.tsx"
         }
       ]
     },
@@ -273,7 +273,7 @@
         {
           "path": "src/components/alert.tsx",
           "type": "registry:ui",
-          "target": "@ui/alert.tsx"
+          "target": "~/src/components/base/alert.tsx"
         }
       ]
     },
@@ -292,7 +292,7 @@
         {
           "path": "src/components/AlertDialog.tsx",
           "type": "registry:ui",
-          "target": "@ui/AlertDialog.tsx"
+          "target": "~/src/components/custom/AlertDialog.tsx"
         }
       ]
     },
@@ -312,7 +312,7 @@
         {
           "path": "src/components/animated-beam.tsx",
           "type": "registry:ui",
-          "target": "@ui/animated-beam.tsx"
+          "target": "~/src/components/custom/animated-beam.tsx"
         }
       ]
     },
@@ -333,7 +333,7 @@
         {
           "path": "src/components/AnimatedAccordion.tsx",
           "type": "registry:ui",
-          "target": "@ui/AnimatedAccordion.tsx"
+          "target": "~/src/components/custom/AnimatedAccordion.tsx"
         }
       ]
     },
@@ -352,7 +352,7 @@
         {
           "path": "src/components/AnimatedAlertDialog.tsx",
           "type": "registry:ui",
-          "target": "@ui/AnimatedAlertDialog.tsx"
+          "target": "~/src/components/custom/AnimatedAlertDialog.tsx"
         }
       ]
     },
@@ -373,7 +373,7 @@
         {
           "path": "src/components/AnimatedCheckbox.tsx",
           "type": "registry:ui",
-          "target": "@ui/AnimatedCheckbox.tsx"
+          "target": "~/src/components/custom/AnimatedCheckbox.tsx"
         }
       ]
     },
@@ -391,7 +391,7 @@
         {
           "path": "src/components/AnimatedPreviewCard.tsx",
           "type": "registry:ui",
-          "target": "@ui/AnimatedPreviewCard.tsx"
+          "target": "~/src/components/custom/AnimatedPreviewCard.tsx"
         }
       ]
     },
@@ -411,7 +411,7 @@
         {
           "path": "src/components/avatar.tsx",
           "type": "registry:ui",
-          "target": "@ui/avatar.tsx"
+          "target": "~/src/components/base/avatar.tsx"
         }
       ]
     },
@@ -433,7 +433,7 @@
         {
           "path": "src/components/back-button.tsx",
           "type": "registry:ui",
-          "target": "@ui/back-button.tsx"
+          "target": "~/src/components/custom/back-button.tsx"
         }
       ]
     },
@@ -453,7 +453,7 @@
         {
           "path": "src/components/badge.tsx",
           "type": "registry:ui",
-          "target": "@ui/badge.tsx"
+          "target": "~/src/components/base/badge.tsx"
         }
       ]
     },
@@ -474,7 +474,7 @@
         {
           "path": "src/components/button.tsx",
           "type": "registry:ui",
-          "target": "@ui/button.tsx"
+          "target": "~/src/components/base/button.tsx"
         }
       ]
     },
@@ -496,7 +496,7 @@
         {
           "path": "src/components/calendar.tsx",
           "type": "registry:ui",
-          "target": "@ui/calendar.tsx"
+          "target": "~/src/components/base/calendar.tsx"
         }
       ]
     },
@@ -516,7 +516,7 @@
         {
           "path": "src/components/card.tsx",
           "type": "registry:ui",
-          "target": "@ui/card.tsx"
+          "target": "~/src/components/base/card.tsx"
         }
       ]
     },
@@ -538,7 +538,7 @@
         {
           "path": "src/components/carousel.tsx",
           "type": "registry:ui",
-          "target": "@ui/carousel.tsx"
+          "target": "~/src/components/base/carousel.tsx"
         }
       ]
     },
@@ -560,7 +560,7 @@
         {
           "path": "src/components/checkbox.tsx",
           "type": "registry:ui",
-          "target": "@ui/checkbox.tsx"
+          "target": "~/src/components/base/checkbox.tsx"
         }
       ]
     },
@@ -582,7 +582,7 @@
         {
           "path": "src/components/clickable-addr.tsx",
           "type": "registry:ui",
-          "target": "@ui/clickable-addr.tsx"
+          "target": "~/src/components/custom/clickable-addr.tsx"
         }
       ]
     },
@@ -604,7 +604,7 @@
         {
           "path": "src/components/clickable-tx.tsx",
           "type": "registry:ui",
-          "target": "@ui/clickable-tx.tsx"
+          "target": "~/src/components/custom/clickable-tx.tsx"
         }
       ]
     },
@@ -620,7 +620,7 @@
         {
           "path": "src/components/CoinIcon.tsx",
           "type": "registry:ui",
-          "target": "@ui/CoinIcon.tsx"
+          "target": "~/src/components/custom/CoinIcon.tsx"
         }
       ]
     },
@@ -643,7 +643,7 @@
         {
           "path": "src/components/command.tsx",
           "type": "registry:ui",
-          "target": "@ui/command.tsx"
+          "target": "~/src/components/base/command.tsx"
         }
       ]
     },
@@ -665,7 +665,7 @@
         {
           "path": "src/components/CopyButton.tsx",
           "type": "registry:ui",
-          "target": "@ui/CopyButton.tsx"
+          "target": "~/src/components/custom/CopyButton.tsx"
         }
       ]
     },
@@ -681,7 +681,7 @@
         {
           "path": "src/components/CopyWrapper.tsx",
           "type": "registry:ui",
-          "target": "@ui/CopyWrapper.tsx"
+          "target": "~/src/components/custom/CopyWrapper.tsx"
         }
       ]
     },
@@ -698,7 +698,7 @@
         {
           "path": "src/components/date-time-input.tsx",
           "type": "registry:ui",
-          "target": "@ui/date-time-input.tsx"
+          "target": "~/src/components/custom/date-time-input.tsx"
         }
       ]
     },
@@ -723,7 +723,7 @@
         {
           "path": "src/components/DatePicker.tsx",
           "type": "registry:ui",
-          "target": "@ui/DatePicker.tsx"
+          "target": "~/src/components/custom/DatePicker.tsx"
         }
       ]
     },
@@ -749,7 +749,7 @@
         {
           "path": "src/components/dialog.tsx",
           "type": "registry:ui",
-          "target": "@ui/dialog.tsx"
+          "target": "~/src/components/base/dialog.tsx"
         }
       ]
     },
@@ -770,7 +770,7 @@
         {
           "path": "src/components/dropdown-menu.tsx",
           "type": "registry:ui",
-          "target": "@ui/dropdown-menu.tsx"
+          "target": "~/src/components/base/dropdown-menu.tsx"
         }
       ]
     },
@@ -791,7 +791,7 @@
         {
           "path": "src/components/Dropzone.tsx",
           "type": "registry:ui",
-          "target": "@ui/Dropzone.tsx"
+          "target": "~/src/components/custom/Dropzone.tsx"
         }
       ]
     },
@@ -811,7 +811,7 @@
         {
           "path": "src/components/empty.tsx",
           "type": "registry:ui",
-          "target": "@ui/empty.tsx"
+          "target": "~/src/components/base/empty.tsx"
         }
       ]
     },
@@ -833,7 +833,7 @@
         {
           "path": "src/components/field.tsx",
           "type": "registry:ui",
-          "target": "@ui/field.tsx"
+          "target": "~/src/components/base/field.tsx"
         }
       ]
     },
@@ -856,7 +856,7 @@
         {
           "path": "src/components/hash-text.tsx",
           "type": "registry:ui",
-          "target": "@ui/hash-text.tsx"
+          "target": "~/src/components/custom/hash-text.tsx"
         }
       ]
     },
@@ -876,7 +876,7 @@
         {
           "path": "src/components/hover-card.tsx",
           "type": "registry:ui",
-          "target": "@ui/hover-card.tsx"
+          "target": "~/src/components/base/hover-card.tsx"
         }
       ]
     },
@@ -893,7 +893,7 @@
         {
           "path": "src/components/icon.tsx",
           "type": "registry:ui",
-          "target": "@ui/icon.tsx"
+          "target": "~/src/components/base/icon.tsx"
         }
       ]
     },
@@ -916,7 +916,7 @@
         {
           "path": "src/components/input-group.tsx",
           "type": "registry:ui",
-          "target": "@ui/input-group.tsx"
+          "target": "~/src/components/base/input-group.tsx"
         }
       ]
     },
@@ -938,7 +938,7 @@
         {
           "path": "src/components/input-otp.tsx",
           "type": "registry:ui",
-          "target": "@ui/input-otp.tsx"
+          "target": "~/src/components/base/input-otp.tsx"
         }
       ]
     },
@@ -959,7 +959,7 @@
         {
           "path": "src/components/input.tsx",
           "type": "registry:ui",
-          "target": "@ui/input.tsx"
+          "target": "~/src/components/base/input.tsx"
         }
       ]
     },
@@ -982,7 +982,7 @@
         {
           "path": "src/components/Inputbar.tsx",
           "type": "registry:ui",
-          "target": "@ui/Inputbar.tsx"
+          "target": "~/src/components/custom/Inputbar.tsx"
         }
       ]
     },
@@ -1002,7 +1002,7 @@
         {
           "path": "src/components/label.tsx",
           "type": "registry:ui",
-          "target": "@ui/label.tsx"
+          "target": "~/src/components/base/label.tsx"
         }
       ]
     },
@@ -1021,7 +1021,7 @@
         {
           "path": "src/components/NoItem.tsx",
           "type": "registry:ui",
-          "target": "@ui/NoItem.tsx"
+          "target": "~/src/components/custom/NoItem.tsx"
         }
       ]
     },
@@ -1042,7 +1042,7 @@
         {
           "path": "src/components/pagination.tsx",
           "type": "registry:ui",
-          "target": "@ui/pagination.tsx"
+          "target": "~/src/components/base/pagination.tsx"
         }
       ]
     },
@@ -1063,7 +1063,7 @@
         {
           "path": "src/components/Paginations.tsx",
           "type": "registry:ui",
-          "target": "@ui/Paginations.tsx"
+          "target": "~/src/components/custom/Paginations.tsx"
         }
       ]
     },
@@ -1083,7 +1083,7 @@
         {
           "path": "src/components/popover.tsx",
           "type": "registry:ui",
-          "target": "@ui/popover.tsx"
+          "target": "~/src/components/base/popover.tsx"
         }
       ]
     },
@@ -1105,7 +1105,7 @@
         {
           "path": "src/components/preview-card.tsx",
           "type": "registry:ui",
-          "target": "@ui/preview-card.tsx"
+          "target": "~/src/components/base/preview-card.tsx"
         }
       ]
     },
@@ -1126,7 +1126,7 @@
         {
           "path": "src/components/radio-group.tsx",
           "type": "registry:ui",
-          "target": "@ui/radio-group.tsx"
+          "target": "~/src/components/base/radio-group.tsx"
         }
       ]
     },
@@ -1142,7 +1142,7 @@
         {
           "path": "src/components/RadioButton.tsx",
           "type": "registry:ui",
-          "target": "@ui/RadioButton.tsx"
+          "target": "~/src/components/custom/RadioButton.tsx"
         }
       ]
     },
@@ -1162,7 +1162,7 @@
         {
           "path": "src/components/resizable.tsx",
           "type": "registry:ui",
-          "target": "@ui/resizable.tsx"
+          "target": "~/src/components/base/resizable.tsx"
         }
       ]
     },
@@ -1182,7 +1182,7 @@
         {
           "path": "src/components/scroll-area.tsx",
           "type": "registry:ui",
-          "target": "@ui/scroll-area.tsx"
+          "target": "~/src/components/base/scroll-area.tsx"
         }
       ]
     },
@@ -1202,7 +1202,7 @@
         {
           "path": "src/components/SearchBar.tsx",
           "type": "registry:ui",
-          "target": "@ui/SearchBar.tsx"
+          "target": "~/src/components/custom/SearchBar.tsx"
         }
       ]
     },
@@ -1223,7 +1223,7 @@
         {
           "path": "src/components/select.tsx",
           "type": "registry:ui",
-          "target": "@ui/select.tsx"
+          "target": "~/src/components/base/select.tsx"
         }
       ]
     },
@@ -1243,7 +1243,7 @@
         {
           "path": "src/components/separator.tsx",
           "type": "registry:ui",
-          "target": "@ui/separator.tsx"
+          "target": "~/src/components/base/separator.tsx"
         }
       ]
     },
@@ -1265,7 +1265,7 @@
         {
           "path": "src/components/sheet.tsx",
           "type": "registry:ui",
-          "target": "@ui/sheet.tsx"
+          "target": "~/src/components/base/sheet.tsx"
         }
       ]
     },
@@ -1282,7 +1282,7 @@
         {
           "path": "src/components/shine-border.tsx",
           "type": "registry:ui",
-          "target": "@ui/shine-border.tsx"
+          "target": "~/src/components/custom/shine-border.tsx"
         }
       ]
     },
@@ -1311,7 +1311,7 @@
         {
           "path": "src/components/sidebar.tsx",
           "type": "registry:ui",
-          "target": "@ui/sidebar.tsx"
+          "target": "~/src/components/base/sidebar.tsx"
         }
       ]
     },
@@ -1328,7 +1328,7 @@
         {
           "path": "src/components/skeleton.tsx",
           "type": "registry:ui",
-          "target": "@ui/skeleton.tsx"
+          "target": "~/src/components/base/skeleton.tsx"
         }
       ]
     },
@@ -1349,7 +1349,7 @@
         {
           "path": "src/components/sonner.tsx",
           "type": "registry:ui",
-          "target": "@ui/sonner.tsx"
+          "target": "~/src/components/base/sonner.tsx"
         }
       ]
     },
@@ -1366,7 +1366,7 @@
         {
           "path": "src/components/spinner.tsx",
           "type": "registry:ui",
-          "target": "@ui/spinner.tsx"
+          "target": "~/src/components/base/spinner.tsx"
         }
       ]
     },
@@ -1387,7 +1387,7 @@
         {
           "path": "src/components/Stepper.tsx",
           "type": "registry:ui",
-          "target": "@ui/Stepper.tsx"
+          "target": "~/src/components/custom/Stepper.tsx"
         }
       ]
     },
@@ -1406,7 +1406,7 @@
         {
           "path": "src/components/SuspenseFallback.tsx",
           "type": "registry:ui",
-          "target": "@ui/SuspenseFallback.tsx"
+          "target": "~/src/components/custom/SuspenseFallback.tsx"
         }
       ]
     },
@@ -1423,7 +1423,7 @@
         {
           "path": "src/components/switch.tsx",
           "type": "registry:ui",
-          "target": "@ui/switch.tsx"
+          "target": "~/src/components/base/switch.tsx"
         }
       ]
     },
@@ -1444,7 +1444,7 @@
         {
           "path": "src/components/table.tsx",
           "type": "registry:ui",
-          "target": "@ui/table.tsx"
+          "target": "~/src/components/base/table.tsx"
         }
       ]
     },
@@ -1465,7 +1465,7 @@
         {
           "path": "src/components/tabs.tsx",
           "type": "registry:ui",
-          "target": "@ui/tabs.tsx"
+          "target": "~/src/components/base/tabs.tsx"
         }
       ]
     },
@@ -1482,7 +1482,7 @@
         {
           "path": "src/components/textarea.tsx",
           "type": "registry:ui",
-          "target": "@ui/textarea.tsx"
+          "target": "~/src/components/base/textarea.tsx"
         }
       ]
     },
@@ -1501,7 +1501,7 @@
         {
           "path": "src/components/TimePicker.tsx",
           "type": "registry:ui",
-          "target": "@ui/TimePicker.tsx"
+          "target": "~/src/components/custom/TimePicker.tsx"
         }
       ]
     },
@@ -1523,7 +1523,7 @@
         {
           "path": "src/components/toggle-group.tsx",
           "type": "registry:ui",
-          "target": "@ui/toggle-group.tsx"
+          "target": "~/src/components/base/toggle-group.tsx"
         }
       ]
     },
@@ -1544,7 +1544,7 @@
         {
           "path": "src/components/toggle.tsx",
           "type": "registry:ui",
-          "target": "@ui/toggle.tsx"
+          "target": "~/src/components/base/toggle.tsx"
         }
       ]
     },
@@ -1565,7 +1565,7 @@
         {
           "path": "src/components/tooltip.tsx",
           "type": "registry:ui",
-          "target": "@ui/tooltip.tsx"
+          "target": "~/src/components/base/tooltip.tsx"
         }
       ]
     },
