@@ -29,10 +29,10 @@ export const VariantsPanel = ({ name }: VariantsPanelProps) => {
         return (
           <div key={groupName}>
             <div className='mb-2 flex items-baseline gap-2'>
-              <h3 className='text-xs font-semibold uppercase tracking-wide text-[color:var(--color-doc-muted)]'>
+              <h3 className='text-xs font-semibold uppercase tracking-wide text-cool-grey-07'>
                 {GROUP_LABELS[groupName] ?? groupName}
               </h3>
-              <span className='text-xs text-[color:var(--color-doc-muted)]'>{values.length}개</span>
+              <span className='text-xs text-cool-grey-07'>{values.length}개</span>
             </div>
             <ul className='flex flex-wrap gap-1.5'>
               {values.map((value) => {
@@ -42,8 +42,8 @@ export const VariantsPanel = ({ name }: VariantsPanelProps) => {
                     key={value}
                     className={`rounded-md border px-2 py-0.5 font-mono text-xs ${
                       isDefault
-                        ? 'border-[color:var(--color-doc-accent)] bg-[color:var(--color-doc-accent)]/10 text-[color:var(--color-doc-accent)]'
-                        : 'border-[color:var(--color-doc-border)] bg-[#fbfcfe]'
+                        ? 'border-primary-blue-1 bg-primary-blue-opacity-10 text-primary-blue-1'
+                        : 'border-cool-grey-04 bg-cool-grey-01'
                     }`}
                     title={isDefault ? '기본값' : undefined}
                   >

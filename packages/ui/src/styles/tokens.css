@@ -79,7 +79,7 @@
   /* ── Sidebar ── */
   --color-sidebar-button-bg: #88adff;
 
-  /* ── 그래디언트 (--image-* → bg-* 유틸 자동 생성) ── */
+  /* ── 그래디언트 (원시 값) ── */
   --image-primary-blue-gradient-1: linear-gradient(to right, #155dfc, #3545d6);
   --image-primary-blue-gradient-2: linear-gradient(to right, #155dfc, #0d3796);
   --image-primary-skyblue-gradient-1: linear-gradient(to right, #d4e1ff, #88adff);
@@ -107,4 +107,21 @@
   /* ── 브레이크포인트 (Tailwind 기본 오버라이드) ── */
   --breakpoint-md: 1550px;
   --breakpoint-lg: 1660px;
+}
+
+/* ────────────────────────────────────────────────────────────
+ * 그래디언트 utility — Tailwind v4는 --image-* namespace에서
+ * 자동 유틸을 생성하지 않으므로 명시적 @utility 선언이 필요.
+ * ──────────────────────────────────────────────────────────── */
+@utility bg-primary-blue-gradient-1 {
+  background-image: var(--image-primary-blue-gradient-1);
+}
+@utility bg-primary-blue-gradient-2 {
+  background-image: var(--image-primary-blue-gradient-2);
+}
+@utility bg-primary-skyblue-gradient-1 {
+  background-image: var(--image-primary-skyblue-gradient-1);
+}
+@utility bg-ui-sidebar-gradient {
+  background-image: var(--image-ui-sidebar-gradient);
 }

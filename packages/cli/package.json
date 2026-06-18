@@ -1,6 +1,6 @@
 {
   "name": "@transight-design/cli",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Transight Design System CLI — thin wrapper around `shadcn`",
   "license": "MIT",
   "type": "module",
@@ -14,7 +14,11 @@
     "build": "tsup src/index.ts --format esm --target node20 --clean --shims",
     "dev": "tsx src/index.ts",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist .turbo"
+    "clean": "rm -rf dist .turbo",
+    "prepublishOnly": "npm run typecheck && npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "commander": "^12.1.0",

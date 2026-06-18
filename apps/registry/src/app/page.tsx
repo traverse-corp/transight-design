@@ -1,69 +1,127 @@
 import Link from 'next/link'
-import { loadRegistry, groupByType } from '@/lib/registry'
+import { CodeBlock } from '@/components/code-block'
+import { InstallCommands } from '@/components/install-commands'
 
-const Home = () => {
-  const registry = loadRegistry()
-  const groups = groupByType(registry.items)
-  const total: number = registry.items.length
-
-  return (
-    <main className='mx-auto max-w-5xl px-6 py-16'>
-      <header className='mb-12'>
-        <h1 className='text-4xl font-extrabold tracking-tight'>{registry.name}</h1>
-        <p className='mt-2 text-[color:var(--color-doc-muted)]'>
-          shadcn 방식 배포형 디자인 시스템 — Base UI + Tailwind v4
-        </p>
-        <p className='mt-1 text-sm text-[color:var(--color-doc-muted)]'>
-          현재 <strong>{total}</strong>개 아이템 호스팅 중
-        </p>
-      </header>
-
-      <section className='mb-10 rounded-lg border border-[color:var(--color-doc-border)] bg-[#fbfcfe] p-6'>
-        <h2 className='mb-3 text-lg font-semibold'>설치</h2>
-        <pre className='overflow-x-auto rounded bg-[#131b2d] p-4 text-sm text-white'>
-          <code>{`# 전체 번들 한 방 설치
+const CLI_INSTALL = `# 전체 번들 한 방 설치
 npx @transight-design/cli init
 
-# 개별 컴포넌트
-npx @transight-design/cli add button card dialog
+# 또는 개별 컴포넌트
+npx @transight-design/cli add button card dialog`
 
-# 또는 shadcn에 GitHub 주소 직접
-npx shadcn@latest add traverse-corp/transight-design/button`}</code>
-        </pre>
-      </section>
+const SHADCN_INSTALL = `# 전체 번들
+npx shadcn@latest add traverse-corp/transight-design/transight-design
 
-      {groups.map((group) => (
-        <section key={group.type} className='mb-10'>
-          <div className='mb-3 flex items-baseline justify-between'>
-            <h2 className='text-xl font-bold'>{group.label}</h2>
-            <span className='text-sm text-[color:var(--color-doc-muted)]'>
-              {group.items.length}개
-            </span>
-          </div>
-          <ul className='grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4'>
-            {group.items.map((item) => (
-              <li key={item.name}>
-                <Link
-                  href={`/components/${item.name}`}
-                  className='block truncate rounded-md border border-[color:var(--color-doc-border)] px-3 py-2 text-sm hover:border-[color:var(--color-doc-accent)] hover:text-[color:var(--color-doc-accent)]'
-                  title={item.description ?? item.name}
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+# 또는 개별 컴포넌트
+npx shadcn@latest add traverse-corp/transight-design/button`
 
-      <footer className='mt-16 border-t border-[color:var(--color-doc-border)] pt-6 text-sm text-[color:var(--color-doc-muted)]'>
-        <p>
-          MIT License · <Link href='https://github.com/traverse-corp/transight-design'>GitHub</Link>
-        </p>
-        <p className='mt-1'>각 아이템 클릭 시 프리뷰·소스·설치 명령 확인</p>
-      </footer>
-    </main>
+const CSS_VITE = `/* src/index.css */
+@import "./styles/index.css";`
+
+const CSS_NEXTJS = `/* app/globals.css */
+@import "../src/styles/index.css";`
+
+const USAGE_CODE = `import { Button } from '@/components/base/button'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/base/card'
+
+export default function App() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Hello Transight</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Button>클릭</Button>
+      </CardContent>
+    </Card>
   )
-}
+}`
+
+const Home = () => (
+  <main className='mx-auto max-w-4xl px-6 py-20'>
+    {/* 히어로 */}
+    <section className='mb-20 text-center'>
+      <h1 className='typo-eb54 text-cool-grey-11 text-[clamp(40px,7vw,72px)]'>
+        TranSight Design System
+      </h1>
+      <div className='mt-8 flex flex-wrap items-center justify-center gap-3'>
+        <Link
+          href='/components'
+          className='typo-sb14 bg-primary-blue-1 shadow-primary hover:bg-primary-blue-2 inline-flex h-11 items-center rounded-md px-6 text-white transition-colors'
+        >
+          Browse Components →
+        </Link>
+        <Link
+          href='https://github.com/traverse-corp/transight-design'
+          className='typo-sb14 text-cool-grey-09 border-cool-grey-04 hover:border-primary-blue-1 hover:text-primary-blue-1 inline-flex h-11 items-center rounded-md border bg-white px-6 transition-colors'
+        >
+          GitHub
+        </Link>
+      </div>
+    </section>
+
+    {/* 설치 */}
+    <section className='mb-12'>
+      <h2 className='text-section-title mb-4'>설치</h2>
+      <p className='text-description mb-3'>
+        Vite 또는 Next.js + Tailwind v4 + shadcn 초기화된 프로젝트에서 한 줄.
+      </p>
+      <InstallCommands
+        options={[
+          { label: 'Transight CLI', code: CLI_INSTALL },
+          { label: 'shadcn', code: SHADCN_INSTALL }
+        ]}
+      />
+    </section>
+
+    {/* 사용법 */}
+    <section className='mb-12'>
+      <h2 className='text-section-title mb-4'>사용</h2>
+
+      {/* 진입 CSS — Vite/Next.js 별도 표시 */}
+      <h3 className='text-label mb-2 mt-4'>1. 진입 CSS에 디자인 시스템 import</h3>
+      <p className='text-description mb-3'>
+        SUIT 폰트 + Tailwind + 토큰 + 타이포 프리셋이 한 번에 들어옵니다.
+      </p>
+      <div className='grid grid-cols-1 gap-3 md:grid-cols-2'>
+        <div>
+          <p className='text-overline mb-1.5'>Vite</p>
+          <CodeBlock code={CSS_VITE} language='css' maxHeight='auto' />
+        </div>
+        <div>
+          <p className='text-overline mb-1.5'>Next.js (App Router)</p>
+          <CodeBlock code={CSS_NEXTJS} language='css' maxHeight='auto' />
+        </div>
+      </div>
+
+      <h3 className='text-label mb-2 mt-6'>2. 컴포넌트 사용</h3>
+      <p className='text-description mb-3'>
+        설치된 컴포넌트는 카테고리별로{' '}
+        <code className='typo-mono-m12 text-cool-grey-09'>components/base/</code> 또는{' '}
+        <code className='typo-mono-m12 text-cool-grey-09'>components/custom/</code>에 떨어집니다.
+      </p>
+      <CodeBlock code={USAGE_CODE} language='tsx' maxHeight='auto' />
+    </section>
+
+    {/* 푸터 */}
+    <footer className='text-description border-cool-grey-04 mt-16 border-t pt-6'>
+      <p>
+        MIT License ·{' '}
+        <Link
+          href='https://github.com/traverse-corp/transight-design'
+          className='hover:text-primary-blue-1'
+        >
+          GitHub
+        </Link>{' '}
+        ·{' '}
+        <Link
+          href='https://www.npmjs.com/package/@transight-design/cli'
+          className='hover:text-primary-blue-1'
+        >
+          npm
+        </Link>
+      </p>
+    </footer>
+  </main>
+)
 
 export default Home

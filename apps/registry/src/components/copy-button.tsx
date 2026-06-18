@@ -23,7 +23,7 @@ export const CopyButton = ({ text, label = '복사' }: CopyButtonProps) => {
   return (
     <button
       onClick={handleCopy}
-      className='rounded-md border border-[color:var(--color-doc-border)] bg-white px-2.5 py-1 text-xs font-medium hover:border-[color:var(--color-doc-accent)] hover:text-[color:var(--color-doc-accent)]'
+      className='rounded-md border border-cool-grey-04 bg-white px-2.5 py-1 text-xs font-medium hover:border-primary-blue-1 hover:text-primary-blue-1'
     >
       {copied ? '복사됨' : label}
     </button>

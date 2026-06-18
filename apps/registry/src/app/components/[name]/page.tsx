@@ -1,11 +1,13 @@
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { loadRegistry, loadBuiltItem } from '@/lib/registry'
+import type { ReactNode } from 'react'
+import { loadRegistry, loadBuiltItem, STYLE_META } from '@/lib/registry'
 import { CodeBlock } from '@/components/code-block'
-import { InstallCommands } from '@/components/install-commands'
-import { MetadataPanel } from '@/components/metadata-panel'
+import { ItemInstallCommands } from '@/components/install-commands'
 import { VariantsPanel, hasVariants } from '@/components/variants-panel'
 import { PREVIEWS, hasPreview } from '@/previews'
+import { TokensView } from '@/views/tokens-view'
+import { TypoView } from '@/views/typo-view'
+import { FlexView } from '@/views/flex-view'
 
 export const generateStaticParams = (): { name: string }[] => {
   const registry = loadRegistry()
@@ -16,48 +18,56 @@ interface PageProps {
   params: Promise<{ name: string }>
 }
 
+const SectionTitle = ({ children }: { children: ReactNode }) => (
+  <h2 className='typo-sb12 text-cool-grey-07 mb-3 uppercase tracking-wide'>{children}</h2>
+)
+
+/** style-tokens / style-typography / style-flex 특화 콘텐츠 */
+const STYLE_VIEWS: Record<string, () => ReactNode> = {
+  'style-tokens': () => <TokensView />,
+  'style-typography': () => <TypoView />,
+  'style-flex': () => <FlexView />
+}
+
 const ComponentPage = async ({ params }: PageProps) => {
   const { name } = await params
   const item = loadBuiltItem(name)
   if (!item) notFound()
 
+  const meta = STYLE_META[item.name]
+  const title = meta?.displayName ?? item.name
+  const description = meta?.description ?? item.description
   const PreviewComponent = hasPreview(name) ? PREVIEWS[name] : null
+  const StyleView = STYLE_VIEWS[item.name]
   const firstFile = item.files?.[0]
 
   return (
-    <main className='mx-auto max-w-6xl px-6 py-10'>
-      <nav className='mb-6 text-sm text-[color:var(--color-doc-muted)]'>
-        <Link href='/' className='hover:text-[color:var(--color-doc-accent)]'>
-          ← 전체 목록
-        </Link>
-      </nav>
-
+    <main>
       <header className='mb-8'>
-        <div className='flex items-baseline gap-3'>
-          <h1 className='text-3xl font-extrabold tracking-tight'>{item.name}</h1>
-          <code className='font-mono text-sm text-[color:var(--color-doc-muted)]'>{item.type}</code>
-        </div>
-        {item.description && (
-          <p className='mt-2 text-[color:var(--color-doc-muted)]'>{item.description}</p>
-        )}
+        <h1 className='typo-eb32 text-cool-grey-11'>{title}</h1>
+        {description && <p className='text-subtitle mt-2'>{description}</p>}
       </header>
 
-      <div className='grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_280px]'>
-        <div className='flex min-w-0 flex-col gap-6'>
+      {/* 설치 — 항상 맨 위 */}
+      <section className='mb-8'>
+        <SectionTitle>설치</SectionTitle>
+        <ItemInstallCommands itemName={item.name} />
+      </section>
+
+      {/* Style 전용 뷰 — 또는 일반 컴포넌트 뷰 */}
+      {StyleView ? (
+        <StyleView />
+      ) : (
+        <div className='flex flex-col gap-6'>
           {/* 프리뷰 */}
           <section>
-            <h2 className='mb-3 text-sm font-semibold uppercase tracking-wide text-[color:var(--color-doc-muted)]'>
-              Preview
-            </h2>
-            <div className='rounded-lg border border-[color:var(--color-doc-border)] bg-white p-8'>
+            <SectionTitle>Preview</SectionTitle>
+            <div className='border-cool-grey-04 rounded-lg border bg-white p-8'>
               {PreviewComponent ? (
                 <PreviewComponent />
               ) : (
-                <div className='py-8 text-center text-sm text-[color:var(--color-doc-muted)]'>
-                  Preview는 Phase 6c에서 추가됩니다.
-                  <br />
-                  현재 라이브 프리뷰: button, badge, alert, card, separator, skeleton, spinner,
-                  avatar, input, label
+                <div className='text-description py-8 text-center'>
+                  Preview는 추후 점진적으로 추가됩니다.
                 </div>
               )}
             </div>
@@ -66,29 +76,17 @@ const ComponentPage = async ({ params }: PageProps) => {
           {/* Variants — cva로 정의된 컴포넌트만 */}
           {hasVariants(item.name) && (
             <section>
-              <h2 className='mb-3 text-sm font-semibold uppercase tracking-wide text-[color:var(--color-doc-muted)]'>
-                Variants
-              </h2>
-              <div className='rounded-lg border border-[color:var(--color-doc-border)] bg-white p-5'>
+              <SectionTitle>Variants</SectionTitle>
+              <div className='border-cool-grey-04 rounded-lg border bg-white p-5'>
                 <VariantsPanel name={item.name} />
               </div>
             </section>
           )}
 
-          {/* 설치 */}
-          <section>
-            <h2 className='mb-3 text-sm font-semibold uppercase tracking-wide text-[color:var(--color-doc-muted)]'>
-              설치
-            </h2>
-            <InstallCommands itemName={item.name} />
-          </section>
-
           {/* 소스 코드 */}
           {firstFile?.content && (
             <section>
-              <h2 className='mb-3 text-sm font-semibold uppercase tracking-wide text-[color:var(--color-doc-muted)]'>
-                소스 코드
-              </h2>
+              <SectionTitle>소스 코드</SectionTitle>
               <CodeBlock
                 code={firstFile.content}
                 language={firstFile.path.split('.').pop()}
@@ -97,9 +95,7 @@ const ComponentPage = async ({ params }: PageProps) => {
             </section>
           )}
         </div>
-
-        <MetadataPanel item={item} />
-      </div>
+      )}
     </main>
   )
 }

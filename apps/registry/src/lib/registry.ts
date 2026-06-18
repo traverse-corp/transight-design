@@ -119,6 +119,64 @@ export interface ItemGroup {
   items: RegistryItem[]
 }
 
+/**
+ * Style 아이템 표시 메타.
+ * - 사이드바 라벨 (PascalCase)
+ * - 페이지 헤더 디스플레이 네임 + 설명
+ * - 사이드바 노출 순서 (tokens → typo → flex)
+ */
+export interface StyleMeta {
+  /** 페이지/사이드바 표시 이름 (예: 'Tokens') */
+  displayName: string
+  /** 페이지 헤더 부제 */
+  description: string
+}
+
+export const STYLE_META: Record<string, StyleMeta> = {
+  'style-tokens': { displayName: 'Tokens', description: '디자인 시스템 토큰' },
+  'style-typography': { displayName: 'Typo', description: '텍스트 시스템' },
+  'style-flex': { displayName: 'Flex', description: 'flex 레이아웃 시스템' }
+}
+
+/** 사이드바 노출 순서 (tokens → typo → flex) */
+const STYLE_ORDER: string[] = ['style-tokens', 'style-typography', 'style-flex']
+
+export interface NavItem {
+  name: string
+  label: string
+}
+
+export interface NavGroup {
+  label: string
+  items: NavItem[]
+}
+
+/** 사이드바용 그룹 구성 — Styles(3) · Base Components · Custom Components */
+export const buildSidebarGroups = (items: RegistryItem[]): NavGroup[] => {
+  const styles: NavItem[] = STYLE_ORDER.flatMap((name) => {
+    const item = items.find((i) => i.name === name)
+    const meta = STYLE_META[name]
+    if (!item || !meta) return []
+    return [{ name: item.name, label: meta.displayName }]
+  })
+
+  const ui = items.filter((i) => i.type === 'registry:ui')
+  const base: NavItem[] = ui
+    .filter((i) => BASE_COMPONENTS.has(i.name))
+    .map((i) => ({ name: i.name, label: i.name }))
+    .sort((a, b) => a.label.localeCompare(b.label))
+  const custom: NavItem[] = ui
+    .filter((i) => !BASE_COMPONENTS.has(i.name))
+    .map((i) => ({ name: i.name, label: i.name }))
+    .sort((a, b) => a.label.localeCompare(b.label))
+
+  return [
+    { label: 'Styles', items: styles },
+    { label: 'Base Components', items: base },
+    { label: 'Custom Components', items: custom }
+  ]
+}
+
 const groupKeyFor = (item: RegistryItem): GroupKey | null => {
   if (item.type === 'registry:ui') {
     return BASE_COMPONENTS.has(item.name) ? 'ui-base' : 'ui-custom'

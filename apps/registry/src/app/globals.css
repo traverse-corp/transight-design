@@ -1,9 +1,9 @@
 /* ================================================================
  * Registry app — 진입 CSS
  *
- * 디자인 시스템 토큰/유틸을 그대로 포함하므로 컴포넌트 프리뷰가
- * 실제 사용자 앱과 동일한 환경에서 렌더링된다.
- * 문서 사이트 자체용 doc-* 토큰은 별도 prefix로 공존.
+ * 문서 사이트 자체가 디자인 시스템의 첫 번째 사용자이다.
+ * 별도 doc-* 토큰을 두지 않고, 디자인 시스템 토큰(cool-grey, primary-blue 등)을
+ * 그대로 사용한다 (dogfood).
  * ================================================================ */
 
 /* SUIT 폰트는 반드시 최상단 (CSS @import 순서 규칙) */
@@ -19,18 +19,27 @@
 /* Tailwind v4 — packages/ui 컴포넌트의 className도 스캔 대상에 포함 */
 @source "../../../../packages/ui/src/components/**/*.{ts,tsx}";
 
-/* 문서 사이트 전용 토큰 (디자인 시스템 토큰과 prefix로 분리) */
-:root {
-  --color-doc-bg: #ffffff;
-  --color-doc-fg: #131b2d;
-  --color-doc-muted: #6d7588;
-  --color-doc-border: #e4e7ee;
-  --color-doc-accent: #155dfc;
-  --color-doc-code-bg: #131b2d;
-  --color-doc-code-fg: #f3f4f8;
-}
+/* ────────────────────────────────────────────────────────────────
+ * 토큰 카탈로그용 safelist (Tokens 페이지의 동적 className).
+ * brace expansion으로 그룹 단위 일괄 생성.
+ * ──────────────────────────────────────────────────────────────── */
+@source inline("bg-cool-grey-{white,01,02,03,04,05,06,07,08,09,10,11,black}");
+@source inline("bg-primary-blue-{1,2,deep}");
+@source inline("bg-primary-blue-opacity-{10,20}");
+@source inline("bg-primary-skyblue-{1,2}");
+@source inline("bg-primary-blue2-opacity-20");
+@source inline("bg-accent-amber");
+@source inline("bg-glass-{white,border}");
+@source inline("bg-sidebar-button-bg");
+@source inline("bg-ui-{red,orange,yellow,olive,green,skyblue,blue,purple,pink}");
+@source inline("bg-ui-text-{red,orange,yellow,olive,green,skyblue,blue,purple,pink}");
+@source inline("bg-ui-pale-{red,orange,yellow,olive,green,skyblue,blue,purple,pink}");
+@source inline("bg-primary-blue-gradient-{1,2}");
+@source inline("bg-primary-skyblue-gradient-1");
+@source inline("bg-ui-sidebar-gradient");
+@source inline("shadow-{primary,search-bar,input,hover}");
+@source inline("text-{4xs,3xs,2xs,xs,md,sm,base,lg,xl,2xl,3xl}");
 
 body {
-  color: var(--color-doc-fg);
-  background: var(--color-doc-bg);
+  @apply bg-background text-foreground;
 }
