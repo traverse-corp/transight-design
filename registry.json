@@ -1,0 +1,6 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "transight-design",
+  "homepage": "https://github.com/traverse-corp/transight-design",
+  "include": ["packages/ui/registry.json"]
+}
