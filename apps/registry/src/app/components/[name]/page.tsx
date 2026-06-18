@@ -4,6 +4,7 @@ import { loadRegistry, loadBuiltItem } from '@/lib/registry'
 import { CodeBlock } from '@/components/code-block'
 import { InstallCommands } from '@/components/install-commands'
 import { MetadataPanel } from '@/components/metadata-panel'
+import { VariantsPanel, hasVariants } from '@/components/variants-panel'
 import { PREVIEWS, hasPreview } from '@/previews'
 
 export const generateStaticParams = (): { name: string }[] => {
@@ -61,6 +62,18 @@ const ComponentPage = async ({ params }: PageProps) => {
               )}
             </div>
           </section>
+
+          {/* Variants — cva로 정의된 컴포넌트만 */}
+          {hasVariants(item.name) && (
+            <section>
+              <h2 className='mb-3 text-sm font-semibold uppercase tracking-wide text-[color:var(--color-doc-muted)]'>
+                Variants
+              </h2>
+              <div className='rounded-lg border border-[color:var(--color-doc-border)] bg-white p-5'>
+                <VariantsPanel name={item.name} />
+              </div>
+            </section>
+          )}
 
           {/* 설치 */}
           <section>

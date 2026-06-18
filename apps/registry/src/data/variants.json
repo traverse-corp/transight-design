@@ -1,0 +1,322 @@
+{
+  "alert": {
+    "groups": {
+      "variant": [
+        "default",
+        "destructive",
+        "alert"
+      ]
+    },
+    "defaults": {
+      "variant": "default"
+    }
+  },
+  "AnimatedCheckbox": {
+    "groups": {
+      "variant": [
+        "default",
+        "accent"
+      ],
+      "size": [
+        "default",
+        "sm",
+        "lg"
+      ]
+    },
+    "defaults": {
+      "variant": "default",
+      "size": "default"
+    }
+  },
+  "badge": {
+    "groups": {
+      "variant": [
+        "default",
+        "secondary",
+        "outline",
+        "dark",
+        "badge-blue",
+        "badge-blue-outline",
+        "badge-gradient-blue",
+        "badge-red",
+        "badge-red-outline",
+        "badge-orange",
+        "badge-orange-outline",
+        "badge-yellow",
+        "badge-yellow-outline",
+        "badge-olive",
+        "badge-olive-outline",
+        "badge-green",
+        "badge-green-outline",
+        "badge-skyblue",
+        "badge-skyblue-outline",
+        "badge-purple",
+        "badge-purple-outline",
+        "badge-pink",
+        "badge-pink-outline",
+        "badge-gray",
+        "badge-gray-outline",
+        "request",
+        "progressing",
+        "end",
+        "reject",
+        "temporary",
+        "release",
+        "releaserequest",
+        "file",
+        "trusted",
+        "scam",
+        "in",
+        "out",
+        "swap",
+        "status",
+        "lea",
+        "vasp",
+        "system",
+        "unknown",
+        "tx-swap",
+        "tx-bridge",
+        "tx-native",
+        "tx-token",
+        "tx-internal",
+        "tx-contract"
+      ],
+      "size": [
+        "default",
+        "sm",
+        "mini"
+      ]
+    },
+    "defaults": {
+      "variant": "default",
+      "size": "default"
+    }
+  },
+  "button": {
+    "groups": {
+      "variant": [
+        "default",
+        "destructive",
+        "outline",
+        "ghost",
+        "ghost-danger",
+        "link",
+        "dark",
+        "auth",
+        "button-blue",
+        "button-blue-outline",
+        "button-gradient-blue",
+        "button-red",
+        "button-red-outline",
+        "button-orange",
+        "button-orange-outline",
+        "button-yellow",
+        "button-yellow-outline",
+        "button-olive",
+        "button-olive-outline",
+        "button-green",
+        "button-green-outline",
+        "button-skyblue",
+        "button-skyblue-outline",
+        "button-purple",
+        "button-purple-outline",
+        "button-pink",
+        "button-pink-outline",
+        "button-gray",
+        "button-gray-outline",
+        "button-white",
+        "group-item-on-dark",
+        "tab-nav",
+        "tab-success",
+        "tab-danger"
+      ],
+      "size": [
+        "default",
+        "sm",
+        "lg",
+        "mini",
+        "icon",
+        "icon-xs",
+        "icon-sm",
+        "icon-lg",
+        "action",
+        "group-item"
+      ]
+    },
+    "defaults": {
+      "variant": "default",
+      "size": "default"
+    }
+  },
+  "card": {
+    "groups": {
+      "variant": [
+        "default",
+        "glass"
+      ]
+    },
+    "defaults": {
+      "variant": "default"
+    }
+  },
+  "empty": {
+    "groups": {
+      "variant": [
+        "default",
+        "icon"
+      ]
+    },
+    "defaults": {
+      "variant": "default"
+    }
+  },
+  "field": {
+    "groups": {
+      "orientation": [
+        "vertical",
+        "horizontal",
+        "responsive"
+      ]
+    },
+    "defaults": {
+      "orientation": "vertical"
+    }
+  },
+  "input-group": {
+    "groups": {
+      "align": [
+        "inline-start",
+        "inline-end",
+        "block-start",
+        "block-end"
+      ]
+    },
+    "defaults": {
+      "align": "inline-start"
+    }
+  },
+  "input-otp": {
+    "groups": {
+      "variant": [
+        "default",
+        "auth"
+      ]
+    },
+    "defaults": {
+      "variant": "default"
+    }
+  },
+  "input": {
+    "groups": {
+      "variant": [
+        "default",
+        "error",
+        "minimal",
+        "capsule",
+        "form"
+      ],
+      "inputSize": [
+        "default",
+        "sm",
+        "xs",
+        "lg"
+      ]
+    },
+    "defaults": {
+      "variant": "default",
+      "inputSize": "default"
+    }
+  },
+  "label": {
+    "groups": {
+      "variant": [
+        "default",
+        "auth",
+        "muted",
+        "form"
+      ]
+    },
+    "defaults": {
+      "variant": "default"
+    }
+  },
+  "sidebar": {
+    "groups": {
+      "variant": [
+        "default",
+        "outline"
+      ],
+      "size": [
+        "default",
+        "sm",
+        "lg"
+      ]
+    },
+    "defaults": {
+      "variant": "default",
+      "size": "default"
+    }
+  },
+  "table": {
+    "groups": {
+      "variant": [
+        "default",
+        "embedded"
+      ]
+    },
+    "defaults": {
+      "variant": "default"
+    }
+  },
+  "tabs": {
+    "groups": {
+      "variant": [
+        "default",
+        "line"
+      ]
+    },
+    "defaults": {
+      "variant": "default"
+    }
+  },
+  "toggle-group": {
+    "groups": {
+      "variant": [
+        "pill",
+        "filter",
+        "chip",
+        "toolbar",
+        "card"
+      ]
+    },
+    "defaults": {}
+  },
+  "toggle": {
+    "groups": {
+      "variant": [
+        "default",
+        "outline"
+      ],
+      "size": [
+        "default",
+        "sm",
+        "lg"
+      ]
+    },
+    "defaults": {
+      "variant": "default",
+      "size": "default"
+    }
+  },
+  "tooltip": {
+    "groups": {
+      "variant": [
+        "default",
+        "glass"
+      ]
+    },
+    "defaults": {
+      "variant": "default"
+    }
+  }
+}

@@ -23,8 +23,13 @@ export const COOL_GREY = {
 export const PRIMARY = {
   blue1: '#155dfc',
   blue2: '#3545d6',
+  blueDeep: '#0d3796',
   skyblue1: '#d4e1ff',
   skyblue2: '#88adff'
+} as const
+
+export const ACCENT = {
+  amber: '#c9a45a'
 } as const
 
 export const UI_COLOR = {

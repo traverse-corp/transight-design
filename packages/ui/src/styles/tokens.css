@@ -23,6 +23,7 @@
   /* ── Primary Blue ── */
   --color-primary-blue-1: #155dfc;
   --color-primary-blue-2: #3545d6;
+  --color-primary-blue-deep: #0d3796;
   --color-primary-blue-opacity-10: rgb(21 109 252 / 0.1);
   --color-primary-blue-opacity-20: rgb(21 109 252 / 0.2);
 
@@ -34,6 +35,9 @@
   /* ── Glass ── */
   --color-glass-white: rgba(255, 255, 255, 0.1);
   --color-glass-border: rgba(255, 255, 255, 0.05);
+
+  /* ── Accent ── */
+  --color-accent-amber: #c9a45a;
 
   /* ── UI Color: 9색 × 3단계 (text / base / pale) ── */
   --color-ui-text-red: #cf443d;

@@ -5,9 +5,9 @@
   "description": "Transight Design System — 문서 사이트 + 레지스트리 정적 호스팅",
   "type": "module",
   "scripts": {
-    "predev": "node scripts/sync-registry.mjs",
+    "predev": "node scripts/sync-registry.mjs && node scripts/extract-variants.mjs",
     "dev": "next dev --turbo --port 3000",
-    "prebuild": "node scripts/sync-registry.mjs",
+    "prebuild": "node scripts/sync-registry.mjs && node scripts/extract-variants.mjs",
     "build": "next build",
     "start": "next start --port 3000",
     "typecheck": "tsc --noEmit",
