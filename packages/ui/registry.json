@@ -34,6 +34,13 @@
       "type": "registry:style",
       "title": "Style: index",
       "description": "index.css — 디자인 시스템 진입점 스타일",
+      "registryDependencies": [
+        "traverse-corp/transight-design/style-flex",
+        "traverse-corp/transight-design/style-font-suit",
+        "traverse-corp/transight-design/style-theme",
+        "traverse-corp/transight-design/style-tokens",
+        "traverse-corp/transight-design/style-typography"
+      ],
       "files": [
         {
           "path": "src/styles/index.css",
@@ -213,7 +220,8 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/hook-use-controlled-state",
-        "traverse-corp/transight-design/lib-get-strict-context"
+        "traverse-corp/transight-design/lib-get-strict-context",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -238,7 +246,8 @@
         "traverse-corp/transight-design/button",
         "traverse-corp/transight-design/hook-use-controlled-state",
         "traverse-corp/transight-design/lib-get-strict-context",
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -257,7 +266,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -274,6 +284,9 @@
       "description": "AlertDialog 컴포넌트",
       "dependencies": [
         "react-i18next"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -292,7 +305,8 @@
         "motion"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -312,7 +326,8 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/accordion",
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -330,7 +345,8 @@
       "registryDependencies": [
         "traverse-corp/transight-design/alert-dialog",
         "traverse-corp/transight-design/button",
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -350,7 +366,8 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/checkbox",
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -367,7 +384,8 @@
       "description": "AnimatedPreviewCard 컴포넌트",
       "registryDependencies": [
         "traverse-corp/transight-design/lib-utils",
-        "traverse-corp/transight-design/preview-card"
+        "traverse-corp/transight-design/preview-card",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -386,7 +404,8 @@
         "@base-ui/react"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -407,7 +426,8 @@
         "react-router-dom"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/button"
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -426,7 +446,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -446,7 +467,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -467,7 +489,8 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/button",
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -486,7 +509,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -507,7 +531,8 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/button",
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -528,7 +553,8 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/hook-use-controlled-state",
-        "traverse-corp/transight-design/lib-get-strict-context"
+        "traverse-corp/transight-design/lib-get-strict-context",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -549,6 +575,7 @@
         "sonner"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/styles",
         "traverse-corp/transight-design/tooltip"
       ],
       "files": [
@@ -570,6 +597,7 @@
         "sonner"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/styles",
         "traverse-corp/transight-design/tooltip"
       ],
       "files": [
@@ -585,6 +613,9 @@
       "type": "registry:ui",
       "title": "CoinIcon",
       "description": "CoinIcon 컴포넌트",
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
       "files": [
         {
           "path": "src/components/CoinIcon.tsx",
@@ -605,7 +636,8 @@
       "registryDependencies": [
         "traverse-corp/transight-design/dialog",
         "traverse-corp/transight-design/input-group",
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -626,7 +658,8 @@
         "sonner"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/button"
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -641,6 +674,9 @@
       "type": "registry:ui",
       "title": "CopyWrapper",
       "description": "CopyWrapper 컴포넌트",
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
       "files": [
         {
           "path": "src/components/CopyWrapper.tsx",
@@ -655,7 +691,8 @@
       "title": "date-time-input",
       "description": "date-time-input 컴포넌트",
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -679,7 +716,8 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/calendar",
-        "traverse-corp/transight-design/popover"
+        "traverse-corp/transight-design/popover",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -704,7 +742,8 @@
         "traverse-corp/transight-design/button",
         "traverse-corp/transight-design/hook-use-controlled-state",
         "traverse-corp/transight-design/lib-get-strict-context",
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -724,7 +763,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -744,7 +784,8 @@
         "react-dropzone"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -763,7 +804,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -784,7 +826,8 @@
       "registryDependencies": [
         "traverse-corp/transight-design/label",
         "traverse-corp/transight-design/lib-utils",
-        "traverse-corp/transight-design/separator"
+        "traverse-corp/transight-design/separator",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -806,7 +849,8 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/lib-format",
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -825,7 +869,8 @@
         "@base-ui/react"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -841,7 +886,8 @@
       "title": "icon",
       "description": "icon 컴포넌트",
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -863,6 +909,7 @@
         "traverse-corp/transight-design/button",
         "traverse-corp/transight-design/input",
         "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles",
         "traverse-corp/transight-design/textarea"
       ],
       "files": [
@@ -884,7 +931,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -904,7 +952,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -926,7 +975,8 @@
         "tailwind-merge"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/hook-use-caps-lock"
+        "traverse-corp/transight-design/hook-use-caps-lock",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -945,7 +995,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -962,6 +1013,9 @@
       "description": "NoItem 컴포넌트",
       "dependencies": [
         "react-i18next"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -981,7 +1035,8 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/button",
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1001,7 +1056,8 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/lib-pagination-types",
-        "traverse-corp/transight-design/pagination"
+        "traverse-corp/transight-design/pagination",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1020,7 +1076,8 @@
         "@base-ui/react"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1041,7 +1098,8 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/hook-use-controlled-state",
-        "traverse-corp/transight-design/lib-get-strict-context"
+        "traverse-corp/transight-design/lib-get-strict-context",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1061,7 +1119,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1076,6 +1135,9 @@
       "type": "registry:ui",
       "title": "RadioButton",
       "description": "RadioButton 컴포넌트",
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
       "files": [
         {
           "path": "src/components/RadioButton.tsx",
@@ -1093,7 +1155,8 @@
         "react-resizable-panels"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1112,7 +1175,8 @@
         "@base-ui/react"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1130,6 +1194,9 @@
       "dependencies": [
         "lucide-react",
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1149,7 +1216,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1168,7 +1236,8 @@
         "@base-ui/react"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1189,7 +1258,8 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/button",
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1205,7 +1275,8 @@
       "title": "shine-border",
       "description": "shine-border 컴포넌트",
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1233,6 +1304,7 @@
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/separator",
         "traverse-corp/transight-design/skeleton",
+        "traverse-corp/transight-design/styles",
         "traverse-corp/transight-design/tooltip"
       ],
       "files": [
@@ -1249,7 +1321,8 @@
       "title": "skeleton",
       "description": "skeleton 컴포넌트",
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1269,6 +1342,9 @@
         "next-themes",
         "sonner"
       ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
       "files": [
         {
           "path": "src/components/sonner.tsx",
@@ -1283,7 +1359,8 @@
       "title": "spinner",
       "description": "spinner 컴포넌트",
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1303,6 +1380,9 @@
         "motion",
         "tailwind-merge"
       ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
       "files": [
         {
           "path": "src/components/Stepper.tsx",
@@ -1319,6 +1399,9 @@
       "dependencies": [
         "react-spinners"
       ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
       "files": [
         {
           "path": "src/components/SuspenseFallback.tsx",
@@ -1333,7 +1416,8 @@
       "title": "switch",
       "description": "switch 컴포넌트",
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1353,7 +1437,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1373,7 +1458,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1389,7 +1475,8 @@
       "title": "textarea",
       "description": "textarea 컴포넌트",
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1406,6 +1493,9 @@
       "description": "TimePicker 컴포넌트",
       "dependencies": [
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1426,6 +1516,7 @@
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles",
         "traverse-corp/transight-design/toggle"
       ],
       "files": [
@@ -1446,7 +1537,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {
@@ -1466,7 +1558,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils"
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
       ],
       "files": [
         {

@@ -142,16 +142,27 @@ const main = () => {
   const items = []
 
   // ── 1. Styles (registry:style) ─────────────────
-  // 사용자 프로젝트의 ./src/styles/*.css에 설치 (target 명시)
+  // 사용자 프로젝트의 ./src/styles/*.css에 설치 (target 명시).
+  // styles(index.css)는 다른 4개 스타일을 import하므로 의존성 명시.
   const stylesDir = join(SRC, 'styles')
-  for (const f of readdirSync(stylesDir).filter((x) => x.endsWith('.css'))) {
+  const styleFiles = readdirSync(stylesDir).filter((x) => x.endsWith('.css'))
+  for (const f of styleFiles) {
     const base = f.replace(/\.css$/, '')
     const name = base === 'index' ? 'styles' : `style-${base}`
+    const isIndex = name === 'styles'
+    // index.css가 의존하는 4개 스타일 — 동일 레포의 다른 아이템
+    const indexDeps = isIndex
+      ? styleFiles
+          .filter((x) => x !== 'index.css')
+          .map((x) => `${REGISTRY_DEP_PREFIX}/style-${x.replace(/\.css$/, '')}`)
+          .sort()
+      : []
     items.push({
       name,
       type: 'registry:style',
       title: `Style: ${base}`,
-      description: `${base}.css — 디자인 시스템 ${base === 'index' ? '진입점' : base} 스타일`,
+      description: `${base}.css — 디자인 시스템 ${isIndex ? '진입점' : base} 스타일`,
+      ...(indexDeps.length ? { registryDependencies: indexDeps } : {}),
       files: [
         {
           path: relativeFrom(OUT, join(stylesDir, f)),
@@ -231,20 +242,23 @@ const main = () => {
   }
 
   // ── 5. Components (registry:ui) ────────────────
+  // 모든 컴포넌트는 'styles' 진입점을 transitive 의존성으로 갖는다.
+  // shadcn이 'styles' → 4개 sub-styles 체인을 자동 따라가므로 토큰이 누락되지 않는다.
+  // 이미 설치된 아이템은 shadcn이 자동 skip.
   const componentsDir = join(SRC, 'components')
+  const STYLES_DEP = `${REGISTRY_DEP_PREFIX}/styles`
   for (const f of readdirSync(componentsDir).filter((x) => /\.(ts|tsx)$/.test(x))) {
     const full = join(componentsDir, f)
     const base = f.replace(/\.(ts|tsx)$/, '')
     const deps = collectDeps(full)
+    const allRegistryDeps = [...new Set([...deps.registryDependencies, STYLES_DEP])].sort()
     items.push({
       name: base,
       type: 'registry:ui',
       title: base,
       description: `${base} 컴포넌트`,
       ...(deps.dependencies.length ? { dependencies: deps.dependencies } : {}),
-      ...(deps.registryDependencies.length
-        ? { registryDependencies: deps.registryDependencies }
-        : {}),
+      registryDependencies: allRegistryDeps,
       files: [
         {
           path: relativeFrom(OUT, full),
