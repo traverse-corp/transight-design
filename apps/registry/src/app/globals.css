@@ -1,0 +1,36 @@
+/* ================================================================
+ * Registry app — 진입 CSS
+ *
+ * 디자인 시스템 토큰/유틸을 그대로 포함하므로 컴포넌트 프리뷰가
+ * 실제 사용자 앱과 동일한 환경에서 렌더링된다.
+ * 문서 사이트 자체용 doc-* 토큰은 별도 prefix로 공존.
+ * ================================================================ */
+
+/* SUIT 폰트는 반드시 최상단 (CSS @import 순서 규칙) */
+@import '../../../../packages/ui/src/styles/font-suit.css';
+@import 'tailwindcss';
+
+/* 디자인 시스템 (packages/ui) 스타일 — 토큰 + 시맨틱 + 타이포 + flex 유틸 */
+@import '../../../../packages/ui/src/styles/tokens.css';
+@import '../../../../packages/ui/src/styles/theme.css';
+@import '../../../../packages/ui/src/styles/typography.css';
+@import '../../../../packages/ui/src/styles/flex.css';
+
+/* Tailwind v4 — packages/ui 컴포넌트의 className도 스캔 대상에 포함 */
+@source "../../../../packages/ui/src/components/**/*.{ts,tsx}";
+
+/* 문서 사이트 전용 토큰 (디자인 시스템 토큰과 prefix로 분리) */
+:root {
+  --color-doc-bg: #ffffff;
+  --color-doc-fg: #131b2d;
+  --color-doc-muted: #6d7588;
+  --color-doc-border: #e4e7ee;
+  --color-doc-accent: #155dfc;
+  --color-doc-code-bg: #131b2d;
+  --color-doc-code-fg: #f3f4f8;
+}
+
+body {
+  color: var(--color-doc-fg);
+  background: var(--color-doc-bg);
+}

@@ -1,0 +1,135 @@
+/* ================================================================
+ * Transight Design System — shadcn 시맨틱 토큰 매핑
+ * Tailwind v4 3단 패턴:
+ *   1. :root / .dark 에 원시 값 별칭 (라이트·다크)
+ *   2. @theme inline 으로 시맨틱 → CSS var 연결 (유틸리티 자동 생성)
+ *   3. 컴포넌트는 bg-primary, text-foreground 처럼 시맨틱 유틸만 사용
+ * ================================================================ */
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── 라이트 모드 ── */
+:root {
+  --radius: 0.625rem;
+
+  --background: var(--color-cool-grey-white);
+  --foreground: var(--color-cool-grey-11);
+  --card: var(--color-cool-grey-white);
+  --card-foreground: var(--color-cool-grey-11);
+  --popover: var(--color-cool-grey-white);
+  --popover-foreground: var(--color-cool-grey-11);
+  --primary: var(--color-primary-blue-1);
+  --primary-foreground: var(--color-cool-grey-white);
+  --secondary: var(--color-cool-grey-03);
+  --secondary-foreground: var(--color-cool-grey-09);
+  --muted: var(--color-cool-grey-03);
+  --muted-foreground: var(--color-cool-grey-07);
+  --accent: var(--color-cool-grey-03);
+  --accent-foreground: var(--color-cool-grey-09);
+  --destructive: var(--color-ui-red);
+  --border: var(--color-cool-grey-04);
+  --input: var(--color-cool-grey-04);
+  --ring: var(--color-primary-blue-1);
+
+  --chart-1: var(--color-ui-red);
+  --chart-2: var(--color-ui-green);
+  --chart-3: var(--color-ui-blue);
+  --chart-4: var(--color-ui-yellow);
+  --chart-5: var(--color-ui-orange);
+
+  --sidebar: var(--color-cool-grey-11);
+  --sidebar-foreground: var(--color-cool-grey-white);
+  --sidebar-primary: var(--color-primary-blue-1);
+  --sidebar-primary-foreground: var(--color-cool-grey-white);
+  --sidebar-accent: var(--color-sidebar-button-bg);
+  --sidebar-accent-foreground: var(--color-cool-grey-white);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: var(--color-cool-grey-08);
+}
+
+/* ── 다크 모드 ── */
+.dark {
+  --background: var(--color-cool-grey-11);
+  --foreground: var(--color-cool-grey-white);
+  --card: var(--color-cool-grey-10);
+  --card-foreground: var(--color-cool-grey-white);
+  --popover: var(--color-cool-grey-10);
+  --popover-foreground: var(--color-cool-grey-white);
+  --primary: var(--color-primary-blue-1);
+  --primary-foreground: var(--color-cool-grey-white);
+  --secondary: var(--color-cool-grey-09);
+  --secondary-foreground: var(--color-cool-grey-white);
+  --muted: var(--color-cool-grey-09);
+  --muted-foreground: var(--color-cool-grey-06);
+  --accent: var(--color-cool-grey-09);
+  --accent-foreground: var(--color-cool-grey-white);
+  --destructive: var(--color-ui-red);
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: var(--color-cool-grey-08);
+
+  --chart-1: var(--color-primary-blue-1);
+  --chart-2: var(--color-ui-green);
+  --chart-3: var(--color-ui-orange);
+  --chart-4: var(--color-ui-purple);
+  --chart-5: var(--color-ui-red);
+
+  --sidebar: var(--color-cool-grey-11);
+  --sidebar-foreground: var(--color-cool-grey-white);
+  --sidebar-primary: var(--color-primary-blue-1);
+  --sidebar-primary-foreground: var(--color-cool-grey-white);
+  --sidebar-accent: var(--color-sidebar-button-bg);
+  --sidebar-accent-foreground: var(--color-cool-grey-white);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: var(--color-cool-grey-08);
+}
+
+/* ── 시맨틱 → 유틸리티 연결 ── */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ── 베이스 레이어 ── */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

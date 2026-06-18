@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# 한 PR/브랜치에서 새 커밋이 푸시되면 이전 워크플로우 취소
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Typecheck · Registry · Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck (전 패키지)
+        run: npm run typecheck
+
+      - name: Registry — generate + validate + build
+        working-directory: packages/ui
+        run: |
+          npm run registry:generate
+          npm run registry:validate
+          npm run registry:build
+
+      - name: CLI — build
+        working-directory: packages/cli
+        run: npm run build
+
+      - name: Docs site — build
+        working-directory: apps/registry
+        run: npm run build
+
+      - name: Upload registry artifacts
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: registry-json
+          path: packages/ui/public/r/
+          retention-days: 14

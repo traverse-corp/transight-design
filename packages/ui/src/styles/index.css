@@ -1,0 +1,12 @@
+/* ================================================================
+ * Transight Design System — 진입점
+ * 사용자 앱에서 `@import '@transight-design/ui/styles/index.css'`
+ * ================================================================ */
+
+/* font-suit.css는 항상 entry 최상단 (CSS @import 순서 규칙) */
+@import './font-suit.css';
+@import 'tailwindcss';
+@import './tokens.css';
+@import './theme.css';
+@import './typography.css';
+@import './flex.css';

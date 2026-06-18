@@ -1,0 +1,308 @@
+/* ================================================================
+ * Transight Design System — 타이포그래피
+ *
+ * 1. 폰트 패밀리 / 모노스페이스 등록 (@theme)
+ * 2. 굵기별 프리셋 (typo-*)
+ * 3. 시맨틱 프리셋 (text-page-title, text-body, …)
+ *
+ * 네이밍: typo-{weight}{size}
+ *   r=Regular(400), m=Medium(500), sb=Semibold(600), b=Bold(700), eb=ExtraBold(800)
+ *
+ * 주의: SUIT Variable 폰트 페이스 @import는 font-suit.css에 분리됨.
+ *       이 파일을 사용하기 전 font-suit.css를 entry CSS 최상단에 import할 것.
+ * ================================================================ */
+
+@theme {
+  --font-sans:
+    'SUIT Variable', SUIT, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
+    'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+
+  --font-mono:
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+/* ── Regular (400) ── */
+@utility typo-r8 {
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 150%;
+  letter-spacing: 0;
+}
+@utility typo-r9 {
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 150%;
+  letter-spacing: 0;
+}
+@utility typo-r10 {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-r11 {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-r12 {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+
+/* ── Medium (500) ── */
+@utility typo-m10 {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 150%;
+  letter-spacing: 0;
+}
+@utility typo-m11 {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-m12 {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: 0;
+}
+@utility typo-m13 {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+}
+@utility typo-m14 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-m16 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-m18 {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+
+/* ── Semibold (600) ── */
+@utility typo-sb9 {
+  font-weight: 600;
+  font-size: 9px;
+  line-height: 150%;
+  letter-spacing: 0;
+}
+@utility typo-sb10 {
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-sb11 {
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-sb12 {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-sb13 {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-sb14 {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-sb16 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-sb18 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+
+/* ── Bold (700) ── */
+@utility typo-b14 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: -0.005em;
+}
+@utility typo-b16 {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: -0.005em;
+}
+@utility typo-b18 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-b24 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+
+/* ── ExtraBold (800) ── */
+@utility typo-eb14 {
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+@utility typo-eb32 {
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 130%;
+  letter-spacing: 0;
+}
+@utility typo-eb54 {
+  font-weight: 800;
+  font-size: 54px;
+  line-height: 120%;
+  letter-spacing: -0.005em;
+}
+
+/* ── Variant: tracking/leading 변형 ── */
+@utility typo-sb16-tight {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: -0.025em;
+}
+@utility typo-sb10-wider {
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 160%;
+  letter-spacing: 0.05em;
+}
+@utility typo-r12-relaxed {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.625;
+  letter-spacing: 0;
+}
+@utility typo-m14-relaxed {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.625;
+  letter-spacing: 0;
+}
+
+/* ── Monospace ── */
+@utility typo-mono-r10 {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 160%;
+  letter-spacing: 0;
+  font-family: var(--font-mono);
+}
+@utility typo-mono-r11 {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 160%;
+  letter-spacing: 0;
+  font-family: var(--font-mono);
+}
+@utility typo-mono-m12 {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: 0;
+  font-family: var(--font-mono);
+}
+@utility typo-mono-m14 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: 0;
+  font-family: var(--font-mono);
+}
+@utility typo-mono-b14 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: -0.005em;
+  font-family: var(--font-mono);
+}
+
+/* ── 시맨틱 타이포그래피 (크기+굵기+행간+자간+색상 완결 프리셋) ── */
+
+@utility text-page-title {
+  @apply typo-eb32 text-cool-grey-11;
+}
+@utility text-section-title {
+  @apply typo-b24 text-cool-grey-11;
+}
+@utility text-modal-title {
+  @apply typo-b18 text-cool-grey-10;
+}
+@utility text-label {
+  @apply typo-sb14 text-cool-grey-11;
+}
+@utility text-body {
+  @apply typo-m13 text-cool-grey-09;
+}
+@utility text-subtitle {
+  @apply typo-m14 text-cool-grey-09;
+}
+@utility text-caption {
+  @apply typo-r12 text-cool-grey-09;
+}
+@utility text-description {
+  @apply typo-r12 text-cool-grey-07;
+}
+@utility text-overline {
+  @apply typo-sb9 text-cool-grey-07;
+}
+@utility text-disabled {
+  @apply typo-r12 text-cool-grey-04;
+}
+@utility text-error {
+  @apply typo-sb14 text-ui-red;
+}
+@utility text-link {
+  @apply typo-m14 text-primary-blue-1;
+}
+
+/* 어두운 배경 위 텍스트 — text-white 대신 사용 */
+@utility text-on-dark {
+  color: #ffffff;
+}
+
+/* ── pre / 토스트 폰트 고정 ── */
+pre,
+.toaster {
+  font-family: var(--font-sans);
+}
