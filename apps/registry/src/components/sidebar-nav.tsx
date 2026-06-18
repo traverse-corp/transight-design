@@ -23,7 +23,7 @@ export const SidebarNav = ({ groups }: SidebarNavProps) => {
   const pathname = usePathname()
 
   return (
-    <aside className='sticky top-6 h-fit w-60 shrink-0'>
+    <aside className='w-full'>
       {/* Go Main — 메인 페이지로 이동 */}
       <Link
         href='/'

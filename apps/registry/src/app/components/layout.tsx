@@ -7,9 +7,11 @@ const CatalogLayout = ({ children }: { children: ReactNode }) => {
   const groups = buildSidebarGroups(registry.items)
 
   return (
-    <div className='mx-auto flex max-w-7xl gap-10 px-6 py-10'>
-      <SidebarNav groups={groups} />
-      <div className='min-w-0 flex-1'>{children}</div>
+    <div className='mx-auto flex h-screen max-w-7xl gap-10 px-6'>
+      <div className='h-screen w-60 shrink-0 overflow-y-auto py-10'>
+        <SidebarNav groups={groups} />
+      </div>
+      <div className='h-screen min-w-0 flex-1 overflow-y-auto py-10'>{children}</div>
     </div>
   )
 }
