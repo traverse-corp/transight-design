@@ -31,6 +31,12 @@ const OUT = join(UI_ROOT, 'registry.json')
 
 const REGISTRY_NAME = 'transight-design'
 const REGISTRY_HOMEPAGE = 'https://github.com/traverse-corp/transight-design'
+/**
+ * 같은 레포 내 다른 아이템 참조 시 사용하는 풀 GitHub 주소 prefix.
+ * shadcn은 bare 이름(예: 'lib-utils')을 항상 공식 shadcn 아이템으로 해석하므로,
+ * 같은 레지스트리 안에서도 'owner/repo/item' 형태로 풀 명시가 필요.
+ */
+const REGISTRY_DEP_PREFIX = 'traverse-corp/transight-design'
 
 // 외부 의존성 화이트리스트 — package.json의 runtime + optional peer
 const EXTERNAL_DEPS = new Set([
@@ -124,7 +130,9 @@ const collectDeps = (filePath) => {
   }
   return {
     dependencies: [...npmDeps].sort(),
-    registryDependencies: [...registryDeps].sort()
+    registryDependencies: [...registryDeps]
+      .map((name) => `${REGISTRY_DEP_PREFIX}/${name}`)
+      .sort()
   }
 }
 
@@ -241,7 +249,9 @@ const main = () => {
   }
 
   // ── 6. 전체 번들 (registry:item) ───────────────
-  const allRegistryDeps = items.map((i) => i.name).sort()
+  const allRegistryDeps = items
+    .map((i) => `${REGISTRY_DEP_PREFIX}/${i.name}`)
+    .sort()
   items.push({
     name: REGISTRY_NAME,
     type: 'registry:item',
