@@ -59,13 +59,13 @@ const Stepper = ({ children, curStep, onStepChange }: StepperProps) => {
   const stepsArray = Children.toArray(children) as React.ReactElement<StepProps>[]
 
   return (
-    <div className='mt-14 flex h-[calc(100vh-56px)] flex-1 flex-col items-center p-4 sm:aspect-[4/3] md:aspect-[2/1]'>
-      <div className='flex h-full w-1/2 flex-col items-center gap-8'>
+    <div className="mt-14 flex h-[calc(100vh-56px)] flex-1 flex-col items-center p-4 sm:aspect-[4/3] md:aspect-[2/1]">
+      <div className="flex h-full w-1/2 flex-col items-center gap-8">
         {/* Header: 단계 표시기 (인디케이터) */}
         <StepIndicator stepsArray={stepsArray} curStep={curStep} setCurStep={onStepChange} />
 
         {/* Body: 단계별 콘텐츠 (애니메이션 적용) */}
-        <div className='relative flex h-fit w-full flex-col gap-8 overflow-hidden'>
+        <div className="relative flex h-fit w-full flex-col gap-8 overflow-hidden">
           <StepContent curStep={curStep} direction={direction}>
             {stepsArray[curStep - 1]}
           </StepContent>
@@ -117,16 +117,16 @@ const StepContent = ({
   }
 
   return (
-    <AnimatePresence mode='wait' initial={false} custom={direction}>
+    <AnimatePresence mode="wait" initial={false} custom={direction}>
       <motion.div
         key={curStep}
         variants={variants}
-        initial='enter'
-        animate='center'
-        exit='exit'
+        initial="enter"
+        animate="center"
+        exit="exit"
         custom={direction}
         transition={{ duration: 0.2 }}
-        className='h-fit w-full'
+        className="h-fit w-full"
       >
         {children}
       </motion.div>
@@ -152,7 +152,7 @@ const StepIndicator = ({ stepsArray, curStep, setCurStep }: StepIndicatorProps) 
   }
 
   return (
-    <div className='flex w-2/3 items-center justify-center px-4 py-8'>
+    <div className="flex w-2/3 items-center justify-center px-4 py-8">
       {stepsArray.map((child, index) => {
         const stepNumber = index + 1
         const status =
@@ -162,10 +162,10 @@ const StepIndicator = ({ stepsArray, curStep, setCurStep }: StepIndicatorProps) 
         return (
           <React.Fragment key={stepNumber}>
             {/* Step Circle */}
-            <div className='relative z-10 flex flex-col items-center'>
+            <div className="relative z-10 flex flex-col items-center">
               <motion.div
                 onClick={() => handleClick(stepNumber)}
-                className='flex h-8 w-8 cursor-pointer items-center justify-center rounded-full font-semibold'
+                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full font-semibold"
                 animate={status}
                 variants={{
                   inactive: { backgroundColor: '#E5E7EB', color: '#9CA3AF' },
@@ -174,12 +174,12 @@ const StepIndicator = ({ stepsArray, curStep, setCurStep }: StepIndicatorProps) 
                 }}
                 transition={{ duration: 0.3 }}
               >
-                {status === 'complete' ? <CheckIcon className='h-4 w-4' /> : stepNumber}
+                {status === 'complete' ? <CheckIcon className="h-4 w-4" /> : stepNumber}
               </motion.div>
 
               {/* Label */}
               {label && (
-                <div className='absolute top-8 w-32 text-center'>
+                <div className="absolute top-8 w-32 text-center">
                   <span
                     className={`text-xs font-medium ${status === 'active' ? 'text-blue-600' : 'text-gray-500'}`}
                   >
@@ -191,9 +191,9 @@ const StepIndicator = ({ stepsArray, curStep, setCurStep }: StepIndicatorProps) 
 
             {/* Connector Line */}
             {stepNumber < totalStep && (
-              <div className='relative mx-2 h-[2px] min-w-[30px] flex-1 bg-gray-200'>
+              <div className="relative mx-2 h-[2px] min-w-[30px] flex-1 bg-gray-200">
                 <motion.div
-                  className='absolute top-0 left-0 h-full bg-blue-600'
+                  className="absolute top-0 left-0 h-full bg-blue-600"
                   initial={{ width: '0%' }}
                   animate={{ width: curStep > stepNumber ? '100%' : '0%' }}
                   transition={{ duration: 0.3 }}
@@ -211,7 +211,8 @@ const StepperButton = ({ children, buttonType, className, ...props }: StepperBut
   return (
     <Button
       className={twMerge('flex-1', className)}
-      variant={buttonType === 'NEXT' ? 'button-blue' : 'button-gray-outline'}
+      color={buttonType === 'NEXT' ? 'blue' : 'gray'}
+      appearance={buttonType === 'NEXT' ? 'solid' : 'outline'}
       {...props}
     >
       {children}

@@ -17,7 +17,7 @@ const BackButton = ({
   onBack,
   label,
   iconOnly = false,
-  variant = 'ghost',
+  appearance = 'soft',
   size = 'sm',
   className,
   ...props
@@ -35,14 +35,14 @@ const BackButton = ({
 
   return (
     <Button
-      variant={variant}
+      appearance={appearance}
       size={size}
       onClick={handleClick}
       className={className}
       aria-label={t('CM_047')}
       {...props}
     >
-      <ArrowLeft className='h-4 w-4' />
+      <ArrowLeft className="h-4 w-4" />
       {!iconOnly && <span>{label || t('CM_047')}</span>}
     </Button>
   )

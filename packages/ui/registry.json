@@ -238,7 +238,6 @@
       "description": "alert-dialog 컴포넌트",
       "dependencies": [
         "@base-ui/react",
-        "class-variance-authority",
         "lucide-react",
         "motion"
       ],
@@ -734,7 +733,6 @@
       "description": "dialog 컴포넌트",
       "dependencies": [
         "@base-ui/react",
-        "class-variance-authority",
         "lucide-react",
         "motion"
       ],
@@ -949,9 +947,12 @@
       "description": "input 컴포넌트",
       "dependencies": [
         "@base-ui/react",
-        "class-variance-authority"
+        "class-variance-authority",
+        "lucide-react"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/hook-use-caps-lock",
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/styles"
       ],
@@ -968,14 +969,8 @@
       "type": "registry:ui",
       "title": "Inputbar",
       "description": "Inputbar 컴포넌트",
-      "dependencies": [
-        "lucide-react",
-        "react-i18next",
-        "sonner",
-        "tailwind-merge"
-      ],
       "registryDependencies": [
-        "traverse-corp/transight-design/hook-use-caps-lock",
+        "traverse-corp/transight-design/input",
         "traverse-corp/transight-design/styles"
       ],
       "files": [
@@ -1570,6 +1565,28 @@
       ]
     },
     {
+      "name": "essential",
+      "type": "registry:item",
+      "title": "Essential Pack",
+      "description": "서비스 초기 구성에 필요한 핵심 UI 컴포넌트 묶음",
+      "registryDependencies": [
+        "traverse-corp/transight-design/badge",
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/checkbox",
+        "traverse-corp/transight-design/dialog",
+        "traverse-corp/transight-design/input",
+        "traverse-corp/transight-design/label",
+        "traverse-corp/transight-design/radio-group",
+        "traverse-corp/transight-design/select",
+        "traverse-corp/transight-design/separator",
+        "traverse-corp/transight-design/skeleton",
+        "traverse-corp/transight-design/spinner",
+        "traverse-corp/transight-design/switch",
+        "traverse-corp/transight-design/textarea",
+        "traverse-corp/transight-design/tooltip"
+      ]
+    },
+    {
       "name": "transight-design",
       "type": "registry:item",
       "title": "Transight Design System (전체)",
@@ -1612,6 +1629,7 @@
         "traverse-corp/transight-design/dialog",
         "traverse-corp/transight-design/dropdown-menu",
         "traverse-corp/transight-design/empty",
+        "traverse-corp/transight-design/essential",
         "traverse-corp/transight-design/field",
         "traverse-corp/transight-design/hash-text",
         "traverse-corp/transight-design/hook-use-adaptive-chars",

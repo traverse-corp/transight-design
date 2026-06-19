@@ -12,6 +12,9 @@ interface VariantsPanelProps {
 }
 
 const GROUP_LABELS: Record<string, string> = {
+  color: 'Color',
+  appearance: 'Appearance',
+  shape: 'Shape',
   variant: 'Variant',
   size: 'Size'
 }
@@ -23,18 +26,18 @@ export const VariantsPanel = ({ name }: VariantsPanelProps) => {
   if (!info) return null
 
   return (
-    <div className='flex flex-col gap-5'>
+    <div className="flex flex-col gap-5">
       {Object.entries(info.groups).map(([groupName, values]) => {
         const defaultValue = info.defaults[groupName]
         return (
           <div key={groupName}>
-            <div className='mb-2 flex items-baseline gap-2'>
-              <h3 className='text-xs font-semibold uppercase tracking-wide text-cool-grey-07'>
+            <div className="mb-2 flex items-baseline gap-2">
+              <h3 className="text-cool-grey-07 text-xs font-semibold tracking-wide uppercase">
                 {GROUP_LABELS[groupName] ?? groupName}
               </h3>
-              <span className='text-xs text-cool-grey-07'>{values.length}개</span>
+              <span className="text-cool-grey-07 text-xs">{values.length}개</span>
             </div>
-            <ul className='flex flex-wrap gap-1.5'>
+            <ul className="flex flex-wrap gap-1.5">
               {values.map((value) => {
                 const isDefault = value === defaultValue
                 return (
@@ -48,7 +51,7 @@ export const VariantsPanel = ({ name }: VariantsPanelProps) => {
                     title={isDefault ? '기본값' : undefined}
                   >
                     {value}
-                    {isDefault && <span className='ml-1'>•</span>}
+                    {isDefault && <span className="ml-1">•</span>}
                   </li>
                 )
               })}

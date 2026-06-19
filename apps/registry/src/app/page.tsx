@@ -2,13 +2,19 @@ import Link from 'next/link'
 import { CodeBlock } from '@/components/code-block'
 import { InstallCommands } from '@/components/install-commands'
 
-const CLI_INSTALL = `# 전체 번들 한 방 설치
+const CLI_INSTALL = `# Essential Pack만 먼저 설치
+npx @transight-design/cli add essential
+
+# 전체 번들 한 방 설치
 npx @transight-design/cli init
 
 # 또는 개별 컴포넌트
 npx @transight-design/cli add button card dialog`
 
-const SHADCN_INSTALL = `# 전체 번들
+const SHADCN_INSTALL = `# Essential Pack만 먼저 설치
+npx shadcn@latest add traverse-corp/transight-design/essential
+
+# 전체 번들
 npx shadcn@latest add traverse-corp/transight-design/transight-design
 
 # 또는 개별 컴포넌트
@@ -36,23 +42,27 @@ export default function App() {
   )
 }`
 
+const ESSENTIAL_GUIDE = `# Essential Pack
+button, badge, input, label, textarea, checkbox, radio-group, select, switch,
+dialog, tooltip, separator, skeleton, spinner`
+
 const Home = () => (
-  <main className='mx-auto max-w-4xl px-6 py-20'>
+  <main className="mx-auto max-w-4xl px-6 py-20">
     {/* 히어로 */}
-    <section className='mb-20 text-center'>
-      <h1 className='typo-eb54 text-cool-grey-11 text-[clamp(40px,7vw,72px)]'>
+    <section className="mb-20 text-center">
+      <h1 className="typo-eb54 text-cool-grey-11 text-[clamp(40px,7vw,72px)]">
         TranSight Design System
       </h1>
-      <div className='mt-8 flex flex-wrap items-center justify-center gap-3'>
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <Link
-          href='/components'
-          className='typo-sb14 bg-primary-blue-1 shadow-primary hover:bg-primary-blue-2 inline-flex h-11 items-center rounded-md px-6 text-white transition-colors'
+          href="/components"
+          className="typo-sb14 bg-primary-blue-1 shadow-primary hover:bg-primary-blue-2 inline-flex h-11 items-center rounded-md px-6 text-white transition-colors"
         >
           Browse Components →
         </Link>
         <Link
-          href='https://github.com/traverse-corp/transight-design'
-          className='typo-sb14 text-cool-grey-09 border-cool-grey-04 hover:border-primary-blue-1 hover:text-primary-blue-1 inline-flex h-11 items-center rounded-md border bg-white px-6 transition-colors'
+          href="https://github.com/traverse-corp/transight-design"
+          className="typo-sb14 text-cool-grey-09 border-cool-grey-04 hover:border-primary-blue-1 hover:text-primary-blue-1 inline-flex h-11 items-center rounded-md border bg-white px-6 transition-colors"
         >
           GitHub
         </Link>
@@ -60,10 +70,11 @@ const Home = () => (
     </section>
 
     {/* 설치 */}
-    <section className='mb-12'>
-      <h2 className='text-section-title mb-4'>설치</h2>
-      <p className='text-description mb-3'>
-        Vite 또는 Next.js + Tailwind v4 + shadcn 초기화된 프로젝트에서 한 줄.
+    <section className="mb-12">
+      <h2 className="text-section-title mb-4">설치</h2>
+      <p className="text-description mb-3">
+        처음 시작할 때는 Essential Pack을 먼저 설치하세요. 버튼, 입력, 선택 컨트롤, 피드백
+        컴포넌트처럼 서비스 화면에 거의 항상 필요한 기본 컴포넌트만 들어갑니다.
       </p>
       <InstallCommands
         options={[
@@ -71,51 +82,54 @@ const Home = () => (
           { label: 'shadcn', code: SHADCN_INSTALL }
         ]}
       />
+      <div className="mt-3">
+        <CodeBlock code={ESSENTIAL_GUIDE} language="txt" maxHeight="auto" />
+      </div>
     </section>
 
     {/* 사용법 */}
-    <section className='mb-12'>
-      <h2 className='text-section-title mb-4'>사용</h2>
+    <section className="mb-12">
+      <h2 className="text-section-title mb-4">사용</h2>
 
       {/* 진입 CSS — Vite/Next.js 별도 표시 */}
-      <h3 className='text-label mb-2 mt-4'>1. 진입 CSS에 디자인 시스템 import</h3>
-      <p className='text-description mb-3'>
+      <h3 className="text-label mt-4 mb-2">1. 진입 CSS에 디자인 시스템 import</h3>
+      <p className="text-description mb-3">
         SUIT 폰트 + Tailwind + 토큰 + 타이포 프리셋이 한 번에 들어옵니다.
       </p>
-      <div className='grid grid-cols-1 gap-3 md:grid-cols-2'>
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         <div>
-          <p className='text-overline mb-1.5'>Vite</p>
-          <CodeBlock code={CSS_VITE} language='css' maxHeight='auto' />
+          <p className="text-overline mb-1.5">Vite</p>
+          <CodeBlock code={CSS_VITE} language="css" maxHeight="auto" />
         </div>
         <div>
-          <p className='text-overline mb-1.5'>Next.js (App Router)</p>
-          <CodeBlock code={CSS_NEXTJS} language='css' maxHeight='auto' />
+          <p className="text-overline mb-1.5">Next.js (App Router)</p>
+          <CodeBlock code={CSS_NEXTJS} language="css" maxHeight="auto" />
         </div>
       </div>
 
-      <h3 className='text-label mb-2 mt-6'>2. 컴포넌트 사용</h3>
-      <p className='text-description mb-3'>
+      <h3 className="text-label mt-6 mb-2">2. 컴포넌트 사용</h3>
+      <p className="text-description mb-3">
         설치된 컴포넌트는 카테고리별로{' '}
-        <code className='typo-mono-m12 text-cool-grey-09'>components/base/</code> 또는{' '}
-        <code className='typo-mono-m12 text-cool-grey-09'>components/custom/</code>에 떨어집니다.
+        <code className="typo-mono-m12 text-cool-grey-09">components/base/</code> 또는{' '}
+        <code className="typo-mono-m12 text-cool-grey-09">components/custom/</code>에 떨어집니다.
       </p>
-      <CodeBlock code={USAGE_CODE} language='tsx' maxHeight='auto' />
+      <CodeBlock code={USAGE_CODE} language="tsx" maxHeight="auto" />
     </section>
 
     {/* 푸터 */}
-    <footer className='text-description border-cool-grey-04 mt-16 border-t pt-6'>
+    <footer className="text-description border-cool-grey-04 mt-16 border-t pt-6">
       <p>
         MIT License ·{' '}
         <Link
-          href='https://github.com/traverse-corp/transight-design'
-          className='hover:text-primary-blue-1'
+          href="https://github.com/traverse-corp/transight-design"
+          className="hover:text-primary-blue-1"
         >
           GitHub
         </Link>{' '}
         ·{' '}
         <Link
-          href='https://www.npmjs.com/package/@transight-design/cli'
-          className='hover:text-primary-blue-1'
+          href="https://www.npmjs.com/package/@transight-design/cli"
+          className="hover:text-primary-blue-1"
         >
           npm
         </Link>

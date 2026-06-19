@@ -13,15 +13,15 @@ export const Preview = () => {
   const [open, setOpen] = useState(false)
   return (
     <>
-      <Button variant='outline' onClick={() => setOpen(true)}>
+      <Button appearance="outline" onClick={() => setOpen(true)}>
         애니메이션 알림 열기
       </Button>
       <AlertDialog open={open} onOpenChange={setOpen}>
         <AlertDialogPopup>
           <AlertDialogTitle>완료</AlertDialogTitle>
           <AlertDialogDescription>작업이 성공적으로 처리되었습니다.</AlertDialogDescription>
-          <div className='mt-5 flex justify-end'>
-            <Button size='sm' onClick={() => setOpen(false)}>
+          <div className="mt-5 flex justify-end">
+            <Button size="sm" onClick={() => setOpen(false)}>
               확인
             </Button>
           </div>

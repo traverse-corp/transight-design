@@ -31,65 +31,48 @@
   "badge": {
     "groups": {
       "variant": [
-        "default",
-        "secondary",
-        "outline",
-        "dark",
-        "badge-blue",
-        "badge-blue-outline",
-        "badge-gradient-blue",
-        "badge-red",
-        "badge-red-outline",
-        "badge-orange",
-        "badge-orange-outline",
-        "badge-yellow",
-        "badge-yellow-outline",
-        "badge-olive",
-        "badge-olive-outline",
-        "badge-green",
-        "badge-green-outline",
-        "badge-skyblue",
-        "badge-skyblue-outline",
-        "badge-purple",
-        "badge-purple-outline",
-        "badge-pink",
-        "badge-pink-outline",
-        "badge-gray",
-        "badge-gray-outline",
-        "request",
-        "progressing",
-        "end",
-        "reject",
-        "temporary",
-        "release",
-        "releaserequest",
-        "file",
-        "trusted",
-        "scam",
-        "in",
-        "out",
-        "swap",
-        "status",
         "lea",
         "vasp",
-        "system",
-        "unknown",
         "tx-swap",
-        "tx-bridge",
-        "tx-native",
-        "tx-token",
-        "tx-internal",
-        "tx-contract"
+        "tx-bridge"
+      ],
+      "color": [
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
+      ],
+      "appearance": [
+        "solid",
+        "outline",
+        "soft"
+      ],
+      "shape": [
+        "default",
+        "pill",
+        "square"
       ],
       "size": [
-        "default",
+        "xs",
         "sm",
-        "mini"
+        "md",
+        "lg",
+        "xl"
       ]
     },
     "defaults": {
-      "variant": "default",
-      "size": "default"
+      "color": "gray",
+      "appearance": "solid",
+      "shape": "default",
+      "size": "md"
     }
   },
   "button": {
@@ -97,55 +80,47 @@
       "variant": [
         "default",
         "destructive",
+        "success",
+        "dark"
+      ],
+      "color": [
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
+      ],
+      "appearance": [
+        "solid",
         "outline",
-        "ghost",
-        "ghost-danger",
-        "link",
-        "dark",
-        "auth",
-        "button-blue",
-        "button-blue-outline",
-        "button-gradient-blue",
-        "button-red",
-        "button-red-outline",
-        "button-orange",
-        "button-orange-outline",
-        "button-yellow",
-        "button-yellow-outline",
-        "button-olive",
-        "button-olive-outline",
-        "button-green",
-        "button-green-outline",
-        "button-skyblue",
-        "button-skyblue-outline",
-        "button-purple",
-        "button-purple-outline",
-        "button-pink",
-        "button-pink-outline",
-        "button-gray",
-        "button-gray-outline",
-        "button-white",
-        "group-item-on-dark",
-        "tab-nav",
-        "tab-success",
-        "tab-danger"
+        "soft"
+      ],
+      "shape": [
+        "default",
+        "pill",
+        "square"
       ],
       "size": [
-        "default",
+        "xs",
         "sm",
+        "md",
         "lg",
-        "mini",
-        "icon",
-        "icon-xs",
-        "icon-sm",
-        "icon-lg",
-        "action",
-        "group-item"
+        "xl"
       ]
     },
     "defaults": {
       "variant": "default",
-      "size": "default"
+      "color": "gray",
+      "appearance": "solid",
+      "shape": "default",
+      "size": "md"
     }
   },
   "card": {
@@ -210,21 +185,25 @@
     "groups": {
       "variant": [
         "default",
-        "error",
-        "minimal",
-        "capsule",
-        "form"
+        "search",
+        "login"
       ],
-      "inputSize": [
-        "default",
-        "sm",
+      "size": [
         "xs",
-        "lg"
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
+      "decoDir": [
+        "start",
+        "end"
       ]
     },
     "defaults": {
       "variant": "default",
-      "inputSize": "default"
+      "size": "md",
+      "decoDir": "start"
     }
   },
   "label": {

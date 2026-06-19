@@ -18,23 +18,18 @@ export const Preview = () => {
   const [open, setOpen] = useState(false)
   return (
     <>
-      <Button variant='outline' onClick={() => setOpen(true)}>
+      <Button appearance="outline" onClick={() => setOpen(true)}>
         확인 다이얼로그 열기
       </Button>
       <AlertDialogRoot open={open} onOpenChange={setOpen}>
         <AlertDialogPopup>
           <AlertDialogHeader>
             <AlertDialogTitle>요청을 처리할까요?</AlertDialogTitle>
-            <AlertDialogDescription>
-              확인 후에는 되돌릴 수 없습니다.
-            </AlertDialogDescription>
+            <AlertDialogDescription>확인 후에는 되돌릴 수 없습니다.</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogClose onClick={() => setOpen(false)}>취소</AlertDialogClose>
-            <AlertDialogAction
-              className='bg-primary-blue-1'
-              onClick={() => setOpen(false)}
-            >
+            <AlertDialogAction className="bg-primary-blue-1" onClick={() => setOpen(false)}>
               확인
             </AlertDialogAction>
           </AlertDialogFooter>

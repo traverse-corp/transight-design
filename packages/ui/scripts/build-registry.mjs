@@ -37,6 +37,22 @@ const REGISTRY_HOMEPAGE = 'https://github.com/traverse-corp/transight-design'
  * 같은 레지스트리 안에서도 'owner/repo/item' 형태로 풀 명시가 필요.
  */
 const REGISTRY_DEP_PREFIX = 'traverse-corp/transight-design'
+const ESSENTIAL_COMPONENTS = [
+  'button',
+  'badge',
+  'input',
+  'label',
+  'textarea',
+  'checkbox',
+  'radio-group',
+  'select',
+  'switch',
+  'dialog',
+  'tooltip',
+  'separator',
+  'skeleton',
+  'spinner'
+]
 
 /**
  * shadcn 표준 base 컴포넌트 화이트리스트 (PHASE_0_INVENTORY.md §3.1).
@@ -182,9 +198,7 @@ const collectDeps = (filePath) => {
   }
   return {
     dependencies: [...npmDeps].sort(),
-    registryDependencies: [...registryDeps]
-      .map((name) => `${REGISTRY_DEP_PREFIX}/${name}`)
-      .sort()
+    registryDependencies: [...registryDeps].map((name) => `${REGISTRY_DEP_PREFIX}/${name}`).sort()
   }
 }
 
@@ -321,10 +335,19 @@ const main = () => {
     })
   }
 
-  // ── 6. 전체 번들 (registry:item) ───────────────
-  const allRegistryDeps = items
-    .map((i) => `${REGISTRY_DEP_PREFIX}/${i.name}`)
-    .sort()
+  // ── 6. 필수 번들 (registry:item) ───────────────
+  items.push({
+    name: 'essential',
+    type: 'registry:item',
+    title: 'Essential Pack',
+    description: '서비스 초기 구성에 필요한 핵심 UI 컴포넌트 묶음',
+    registryDependencies: ESSENTIAL_COMPONENTS.map(
+      (name) => `${REGISTRY_DEP_PREFIX}/${name}`
+    ).sort()
+  })
+
+  // ── 7. 전체 번들 (registry:item) ───────────────
+  const allRegistryDeps = items.map((i) => `${REGISTRY_DEP_PREFIX}/${i.name}`).sort()
   items.push({
     name: REGISTRY_NAME,
     type: 'registry:item',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { I18nProvider } from '@/components/i18n-provider'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -10,7 +11,9 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: ReactNode }) => (
   <html lang='ko'>
-    <body>{children}</body>
+    <body>
+      <I18nProvider>{children}</I18nProvider>
+    </body>
   </html>
 )
 

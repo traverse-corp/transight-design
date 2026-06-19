@@ -1,10 +1,8 @@
 import { notFound } from 'next/navigation'
 import type { ReactNode } from 'react'
 import { loadRegistry, loadBuiltItem, STYLE_META } from '@/lib/registry'
-import { CodeBlock } from '@/components/code-block'
 import { ItemInstallCommands } from '@/components/install-commands'
-import { VariantsPanel, hasVariants } from '@/components/variants-panel'
-import { PREVIEWS, hasPreview } from '@/previews'
+import { InteractivePreview } from '@/components/interactive-preview'
 import { TokensView } from '@/views/tokens-view'
 import { TypoView } from '@/views/typo-view'
 import { FlexView } from '@/views/flex-view'
@@ -37,9 +35,7 @@ const ComponentPage = async ({ params }: PageProps) => {
   const meta = STYLE_META[item.name]
   const title = meta?.displayName ?? item.name
   const description = meta?.description ?? item.description
-  const PreviewComponent = hasPreview(name) ? PREVIEWS[name] : null
   const StyleView = STYLE_VIEWS[item.name]
-  const firstFile = item.files?.[0]
 
   return (
     <main>
@@ -54,47 +50,16 @@ const ComponentPage = async ({ params }: PageProps) => {
         <ItemInstallCommands itemName={item.name} />
       </section>
 
-      {/* Style 전용 뷰 — 또는 일반 컴포넌트 뷰 */}
+      {/* Style 전용 뷰 — 또는 일반 컴포넌트 뷰 (인터랙티브 프리뷰만) */}
       {StyleView ? (
         <StyleView />
       ) : (
-        <div className='flex flex-col gap-6'>
-          {/* 프리뷰 */}
-          <section>
-            <SectionTitle>Preview</SectionTitle>
-            <div className='border-cool-grey-04 rounded-lg border bg-white p-8'>
-              {PreviewComponent ? (
-                <PreviewComponent />
-              ) : (
-                <div className='text-description py-8 text-center'>
-                  Preview는 추후 점진적으로 추가됩니다.
-                </div>
-              )}
-            </div>
-          </section>
-
-          {/* Variants — cva로 정의된 컴포넌트만 */}
-          {hasVariants(item.name) && (
-            <section>
-              <SectionTitle>Variants</SectionTitle>
-              <div className='border-cool-grey-04 rounded-lg border bg-white p-5'>
-                <VariantsPanel name={item.name} />
-              </div>
-            </section>
-          )}
-
-          {/* 소스 코드 */}
-          {firstFile?.content && (
-            <section>
-              <SectionTitle>소스 코드</SectionTitle>
-              <CodeBlock
-                code={firstFile.content}
-                language={firstFile.path.split('.').pop()}
-                filename={firstFile.path}
-              />
-            </section>
-          )}
-        </div>
+        <section>
+          <SectionTitle>Preview</SectionTitle>
+          <div className='border-cool-grey-04 rounded-lg border bg-white p-8'>
+            <InteractivePreview name={item.name} />
+          </div>
+        </section>
       )}
     </main>
   )

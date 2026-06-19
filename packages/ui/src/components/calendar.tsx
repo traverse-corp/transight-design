@@ -10,13 +10,13 @@ function Calendar({
   classNames,
   showOutsideDays = true,
   captionLayout = 'label',
-  buttonVariant = 'ghost',
+  buttonAppearance = 'soft',
   locale,
   formatters,
   components,
   ...props
 }: React.ComponentProps<typeof DayPicker> & {
-  buttonVariant?: React.ComponentProps<typeof Button>['variant']
+  buttonAppearance?: React.ComponentProps<typeof Button>['appearance']
 }) {
   const defaultClassNames = getDefaultClassNames()
 
@@ -44,12 +44,12 @@ function Calendar({
           defaultClassNames.nav
         ),
         button_previous: cn(
-          buttonVariants({ variant: buttonVariant }),
+          buttonVariants({ appearance: buttonAppearance }),
           'size-(--cell-size) aria-disabled:opacity-50 p-0 select-none',
           defaultClassNames.button_previous
         ),
         button_next: cn(
-          buttonVariants({ variant: buttonVariant }),
+          buttonVariants({ appearance: buttonAppearance }),
           'size-(--cell-size) aria-disabled:opacity-50 p-0 select-none',
           defaultClassNames.button_next
         ),
@@ -112,7 +112,7 @@ function Calendar({
       }}
       components={{
         Root: ({ className, rootRef, ...props }) => {
-          return <div data-slot='calendar' ref={rootRef} className={cn(className)} {...props} />
+          return <div data-slot="calendar" ref={rootRef} className={cn(className)} {...props} />
         },
         Chevron: ({ className, orientation, ...props }) => {
           if (orientation === 'left') {
@@ -129,7 +129,7 @@ function Calendar({
         WeekNumber: ({ children, ...props }) => {
           return (
             <td {...props}>
-              <div className='flex size-(--cell-size) items-center justify-center text-center'>
+              <div className="flex size-(--cell-size) items-center justify-center text-center">
                 {children}
               </div>
             </td>
@@ -158,8 +158,7 @@ function CalendarDayButton({
 
   return (
     <Button
-      variant='ghost'
-      size='icon'
+      appearance="soft"
       data-day={day.date.toLocaleDateString(locale?.code)}
       data-selected-single={
         modifiers.selected &&
