@@ -18,6 +18,26 @@ const Home = () => {
         </p>
       </header>
 
+      <section className='mb-10'>
+        <Link
+          href='/icon-system'
+          className='group flex items-center justify-between rounded-lg border border-[color:var(--color-doc-border)] bg-[#fbfcfe] p-5 transition hover:border-[color:var(--color-doc-accent)]'
+        >
+          <div>
+            <div className='text-xs font-semibold uppercase tracking-wider text-[color:var(--color-doc-muted)]'>
+              Foundation
+            </div>
+            <div className='mt-1 text-lg font-bold text-cool-grey-11'>Icon System</div>
+            <div className='mt-1 text-sm text-[color:var(--color-doc-muted)]'>
+              58개 아이콘 · 색상·크기 토큰 인터랙티브 미리보기
+            </div>
+          </div>
+          <div className='text-cool-grey-06 transition group-hover:text-[color:var(--color-doc-accent)]'>
+            →
+          </div>
+        </Link>
+      </section>
+
       <section className='mb-10 rounded-lg border border-[color:var(--color-doc-border)] bg-[#fbfcfe] p-6'>
         <h2 className='mb-3 text-lg font-semibold'>설치</h2>
         <pre className='overflow-x-auto rounded bg-[#131b2d] p-4 text-sm text-white'>
