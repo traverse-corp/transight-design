@@ -117,6 +117,14 @@ function svgToSymbol(raw, id, sourceFile) {
   }
   const viewBox = viewBoxMatch[1];
 
+  // 루트 <svg>의 fill 속성 보존. <symbol>로 옮기면서 root attrs가 떨어지면
+  // stroke-only 아이콘(원본이 fill="none")이 SVG 기본 fill="black"을 갖게 돼서
+  // currentColor stroke만 의도해도 검은 채움이 남는다.
+  const rootMatch = raw.match(/<svg([^>]*)>/i);
+  const rootAttrs = rootMatch ? rootMatch[1] : '';
+  const rootFillMatch = rootAttrs.match(/\sfill="([^"]+)"/i);
+  const rootFill = rootFillMatch ? rootFillMatch[1] : null;
+
   const innerMatch = raw.match(/<svg[^>]*>([\s\S]*?)<\/svg>/i);
   if (!innerMatch) {
     throw new Error(`[build-icons] ${sourceFile}: could not extract inner SVG`);
@@ -136,5 +144,6 @@ function svgToSymbol(raw, id, sourceFile) {
     inner = inner.split(`xlink:href="#${internalId}"`).join(`xlink:href="#${safe}"`);
   }
 
-  return `<symbol id="${id}" viewBox="${viewBox}">${inner}</symbol>`;
+  const fillAttr = rootFill ? ` fill="${rootFill}"` : "";
+  return `<symbol id="${id}" viewBox="${viewBox}"${fillAttr}>${inner}</symbol>`;
 }
