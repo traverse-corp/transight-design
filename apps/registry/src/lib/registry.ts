@@ -152,16 +152,9 @@ export interface NavGroup {
   items: NavItem[]
 }
 
-/** /components/* 사이드바 — Styles · Base Components · Custom Components */
+/** /components/* 사이드바 — Base Components · Custom Components */
 export const buildComponentsSidebarGroups = (items: RegistryItem[]): NavGroup[] => {
-  const styles: NavItem[] = STYLE_ORDER.flatMap((name) => {
-    const item = items.find((i) => i.name === name)
-    const meta = STYLE_META[name]
-    if (!item || !meta) return []
-    return [{ name: item.name, label: meta.displayName }]
-  })
-
-  // icon은 컴포넌트가 아닌 별도 시스템 — registry:ui로 등록돼 있지만 사이드바에선 제외
+  // icon은 별도 시스템, style-*은 /styles 별도 페이지 — registry에 있지만 사이드바에선 제외
   const ui = items.filter((i) => i.type === 'registry:ui' && i.name !== 'icon')
   const base: NavItem[] = ui
     .filter((i) => BASE_COMPONENTS.has(i.name))
@@ -173,7 +166,6 @@ export const buildComponentsSidebarGroups = (items: RegistryItem[]): NavGroup[] 
     .sort((a, b) => a.label.localeCompare(b.label))
 
   return [
-    { label: 'Styles', items: styles },
     { label: 'Base Components', items: base },
     { label: 'Custom Components', items: custom }
   ]

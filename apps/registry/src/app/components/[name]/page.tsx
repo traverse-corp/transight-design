@@ -1,15 +1,14 @@
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import type { ReactNode } from 'react'
-import { loadRegistry, loadBuiltItem, STYLE_META } from '@/lib/registry'
+import { loadRegistry, loadBuiltItem } from '@/lib/registry'
 import { ItemInstallCommands } from '@/components/install-commands'
 import { InteractivePreview } from '@/components/interactive-preview'
-import { TokensView } from '@/views/tokens-view'
-import { TypoView } from '@/views/typo-view'
-import { FlexView } from '@/views/flex-view'
 
 export const generateStaticParams = (): { name: string }[] => {
   const registry = loadRegistry()
-  return registry.items.map((it) => ({ name: it.name }))
+  return registry.items
+    .filter((it) => it.type === 'registry:ui' && it.name !== 'icon')
+    .map((it) => ({ name: it.name }))
 }
 
 interface PageProps {
@@ -20,22 +19,24 @@ const SectionTitle = ({ children }: { children: ReactNode }) => (
   <h2 className='typo-sb12 text-cool-grey-07 mb-3 uppercase tracking-wide'>{children}</h2>
 )
 
-/** style-tokens / style-typography / style-flex 특화 콘텐츠 */
-const STYLE_VIEWS: Record<string, () => ReactNode> = {
-  'style-tokens': () => <TokensView />,
-  'style-typography': () => <TypoView />,
-  'style-flex': () => <FlexView />
+/** style-* item은 /styles/browse/<slug>로 redirect — 사이드바에서 빠졌지만 legacy 링크 안전망 */
+const STYLE_REDIRECT: Record<string, string> = {
+  'style-tokens': '/styles/browse/tokens',
+  'style-typography': '/styles/browse/typography',
+  'style-flex': '/styles/browse/flex'
 }
 
 const ComponentPage = async ({ params }: PageProps) => {
   const { name } = await params
+
+  const styleTarget = STYLE_REDIRECT[name]
+  if (styleTarget) redirect(styleTarget)
+
   const item = loadBuiltItem(name)
   if (!item) notFound()
 
-  const meta = STYLE_META[item.name]
-  const title = meta?.displayName ?? item.name
-  const description = meta?.description ?? item.description
-  const StyleView = STYLE_VIEWS[item.name]
+  const title = item.name
+  const description = item.description
 
   return (
     <main>
@@ -50,17 +51,12 @@ const ComponentPage = async ({ params }: PageProps) => {
         <ItemInstallCommands itemName={item.name} />
       </section>
 
-      {/* Style 전용 뷰 — 또는 일반 컴포넌트 뷰 (인터랙티브 프리뷰만) */}
-      {StyleView ? (
-        <StyleView />
-      ) : (
-        <section>
-          <SectionTitle>Preview</SectionTitle>
-          <div className='border-cool-grey-04 rounded-lg border bg-white p-8'>
-            <InteractivePreview name={item.name} />
-          </div>
-        </section>
-      )}
+      <section>
+        <SectionTitle>Preview</SectionTitle>
+        <div className='border-cool-grey-04 rounded-lg border bg-white p-8'>
+          <InteractivePreview name={item.name} />
+        </div>
+      </section>
     </main>
   )
 }

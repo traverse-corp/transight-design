@@ -65,7 +65,7 @@ const Home = () => (
     </section>
 
     {/* 진입 분기 카드 */}
-    <section className="mb-16 grid grid-cols-1 gap-4 md:grid-cols-2">
+    <section className="mb-16 grid grid-cols-1 gap-4 md:grid-cols-3">
       <Link
         href="/components"
         className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
@@ -80,6 +80,24 @@ const Home = () => (
           </div>
         </div>
         <div className="typo-sb14 text-primary-blue-1 mt-auto inline-flex items-center gap-1">
+          Browse <span aria-hidden>→</span>
+        </div>
+      </Link>
+
+      <Link
+        href="/styles"
+        className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
+      >
+        <div className="bg-cool-grey-02 flex h-11 w-11 items-center justify-center rounded-lg">
+          <Icon src="ic-map-arrange" color="ui-purple" size="lg" />
+        </div>
+        <div>
+          <div className="typo-sb16 text-cool-grey-11">Styles</div>
+          <div className="text-description mt-1">
+            Tokens · Typography · Flex — 디자인 시스템의 기반 스타일 레이어.
+          </div>
+        </div>
+        <div className="typo-sb14 text-ui-purple mt-auto inline-flex items-center gap-1">
           Browse <span aria-hidden>→</span>
         </div>
       </Link>
