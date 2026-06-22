@@ -14,8 +14,9 @@ const SIZE_PX: Record<IconSize, number> = {
 
 // styles/tokens.css의 팔레트 토큰명. 렌더 시점에 var(--color-<token>)으로 풀리고
 // CSS color로 적용되어 sprite의 currentColor를 상속한다.
+// 'white' / 'black'은 cool-grey-white / cool-grey-black의 짧은 별칭.
 export type IconColor =
-  | 'cool-grey-white'
+  | 'white'
   | 'cool-grey-01'
   | 'cool-grey-02'
   | 'cool-grey-03'
@@ -27,7 +28,7 @@ export type IconColor =
   | 'cool-grey-09'
   | 'cool-grey-10'
   | 'cool-grey-11'
-  | 'cool-grey-black'
+  | 'black'
   | 'primary-blue-1'
   | 'primary-blue-2'
   | 'primary-blue-deep'
@@ -64,15 +65,26 @@ export interface IconProps {
  * 순수 표출용 아이콘. 앱 루트에 한 번 마운트된 <IconSprite />의 <symbol>을 참조한다.
  * 인터랙티브 prop(onClick 등) 없음 — 필요하면 button으로 감쌀 것.
  */
+/** 짧은 별칭 → 실제 토큰명 매핑. 매핑이 없는 색은 그대로 사용. */
+const COLOR_TOKEN_ALIAS: Partial<Record<IconColor, string>> = {
+  white: 'cool-grey-white',
+  black: 'cool-grey-black'
+}
+
+/** IconColor를 tokens.css의 실제 CSS 변수명으로 변환. 미리보기/swatch 표시 등에 활용. */
+export const resolveIconColorToken = (color: IconColor): string =>
+  COLOR_TOKEN_ALIAS[color] ?? color
+
 export const Icon = ({ src, color = 'cool-grey-06', size = 'md', className }: IconProps) => {
   const px = SIZE_PX[size]
+  const token = resolveIconColorToken(color)
   return (
     <svg
       width={px}
       height={px}
       aria-hidden='true'
       focusable='false'
-      style={{ color: `var(--color-${color})` }}
+      style={{ color: `var(--color-${token})` }}
       className={cn('inline-block shrink-0', className)}
     >
       <use href={`#${src}`} />

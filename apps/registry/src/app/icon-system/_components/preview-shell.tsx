@@ -1,7 +1,12 @@
 'use client'
 
 import * as React from 'react'
-import { Icon, type IconColor, type IconSize } from '@/icon-system/icon'
+import {
+  Icon,
+  resolveIconColorToken,
+  type IconColor,
+  type IconSize
+} from '@/icon-system/icon'
 import { ICON_NAMES } from '@/icon-system/icons.gen'
 import { IconSystemNav } from './icon-system-nav'
 
@@ -17,7 +22,7 @@ const COLOR_GROUPS: { label: string; colors: IconColor[] }[] = [
   {
     label: 'cool-grey',
     colors: [
-      'cool-grey-white',
+      'white',
       'cool-grey-01',
       'cool-grey-02',
       'cool-grey-03',
@@ -29,7 +34,7 @@ const COLOR_GROUPS: { label: string; colors: IconColor[] }[] = [
       'cool-grey-09',
       'cool-grey-10',
       'cool-grey-11',
-      'cool-grey-black'
+      'black'
     ]
   },
   {
@@ -74,7 +79,7 @@ const COLOR_GROUPS: { label: string; colors: IconColor[] }[] = [
 ]
 
 export const PreviewShell = () => {
-  const [color, setColor] = React.useState<IconColor>('cool-grey-06')
+  const [color, setColor] = React.useState<IconColor>('black')
   const [size, setSize] = React.useState<IconSize>('md')
   const [copied, setCopied] = React.useState<string | null>(null)
   const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -153,7 +158,7 @@ export const PreviewShell = () => {
                       >
                         <span
                           className='border-cool-grey-04 inline-block h-3.5 w-3.5 shrink-0 rounded-sm border'
-                          style={{ backgroundColor: `var(--color-${c})` }}
+                          style={{ backgroundColor: `var(--color-${resolveIconColorToken(c)})` }}
                         />
                         <span className='truncate font-mono'>{c}</span>
                       </button>
