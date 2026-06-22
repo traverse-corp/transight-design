@@ -15,21 +15,17 @@ const codeForVariant = (variant: string) =>
   `<Badge variant="${variant}">${BADGE_VARIANT_LABELS[variant] ?? variant}</Badge>`
 
 export const BadgeVariantPresets = ({ variants }: { variants: string[] }) => {
-  const [selectedVariant, setSelectedVariant] = useState(variants[0] ?? 'default')
+  const [selectedVariant, setSelectedVariant] = useState(variants[0] ?? 'lea')
 
   return (
     <div className="border-cool-grey-04 flex flex-col gap-4 border-t pt-5">
       <div>
         <h3 className="typo-sb14 text-cool-grey-11">Variant presets</h3>
         <div className="text-description mt-1 flex flex-col gap-1">
-          <p>Variant는 자주 쓰는 배지 조합을 이름으로 호출하는 preset입니다.</p>
+          <p>Variant는 반복해서 쓰는 Badge 조합을 이름으로 호출하는 preset입니다.</p>
           <p>
-            기본 설계는 color, appearance, shape, size 네 축을 직접 조합하는 방식이고, variant는
-            프로젝트에서 반복해서 쓰는 조합만 짧게 묶어 둔 값입니다.
-          </p>
-          <p>
-            variant를 선택한 뒤에도 color, appearance, shape, size를 직접 지정하면 해당 값이 우선
-            적용됩니다.
+            기본 설계는 color, appearance, shape, size 축을 직접 조합하는 방식이고, variant는
+            프로젝트에서 자주 쓰는 조합만 얇게 묶어둔 값입니다.
           </p>
         </div>
       </div>

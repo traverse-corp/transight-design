@@ -5,6 +5,7 @@ import { PREVIEWS, hasPreview, type PreviewComponent } from '@/previews'
 import variantsData from '@/data/variants.json'
 import { BadgeVariantPresets } from './badge-variant-presets'
 import { ButtonVariantPresets } from './button-variant-presets'
+import { ComponentPropsDocs } from './component-props-docs'
 import { InputVariantPresets } from './input-variant-presets'
 import { PreviewModePanel } from './preview-mode-panel'
 
@@ -166,6 +167,7 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
       {name === 'button' && presetVariants && <ButtonVariantPresets variants={presetVariants} />}
       {name === 'badge' && presetVariants && <BadgeVariantPresets variants={presetVariants} />}
       {name === 'input' && presetVariants && <InputVariantPresets variants={presetVariants} />}
+      {hasVariantPresets && <ComponentPropsDocs name={name} />}
     </div>
   )
 }
