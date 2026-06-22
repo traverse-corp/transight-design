@@ -67,24 +67,6 @@ const Home = () => (
     {/* 진입 분기 카드 */}
     <section className="mb-16 grid grid-cols-1 gap-4 md:grid-cols-3">
       <Link
-        href="/components"
-        className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
-      >
-        <div className="bg-primary-blue-opacity-10 flex h-11 w-11 items-center justify-center rounded-lg">
-          <Icon src="ic-com-set" color="primary-blue-1" size="lg" />
-        </div>
-        <div>
-          <div className="typo-sb16 text-cool-grey-11">Components</div>
-          <div className="text-description mt-1">
-            Base UI 기반 컴포넌트 카탈로그. variant·color·size·shape로 조립.
-          </div>
-        </div>
-        <div className="typo-sb14 text-primary-blue-1 mt-auto inline-flex items-center gap-1">
-          Browse <span aria-hidden>→</span>
-        </div>
-      </Link>
-
-      <Link
         href="/styles"
         className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
       >
@@ -98,6 +80,24 @@ const Home = () => (
           </div>
         </div>
         <div className="typo-sb14 text-ui-purple mt-auto inline-flex items-center gap-1">
+          Browse <span aria-hidden>→</span>
+        </div>
+      </Link>
+
+      <Link
+        href="/components"
+        className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
+      >
+        <div className="bg-primary-blue-opacity-10 flex h-11 w-11 items-center justify-center rounded-lg">
+          <Icon src="ic-com-set" color="primary-blue-1" size="lg" />
+        </div>
+        <div>
+          <div className="typo-sb16 text-cool-grey-11">Components</div>
+          <div className="text-description mt-1">
+            Base UI 기반 컴포넌트 카탈로그. variant·color·size·shape로 조립.
+          </div>
+        </div>
+        <div className="typo-sb14 text-primary-blue-1 mt-auto inline-flex items-center gap-1">
           Browse <span aria-hidden>→</span>
         </div>
       </Link>
