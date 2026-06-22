@@ -131,8 +131,52 @@ function svgToSymbol(raw, id, sourceFile) {
   }
   let inner = innerMatch[1].trim();
 
-  inner = inner.replace(/fill="(black|#000|#000000)"/gi, 'fill="currentColor"');
-  inner = inner.replace(/stroke="(black|#000|#000000)"/gi, 'stroke="currentColor"');
+  // 모든 fill/stroke/stop-color를 currentColor로 정규화한다 — color prop으로
+  // 모든 hex 톤을 덮을 수 있어야 한다.
+  // 예외:
+  //   - 'none' : 명시적 비활성. 그대로 둠 (root fill="none" stroke-only 아이콘 포함).
+  //   - 'url(#...)' : gradient/pattern 참조. currentColor로 못 바꿈.
+  //   - <clipPath>, <mask> 블록 내부의 모든 색: 마스킹 영역 정의용. 회색으로 바뀌면
+  //     마스크가 깨지므로 정규화 대상에서 블록째 제외한다.
+  const blocks = [];
+  inner = inner.replace(/<(clipPath|mask)[^>]*>[\s\S]*?<\/\1>/gi, (m) => {
+    const i = blocks.length;
+    blocks.push(m);
+    return `__BUILD_ICONS_PRESERVE_${i}__`;
+  });
+
+  const PRESERVE = /^(none|url\(.*\))$/i;
+  for (const attr of ["fill", "stroke", "stop-color"]) {
+    inner = inner.replace(
+      new RegExp(`${attr}="([^"]+)"`, "gi"),
+      (m, value) => (PRESERVE.test(value) ? m : `${attr}="currentColor"`),
+    );
+  }
+
+  inner = inner.replace(
+    /__BUILD_ICONS_PRESERVE_(\d+)__/g,
+    (_, i) => blocks[+i],
+  );
+
+  // Gradient collapse: 모든 stop이 currentColor가 된 linear/radialGradient는
+  // 단색이 된 것과 다를 바 없는데, <use> shadow tree 안에서는 stop-color의
+  // currentColor inheritance가 SVG 사양상 불안정해서 일부 브라우저가 검정으로
+  // 폴백한다. gradient 참조 자체를 currentColor로 치환하고 defs는 그대로 둔다
+  // (사용처가 없어진 dead code).
+  const gradients = [
+    ...inner.matchAll(
+      /<(linearGradient|radialGradient)\s[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/\1>/gi,
+    ),
+  ];
+  for (const [, , gradId, body] of gradients) {
+    const stops = [...body.matchAll(/stop-color="([^"]+)"/gi)];
+    if (stops.length === 0) continue;
+    if (stops.every(([, c]) => c.toLowerCase() === "currentcolor")) {
+      const urlRef = `url(#${gradId})`;
+      inner = inner.split(`fill="${urlRef}"`).join('fill="currentColor"');
+      inner = inner.split(`stroke="${urlRef}"`).join('stroke="currentColor"');
+    }
+  }
 
   // Prefix all internal IDs to avoid cross-symbol collisions when sprite is mounted.
   const internalIds = [...inner.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
