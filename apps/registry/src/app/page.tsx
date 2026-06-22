@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Icon } from '@/icon-system/icon'
 import { CodeBlock } from '@/components/code-block'
 import { InstallCommands } from '@/components/install-commands'
 
@@ -49,17 +50,11 @@ dialog, tooltip, separator, skeleton, spinner`
 const Home = () => (
   <main className="mx-auto max-w-4xl px-6 py-20">
     {/* 히어로 */}
-    <section className="mb-20 text-center">
+    <section className="mb-12 text-center">
       <h1 className="typo-eb54 text-cool-grey-11 text-[clamp(40px,7vw,72px)]">
         TranSight Design System
       </h1>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <Link
-          href="/components"
-          className="typo-sb14 bg-primary-blue-1 shadow-primary hover:bg-primary-blue-2 inline-flex h-11 items-center rounded-md px-6 text-white transition-colors"
-        >
-          Browse Components →
-        </Link>
         <Link
           href="https://github.com/traverse-corp/transight-design"
           className="typo-sb14 text-cool-grey-09 border-cool-grey-04 hover:border-primary-blue-1 hover:text-primary-blue-1 inline-flex h-11 items-center rounded-md border bg-white px-6 transition-colors"
@@ -69,20 +64,42 @@ const Home = () => (
       </div>
     </section>
 
-    {/* Foundation: Icon System */}
-    <section className="mb-12">
+    {/* 진입 분기 카드 */}
+    <section className="mb-16 grid grid-cols-1 gap-4 md:grid-cols-2">
       <Link
-        href="/icon-system"
-        className="border-cool-grey-04 hover:border-primary-blue-1 group flex items-center justify-between rounded-lg border bg-white p-5 transition-colors"
+        href="/components"
+        className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
       >
+        <div className="bg-primary-blue-opacity-10 flex h-11 w-11 items-center justify-center rounded-lg">
+          <Icon src="ic-com-set" color="primary-blue-1" size="lg" />
+        </div>
         <div>
-          <div className="text-overline text-cool-grey-07">Foundation</div>
-          <div className="typo-sb16 text-cool-grey-11 mt-1">Icon System</div>
+          <div className="typo-sb16 text-cool-grey-11">Components</div>
           <div className="text-description mt-1">
-            58개 아이콘 · 색상·크기 토큰 인터랙티브 미리보기
+            Base UI 기반 컴포넌트 카탈로그. variant·color·size·shape로 조립.
           </div>
         </div>
-        <div className="text-cool-grey-06 group-hover:text-primary-blue-1 transition-colors">→</div>
+        <div className="typo-sb14 text-primary-blue-1 mt-auto inline-flex items-center gap-1">
+          Browse <span aria-hidden>→</span>
+        </div>
+      </Link>
+
+      <Link
+        href="/icon-system"
+        className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
+      >
+        <div className="bg-primary-skyblue-1 flex h-11 w-11 items-center justify-center rounded-lg">
+          <Icon src="ic-saved-folder" color="primary-blue-deep" size="lg" />
+        </div>
+        <div>
+          <div className="typo-sb16 text-cool-grey-11">Icon System</div>
+          <div className="text-description mt-1">
+            58개 SVG sprite + 팔레트 토큰 색상 × 5단계 크기로 강제된 Icon 컴포넌트.
+          </div>
+        </div>
+        <div className="typo-sb14 text-primary-blue-deep mt-auto inline-flex items-center gap-1">
+          Browse <span aria-hidden>→</span>
+        </div>
       </Link>
     </section>
 

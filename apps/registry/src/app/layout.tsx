@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { IconSprite } from '@/icon-system/sprite.gen'
 import { I18nProvider } from '@/components/i18n-provider'
 import './globals.css'
 
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: ReactNode }) => (
   <html lang='ko'>
     <body>
+      <IconSprite />
       <I18nProvider>{children}</I18nProvider>
     </body>
   </html>

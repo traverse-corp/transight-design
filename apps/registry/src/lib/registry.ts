@@ -152,8 +152,8 @@ export interface NavGroup {
   items: NavItem[]
 }
 
-/** 사이드바용 그룹 구성 — Styles(3) · Base Components · Custom Components */
-export const buildSidebarGroups = (items: RegistryItem[]): NavGroup[] => {
+/** /components/* 사이드바 — Styles · Base Components · Custom Components */
+export const buildComponentsSidebarGroups = (items: RegistryItem[]): NavGroup[] => {
   const styles: NavItem[] = STYLE_ORDER.flatMap((name) => {
     const item = items.find((i) => i.name === name)
     const meta = STYLE_META[name]
@@ -172,17 +172,20 @@ export const buildSidebarGroups = (items: RegistryItem[]): NavGroup[] => {
     .map((i) => ({ name: i.name, label: i.name }))
     .sort((a, b) => a.label.localeCompare(b.label))
 
-  const iconSystem: NavItem[] = items.some((i) => i.name === 'icon')
-    ? [{ name: 'icon-system-overview', label: 'Overview', href: '/icon-system' }]
-    : []
-
   return [
     { label: 'Styles', items: styles },
-    { label: 'Icon System', items: iconSystem },
     { label: 'Base Components', items: base },
     { label: 'Custom Components', items: custom }
   ]
 }
+
+/** /icon-system/* 사이드바 — Icon System 전용 */
+export const buildIconSystemSidebarGroups = (): NavGroup[] => [
+  {
+    label: 'Icon System',
+    items: [{ name: 'icon-system-overview', label: 'Overview', href: '/icon-system' }]
+  }
+]
 
 const groupKeyFor = (item: RegistryItem): GroupKey | null => {
   if (item.type === 'registry:ui') {
