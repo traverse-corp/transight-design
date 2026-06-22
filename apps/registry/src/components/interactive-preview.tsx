@@ -118,7 +118,8 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
     name === 'skeleton' ||
     name === 'spinner' ||
     name === 'tooltip' ||
-    name === 'dialog'
+    name === 'dialog' ||
+    name === 'select'
   const controlEntries: Array<[string, string[]]> =
     name === 'input'
       ? [

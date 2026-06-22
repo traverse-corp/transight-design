@@ -9,9 +9,22 @@ import {
   SelectValue
 } from '@transight-design/ui/components/select'
 
-export const Preview = () => (
+interface PreviewProps {
+  selections?: Record<string, string>
+}
+
+type Color = NonNullable<Parameters<typeof SelectTrigger>[0]['color']>
+type Shape = NonNullable<Parameters<typeof SelectTrigger>[0]['shape']>
+type Size = NonNullable<Parameters<typeof SelectTrigger>[0]['size']>
+
+export const Preview = ({ selections = {} }: PreviewProps) => (
   <Select>
-    <SelectTrigger className='w-60'>
+    <SelectTrigger
+      color={(selections.color as Color) ?? undefined}
+      shape={(selections.shape as Shape) ?? undefined}
+      size={(selections.size as Size) ?? undefined}
+      className='w-60'
+    >
       <SelectValue placeholder='네트워크를 선택하세요' />
     </SelectTrigger>
     <SelectContent>

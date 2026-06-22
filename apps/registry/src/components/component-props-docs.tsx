@@ -235,6 +235,85 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
       ]
     }
   ],
+  select: [
+    {
+      title: 'SelectTrigger',
+      description: 'select가 닫혀있을 때 보이는 트리거. color로 자체 톤(border/text/focus)을 변경.',
+      props: [
+        {
+          name: 'color',
+          type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
+          defaultValue: "'gray'",
+          description:
+            'Trigger의 idle border + text + focus border를 결정. Button outline 패턴 미러링 12색. chevron은 같은 톤에 opacity 70%.'
+        },
+        {
+          name: 'shape',
+          type: "'default' | 'pill' | 'square'",
+          defaultValue: "'default'",
+          description: '모서리 형태. Input과 동일.'
+        },
+        {
+          name: 'size',
+          type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+          defaultValue: "'md'",
+          description: 'h7~h14 + 패딩 + typo-m12~m18. Input의 size 매핑과 동일.'
+        },
+        {
+          name: 'aria-invalid',
+          type: 'boolean',
+          description: '에러 표시 트리거. true면 border가 자동으로 빨간색이 됩니다.'
+        }
+      ]
+    },
+    {
+      title: 'SelectContent',
+      description: '드롭다운 popup. 외형 prop은 거의 없고 base UI native 위치 prop만 받음.',
+      props: [
+        {
+          name: 'side',
+          type: "'top' | 'right' | 'bottom' | 'left'",
+          defaultValue: "'bottom'",
+          description: 'popup이 trigger의 어느 쪽에 나타날지.'
+        },
+        {
+          name: 'sideOffset',
+          type: 'number',
+          defaultValue: '4',
+          description: 'trigger와 popup 사이 간격 (px).'
+        },
+        {
+          name: 'align',
+          type: "'start' | 'center' | 'end'",
+          defaultValue: "'center'",
+          description: 'side 축에 직교한 정렬.'
+        },
+        {
+          name: 'alignItemWithTrigger',
+          type: 'boolean',
+          defaultValue: 'false',
+          description:
+            'true면 선택된 아이템이 trigger 위치와 정확히 일치해 열림(native select 느낌).'
+        }
+      ]
+    },
+    {
+      title: 'SelectItem',
+      description: '드롭다운 옵션. value는 필수.',
+      props: [
+        {
+          name: 'value',
+          type: 'string',
+          description: '아이템 선택 시 form value로 들어가는 값. 필수.'
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          description: '비활성. 클릭 안 되고 opacity 50%.'
+        }
+      ]
+    }
+  ],
   spinner: [
     {
       name: 'color',

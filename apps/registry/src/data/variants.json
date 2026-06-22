@@ -320,6 +320,41 @@
       "size": "md"
     }
   },
+  "select": {
+    "groups": {
+      "color": [
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
+      ],
+      "shape": [
+        "default",
+        "pill",
+        "square"
+      ],
+      "size": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ]
+    },
+    "defaults": {
+      "color": "gray",
+      "shape": "default",
+      "size": "md"
+    }
+  },
   "separator": {
     "groups": {
       "orientation": [
