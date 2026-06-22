@@ -1,231 +1,225 @@
-"use client";
+'use client'
 
-import * as React from "react";
-import { Icon, type IconColor, type IconSize } from "@/icon-system/icon";
-import { ICON_NAMES } from "@/icon-system/icons.gen";
+import * as React from 'react'
+import { Icon, type IconColor, type IconSize } from '@/icon-system/icon'
+import { ICON_NAMES } from '@/icon-system/icons.gen'
 
 const SIZES: { value: IconSize; label: string; px: number }[] = [
-  { value: "xs", label: "xs", px: 12 },
-  { value: "sm", label: "sm", px: 14 },
-  { value: "md", label: "md", px: 16 },
-  { value: "lg", label: "lg", px: 20 },
-  { value: "xl", label: "xl", px: 24 },
-];
+  { value: 'xs', label: 'xs', px: 12 },
+  { value: 'sm', label: 'sm', px: 14 },
+  { value: 'md', label: 'md', px: 16 },
+  { value: 'lg', label: 'lg', px: 20 },
+  { value: 'xl', label: 'xl', px: 24 }
+]
 
 const COLOR_GROUPS: { label: string; colors: IconColor[] }[] = [
   {
-    label: "cool-grey",
+    label: 'cool-grey',
     colors: [
-      "cool-grey-white",
-      "cool-grey-01",
-      "cool-grey-02",
-      "cool-grey-03",
-      "cool-grey-04",
-      "cool-grey-05",
-      "cool-grey-06",
-      "cool-grey-07",
-      "cool-grey-08",
-      "cool-grey-09",
-      "cool-grey-10",
-      "cool-grey-11",
-      "cool-grey-black",
-    ],
+      'cool-grey-white',
+      'cool-grey-01',
+      'cool-grey-02',
+      'cool-grey-03',
+      'cool-grey-04',
+      'cool-grey-05',
+      'cool-grey-06',
+      'cool-grey-07',
+      'cool-grey-08',
+      'cool-grey-09',
+      'cool-grey-10',
+      'cool-grey-11',
+      'cool-grey-black'
+    ]
   },
   {
-    label: "primary",
+    label: 'primary',
     colors: [
-      "primary-blue-1",
-      "primary-blue-2",
-      "primary-blue-deep",
-      "primary-skyblue-1",
-      "primary-skyblue-2",
-    ],
+      'primary-blue-1',
+      'primary-blue-2',
+      'primary-blue-deep',
+      'primary-skyblue-1',
+      'primary-skyblue-2'
+    ]
   },
-  { label: "accent", colors: ["accent-amber"] },
+  { label: 'accent', colors: ['accent-amber'] },
   {
-    label: "ui",
+    label: 'ui',
     colors: [
-      "ui-red",
-      "ui-orange",
-      "ui-yellow",
-      "ui-olive",
-      "ui-green",
-      "ui-skyblue",
-      "ui-blue",
-      "ui-purple",
-      "ui-pink",
-    ],
+      'ui-red',
+      'ui-orange',
+      'ui-yellow',
+      'ui-olive',
+      'ui-green',
+      'ui-skyblue',
+      'ui-blue',
+      'ui-purple',
+      'ui-pink'
+    ]
   },
   {
-    label: "ui-text",
+    label: 'ui-text',
     colors: [
-      "ui-text-red",
-      "ui-text-orange",
-      "ui-text-yellow",
-      "ui-text-olive",
-      "ui-text-green",
-      "ui-text-skyblue",
-      "ui-text-blue",
-      "ui-text-purple",
-      "ui-text-pink",
-    ],
-  },
-];
+      'ui-text-red',
+      'ui-text-orange',
+      'ui-text-yellow',
+      'ui-text-olive',
+      'ui-text-green',
+      'ui-text-skyblue',
+      'ui-text-blue',
+      'ui-text-purple',
+      'ui-text-pink'
+    ]
+  }
+]
 
-export function PreviewShell() {
-  const [color, setColor] = React.useState<IconColor>("cool-grey-06");
-  const [size, setSize] = React.useState<IconSize>("md");
-  const [copied, setCopied] = React.useState<string | null>(null);
-  const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+export const PreviewShell = () => {
+  const [color, setColor] = React.useState<IconColor>('cool-grey-06')
+  const [size, setSize] = React.useState<IconSize>('md')
+  const [copied, setCopied] = React.useState<string | null>(null)
+  const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const copySnippet = React.useCallback(
     async (name: string) => {
-      const snippet = `<Icon src="${name}" color="${color}" size="${size}" />`;
+      const snippet = `<Icon src="${name}" color="${color}" size="${size}" />`
       try {
-        await navigator.clipboard.writeText(snippet);
+        await navigator.clipboard.writeText(snippet)
       } catch {
         // clipboard API may be unavailable (e.g. insecure context) — silently skip
       }
-      setCopied(name);
-      if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => setCopied(null), 1200);
+      setCopied(name)
+      if (timerRef.current) clearTimeout(timerRef.current)
+      timerRef.current = setTimeout(() => setCopied(null), 1200)
     },
-    [color, size],
-  );
+    [color, size]
+  )
 
   React.useEffect(
     () => () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
+      if (timerRef.current) clearTimeout(timerRef.current)
     },
-    [],
-  );
+    []
+  )
 
   return (
-    <div className="mx-auto max-w-6xl space-y-10 p-8">
-      <header className="space-y-2">
-        <h1 className="text-3xl font-bold text-cool-grey-11">Icon System</h1>
-        <p className="text-sm text-cool-grey-07">
-          전체 {ICON_NAMES.length}개 아이콘 · 팔레트 토큰 색상 × 5단계 크기로 인터랙티브 미리보기.
-        </p>
-      </header>
-
-      <section className="space-y-3">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-cool-grey-07">
-          Size
-        </h2>
-        <div className="flex flex-wrap gap-2">
-          {SIZES.map((s) => {
-            const active = s.value === size;
-            return (
-              <button
-                key={s.value}
-                type="button"
-                onClick={() => setSize(s.value)}
-                className={
-                  "rounded-md border px-3 py-1.5 text-sm transition " +
-                  (active
-                    ? "border-primary-blue-1 bg-primary-blue-1 text-cool-grey-white"
-                    : "border-cool-grey-04 bg-cool-grey-white text-cool-grey-09 hover:border-cool-grey-06")
-                }
-              >
-                <span className="font-mono">{s.label}</span>
-                <span className="ml-1.5 text-xs opacity-70">{s.px}px</span>
-              </button>
-            );
-          })}
+    <div className='mx-auto flex h-screen max-w-7xl gap-10 px-6'>
+      {/* 좌측 필터 패널 — 사이드바 자리 */}
+      <aside className='h-screen w-60 shrink-0 overflow-y-auto py-10'>
+        <div className='mb-6'>
+          <h3 className='typo-b14 text-cool-grey-11 mb-3 px-2'>Icon System</h3>
         </div>
-      </section>
 
-      <section className="space-y-4">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-cool-grey-07">
-          Color
-        </h2>
-        <div className="space-y-3">
-          {COLOR_GROUPS.map((group) => (
-            <div key={group.label} className="space-y-2">
-              <div className="text-xs font-medium text-cool-grey-06">{group.label}</div>
-              <div className="flex flex-wrap gap-2">
-                {group.colors.map((c) => {
-                  const active = c === color;
-                  return (
-                    <button
-                      key={c}
-                      type="button"
-                      onClick={() => setColor(c)}
-                      title={c}
-                      className={
-                        "flex items-center gap-2 rounded-md border px-2.5 py-1.5 text-xs transition " +
-                        (active
-                          ? "border-cool-grey-11 bg-cool-grey-02 text-cool-grey-11"
-                          : "border-cool-grey-04 bg-cool-grey-white text-cool-grey-08 hover:border-cool-grey-06")
-                      }
-                    >
-                      <span
-                        className="inline-block h-3.5 w-3.5 rounded-sm border border-cool-grey-04"
-                        style={{ backgroundColor: `var(--color-${c})` }}
-                      />
-                      <span className="font-mono">{c}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="space-y-4">
-        <div className="flex items-end justify-between">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-cool-grey-07">
-            Icons
-          </h2>
-          <div className="font-mono text-xs text-cool-grey-06">
-            color=<span className="text-cool-grey-09">{color}</span> · size=
-            <span className="text-cool-grey-09">{size}</span>
+        {/* Size */}
+        <section className='border-cool-grey-04 mb-6 border-t pt-6'>
+          <h4 className='typo-sb12 text-cool-grey-07 mb-3 px-2 uppercase tracking-wider'>Size</h4>
+          <div className='flex flex-col gap-1'>
+            {SIZES.map((s) => {
+              const active = s.value === size
+              return (
+                <button
+                  key={s.value}
+                  type='button'
+                  onClick={() => setSize(s.value)}
+                  className={
+                    active
+                      ? 'bg-primary-blue-opacity-10 text-primary-blue-1 typo-sb14 flex items-center justify-between rounded-md px-3 py-1.5'
+                      : 'text-cool-grey-08 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-m14 flex items-center justify-between rounded-md px-3 py-1.5'
+                  }
+                >
+                  <span className='font-mono'>{s.label}</span>
+                  <span className='typo-m11 text-cool-grey-06'>{s.px}px</span>
+                </button>
+              )
+            })}
           </div>
-        </div>
+        </section>
 
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-2">
+        {/* Color */}
+        <section className='border-cool-grey-04 border-t pt-6'>
+          <h4 className='typo-sb12 text-cool-grey-07 mb-3 px-2 uppercase tracking-wider'>Color</h4>
+          <div className='flex flex-col gap-4'>
+            {COLOR_GROUPS.map((group) => (
+              <div key={group.label}>
+                <div className='typo-m11 text-cool-grey-06 mb-1.5 px-2'>{group.label}</div>
+                <div className='flex flex-col gap-0.5'>
+                  {group.colors.map((c) => {
+                    const active = c === color
+                    return (
+                      <button
+                        key={c}
+                        type='button'
+                        onClick={() => setColor(c)}
+                        title={c}
+                        className={
+                          active
+                            ? 'bg-primary-blue-opacity-10 text-primary-blue-1 typo-sb12 flex items-center gap-2 rounded-md px-3 py-1.5'
+                            : 'text-cool-grey-08 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-m12 flex items-center gap-2 rounded-md px-3 py-1.5'
+                        }
+                      >
+                        <span
+                          className='border-cool-grey-04 inline-block h-3.5 w-3.5 shrink-0 rounded-sm border'
+                          style={{ backgroundColor: `var(--color-${c})` }}
+                        />
+                        <span className='truncate font-mono'>{c}</span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </aside>
+
+      {/* 우측 메인 — 아이콘 그리드만 */}
+      <div className='h-screen min-w-0 flex-1 overflow-y-auto py-10'>
+        <header className='mb-6 flex items-end justify-between'>
+          <div>
+            <h1 className='typo-b24 text-cool-grey-11'>Icons</h1>
+            <p className='text-description mt-1'>
+              {ICON_NAMES.length}개 아이콘 · 카드 클릭 시 코드 스니펫 복사
+            </p>
+          </div>
+          <div className='typo-mono-m12 text-cool-grey-06'>
+            color=<span className='text-cool-grey-09'>{color}</span> · size=
+            <span className='text-cool-grey-09'>{size}</span>
+          </div>
+        </header>
+
+        <div className='grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-2'>
           {ICON_NAMES.map((name) => {
-            const isCopied = copied === name;
+            const isCopied = copied === name
             return (
               <button
                 key={name}
-                type="button"
+                type='button'
                 onClick={() => copySnippet(name)}
                 title={`Click to copy <Icon src="${name}" color="${color}" size="${size}" />`}
                 className={
-                  "group relative flex cursor-pointer flex-col items-center gap-2 rounded-lg border bg-cool-grey-white p-4 text-left transition " +
+                  'group bg-cool-grey-white relative flex cursor-pointer flex-col items-center gap-2 rounded-lg border p-4 text-left transition ' +
                   (isCopied
-                    ? "border-primary-blue-1 bg-primary-skyblue-1"
-                    : "border-cool-grey-04 hover:border-cool-grey-06 hover:bg-cool-grey-01 active:bg-cool-grey-02")
+                    ? 'border-primary-blue-1 bg-primary-skyblue-1'
+                    : 'border-cool-grey-04 hover:border-cool-grey-06 hover:bg-cool-grey-01 active:bg-cool-grey-02')
                 }
               >
-                <div className="flex h-10 w-10 items-center justify-center">
+                <div className='flex h-10 w-10 items-center justify-center'>
                   <Icon src={name} color={color} size={size} />
                 </div>
                 <div
-                  className="w-full truncate text-center font-mono text-[11px] text-cool-grey-07"
+                  className='text-cool-grey-07 typo-mono-m12 w-full truncate text-center'
                   title={name}
                 >
                   {name}
                 </div>
                 {isCopied && (
-                  <span className="pointer-events-none absolute right-1.5 top-1.5 rounded-sm bg-primary-blue-1 px-1.5 py-0.5 text-[10px] font-semibold text-cool-grey-white">
+                  <span className='bg-primary-blue-1 text-cool-grey-white typo-sb11 pointer-events-none absolute right-1.5 top-1.5 rounded-sm px-1.5 py-0.5'>
                     Copied
                   </span>
                 )}
               </button>
-            );
+            )
           })}
         </div>
-      </section>
-
-      <footer className="border-t border-cool-grey-04 pt-6 text-xs text-cool-grey-06">
-        <code className="font-mono">
-          {`<Icon src="${ICON_NAMES[0]}" color="${color}" size="${size}" />`}
-        </code>
-      </footer>
+      </div>
     </div>
-  );
+  )
 }
