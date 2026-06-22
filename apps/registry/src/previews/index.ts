@@ -31,7 +31,6 @@ import { Preview as EmptyPreview } from './empty'
 import { Preview as FieldPreview } from './field'
 import { Preview as HashTextPreview } from './hash-text'
 import { Preview as HoverCardPreview } from './hover-card'
-import { Preview as IconPreview } from './icon'
 import { Preview as InputPreview } from './input'
 import { Preview as InputGroupPreview } from './input-group'
 import { Preview as InputOtpPreview } from './input-otp'
@@ -105,7 +104,6 @@ export const PREVIEWS: Record<string, PreviewComponent> = {
   field: FieldPreview,
   'hash-text': HashTextPreview,
   'hover-card': HoverCardPreview,
-  icon: IconPreview,
   input: InputPreview,
   'input-group': InputGroupPreview,
   'input-otp': InputOtpPreview,

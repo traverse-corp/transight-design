@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { Icon, type IconColor, type IconSize } from "@/components/icon-next";
-import { ICON_NAMES } from "@/icons/icons.gen";
+import { Icon, type IconColor, type IconSize } from "@/icon-system/icon";
+import { ICON_NAMES } from "@/icon-system/icons.gen";
 
 const SIZES: { value: IconSize; label: string; px: number }[] = [
   { value: "xs", label: "xs", px: 12 },

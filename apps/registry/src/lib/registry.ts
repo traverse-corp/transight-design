@@ -65,7 +65,6 @@ export const BASE_COMPONENTS: ReadonlySet<string> = new Set([
   'empty',
   'field',
   'hover-card',
-  'icon',
   'input',
   'input-group',
   'input-otp',
@@ -144,6 +143,8 @@ const STYLE_ORDER: string[] = ['style-tokens', 'style-typography', 'style-flex']
 export interface NavItem {
   name: string
   label: string
+  /** 명시 시 사이드바 링크가 이 경로를 사용. 미지정 시 `/components/${name}`로 fallback */
+  href?: string
 }
 
 export interface NavGroup {
@@ -160,7 +161,8 @@ export const buildSidebarGroups = (items: RegistryItem[]): NavGroup[] => {
     return [{ name: item.name, label: meta.displayName }]
   })
 
-  const ui = items.filter((i) => i.type === 'registry:ui')
+  // icon은 컴포넌트가 아닌 별도 시스템 — registry:ui로 등록돼 있지만 사이드바에선 제외
+  const ui = items.filter((i) => i.type === 'registry:ui' && i.name !== 'icon')
   const base: NavItem[] = ui
     .filter((i) => BASE_COMPONENTS.has(i.name))
     .map((i) => ({ name: i.name, label: i.name }))
@@ -170,8 +172,13 @@ export const buildSidebarGroups = (items: RegistryItem[]): NavGroup[] => {
     .map((i) => ({ name: i.name, label: i.name }))
     .sort((a, b) => a.label.localeCompare(b.label))
 
+  const iconSystem: NavItem[] = items.some((i) => i.name === 'icon')
+    ? [{ name: 'icon-system-overview', label: 'Overview', href: '/icon-system' }]
+    : []
+
   return [
     { label: 'Styles', items: styles },
+    { label: 'Icon System', items: iconSystem },
     { label: 'Base Components', items: base },
     { label: 'Custom Components', items: custom }
   ]

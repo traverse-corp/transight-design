@@ -8,6 +8,8 @@ export interface NavItem {
   name: string
   /** 사이드바에 표시할 라벨 */
   label: string
+  /** 명시 시 이 경로로 링크 — 미지정 시 `/components/${name}`로 fallback */
+  href?: string
 }
 
 export interface NavGroup {
@@ -42,7 +44,7 @@ export const SidebarNav = ({ groups }: SidebarNavProps) => {
             </div>
             <ul className='flex flex-col gap-0.5'>
               {group.items.map((item) => {
-                const href = `/components/${item.name}`
+                const href = item.href ?? `/components/${item.name}`
                 const active = pathname === href
                 return (
                   <li key={item.name}>

@@ -879,23 +879,6 @@
       ]
     },
     {
-      "name": "icon",
-      "type": "registry:ui",
-      "title": "icon",
-      "description": "icon 컴포넌트",
-      "registryDependencies": [
-        "traverse-corp/transight-design/lib-utils",
-        "traverse-corp/transight-design/styles"
-      ],
-      "files": [
-        {
-          "path": "src/components/icon.tsx",
-          "type": "registry:ui",
-          "target": "~/src/components/base/icon.tsx"
-        }
-      ]
-    },
-    {
       "name": "input-group",
       "type": "registry:ui",
       "title": "input-group",
@@ -1561,6 +1544,33 @@
           "path": "src/components/tooltip.tsx",
           "type": "registry:ui",
           "target": "~/src/components/base/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:ui",
+      "title": "Icon System",
+      "description": "SVG sprite 기반 아이콘 시스템 — palette 토큰 색상 × 5단계 크기",
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/icon-system/icon.tsx",
+          "type": "registry:ui",
+          "target": "~/src/icons/icon.tsx"
+        },
+        {
+          "path": "src/icon-system/icons.gen.ts",
+          "type": "registry:ui",
+          "target": "~/src/icons/icons.gen.ts"
+        },
+        {
+          "path": "src/icon-system/sprite.gen.tsx",
+          "type": "registry:ui",
+          "target": "~/src/icons/sprite.gen.tsx"
         }
       ]
     },

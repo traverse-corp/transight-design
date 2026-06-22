@@ -22,7 +22,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 // packages/ui/scripts → repo root = ../../..
 const REPO_ROOT = join(HERE, "..", "..", "..");
 const SVG_DIR = join(REPO_ROOT, "svg");
-const OUT_DIR = join(HERE, "..", "src", "icons");
+const OUT_DIR = join(HERE, "..", "src", "icon-system");
 
 if (!existsSync(SVG_DIR)) {
   console.error(`[build-icons] svg source not found: ${SVG_DIR}`);

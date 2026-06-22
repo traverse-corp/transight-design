@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
 import { CatalogShell } from '@/components/catalog-shell'
 
-const CatalogLayout = ({ children }: { children: ReactNode }) => (
+const IconSystemLayout = ({ children }: { children: ReactNode }) => (
   <CatalogShell>{children}</CatalogShell>
 )
 
-export default CatalogLayout
+export default IconSystemLayout

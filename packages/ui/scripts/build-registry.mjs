@@ -76,7 +76,6 @@ export const BASE_COMPONENTS = new Set([
   'empty',
   'field',
   'hover-card',
-  'icon',
   'input',
   'input-group',
   'input-otp',
@@ -333,6 +332,36 @@ const main = () => {
         }
       ]
     })
+  }
+
+  // ── 5b. Icon System (registry:ui) ──────────────
+  // 컴포넌트 디렉토리에서 분리된 단독 아이콘 시스템.
+  // - src/icon-system/icon.tsx + sprite.gen.tsx + icons.gen.ts 3개 파일을 한 item으로 묶음
+  // - 사용자 측 설치 위치: ~/src/icons/<file>
+  // - styles만 prerequisite — 컴포넌트 의존 없음
+  // - `npx ... add icon` 단독 호출로 아이콘만 따로 설치 가능
+  const iconSystemDir = join(SRC, 'icon-system')
+  if (existsSync(iconSystemDir)) {
+    const iconFiles = readdirSync(iconSystemDir)
+      .filter((f) => /\.(tsx|ts)$/.test(f))
+      .sort()
+    if (iconFiles.length > 0) {
+      const iconDeps = collectDeps(join(iconSystemDir, 'icon.tsx'))
+      const allRegistryDeps = [...new Set([...iconDeps.registryDependencies, STYLES_DEP])].sort()
+      items.push({
+        name: 'icon',
+        type: 'registry:ui',
+        title: 'Icon System',
+        description: 'SVG sprite 기반 아이콘 시스템 — palette 토큰 색상 × 5단계 크기',
+        ...(iconDeps.dependencies.length ? { dependencies: iconDeps.dependencies } : {}),
+        registryDependencies: allRegistryDeps,
+        files: iconFiles.map((f) => ({
+          path: relativeFrom(OUT, join(iconSystemDir, f)),
+          type: 'registry:ui',
+          target: `~/src/icons/${f}`
+        }))
+      })
+    }
   }
 
   // ── 6. 필수 번들 (registry:item) ───────────────
