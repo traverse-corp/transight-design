@@ -20,6 +20,9 @@
     "./lib/hooks/*": "./src/lib/hooks/*"
   },
   "scripts": {
+    "build:icons": "node scripts/build-icons.mjs",
+    "prebuild": "node scripts/build-icons.mjs",
+    "predev": "node scripts/build-icons.mjs",
     "build": "npm run registry:generate && npm run registry:build && npm run registry:transform",
     "rewrite-imports": "node scripts/rewrite-imports.mjs",
     "registry:generate": "node scripts/build-registry.mjs",
