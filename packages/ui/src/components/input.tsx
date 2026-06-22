@@ -171,7 +171,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {React.isValidElement(capsLockIndicator) ? (
               capsLockIndicator
             ) : (
-              <Icon src='ic-com-up' color='ui-orange' size='sm' />
+              <span className='text-ui-orange typo-sb11'>Caps Lock</span>
             )}
           </div>
         )}
