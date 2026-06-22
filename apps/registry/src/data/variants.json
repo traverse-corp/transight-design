@@ -134,6 +134,41 @@
       "variant": "default"
     }
   },
+  "checkbox": {
+    "groups": {
+      "color": [
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
+      ],
+      "shape": [
+        "default",
+        "square",
+        "circle"
+      ],
+      "size": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ]
+    },
+    "defaults": {
+      "color": "blue",
+      "shape": "default",
+      "size": "md"
+    }
+  },
   "empty": {
     "groups": {
       "variant": [
@@ -203,31 +238,67 @@
       "decoDir": [
         "start",
         "end"
-      ],
-      "tone": [
-        "normal",
-        "error"
       ]
     },
     "defaults": {
       "variant": "default",
       "shape": "default",
       "size": "md",
-      "decoDir": "start",
-      "tone": "normal"
+      "decoDir": "start"
     }
   },
   "label": {
     "groups": {
       "variant": [
         "default",
-        "auth",
-        "muted",
-        "form"
+        "required",
+        "optional"
+      ],
+      "size": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
       ]
     },
     "defaults": {
-      "variant": "default"
+      "variant": "default",
+      "size": "md"
+    }
+  },
+  "radio-group": {
+    "groups": {
+      "color": [
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
+      ],
+      "shape": [
+        "circle",
+        "square"
+      ],
+      "size": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ]
+    },
+    "defaults": {
+      "color": "blue",
+      "shape": "circle",
+      "size": "md"
     }
   },
   "sidebar": {
@@ -267,6 +338,26 @@
     },
     "defaults": {
       "variant": "default"
+    }
+  },
+  "textarea": {
+    "groups": {
+      "shape": [
+        "default",
+        "pill",
+        "square"
+      ],
+      "size": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ]
+    },
+    "defaults": {
+      "shape": "default",
+      "size": "md"
     }
   },
   "toggle-group": {

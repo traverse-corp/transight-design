@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Icon } from '@/icons/icon'
+import { Boxes, LayoutGrid, Palette } from 'lucide-react'
 import { CodeBlock } from '@/components/code-block'
 import { InstallCommands } from '@/components/install-commands'
 
@@ -71,7 +71,7 @@ const Home = () => (
         className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
       >
         <div className="bg-cool-grey-02 flex h-11 w-11 items-center justify-center rounded-lg">
-          <Icon src="ic-map-arrange" color="ui-purple" size="lg" />
+          <Palette className="text-ui-purple h-5 w-5" />
         </div>
         <div>
           <div className="typo-sb16 text-cool-grey-11">Styles</div>
@@ -89,7 +89,7 @@ const Home = () => (
         className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
       >
         <div className="bg-primary-blue-opacity-10 flex h-11 w-11 items-center justify-center rounded-lg">
-          <Icon src="ic-com-set" color="primary-blue-1" size="lg" />
+          <Boxes className="text-primary-blue-1 h-5 w-5" />
         </div>
         <div>
           <div className="typo-sb16 text-cool-grey-11">Components</div>
@@ -107,7 +107,7 @@ const Home = () => (
         className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
       >
         <div className="bg-primary-skyblue-1 flex h-11 w-11 items-center justify-center rounded-lg">
-          <Icon src="ic-saved-folder" color="primary-blue-deep" size="lg" />
+          <LayoutGrid className="text-primary-blue-deep h-5 w-5" />
         </div>
         <div>
           <div className="typo-sb16 text-cool-grey-11">Icon System</div>

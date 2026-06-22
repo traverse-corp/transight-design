@@ -7,6 +7,7 @@ import { BadgeVariantPresets } from './badge-variant-presets'
 import { ButtonVariantPresets } from './button-variant-presets'
 import { ComponentPropsDocs } from './component-props-docs'
 import { InputVariantPresets } from './input-variant-presets'
+import { LabelVariantPresets } from './label-variant-presets'
 import { PreviewModePanel } from './preview-mode-panel'
 
 interface VariantInfo {
@@ -101,7 +102,15 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
     getDefaultSelections(name, info)
   )
   const entries = Object.entries(info?.groups ?? {})
-  const hasVariantPresets = name === 'button' || name === 'badge' || name === 'input'
+  const hasVariantPresets =
+    name === 'button' || name === 'badge' || name === 'input' || name === 'label'
+  // ComponentPropsDocs를 렌더할 컴포넌트 목록 — variant preset이 없어도 props docs는
+  // 있을 수 있음 (textarea처럼 shape/size만 가진 컴포넌트)
+  const hasPropsDocs =
+    hasVariantPresets ||
+    name === 'textarea' ||
+    name === 'checkbox' ||
+    name === 'radio-group'
   const controlEntries: Array<[string, string[]]> =
     name === 'input'
       ? [
@@ -167,7 +176,8 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
       {name === 'button' && presetVariants && <ButtonVariantPresets variants={presetVariants} />}
       {name === 'badge' && presetVariants && <BadgeVariantPresets variants={presetVariants} />}
       {name === 'input' && presetVariants && <InputVariantPresets variants={presetVariants} />}
-      {hasVariantPresets && <ComponentPropsDocs name={name} />}
+      {name === 'label' && presetVariants && <LabelVariantPresets variants={presetVariants} />}
+      {hasPropsDocs && <ComponentPropsDocs name={name} />}
     </div>
   )
 }

@@ -930,12 +930,11 @@
       "description": "input 컴포넌트",
       "dependencies": [
         "@base-ui/react",
-        "class-variance-authority"
+        "class-variance-authority",
+        "lucide-react"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/badge",
         "traverse-corp/transight-design/hook-use-caps-lock",
-        "traverse-corp/transight-design/icon",
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/styles"
       ],
