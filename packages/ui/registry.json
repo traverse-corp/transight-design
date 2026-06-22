@@ -933,6 +933,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/badge",
         "traverse-corp/transight-design/hook-use-caps-lock",
         "traverse-corp/transight-design/icon",
         "traverse-corp/transight-design/lib-utils",

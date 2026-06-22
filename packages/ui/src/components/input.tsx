@@ -3,6 +3,7 @@
 import * as React from 'react'
 import { Input as BaseInput } from '@base-ui/react/input'
 import { cva, type VariantProps } from 'class-variance-authority'
+import { Badge } from '@/components/badge'
 import { Icon } from '@/icons/icon'
 import { useCapsLock } from '@/lib/hooks/use-caps-lock'
 import { cn } from '@/lib/utils'
@@ -171,7 +172,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {React.isValidElement(capsLockIndicator) ? (
               capsLockIndicator
             ) : (
-              <span className='text-ui-orange typo-sb11'>Caps Lock</span>
+              <Badge color='blue' appearance='soft' shape='square' size='xs'>
+                Caps Lock
+              </Badge>
             )}
           </div>
         )}
