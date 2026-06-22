@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
 
 const TABS = [
-  { href: '/icon-system', label: 'Browse' },
-  { href: '/icon-system/install', label: 'Install' }
+  { href: '/icon-system', label: 'Install' },
+  { href: '/icon-system/browse', label: 'Browse' }
 ]
 
 interface IconSystemNavProps {
