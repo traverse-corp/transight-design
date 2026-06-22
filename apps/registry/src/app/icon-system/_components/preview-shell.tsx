@@ -6,8 +6,8 @@ import {
   resolveIconColorToken,
   type IconColor,
   type IconSize
-} from '@/icon-system/icon'
-import { ICON_NAMES } from '@/icon-system/icons.gen'
+} from '@/icons/icon'
+import { ICON_NAMES } from '@/icons/icons.gen'
 import { IconSystemNav } from './icon-system-nav'
 
 const SIZES: { value: IconSize; label: string; px: number }[] = [

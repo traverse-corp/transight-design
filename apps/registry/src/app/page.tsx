@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Icon } from '@/icon-system/icon'
+import { Icon } from '@/icons/icon'
 import { CodeBlock } from '@/components/code-block'
 import { InstallCommands } from '@/components/install-commands'
 

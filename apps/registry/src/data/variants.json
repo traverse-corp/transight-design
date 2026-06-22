@@ -186,7 +186,12 @@
       "variant": [
         "default",
         "search",
-        "login"
+        "password"
+      ],
+      "shape": [
+        "default",
+        "pill",
+        "square"
       ],
       "size": [
         "xs",
@@ -198,12 +203,18 @@
       "decoDir": [
         "start",
         "end"
+      ],
+      "tone": [
+        "normal",
+        "error"
       ]
     },
     "defaults": {
       "variant": "default",
+      "shape": "default",
       "size": "md",
-      "decoDir": "start"
+      "decoDir": "start",
+      "tone": "normal"
     }
   },
   "label": {

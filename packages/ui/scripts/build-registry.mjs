@@ -168,6 +168,10 @@ const classifyImport = (spec) => {
     // assets는 별도 아이템 없음 (사용자 환경에서 채워 넣음)
     return { kind: 'asset' }
   }
+  if (spec.startsWith('@/icons/')) {
+    // 아이콘 시스템은 단일 registry item 'icon'으로 묶여 있음
+    return { kind: 'icon-system' }
+  }
   if (spec.startsWith('.') || spec.startsWith('@/')) {
     return { kind: 'internal-other' }
   }
@@ -186,6 +190,7 @@ const collectDeps = (filePath) => {
     if (cls.kind === 'component') registryDeps.add(cls.name)
     else if (cls.kind === 'lib') registryDeps.add(`lib-${cls.name}`)
     else if (cls.kind === 'hook') registryDeps.add(`hook-${cls.name}`)
+    else if (cls.kind === 'icon-system') registryDeps.add('icon')
     else if (cls.kind === 'external') {
       if (!IGNORED_DEPS.has(cls.name) && EXTERNAL_DEPS.has(cls.name)) {
         npmDeps.add(cls.name)

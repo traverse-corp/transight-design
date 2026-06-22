@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import { IconSprite } from '@/icon-system/sprite.gen'
+import { IconSprite } from '@/icons/sprite.gen'
 import { I18nProvider } from '@/components/i18n-provider'
 import './globals.css'
 

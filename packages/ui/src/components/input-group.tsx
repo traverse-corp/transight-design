@@ -5,7 +5,26 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/button'
-import { Input, inputSizeStyles, inputVariantStyles, type InputProps } from '@/components/input'
+import { Input, type InputProps } from '@/components/input'
+
+// input-group 내부에서만 쓰는 옛 input 스타일 — input.tsx에서 분리되어 자체 보관
+const legacyInputVariantStyles = {
+  default: 'border-cool-grey-03 focus-within:border-primary-blue-1',
+  error:
+    'border-ui-red focus-within:border-ui-red shadow-[0_0_0_1px_rgba(239,68,68,0.1)]',
+  minimal: 'border-none bg-transparent shadow-none px-0',
+  capsule: 'rounded-full border-primary-blue-1 pr-1 pl-3',
+  form: 'bg-white border-cool-grey-03 text-cool-grey-09 focus-within:border-primary-blue-1'
+} as const
+
+const legacyInputSizeStyles = {
+  default: 'h-10 px-3 py-1',
+  xs: 'h-6 px-1.5 text-sm',
+  sm: 'h-8 px-2 py-0.5 text-sm',
+  md: 'h-10 px-3 py-1',
+  lg: 'h-12 px-4 py-2 text-lg',
+  xl: 'h-14 px-5 py-3 text-lg'
+} as const
 import { Textarea } from '@/components/textarea'
 
 function InputGroup({ className, ...props }: React.ComponentProps<'div'>) {
@@ -66,17 +85,17 @@ function InputGroupAddon({
 const inputGroupButtonVariants = cva('gap-2 text-sm shadow-none flex items-center', {
   variants: {
     variant: {
-      default: inputVariantStyles.default,
-      error: inputVariantStyles.error,
-      minimal: `${inputVariantStyles.minimal} hover:bg-transparent`,
-      capsule: inputVariantStyles.capsule,
-      form: inputVariantStyles.form
+      default: legacyInputVariantStyles.default,
+      error: legacyInputVariantStyles.error,
+      minimal: `${legacyInputVariantStyles.minimal} hover:bg-transparent`,
+      capsule: legacyInputVariantStyles.capsule,
+      form: legacyInputVariantStyles.form
     },
     inputSize: {
-      default: inputSizeStyles.default,
-      sm: inputSizeStyles.sm,
-      xs: inputSizeStyles.xs,
-      lg: inputSizeStyles.lg
+      default: legacyInputSizeStyles.default,
+      sm: legacyInputSizeStyles.sm,
+      xs: legacyInputSizeStyles.xs,
+      lg: legacyInputSizeStyles.lg
     }
   },
   defaultVariants: {

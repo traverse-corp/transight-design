@@ -5,6 +5,7 @@
     "rootDir": "src",
     "baseUrl": ".",
     "paths": {
+      "@/icons/*": ["./src/icon-system/*"],
       "@/*": ["./src/*"]
     },
     "noEmit": true
