@@ -110,7 +110,11 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
     hasVariantPresets ||
     name === 'textarea' ||
     name === 'checkbox' ||
-    name === 'radio-group'
+    name === 'radio-group' ||
+    name === 'switch' ||
+    name === 'separator' ||
+    name === 'skeleton' ||
+    name === 'spinner'
   const controlEntries: Array<[string, string[]]> =
     name === 'input'
       ? [

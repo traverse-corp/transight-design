@@ -1,9 +1,40 @@
 import { Separator } from '@transight-design/ui/components/separator'
 
-export const Preview = () => (
-  <div className='w-72'>
-    <div className='text-body'>위 영역</div>
-    <Separator className='my-3' />
-    <div className='text-body'>아래 영역</div>
-  </div>
-)
+interface PreviewProps {
+  selections?: Record<string, string>
+}
+
+type Orientation = NonNullable<Parameters<typeof Separator>[0]['orientation']>
+type Tone = NonNullable<Parameters<typeof Separator>[0]['tone']>
+type Thickness = NonNullable<Parameters<typeof Separator>[0]['thickness']>
+
+export const Preview = ({ selections = {} }: PreviewProps) => {
+  const orientation: Orientation =
+    (selections.orientation as Orientation) ?? 'horizontal'
+
+  if (orientation === 'vertical') {
+    return (
+      <div className='flex h-20 items-center gap-4'>
+        <div className='text-body'>왼쪽</div>
+        <Separator
+          orientation='vertical'
+          tone={(selections.tone as Tone) ?? undefined}
+          thickness={(selections.thickness as Thickness) ?? undefined}
+        />
+        <div className='text-body'>오른쪽</div>
+      </div>
+    )
+  }
+
+  return (
+    <div className='w-72'>
+      <div className='text-body'>위 영역</div>
+      <Separator
+        className='my-3'
+        tone={(selections.tone as Tone) ?? undefined}
+        thickness={(selections.thickness as Thickness) ?? undefined}
+      />
+      <div className='text-body'>아래 영역</div>
+    </div>
+  )
+}

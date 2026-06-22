@@ -122,6 +122,101 @@ const PROPS_DOCS: Record<string, PropDoc[]> = {
         '에러 표시 트리거. true면 wrapper border가 자동으로 빨간색이 됩니다. 별도 error prop 없이 표준 a11y 속성을 사용합니다.'
     }
   ],
+  spinner: [
+    {
+      name: 'color',
+      type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
+      defaultValue: "'blue'",
+      description:
+        '회전하는 link border의 색을 결정합니다. Button의 12색과 동일 (gradient-blue는 단색 fallback).'
+    },
+    {
+      name: 'size',
+      type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+      defaultValue: "'md'",
+      description: '12/16/24/32/48 px 정사각형. border 두께도 함께 스케일.'
+    }
+  ],
+  skeleton: [
+    {
+      name: 'variant',
+      type: "'rect' | 'text' | 'circle'",
+      defaultValue: "'rect'",
+      description:
+        'rect는 카드/패널, text는 한 줄 텍스트(h-4 자동), circle은 아바타(aspect 1:1) placeholder.'
+    },
+    {
+      name: 'animation',
+      type: "'pulse' | 'none'",
+      defaultValue: "'pulse'",
+      description: 'pulse는 Tailwind animate-pulse, none은 정적. 화면 다수 노출 시 none으로 끄기.'
+    },
+    {
+      name: 'className',
+      type: 'string',
+      description:
+        '높이/너비는 prop으로 받지 않고 className의 h-* / w-*로 자유롭게 지정 (variant=circle은 width만 — aspect로 height 자동).'
+    }
+  ],
+  separator: [
+    {
+      name: 'orientation',
+      type: "'horizontal' | 'vertical'",
+      defaultValue: "'horizontal'",
+      description: '구분선 방향. vertical은 부모의 높이를 self-stretch로 따름.'
+    },
+    {
+      name: 'tone',
+      type: "'muted' | 'strong' | 'accent'",
+      defaultValue: "'muted'",
+      description:
+        'muted(cool-grey-04) / strong(cool-grey-06) / accent(primary-blue-1). 일반적인 구분선은 muted.'
+    },
+    {
+      name: 'thickness',
+      type: "'thin' | 'medium' | 'thick'",
+      defaultValue: "'thin'",
+      description: 'thin(1px) / medium(2px) / thick(4px). 보통 thin이 충분.'
+    }
+  ],
+  switch: [
+    {
+      name: 'color',
+      type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
+      defaultValue: "'blue'",
+      description:
+        'on 상태일 때 track 색을 결정합니다. Button의 solid 색상 시스템과 동일한 12색. off 상태는 cool-grey-05 고정.'
+    },
+    {
+      name: 'shape',
+      type: "'default' | 'square'",
+      defaultValue: "'default'",
+      description:
+        'default(rounded-full pill) / square(rounded-md). switch는 본질적으로 pill이라 두 형태만 의미 있음.'
+    },
+    {
+      name: 'size',
+      type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+      defaultValue: "'md'",
+      description:
+        'track width/height + thumb 크기 + on/off translate 거리를 함께 결정합니다.'
+    },
+    {
+      name: 'checked',
+      type: 'boolean',
+      description: '현재 on/off 상태 (controlled). onCheckedChange와 함께 사용.'
+    },
+    {
+      name: 'onCheckedChange',
+      type: '(checked: boolean) => void',
+      description: '상태 변경 콜백.'
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      description: 'true면 클릭 비활성 + opacity 40%.'
+    }
+  ],
   'radio-group': [
     {
       name: 'color',

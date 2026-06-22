@@ -164,6 +164,10 @@ const VISIBLE_COMPONENTS: ReadonlySet<string> = new Set([
   'input',
   'label',
   'radio-group',
+  'separator',
+  'skeleton',
+  'spinner',
+  'switch',
   'textarea'
 ])
 
