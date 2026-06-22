@@ -3,9 +3,8 @@
 import * as React from 'react'
 import { Dialog as DialogPrimitive } from '@base-ui/react/dialog'
 import { AnimatePresence, motion, type HTMLMotionProps } from 'motion/react'
-
 import { X } from 'lucide-react'
-
+import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { Button, type ButtonProps } from '@/components/button'
 import { useControlledState } from '@/lib/hooks/use-controlled-state'
@@ -20,7 +19,7 @@ const [DialogProvider, useDialog] = getStrictContext<DialogContextType>('DialogC
 
 type DialogProps = React.ComponentProps<typeof DialogPrimitive.Root>
 
-function Dialog(props: DialogProps) {
+const Dialog = (props: DialogProps) => {
   const [isOpen, setIsOpen] = useControlledState({
     value: props?.open,
     defaultValue: props?.defaultOpen ?? false,
@@ -30,7 +29,7 @@ function Dialog(props: DialogProps) {
   return (
     <DialogProvider value={{ isOpen: isOpen || false, setIsOpen }}>
       <DialogPrimitive.Root
-        data-slot="dialog"
+        data-slot='dialog'
         {...props}
         open={isOpen || false}
         onOpenChange={setIsOpen}
@@ -41,18 +40,18 @@ function Dialog(props: DialogProps) {
 
 type DialogTriggerProps = React.ComponentProps<typeof DialogPrimitive.Trigger>
 
-function DialogTrigger(props: DialogTriggerProps) {
-  return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />
-}
+const DialogTrigger = (props: DialogTriggerProps) => (
+  <DialogPrimitive.Trigger data-slot='dialog-trigger' {...props} />
+)
 
 type DialogPortalProps = Omit<React.ComponentProps<typeof DialogPrimitive.Portal>, 'keepMounted'>
 
-function DialogPortal(props: DialogPortalProps) {
+const DialogPortal = (props: DialogPortalProps) => {
   const { isOpen } = useDialog()
 
   return (
     <AnimatePresence>
-      {isOpen && <DialogPrimitive.Portal data-slot="dialog-portal" keepMounted {...props} />}
+      {isOpen && <DialogPrimitive.Portal data-slot='dialog-portal' keepMounted {...props} />}
     </AnimatePresence>
   )
 }
@@ -60,44 +59,72 @@ function DialogPortal(props: DialogPortalProps) {
 type DialogBackdropProps = Omit<React.ComponentProps<typeof DialogPrimitive.Backdrop>, 'render'> &
   HTMLMotionProps<'div'>
 
-function DialogBackdrop({
+const DialogBackdrop = ({
   className,
   transition = { duration: 0.2, ease: 'easeInOut' },
   ...props
-}: DialogBackdropProps) {
-  return (
-    <DialogPrimitive.Backdrop
-      data-slot="dialog-backdrop"
-      render={
-        <motion.div
-          key="dialog-backdrop"
-          className={cn('fixed inset-0 z-50 bg-black/50', className)}
-          initial={{ opacity: 0, filter: 'blur(4px)' }}
-          animate={{ opacity: 1, filter: 'blur(0px)' }}
-          exit={{ opacity: 0, filter: 'blur(4px)' }}
-          transition={transition}
-          {...props}
-        />
+}: DialogBackdropProps) => (
+  <DialogPrimitive.Backdrop
+    data-slot='dialog-backdrop'
+    render={
+      <motion.div
+        key='dialog-backdrop'
+        className={cn('fixed inset-0 z-50 bg-cool-grey-black/50', className)}
+        initial={{ opacity: 0, filter: 'blur(4px)' }}
+        animate={{ opacity: 1, filter: 'blur(0px)' }}
+        exit={{ opacity: 0, filter: 'blur(4px)' }}
+        transition={transition}
+        {...props}
+      />
+    }
+  />
+)
+
+const dialogPopupVariants = cva(
+  'bg-white border-cool-grey-03 fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 border p-6 shadow-lg',
+  {
+    variants: {
+      size: {
+        sm: 'sm:max-w-sm',
+        md: 'sm:max-w-md',
+        lg: 'sm:max-w-lg',
+        xl: 'sm:max-w-xl',
+        full: 'sm:max-w-[calc(100%-4rem)]'
+      },
+      shape: {
+        default: 'rounded-lg',
+        square: 'rounded-none'
       }
-    />
-  )
-}
+    },
+    defaultVariants: {
+      size: 'md',
+      shape: 'default'
+    }
+  }
+)
 
 type DialogFlipDirection = 'top' | 'bottom' | 'left' | 'right'
 
+type DialogPopupVariantProps = VariantProps<typeof dialogPopupVariants>
+
 type DialogPopupProps = Omit<React.ComponentProps<typeof DialogPrimitive.Popup>, 'render'> &
-  HTMLMotionProps<'div'> & {
+  HTMLMotionProps<'div'> &
+  DialogPopupVariantProps & {
     from?: DialogFlipDirection
   }
 
-function DialogPopup({
+const DialogPopup = ({
   from = 'top',
-  initialFocus = false as any,
+  initialFocus = false as unknown as React.ComponentProps<
+    typeof DialogPrimitive.Popup
+  >['initialFocus'],
   finalFocus,
+  size,
+  shape,
   transition = { type: 'spring', stiffness: 150, damping: 25 },
   className,
   ...props
-}: DialogPopupProps) {
+}: DialogPopupProps) => {
   const initialRotation = from === 'bottom' || from === 'left' ? '20deg' : '-20deg'
   const isVertical = from === 'top' || from === 'bottom'
   const rotateAxis = isVertical ? 'rotateX' : 'rotateY'
@@ -110,12 +137,9 @@ function DialogPopup({
         finalFocus={finalFocus}
         render={
           <motion.div
-            key="dialog-popup"
-            data-slot="dialog-popup"
-            className={cn(
-              'bg-background border-cool-grey-03 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg sm:max-w-lg',
-              className
-            )}
+            key='dialog-popup'
+            data-slot='dialog-popup'
+            className={cn(dialogPopupVariants({ size, shape, className }))}
             initial={{
               opacity: 0,
               filter: 'blur(4px)',
@@ -144,10 +168,10 @@ type DialogCloseProps = React.ComponentProps<typeof DialogPrimitive.Close> &
   Pick<ButtonProps, 'color' | 'appearance' | 'shape' | 'size'>
 
 /**
- * children이 없으면 X 아이콘 버튼으로 렌더링
- * children이 있으면 Button과 동일한 variant/size 스타일 적용
+ * children 없으면 X 아이콘 버튼으로 자동 렌더 (모서리 닫기용).
+ * children 있으면 Button과 동일한 스타일 prop 받음 (취소/확인 등 텍스트 버튼).
  */
-function DialogClose({
+const DialogClose = ({
   children,
   className,
   color,
@@ -155,26 +179,25 @@ function DialogClose({
   shape,
   size,
   ...props
-}: DialogCloseProps) {
-  // children이 없으면 기본 X 아이콘 버튼
+}: DialogCloseProps) => {
   if (!children) {
     return (
       <DialogPrimitive.Close
-        data-slot="dialog-close"
+        data-slot='dialog-close'
         className={cn(
-          'flex-center border-cool-grey-04 cursor-pointer rounded-sm border p-1',
+          'flex-center border-cool-grey-04 hover:bg-cool-grey-02 cursor-pointer rounded-sm border p-1 transition-colors',
           className
         )}
         {...props}
       >
-        <X className="text-cool-grey-07 size-4" />
+        <X className='text-cool-grey-07 size-4' />
       </DialogPrimitive.Close>
     )
   }
 
   return (
     <DialogPrimitive.Close
-      data-slot="dialog-close"
+      data-slot='dialog-close'
       render={
         <Button
           color={color}
@@ -193,33 +216,39 @@ function DialogClose({
 
 type DialogHeaderProps = React.ComponentProps<'div'>
 
-function DialogHeader(props: DialogHeaderProps) {
-  return <div data-slot="dialog-header" {...props} />
-}
+const DialogHeader = ({ className, ...props }: DialogHeaderProps) => (
+  <div data-slot='dialog-header' className={cn('flex flex-col gap-1.5', className)} {...props} />
+)
 
 type DialogFooterProps = React.ComponentProps<'div'>
 
-function DialogFooter(props: DialogFooterProps) {
-  return <div data-slot="dialog-footer" {...props} />
-}
+const DialogFooter = ({ className, ...props }: DialogFooterProps) => (
+  <div
+    data-slot='dialog-footer'
+    className={cn('flex flex-col-reverse gap-2 sm:flex-row sm:justify-end', className)}
+    {...props}
+  />
+)
 
 type DialogTitleProps = React.ComponentProps<typeof DialogPrimitive.Title>
 
-function DialogTitle(props: DialogTitleProps) {
-  return <DialogPrimitive.Title data-slot="dialog-title" className="text-modal-title" {...props} />
-}
+const DialogTitle = ({ className, ...props }: DialogTitleProps) => (
+  <DialogPrimitive.Title
+    data-slot='dialog-title'
+    className={cn('typo-b18 text-cool-grey-11', className)}
+    {...props}
+  />
+)
 
 type DialogDescriptionProps = React.ComponentProps<typeof DialogPrimitive.Description>
 
-function DialogDescription(props: DialogDescriptionProps) {
-  return (
-    <DialogPrimitive.Description
-      data-slot="dialog-description"
-      className="text-caption"
-      {...props}
-    />
-  )
-}
+const DialogDescription = ({ className, ...props }: DialogDescriptionProps) => (
+  <DialogPrimitive.Description
+    data-slot='dialog-description'
+    className={cn('text-description', className)}
+    {...props}
+  />
+)
 
 export {
   Dialog,
@@ -233,6 +262,7 @@ export {
   DialogTitle,
   DialogDescription,
   useDialog,
+  dialogPopupVariants,
   type DialogProps,
   type DialogTriggerProps,
   type DialogPortalProps,

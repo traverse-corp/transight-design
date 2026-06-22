@@ -145,6 +145,8 @@ export interface NavItem {
   label: string
   /** 명시 시 사이드바 링크가 이 경로를 사용. 미지정 시 `/components/${name}`로 fallback */
   href?: string
+  /** Essential Pack 소속 — 사이드바에 별표(★) 표시 */
+  essential?: boolean
 }
 
 export interface NavGroup {
@@ -161,6 +163,7 @@ const VISIBLE_COMPONENTS: ReadonlySet<string> = new Set([
   'badge',
   'button',
   'checkbox',
+  'dialog',
   'input',
   'label',
   'radio-group',
@@ -168,7 +171,29 @@ const VISIBLE_COMPONENTS: ReadonlySet<string> = new Set([
   'skeleton',
   'spinner',
   'switch',
-  'textarea'
+  'textarea',
+  'tooltip'
+])
+
+/**
+ * Essential Pack 구성 — packages/ui/scripts/build-registry.mjs의 ESSENTIAL_COMPONENTS와
+ * 동기화 유지. 사이드바에서 별표(★)로 표시되어 우선 학습할 컴포넌트임을 알린다.
+ */
+const ESSENTIAL_COMPONENTS: ReadonlySet<string> = new Set([
+  'button',
+  'badge',
+  'input',
+  'label',
+  'textarea',
+  'checkbox',
+  'radio-group',
+  'select',
+  'switch',
+  'dialog',
+  'tooltip',
+  'separator',
+  'skeleton',
+  'spinner'
 ])
 
 /** /components/* 사이드바 — Base Components · Custom Components */
@@ -178,13 +203,18 @@ export const buildComponentsSidebarGroups = (items: RegistryItem[]): NavGroup[] 
   const ui = items.filter(
     (i) => i.type === 'registry:ui' && i.name !== 'icon' && VISIBLE_COMPONENTS.has(i.name)
   )
+  const toNavItem = (i: RegistryItem): NavItem => ({
+    name: i.name,
+    label: i.name,
+    essential: ESSENTIAL_COMPONENTS.has(i.name)
+  })
   const base: NavItem[] = ui
     .filter((i) => BASE_COMPONENTS.has(i.name))
-    .map((i) => ({ name: i.name, label: i.name }))
+    .map(toNavItem)
     .sort((a, b) => a.label.localeCompare(b.label))
   const custom: NavItem[] = ui
     .filter((i) => !BASE_COMPONENTS.has(i.name))
-    .map((i) => ({ name: i.name, label: i.name }))
+    .map(toNavItem)
     .sort((a, b) => a.label.localeCompare(b.label))
 
   return [

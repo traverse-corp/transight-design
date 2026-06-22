@@ -169,6 +169,25 @@
       "size": "md"
     }
   },
+  "dialog": {
+    "groups": {
+      "size": [
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "full"
+      ],
+      "shape": [
+        "default",
+        "square"
+      ]
+    },
+    "defaults": {
+      "size": "md",
+      "shape": "default"
+    }
+  },
   "empty": {
     "groups": {
       "variant": [
@@ -494,13 +513,35 @@
   },
   "tooltip": {
     "groups": {
-      "variant": [
-        "default",
-        "glass"
+      "color": [
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
+      ],
+      "appearance": [
+        "solid",
+        "outline",
+        "soft"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
       ]
     },
     "defaults": {
-      "variant": "default"
+      "color": "gray",
+      "appearance": "solid",
+      "size": "md"
     }
   }
 }

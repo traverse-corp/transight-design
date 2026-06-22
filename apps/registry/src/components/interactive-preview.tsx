@@ -8,6 +8,8 @@ import { ButtonVariantPresets } from './button-variant-presets'
 import { ComponentPropsDocs } from './component-props-docs'
 import { InputVariantPresets } from './input-variant-presets'
 import { LabelVariantPresets } from './label-variant-presets'
+import { TooltipPreviewShell } from './tooltip-preview-shell'
+import { DialogPreviewShell } from './dialog-preview-shell'
 import { PreviewModePanel } from './preview-mode-panel'
 
 interface VariantInfo {
@@ -114,7 +116,9 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
     name === 'switch' ||
     name === 'separator' ||
     name === 'skeleton' ||
-    name === 'spinner'
+    name === 'spinner' ||
+    name === 'tooltip' ||
+    name === 'dialog'
   const controlEntries: Array<[string, string[]]> =
     name === 'input'
       ? [
@@ -131,6 +135,25 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
     return (
       <div className="text-description py-12 text-center">
         Preview는 추후 점진적으로 추가됩니다.
+      </div>
+    )
+  }
+
+  // tooltip / dialog는 compound 컴포넌트라 Trigger/Content 두 element로 props가 갈라짐.
+  // 자체 shell에서 탭 분리 + 자체 컨트롤을 모두 처리한다.
+  if (name === 'tooltip') {
+    return (
+      <div className="flex flex-col gap-5">
+        <TooltipPreviewShell />
+        {hasPropsDocs && <ComponentPropsDocs name={name} />}
+      </div>
+    )
+  }
+  if (name === 'dialog') {
+    return (
+      <div className="flex flex-col gap-5">
+        <DialogPreviewShell />
+        {hasPropsDocs && <ComponentPropsDocs name={name} />}
       </div>
     )
   }

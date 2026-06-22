@@ -10,6 +10,8 @@ export interface NavItem {
   label: string
   /** 명시 시 이 경로로 링크 — 미지정 시 `/components/${name}`로 fallback */
   href?: string
+  /** Essential Pack 소속 — 라벨 우측에 별표(★) 표시 */
+  essential?: boolean
 }
 
 export interface NavGroup {
@@ -52,11 +54,20 @@ export const SidebarNav = ({ groups }: SidebarNavProps) => {
                       href={href}
                       className={
                         active
-                          ? 'bg-primary-blue-opacity-10 typo-sb14 text-primary-blue-1 block truncate rounded-md px-3 py-1.5'
-                          : 'typo-m14 text-cool-grey-08 hover:bg-cool-grey-02 hover:text-cool-grey-11 block truncate rounded-md px-3 py-1.5'
+                          ? 'bg-primary-blue-opacity-10 typo-sb14 text-primary-blue-1 flex items-center justify-between gap-2 rounded-md px-3 py-1.5'
+                          : 'typo-m14 text-cool-grey-08 hover:bg-cool-grey-02 hover:text-cool-grey-11 flex items-center justify-between gap-2 rounded-md px-3 py-1.5'
                       }
                     >
-                      {item.label}
+                      <span className='truncate'>{item.label}</span>
+                      {item.essential && (
+                        <span
+                          aria-label='Essential pack'
+                          title='Essential pack'
+                          className='text-accent-amber shrink-0 leading-none'
+                        >
+                          ★
+                        </span>
+                      )}
                     </Link>
                   </li>
                 )

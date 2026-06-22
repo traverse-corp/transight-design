@@ -2,32 +2,39 @@
 
 import {
   Dialog,
-  DialogBackdrop,
   DialogPopup,
   DialogTitle,
   DialogDescription,
   DialogTrigger,
-  DialogClose
+  DialogClose,
+  DialogFooter
 } from '@transight-design/ui/components/dialog'
 import { Button } from '@transight-design/ui/components/button'
 
-export const Preview = () => (
+interface PreviewProps {
+  selections?: Record<string, string>
+}
+
+type Size = NonNullable<Parameters<typeof DialogPopup>[0]['size']>
+type Shape = NonNullable<Parameters<typeof DialogPopup>[0]['shape']>
+
+export const Preview = ({ selections = {} }: PreviewProps) => (
   <Dialog>
     <DialogTrigger render={<Button>다이얼로그 열기</Button>} />
-    <DialogBackdrop />
-    <DialogPopup className="w-80">
+    <DialogPopup
+      size={(selections.size as Size) ?? undefined}
+      shape={(selections.shape as Shape) ?? undefined}
+    >
       <DialogTitle>새 작업</DialogTitle>
       <DialogDescription>새로운 트랜잭션 추적을 시작합니다.</DialogDescription>
-      <div className="mt-5 flex justify-end gap-2">
-        <DialogClose
-          render={
-            <Button appearance="outline" size="sm">
-              취소
-            </Button>
-          }
-        />
-        <DialogClose render={<Button size="sm">시작</Button>} />
-      </div>
+      <DialogFooter className='mt-2'>
+        <DialogClose appearance='outline' size='sm'>
+          취소
+        </DialogClose>
+        <DialogClose color='blue' size='sm'>
+          시작
+        </DialogClose>
+      </DialogFooter>
     </DialogPopup>
   </Dialog>
 )

@@ -7,7 +7,22 @@ interface PropDoc {
   description: string
 }
 
-const PROPS_DOCS: Record<string, PropDoc[]> = {
+/** 컴포넌트 props를 sub-element별로 그룹화. ex: tooltip의 Trigger / Content */
+interface PropGroup {
+  title: string
+  description?: string
+  props: PropDoc[]
+}
+
+type PropsEntry = PropDoc[] | PropGroup[]
+
+/** PropGroup[]인지 판별 — 첫 요소가 'props' 키를 가지면 그룹 모드 */
+const isPropGroups = (entry: PropsEntry): entry is PropGroup[] => {
+  const first = entry[0]
+  return first !== undefined && 'props' in first
+}
+
+const PROPS_DOCS: Record<string, PropsEntry> = {
   button: [
     {
       name: 'variant',
@@ -120,6 +135,104 @@ const PROPS_DOCS: Record<string, PropDoc[]> = {
       type: 'boolean',
       description:
         '에러 표시 트리거. true면 wrapper border가 자동으로 빨간색이 됩니다. 별도 error prop 없이 표준 a11y 속성을 사용합니다.'
+    }
+  ],
+  dialog: [
+    {
+      name: 'size',
+      type: "'sm' | 'md' | 'lg' | 'xl' | 'full'",
+      defaultValue: "'md'",
+      description:
+        'DialogPopup의 max-width. sm=384/md=448/lg=512/xl=576/full=거의 전체. 모바일은 항상 calc(100%-2rem).'
+    },
+    {
+      name: 'shape',
+      type: "'default' | 'square'",
+      defaultValue: "'default'",
+      description: 'default(rounded-lg) / square(rounded-none). DialogPopup에 전달.'
+    },
+    {
+      name: 'open',
+      type: 'boolean',
+      description: 'controlled open 상태. onOpenChange와 함께 사용. Dialog root에 전달.'
+    },
+    {
+      name: 'defaultOpen',
+      type: 'boolean',
+      description: 'uncontrolled 초기 open 상태.'
+    },
+    {
+      name: 'onOpenChange',
+      type: '(open: boolean) => void',
+      description: 'open 상태 변경 콜백.'
+    },
+    {
+      name: 'from',
+      type: "'top' | 'bottom' | 'left' | 'right'",
+      defaultValue: "'top'",
+      description: 'DialogPopup이 등장하는 방향. 3D rotate + scale 애니메이션 축 결정.'
+    }
+  ],
+  tooltip: [
+    {
+      title: 'TooltipTrigger',
+      description: 'hover/focus 시 tooltip을 트리거하는 element. base UI의 Trigger를 위임.',
+      props: [
+        {
+          name: 'render',
+          type: 'React.ReactElement',
+          description:
+            '실제로 렌더될 element를 지정. 보통 <Button> 등을 넘김 (예: render={<Button>호버</Button>}). children 대신 사용해 trigger element를 fully 교체.'
+        },
+        {
+          name: 'children',
+          type: 'React.ReactNode',
+          description: 'render를 안 쓸 때 trigger 안 내용. 기본 element는 <button> data-slot="tooltip-trigger".'
+        }
+      ]
+    },
+    {
+      title: 'TooltipContent',
+      description: 'tooltip 본체 (popup). 색·외형·위치 prop은 모두 여기에 전달.',
+      props: [
+        {
+          name: 'color',
+          type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
+          defaultValue: "'gray'",
+          description: 'Button과 동일한 12색 시스템. solid 기본값은 dark 룩(cool-grey-11).'
+        },
+        {
+          name: 'appearance',
+          type: "'solid' | 'outline' | 'soft'",
+          defaultValue: "'solid'",
+          description:
+            'solid는 채움 + 흰 글씨, outline은 흰 배경 + 색 border + 색 글씨, soft는 옅은 배경 + 색 글씨. arrow는 solid에서만 표시.'
+        },
+        {
+          name: 'size',
+          type: "'sm' | 'md' | 'lg'",
+          defaultValue: "'md'",
+          description: 'padding + 폰트 크기. sm=11px / md=12px / lg=14px.'
+        },
+        {
+          name: 'side',
+          type: "'top' | 'right' | 'bottom' | 'left'",
+          defaultValue: "'top'",
+          description: 'tooltip이 trigger의 어느 쪽에 나타날지. base UI native prop.'
+        },
+        {
+          name: 'sideOffset',
+          type: 'number',
+          defaultValue: '4',
+          description: 'trigger와 tooltip 사이 간격 (px).'
+        },
+        {
+          name: 'align',
+          type: "'start' | 'center' | 'end'",
+          defaultValue: "'center'",
+          description: 'side 축에 직교한 정렬.'
+        }
+      ]
     }
   ],
   spinner: [
@@ -366,10 +479,45 @@ const PROPS_DOCS: Record<string, PropDoc[]> = {
   ]
 }
 
-export const ComponentPropsDocs = ({ name }: { name: string }) => {
-  const props = PROPS_DOCS[name]
+const PropsTable = ({ props }: { props: PropDoc[] }) => (
+  <div className="border-cool-grey-04 overflow-hidden rounded-lg border">
+    <table className="w-full table-fixed text-left">
+      <thead className="bg-cool-grey-01">
+        <tr className="typo-sb12 text-cool-grey-07">
+          <th className="w-32 px-3 py-2">Prop</th>
+          <th className="w-64 px-3 py-2">Type</th>
+          <th className="w-24 px-3 py-2">Default</th>
+          <th className="px-3 py-2">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.map((prop) => (
+          <tr key={prop.name} className="border-cool-grey-04 border-t align-top">
+            <td className="px-3 py-2">
+              <code className="typo-mono-m12 text-cool-grey-11">{prop.name}</code>
+            </td>
+            <td className="px-3 py-2">
+              <code className="typo-mono-m12 text-cool-grey-08 break-words">{prop.type}</code>
+            </td>
+            <td className="px-3 py-2">
+              {prop.defaultValue ? (
+                <code className="typo-mono-m12 text-cool-grey-08">{prop.defaultValue}</code>
+              ) : (
+                <span className="text-cool-grey-06 typo-mono-m12">-</span>
+              )}
+            </td>
+            <td className="text-description px-3 py-2">{prop.description}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)
 
-  if (!props) return null
+export const ComponentPropsDocs = ({ name }: { name: string }) => {
+  const entry = PROPS_DOCS[name]
+
+  if (!entry || entry.length === 0) return null
 
   return (
     <div className="border-cool-grey-04 flex flex-col gap-3 border-t pt-5">
@@ -380,38 +528,23 @@ export const ComponentPropsDocs = ({ name }: { name: string }) => {
         </p>
       </div>
 
-      <div className="border-cool-grey-04 overflow-hidden rounded-lg border">
-        <table className="w-full table-fixed text-left">
-          <thead className="bg-cool-grey-01">
-            <tr className="typo-sb12 text-cool-grey-07">
-              <th className="w-32 px-3 py-2">Prop</th>
-              <th className="w-64 px-3 py-2">Type</th>
-              <th className="w-24 px-3 py-2">Default</th>
-              <th className="px-3 py-2">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.map((prop) => (
-              <tr key={prop.name} className="border-cool-grey-04 border-t align-top">
-                <td className="px-3 py-2">
-                  <code className="typo-mono-m12 text-cool-grey-11">{prop.name}</code>
-                </td>
-                <td className="px-3 py-2">
-                  <code className="typo-mono-m12 text-cool-grey-08 break-words">{prop.type}</code>
-                </td>
-                <td className="px-3 py-2">
-                  {prop.defaultValue ? (
-                    <code className="typo-mono-m12 text-cool-grey-08">{prop.defaultValue}</code>
-                  ) : (
-                    <span className="text-cool-grey-06 typo-mono-m12">-</span>
-                  )}
-                </td>
-                <td className="text-description px-3 py-2">{prop.description}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {isPropGroups(entry) ? (
+        <div className="flex flex-col gap-5">
+          {entry.map((group) => (
+            <div key={group.title} className="flex flex-col gap-2">
+              <div>
+                <h4 className="typo-sb13 text-cool-grey-11">{group.title}</h4>
+                {group.description && (
+                  <p className="text-description mt-0.5">{group.description}</p>
+                )}
+              </div>
+              <PropsTable props={group.props} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <PropsTable props={entry} />
+      )}
     </div>
   )
 }
