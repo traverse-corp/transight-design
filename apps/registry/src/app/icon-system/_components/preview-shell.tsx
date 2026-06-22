@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import Link from 'next/link'
 import { Icon, type IconColor, type IconSize } from '@/icon-system/icon'
 import { ICON_NAMES } from '@/icon-system/icons.gen'
 
@@ -104,6 +105,15 @@ export const PreviewShell = () => {
     <div className='mx-auto flex h-screen max-w-7xl gap-10 px-6'>
       {/* 좌측 필터 패널 — 사이드바 자리 */}
       <aside className='h-screen w-60 shrink-0 overflow-y-auto py-10'>
+        {/* Go Main — 메인 페이지로 이동 */}
+        <Link
+          href='/'
+          className='flex-start-center typo-sb14 text-cool-grey-08 hover:text-primary-blue-1 mb-6 gap-1.5 rounded-md px-2 py-1.5'
+        >
+          <span aria-hidden>←</span>
+          <span>Go Main</span>
+        </Link>
+
         <div className='mb-6'>
           <h3 className='typo-b14 text-cool-grey-11 mb-3 px-2'>Icon System</h3>
         </div>
