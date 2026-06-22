@@ -69,6 +69,23 @@ const Home = () => (
       </div>
     </section>
 
+    {/* Foundation: Icon System */}
+    <section className="mb-12">
+      <Link
+        href="/icon-system"
+        className="border-cool-grey-04 hover:border-primary-blue-1 group flex items-center justify-between rounded-lg border bg-white p-5 transition-colors"
+      >
+        <div>
+          <div className="text-overline text-cool-grey-07">Foundation</div>
+          <div className="typo-sb16 text-cool-grey-11 mt-1">Icon System</div>
+          <div className="text-description mt-1">
+            58개 아이콘 · 색상·크기 토큰 인터랙티브 미리보기
+          </div>
+        </div>
+        <div className="text-cool-grey-06 group-hover:text-primary-blue-1 transition-colors">→</div>
+      </Link>
+    </section>
+
     {/* 설치 */}
     <section className="mb-12">
       <h2 className="text-section-title mb-4">설치</h2>
