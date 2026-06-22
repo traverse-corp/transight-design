@@ -1,35 +1,9 @@
 'use client'
 
 import * as React from 'react'
-import Link from 'next/link'
 import { Icon, type IconColor, type IconSize } from '@/icon-system/icon'
 import { ICON_NAMES } from '@/icon-system/icons.gen'
-import { CodeBlock } from '@/components/code-block'
-import { InstallCommands } from '@/components/install-commands'
-
-const CLI_INSTALL = `# Icon System만 설치 (styles 자동 동반)
-npx @transight-design/cli add icon`
-
-const SHADCN_INSTALL = `# Icon System만 설치 (styles 자동 동반)
-npx shadcn@latest add traverse-corp/transight-design/icon`
-
-const MOUNT_GUIDE = `// app/layout.tsx (Next.js App Router)
-import { IconSprite } from '@/icons/sprite.gen'
-
-export default function RootLayout({ children }) {
-  return (
-    <html>
-      <body>
-        <IconSprite />
-        {children}
-      </body>
-    </html>
-  )
-}`
-
-const USAGE_CODE = `import { Icon } from '@/icons/icon'
-
-<Icon src="ic-com-search" color="primary-blue-1" size="sm" />`
+import { IconSystemNav } from './icon-system-nav'
 
 const SIZES: { value: IconSize; label: string; px: number }[] = [
   { value: 'xs', label: 'xs', px: 12 },
@@ -129,21 +103,7 @@ export const PreviewShell = () => {
 
   return (
     <div className='mx-auto flex h-screen max-w-7xl gap-10 px-6'>
-      {/* 좌측 필터 패널 — 사이드바 자리 */}
-      <aside className='h-screen w-60 shrink-0 overflow-y-auto py-10'>
-        {/* Go Main — 메인 페이지로 이동 */}
-        <Link
-          href='/'
-          className='flex-start-center typo-sb14 text-cool-grey-08 hover:text-primary-blue-1 mb-6 gap-1.5 rounded-md px-2 py-1.5'
-        >
-          <span aria-hidden>←</span>
-          <span>Go Main</span>
-        </Link>
-
-        <div className='mb-6'>
-          <h3 className='typo-b14 text-cool-grey-11 mb-3 px-2'>Icon System</h3>
-        </div>
-
+      <IconSystemNav>
         {/* Size */}
         <section className='border-cool-grey-04 mb-6 border-t pt-6'>
           <h4 className='typo-sb12 text-cool-grey-07 mb-3 px-2 uppercase tracking-wider'>Size</h4>
@@ -204,36 +164,11 @@ export const PreviewShell = () => {
             ))}
           </div>
         </section>
-      </aside>
+      </IconSystemNav>
 
-      {/* 우측 메인 — 설치 안내 + 아이콘 그리드 */}
+      {/* 우측 메인 — 아이콘 그리드 */}
       <div className='h-screen min-w-0 flex-1 overflow-y-auto py-10'>
-        {/* 설치 */}
-        <section className='mb-10'>
-          <h2 className='text-section-title mb-3'>설치</h2>
-          <p className='text-description mb-3'>
-            Icon System만 따로 설치할 수 있습니다. 컴포넌트는 함께 설치되지 않고,{' '}
-            <code className='typo-mono-m12 text-cool-grey-09'>styles</code>만 자동 동반됩니다.
-          </p>
-          <InstallCommands
-            options={[
-              { label: 'Transight CLI', code: CLI_INSTALL },
-              { label: 'shadcn', code: SHADCN_INSTALL }
-            ]}
-          />
-
-          <h3 className='text-label mb-2 mt-6'>1. 앱 루트에 IconSprite 마운트</h3>
-          <p className='text-description mb-3'>
-            모든 <code className='typo-mono-m12 text-cool-grey-09'>{'<Icon />'}</code>는 한 번
-            마운트된 sprite의 symbol을 참조합니다. 루트 레이아웃에 단 한 번만 둡니다.
-          </p>
-          <CodeBlock code={MOUNT_GUIDE} language='tsx' maxHeight='auto' />
-
-          <h3 className='text-label mb-2 mt-6'>2. 사용</h3>
-          <CodeBlock code={USAGE_CODE} language='tsx' maxHeight='auto' />
-        </section>
-
-        <header className='border-cool-grey-04 mb-6 flex items-end justify-between border-t pt-8'>
+        <header className='mb-6 flex items-end justify-between'>
           <div>
             <h1 className='typo-b24 text-cool-grey-11'>Icons</h1>
             <p className='text-description mt-1'>
