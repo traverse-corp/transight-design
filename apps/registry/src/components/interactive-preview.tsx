@@ -126,9 +126,11 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
           ...entries.filter(([groupName]) => groupName !== 'variant' && groupName !== 'decoDir'),
           ['decorator', ['none', 'start', 'end']]
         ]
-      : hasVariantPresets
-        ? entries.filter(([groupName]) => groupName !== 'variant')
-        : entries
+      : name === 'select'
+        ? [...entries, ['decorator', ['off', 'on']]]
+        : hasVariantPresets
+          ? entries.filter(([groupName]) => groupName !== 'variant')
+          : entries
   const controlGroups = Object.fromEntries(controlEntries)
   const presetVariants = hasVariantPresets ? info?.groups.variant : undefined
 

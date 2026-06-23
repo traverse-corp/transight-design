@@ -336,6 +336,11 @@
         "white",
         "gradient-blue"
       ],
+      "appearance": [
+        "solid",
+        "outline",
+        "soft"
+      ],
       "shape": [
         "default",
         "pill",
@@ -351,6 +356,7 @@
     },
     "defaults": {
       "color": "gray",
+      "appearance": "outline",
       "shape": "default",
       "size": "md"
     }

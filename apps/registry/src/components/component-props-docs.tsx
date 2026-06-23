@@ -237,27 +237,52 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
   ],
   select: [
     {
+      title: 'Select (root)',
+      description: 'shape를 root에서 받아 Trigger와 Content가 함께 따르도록 context로 공유.',
+      props: [
+        {
+          name: 'shape',
+          type: "'default' | 'pill' | 'square'",
+          defaultValue: "'default'",
+          description:
+            'Trigger와 Content 둘 다 적용. pill 트리거 → 더 둥근 popup, square 트리거 → 모서리 살린 popup.'
+        }
+      ]
+    },
+    {
       title: 'SelectTrigger',
-      description: 'select가 닫혀있을 때 보이는 트리거. color로 자체 톤(border/text/focus)을 변경.',
+      description: 'select가 닫혀있을 때 보이는 트리거. Button과 동일한 color × appearance 12×3 매트릭스.',
       props: [
         {
           name: 'color',
           type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
           defaultValue: "'gray'",
           description:
-            'Trigger의 idle border + text + focus border를 결정. Button outline 패턴 미러링 12색. chevron은 같은 톤에 opacity 70%.'
+            'Trigger의 border/text/focus 톤을 결정. Button과 같은 12색.'
+        },
+        {
+          name: 'appearance',
+          type: "'solid' | 'outline' | 'soft'",
+          defaultValue: "'outline'",
+          description:
+            'solid는 채움(흰 글씨), outline은 border만(기본), soft는 옅은 색 배경.'
         },
         {
           name: 'shape',
           type: "'default' | 'pill' | 'square'",
-          defaultValue: "'default'",
-          description: '모서리 형태. Input과 동일.'
+          description: 'Select root의 shape를 override할 때만 사용. 미지정 시 context를 따름.'
         },
         {
           name: 'size',
           type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
           defaultValue: "'md'",
           description: 'h7~h14 + 패딩 + typo-m12~m18. Input의 size 매핑과 동일.'
+        },
+        {
+          name: 'decorator',
+          type: 'React.ReactNode',
+          description:
+            'trigger 시작 위치(왼쪽)에 표시할 데코레이터. 보통 아이콘. 위치는 항상 start (chevron이 end를 차지하므로 end는 안 받음).'
         },
         {
           name: 'aria-invalid',
