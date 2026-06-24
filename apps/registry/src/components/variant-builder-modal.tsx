@@ -11,7 +11,6 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@transight-design/ui/components/dialog'
-import { Button } from '@transight-design/ui/components/button'
 import { CodeBlock } from './code-block'
 
 interface VariantBuilderModalProps {
@@ -23,27 +22,19 @@ interface VariantBuilderModalProps {
   selections: Record<string, string>
 }
 
-const buildPresetCode = (
+const STYLE_AXES = ['color', 'theme', 'shape', 'size'] as const
+
+/** 셸 한 줄 명령으로 빌드 — AI 무관, 사용자가 직접 실행하거나 AI에 위임 */
+const buildCliCommand = (
   componentName: string,
   variantName: string,
   selections: Record<string, string>
 ) => {
   const lower = componentName.toLowerCase()
-  const inline = Object.entries(selections)
-    .filter(([, v]) => Boolean(v))
-    .map(([k, v]) => `${k}: '${v}'`)
-    .join(', ')
-
-  return `// ${lower}.tsx — ${lower}VariantPresets 객체에 한 줄만 추가하면 끝.
-// TS variant union과 카탈로그가 자동으로 새 키를 인식합니다.
-
-const ${lower}VariantPresets = {
-  // ... 기존
-  '${variantName}': { ${inline} }
-} satisfies Record<string, ${componentName}PresetStyle>
-
-// 사용
-<${componentName} variant="${variantName}" />`
+  const styleArgs = STYLE_AXES.filter((axis) => selections[axis])
+    .map((axis) => `--${axis}=${selections[axis]}`)
+    .join(' ')
+  return `npx @transight-design/cli variant add --component=${lower} --name=${variantName} ${styleArgs}`.trim()
 }
 
 export const VariantBuilderModal = ({
@@ -53,16 +44,17 @@ export const VariantBuilderModal = ({
 }: VariantBuilderModalProps) => {
   const [name, setName] = useState('')
 
-  const code = buildPresetCode(componentName, name || 'my-variant', selections)
+  const command = buildCliCommand(componentName, name || 'my-variant', selections)
 
   return (
     <Dialog>
       <DialogTrigger render={trigger} />
       <DialogPopup size='lg'>
-        <DialogTitle>새 Variant 만들기</DialogTitle>
+        <DialogTitle>Variant 추가</DialogTitle>
         <DialogDescription>
-          현재 Style 토글로 만든 조합을 preset으로 등록할 수 있게 스니펫을 생성합니다.
-          이름을 입력하고 코드를 복사해 컴포넌트 파일에 추가하세요.
+          현재 Style 토글 조합을 새 variant로 등록하는 CLI 명령을 만들어드립니다.
+          이름을 입력하고 명령을 복사한 뒤, (1) 터미널에서 직접 실행하거나
+          (2) AI 에이전트에게 "이 명령 실행해줘"로 위임하세요. AI 종류에 무관합니다.
         </DialogDescription>
 
         <div className='flex flex-col gap-2'>
@@ -80,8 +72,13 @@ export const VariantBuilderModal = ({
         </div>
 
         <div className='flex flex-col gap-2'>
-          <span className='typo-sb12 text-cool-grey-07'>현재 Style 조합</span>
-          <CodeBlock code={code} language='tsx' maxHeight='auto' />
+          <span className='typo-sb12 text-cool-grey-07'>CLI 명령</span>
+          <CodeBlock code={command} language='bash' maxHeight='auto' />
+          <p className='text-description'>
+            CLI가 사용자 repo의 컴포넌트 파일을 찾아 <code className='typo-mono-m12'>VariantPresets</code>{' '}
+            객체에 한 줄을 자동 삽입합니다. Style 4축(color/theme/shape/size)만 받으며, 미명시 축은 cva
+            default로 자동 매핑됩니다.
+          </p>
         </div>
 
         <DialogFooter className='mt-2'>

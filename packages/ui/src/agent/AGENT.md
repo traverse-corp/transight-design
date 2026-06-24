@@ -101,28 +101,31 @@ import { IconSprite } from '@/icons/sprite.gen' // 앱 루트에 1회 마운트
 
 ### B. VARIANT — Style 조합 preset
 
-자주 쓰는 Style 조합에 이름을 붙여둔 preset. 일부 컴포넌트(button/badge/input/label 등)에 존재.
+자주 쓰는 Style 조합에 이름을 붙여둔 preset.
 
 ```tsx
-<Button variant="destructive">삭제</Button>    // color=red + theme=solid 와 동등
+<Button variant="destructive">삭제</Button>    // color=red
 <Button variant="success">완료</Button>        // color=green + theme=soft
 <Badge variant="vasp">VASP</Badge>             // 도메인 특화 preset
 ```
 
-**규칙**:
+**정책**:
+- variant 구성 요소는 Style 4축(color / theme / shape / size)만. **4축 외 임의
+  className / 다른 props 추가 금지**.
+- 미명시한 축은 cva default로 자동 매핑. 굳이 4개를 다 적을 필요 없음.
 - 명시한 Style prop이 **항상 variant preset을 덮어쓴다**.
   ```tsx
   <Button variant="destructive" theme="outline">  // color=red(preset) + theme=outline(명시)
   ```
-- 새 variant 추가는 컴포넌트 파일의 `<component>VariantPresets` 객체에 **한 줄만** 추가:
-  ```ts
-  // ~/src/components/base/button.tsx
-  const buttonVariantPresets = {
-    // ... 기존
-    'my-brand': { color: 'blue', theme: 'soft', shape: 'pill', size: 'md' }
-  } satisfies Record<string, ButtonPresetStyle>
+- 새 variant 추가는 **CLI 명령**으로 (AI 종류 무관, 자동 등록):
+  ```bash
+  npx @transight-design/cli variant add --component=button --name=my-brand --color=blue --theme=soft
   ```
-  TypeScript의 variant union이 자동으로 확장됨.
+  CLI가 `~/src/components/{base|custom}/<X>.tsx`의 `<X>VariantPresets` 객체에
+  한 줄 (`'my-brand': { color: 'blue', theme: 'soft' }`)을 자동 삽입.
+  TypeScript의 variant union이 자동 확장됨.
+- 사용자가 카탈로그 사이트에서 Style 토글 → "Variant 추가" 버튼으로 생성된
+  CLI 명령을 받으면, 당신은 그 명령을 그대로 실행하면 됨.
 
 ### C. PROPS — 그 외 컴포넌트 본질 prop
 

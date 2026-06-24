@@ -12,6 +12,7 @@ import { initCommand } from '@/commands/init'
 import { addCommand } from '@/commands/add'
 import { listCommand } from '@/commands/list'
 import { viewCommand } from '@/commands/view'
+import { variantCommand } from '@/commands/variant'
 
 const program: Command = new Command()
 
@@ -24,6 +25,7 @@ program.addCommand(initCommand)
 program.addCommand(addCommand)
 program.addCommand(listCommand)
 program.addCommand(viewCommand)
+program.addCommand(variantCommand)
 
 program.parseAsync(process.argv).catch((err: unknown) => {
   console.error(err)

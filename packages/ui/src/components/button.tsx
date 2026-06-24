@@ -129,23 +129,17 @@ type ButtonVariantProps = VariantProps<typeof buttonClassVariants>
 type ButtonDesignColor = NonNullable<ButtonVariantProps['color']>
 
 // ── Variant preset (SoT) ───────────────────────────────────────────
-// 새 variant 추가는 이 객체에 한 줄만 추가하면 끝. TS type / 카탈로그 자동 인식.
-//   ex: my-variant: { color: 'blue', theme: 'soft', shape: 'pill' }
-type ButtonPresetStyle = Pick<ButtonVariantProps, 'color' | 'theme' | 'shape' | 'size'> & {
-  className?: string
-}
+// variant는 Style 4축(color/theme/shape/size)의 조합 alias만 가능.
+// - 미명시한 축은 cva default로 자동 매핑 — 굳이 다 적을 필요 없음
+// - 4축 외 임의 className / 기타 props 지정 금지
+// - 등록 방법: `name: { 변경할_축만 }`
+type ButtonPresetStyle = Partial<
+  Pick<ButtonVariantProps, 'color' | 'theme' | 'shape' | 'size'>
+>
 
 const buttonVariantPresets = {
-  default: { color: 'gray', theme: 'solid', shape: 'default', size: 'md' },
-  destructive: { color: 'red', theme: 'solid', shape: 'default', size: 'md' },
-  success: { color: 'green', theme: 'soft', shape: 'default', size: 'md' },
-  dark: {
-    color: 'gray',
-    theme: 'solid',
-    shape: 'default',
-    size: 'md',
-    className: 'bg-cool-grey-09 text-white hover:bg-cool-grey-10 shadow-md'
-  }
+  destructive: { color: 'red' },
+  success: { color: 'green', theme: 'soft' }
 } satisfies Record<string, ButtonPresetStyle>
 
 type ButtonPresetVariant = keyof typeof buttonVariantPresets
@@ -175,9 +169,10 @@ function buttonVariants({
   shape,
   size
 }: ButtonVariantOptions = {}) {
-  const preset = variant ? buttonVariantPresets[variant] : undefined
-  const presetClassName: string | undefined =
-    preset && 'className' in preset ? (preset.className as string | undefined) : undefined
+  // satisfies로 좁혀진 literal type을 다시 Partial로 풀어 모든 4축에 optional access 허용
+  const preset: ButtonPresetStyle | undefined = variant
+    ? buttonVariantPresets[variant]
+    : undefined
 
   return cn(
     buttonClassVariants({
@@ -186,8 +181,6 @@ function buttonVariants({
       shape: shape ?? preset?.shape,
       size: size ?? preset?.size
     }),
-    // preset에 className override가 있으면 마지막에 합성 (Style prop 미명시일 때만)
-    !color && !theme && presetClassName,
     className
   )
 }

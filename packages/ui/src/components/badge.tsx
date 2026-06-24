@@ -76,16 +76,11 @@ const badgeCompoundVariants = Object.entries(badgeColorStyles).flatMap(([color, 
   }))
 )
 
+// cva에는 Style 4축만 등록. variant는 별도 preset 객체에서 단일 진실로 관리.
 const badgeClassVariants = cva(
   'inline-flex items-center font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
   {
     variants: {
-      variant: {
-        lea: '',
-        vasp: '',
-        'tx-swap': '',
-        'tx-bridge': ''
-      },
       color: {
         gray: '',
         blue: '',
@@ -130,44 +125,31 @@ const badgeClassVariants = cva(
 
 type BadgeVariantProps = VariantProps<typeof badgeClassVariants>
 type BadgeDesignColor = NonNullable<BadgeVariantProps['color']>
-type BadgePresetVariant = NonNullable<BadgeVariantProps['variant']>
 
-const badgeVariantPresets: Record<
-  BadgePresetVariant,
-  Pick<BadgeVariantProps, 'color' | 'theme' | 'shape' | 'size'> & { className?: string }
-> = {
-  lea: {
-    color: 'blue',
-    theme: 'soft',
-    shape: 'default',
-    size: 'md',
-    className: 'bg-ui-pale-blue text-ui-blue typo-r12'
-  },
-  vasp: {
-    color: 'yellow',
-    theme: 'soft',
-    shape: 'default',
-    size: 'md',
-    className: 'bg-ui-pale-yellow text-ui-yellow typo-r12'
-  },
-  'tx-swap': {
-    color: 'orange',
-    theme: 'soft',
-    shape: 'default',
-    size: 'md',
-    className: 'border-ui-orange/20 bg-ui-pale-orange text-ui-orange'
-  },
-  'tx-bridge': {
-    color: 'purple',
-    theme: 'soft',
-    shape: 'default',
-    size: 'md',
-    className: 'border-ui-purple/20 bg-ui-pale-purple text-ui-purple'
-  }
-}
+// ── Variant preset (SoT) ───────────────────────────────────────────
+// variant는 Style 4축(color/theme/shape/size)의 조합 alias만 가능.
+// - 미명시한 축은 cva default로 자동 매핑 — 굳이 다 적을 필요 없음
+// - 4축 외 임의 className / 기타 props 지정 금지
+// - 등록 방법: `name: { 변경할_축만 }`
+type BadgePresetStyle = Partial<
+  Pick<BadgeVariantProps, 'color' | 'theme' | 'shape' | 'size'>
+>
+
+const badgeVariantPresets = {
+  lea: { color: 'blue', theme: 'soft' },
+  vasp: { color: 'yellow', theme: 'soft' },
+  'tx-swap': { color: 'orange', theme: 'soft' },
+  'tx-bridge': { color: 'purple', theme: 'soft' }
+} satisfies Record<string, BadgePresetStyle>
+
+type BadgePresetVariant = keyof typeof badgeVariantPresets
 
 export interface BadgeProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>, Omit<BadgeVariantProps, 'color'> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>,
+    Omit<BadgeVariantProps, 'color'> {
+  /** preset variant 이름 — badgeVariantPresets에 등록된 키 */
+  variant?: BadgePresetVariant
+  /** 색상 토큰. 명시 시 preset의 color를 덮어쓴다. */
   color?: BadgeDesignColor | (string & {})
 }
 
@@ -175,6 +157,7 @@ const isBadgeColor = (color: BadgeProps['color']): color is BadgeDesignColor =>
   typeof color === 'string' && color in badgeColorStyles
 
 type BadgeVariantOptions = Omit<BadgeVariantProps, 'color'> & {
+  variant?: BadgePresetVariant
   color?: BadgeProps['color']
   className?: string
 }
@@ -187,17 +170,18 @@ function badgeVariants({
   shape,
   size
 }: BadgeVariantOptions = {}) {
-  const preset = variant ? badgeVariantPresets[variant] : undefined
+  // satisfies로 좁혀진 literal type을 다시 Partial로 풀어 모든 4축에 optional access 허용
+  const preset: BadgePresetStyle | undefined = variant
+    ? badgeVariantPresets[variant]
+    : undefined
 
   return cn(
     badgeClassVariants({
-      variant,
       color: isBadgeColor(color) ? color : preset?.color,
       theme: theme ?? preset?.theme,
       shape: shape ?? preset?.shape,
       size: size ?? preset?.size
     }),
-    variant && !color && !theme && preset?.className,
     className
   )
 }
@@ -212,4 +196,4 @@ function Badge({ className, variant, color, theme, shape, size, ...props }: Badg
   )
 }
 
-export { Badge, badgeVariants }
+export { Badge, badgeVariants, badgeVariantPresets }

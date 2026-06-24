@@ -72,16 +72,15 @@
       "color": "gray",
       "theme": "solid",
       "shape": "default",
-      "size": "md"
+      "size": "md",
+      "variant": "lea"
     }
   },
   "button": {
     "groups": {
       "variant": [
-        "default",
         "destructive",
-        "success",
-        "dark"
+        "success"
       ],
       "color": [
         "gray",
@@ -120,7 +119,7 @@
       "theme": "solid",
       "shape": "default",
       "size": "md",
-      "variant": "default"
+      "variant": "destructive"
     }
   },
   "card": {
