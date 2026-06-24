@@ -5,14 +5,14 @@ interface PreviewProps {
 }
 
 type Color = NonNullable<Parameters<typeof Button>[0]['color']>
-type Appearance = NonNullable<Parameters<typeof Button>[0]['appearance']>
+type Theme = NonNullable<Parameters<typeof Button>[0]['theme']>
 type Shape = NonNullable<Parameters<typeof Button>[0]['shape']>
 type Size = NonNullable<Parameters<typeof Button>[0]['size']>
 
 export const Preview = ({ selections = {} }: PreviewProps) => (
   <Button
     color={(selections.color as Color) ?? 'gray'}
-    appearance={(selections.appearance as Appearance) ?? 'solid'}
+    theme={(selections.theme as Theme) ?? 'solid'}
     shape={(selections.shape as Shape) ?? 'default'}
     size={(selections.size as Size) ?? 'md'}
   >

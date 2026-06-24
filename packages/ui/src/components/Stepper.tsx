@@ -212,7 +212,7 @@ const StepperButton = ({ children, buttonType, className, ...props }: StepperBut
     <Button
       className={twMerge('flex-1', className)}
       color={buttonType === 'NEXT' ? 'blue' : 'gray'}
-      appearance={buttonType === 'NEXT' ? 'solid' : 'outline'}
+      theme={buttonType === 'NEXT' ? 'solid' : 'outline'}
       {...props}
     >
       {children}

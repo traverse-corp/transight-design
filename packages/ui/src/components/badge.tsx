@@ -66,12 +66,12 @@ const badgeColorStyles = {
 } as const
 
 type BadgeColor = keyof typeof badgeColorStyles
-type BadgeAppearance = keyof (typeof badgeColorStyles)['gray']
+type BadgeTheme = keyof (typeof badgeColorStyles)['gray']
 
 const badgeCompoundVariants = Object.entries(badgeColorStyles).flatMap(([color, styles]) =>
-  Object.entries(styles).map(([appearance, className]) => ({
+  Object.entries(styles).map(([theme, className]) => ({
     color: color as BadgeColor,
-    appearance: appearance as BadgeAppearance,
+    theme: theme as BadgeTheme,
     className
   }))
 )
@@ -100,7 +100,7 @@ const badgeClassVariants = cva(
         white: '',
         'gradient-blue': ''
       },
-      appearance: {
+      theme: {
         solid: '',
         outline: '',
         soft: ''
@@ -121,7 +121,7 @@ const badgeClassVariants = cva(
     compoundVariants: badgeCompoundVariants,
     defaultVariants: {
       color: 'gray',
-      appearance: 'solid',
+      theme: 'solid',
       shape: 'default',
       size: 'md'
     }
@@ -134,32 +134,32 @@ type BadgePresetVariant = NonNullable<BadgeVariantProps['variant']>
 
 const badgeVariantPresets: Record<
   BadgePresetVariant,
-  Pick<BadgeVariantProps, 'color' | 'appearance' | 'shape' | 'size'> & { className?: string }
+  Pick<BadgeVariantProps, 'color' | 'theme' | 'shape' | 'size'> & { className?: string }
 > = {
   lea: {
     color: 'blue',
-    appearance: 'soft',
+    theme: 'soft',
     shape: 'default',
     size: 'md',
     className: 'bg-ui-pale-blue text-ui-blue typo-r12'
   },
   vasp: {
     color: 'yellow',
-    appearance: 'soft',
+    theme: 'soft',
     shape: 'default',
     size: 'md',
     className: 'bg-ui-pale-yellow text-ui-yellow typo-r12'
   },
   'tx-swap': {
     color: 'orange',
-    appearance: 'soft',
+    theme: 'soft',
     shape: 'default',
     size: 'md',
     className: 'border-ui-orange/20 bg-ui-pale-orange text-ui-orange'
   },
   'tx-bridge': {
     color: 'purple',
-    appearance: 'soft',
+    theme: 'soft',
     shape: 'default',
     size: 'md',
     className: 'border-ui-purple/20 bg-ui-pale-purple text-ui-purple'
@@ -183,7 +183,7 @@ function badgeVariants({
   className,
   variant,
   color,
-  appearance,
+  theme,
   shape,
   size
 }: BadgeVariantOptions = {}) {
@@ -193,20 +193,20 @@ function badgeVariants({
     badgeClassVariants({
       variant,
       color: isBadgeColor(color) ? color : preset?.color,
-      appearance: appearance ?? preset?.appearance,
+      theme: theme ?? preset?.theme,
       shape: shape ?? preset?.shape,
       size: size ?? preset?.size
     }),
-    variant && !color && !appearance && preset?.className,
+    variant && !color && !theme && preset?.className,
     className
   )
 }
 
-function Badge({ className, variant, color, appearance, shape, size, ...props }: BadgeProps) {
+function Badge({ className, variant, color, theme, shape, size, ...props }: BadgeProps) {
   return (
     <div
       data-slot="badge"
-      className={badgeVariants({ variant, color, appearance, shape, size, className })}
+      className={badgeVariants({ variant, color, theme, shape, size, className })}
       {...props}
     />
   )

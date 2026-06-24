@@ -13,7 +13,7 @@ interface VariantsPanelProps {
 
 const GROUP_LABELS: Record<string, string> = {
   color: 'Color',
-  appearance: 'Appearance',
+  theme: 'Theme',
   shape: 'Shape',
   variant: 'Variant',
   size: 'Size'

@@ -17,12 +17,12 @@ type PopupSize = NonNullable<Parameters<typeof DialogPopup>[0]['size']>
 type PopupShape = NonNullable<Parameters<typeof DialogPopup>[0]['shape']>
 type PopupFrom = NonNullable<Parameters<typeof DialogPopup>[0]['from']>
 type ButtonColor = NonNullable<Parameters<typeof Button>[0]['color']>
-type ButtonAppearance = NonNullable<Parameters<typeof Button>[0]['appearance']>
+type ButtonTheme = NonNullable<Parameters<typeof Button>[0]['theme']>
 type ButtonSize = NonNullable<Parameters<typeof Button>[0]['size']>
 
 interface State {
   triggerColor: ButtonColor
-  triggerAppearance: ButtonAppearance
+  triggerTheme: ButtonTheme
   triggerSize: ButtonSize
   size: PopupSize
   shape: PopupShape
@@ -52,7 +52,7 @@ const BUTTON_COLORS: readonly string[] = [
 
 const TRIGGER_CONTROLS: ControlDef[] = [
   { stateKey: 'triggerColor', label: 'color', values: BUTTON_COLORS },
-  { stateKey: 'triggerAppearance', label: 'appearance', values: ['solid', 'outline', 'soft'] },
+  { stateKey: 'triggerTheme', label: 'theme', values: ['solid', 'outline', 'soft'] },
   { stateKey: 'triggerSize', label: 'size', values: ['xs', 'sm', 'md', 'lg', 'xl'] }
 ]
 
@@ -68,7 +68,7 @@ const codeFor = (s: State) =>
   `<Dialog>
   <DialogTrigger
     render={
-      <Button color="${s.triggerColor}" appearance="${s.triggerAppearance}" size="${s.triggerSize}">
+      <Button color="${s.triggerColor}" theme="${s.triggerTheme}" size="${s.triggerSize}">
         다이얼로그 열기
       </Button>
     }
@@ -77,7 +77,7 @@ const codeFor = (s: State) =>
     <DialogTitle>새 작업</DialogTitle>
     <DialogDescription>새로운 트랜잭션 추적을 시작합니다.</DialogDescription>
     <DialogFooter>
-      <DialogClose appearance="outline" size="sm">취소</DialogClose>
+      <DialogClose theme="outline" size="sm">취소</DialogClose>
       <DialogClose color="blue" size="sm">시작</DialogClose>
     </DialogFooter>
   </DialogPopup>
@@ -86,7 +86,7 @@ const codeFor = (s: State) =>
 export const DialogPreviewShell = () => {
   const [state, setState] = useState<State>({
     triggerColor: 'gray',
-    triggerAppearance: 'solid',
+    triggerTheme: 'solid',
     triggerSize: 'md',
     size: 'md',
     shape: 'default',
@@ -108,7 +108,7 @@ export const DialogPreviewShell = () => {
                 render={
                   <Button
                     color={state.triggerColor}
-                    appearance={state.triggerAppearance}
+                    theme={state.triggerTheme}
                     size={state.triggerSize}
                   >
                     다이얼로그 열기
@@ -119,7 +119,7 @@ export const DialogPreviewShell = () => {
                 <DialogTitle>새 작업</DialogTitle>
                 <DialogDescription>새로운 트랜잭션 추적을 시작합니다.</DialogDescription>
                 <DialogFooter className='mt-2'>
-                  <DialogClose appearance='outline' size='sm'>
+                  <DialogClose theme='outline' size='sm'>
                     취소
                   </DialogClose>
                   <DialogClose color='blue' size='sm'>

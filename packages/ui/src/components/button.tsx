@@ -68,26 +68,21 @@ const buttonColorStyles = {
 } as const
 
 type ButtonColor = keyof typeof buttonColorStyles
-type ButtonAppearance = keyof (typeof buttonColorStyles)['gray']
+type ButtonTheme = keyof (typeof buttonColorStyles)['gray']
 
 const buttonCompoundVariants = Object.entries(buttonColorStyles).flatMap(([color, styles]) =>
-  Object.entries(styles).map(([appearance, className]) => ({
+  Object.entries(styles).map(([theme, className]) => ({
     color: color as ButtonColor,
-    appearance: appearance as ButtonAppearance,
+    theme: theme as ButtonTheme,
     className
   }))
 )
 
+// cva에는 Style 4축만 등록. variant는 별도 preset 객체에서 단일 진실로 관리.
 const buttonClassVariants = cva(
   "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all select-none active:scale-95 disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
-      variant: {
-        default: '',
-        destructive: '',
-        success: '',
-        dark: ''
-      },
       color: {
         gray: '',
         blue: '',
@@ -102,7 +97,7 @@ const buttonClassVariants = cva(
         white: '',
         'gradient-blue': ''
       },
-      appearance: {
+      theme: {
         solid: '',
         outline: '',
         soft: ''
@@ -122,9 +117,8 @@ const buttonClassVariants = cva(
     },
     compoundVariants: buttonCompoundVariants,
     defaultVariants: {
-      variant: 'default',
       color: 'gray',
-      appearance: 'solid',
+      theme: 'solid',
       shape: 'default',
       size: 'md'
     }
@@ -133,41 +127,34 @@ const buttonClassVariants = cva(
 
 type ButtonVariantProps = VariantProps<typeof buttonClassVariants>
 type ButtonDesignColor = NonNullable<ButtonVariantProps['color']>
-type ButtonPresetVariant = NonNullable<ButtonVariantProps['variant']>
 
-const buttonVariantPresets: Record<
-  ButtonPresetVariant,
-  Pick<ButtonVariantProps, 'color' | 'appearance' | 'shape' | 'size'> & { className?: string }
-> = {
-  default: {
-    color: 'gray',
-    appearance: 'solid',
-    shape: 'default',
-    size: 'md'
-  },
-  destructive: {
-    color: 'red',
-    appearance: 'solid',
-    shape: 'default',
-    size: 'md'
-  },
-  success: {
-    color: 'green',
-    appearance: 'soft',
-    shape: 'default',
-    size: 'md'
-  },
+// ── Variant preset (SoT) ───────────────────────────────────────────
+// 새 variant 추가는 이 객체에 한 줄만 추가하면 끝. TS type / 카탈로그 자동 인식.
+//   ex: my-variant: { color: 'blue', theme: 'soft', shape: 'pill' }
+type ButtonPresetStyle = Pick<ButtonVariantProps, 'color' | 'theme' | 'shape' | 'size'> & {
+  className?: string
+}
+
+const buttonVariantPresets = {
+  default: { color: 'gray', theme: 'solid', shape: 'default', size: 'md' },
+  destructive: { color: 'red', theme: 'solid', shape: 'default', size: 'md' },
+  success: { color: 'green', theme: 'soft', shape: 'default', size: 'md' },
   dark: {
     color: 'gray',
-    appearance: 'solid',
+    theme: 'solid',
     shape: 'default',
     size: 'md',
     className: 'bg-cool-grey-09 text-white hover:bg-cool-grey-10 shadow-md'
   }
-}
+} satisfies Record<string, ButtonPresetStyle>
+
+type ButtonPresetVariant = keyof typeof buttonVariantPresets
 
 type ButtonProps = Omit<ButtonPrimitive.Props, 'color'> &
   Omit<ButtonVariantProps, 'color'> & {
+    /** preset variant 이름 — buttonVariantPresets에 등록된 키 */
+    variant?: ButtonPresetVariant
+    /** 색상 토큰. 명시 시 preset의 color를 덮어쓴다. */
     color?: ButtonDesignColor | (string & {})
   }
 
@@ -175,6 +162,7 @@ const isButtonColor = (color: ButtonProps['color']): color is ButtonDesignColor 
   typeof color === 'string' && color in buttonColorStyles
 
 type ButtonVariantOptions = Omit<ButtonVariantProps, 'color'> & {
+  variant?: ButtonPresetVariant
   color?: ButtonProps['color']
   className?: string
 }
@@ -183,26 +171,28 @@ function buttonVariants({
   className,
   variant,
   color,
-  appearance,
+  theme,
   shape,
   size
 }: ButtonVariantOptions = {}) {
   const preset = variant ? buttonVariantPresets[variant] : undefined
+  const presetClassName: string | undefined =
+    preset && 'className' in preset ? (preset.className as string | undefined) : undefined
 
   return cn(
     buttonClassVariants({
-      variant,
       color: isButtonColor(color) ? color : preset?.color,
-      appearance: appearance ?? preset?.appearance,
+      theme: theme ?? preset?.theme,
       shape: shape ?? preset?.shape,
       size: size ?? preset?.size
     }),
-    variant === 'dark' && !color && !appearance && preset?.className,
+    // preset에 className override가 있으면 마지막에 합성 (Style prop 미명시일 때만)
+    !color && !theme && presetClassName,
     className
   )
 }
 
-function Button({ className, variant, color, appearance, shape, size, ...props }: ButtonProps) {
+function Button({ className, variant, color, theme, shape, size, ...props }: ButtonProps) {
   return (
     <ButtonPrimitive
       data-slot="button"
@@ -211,7 +201,7 @@ function Button({ className, variant, color, appearance, shape, size, ...props }
         buttonVariants({
           variant,
           color,
-          appearance,
+          theme,
           shape,
           size
         }),
@@ -222,4 +212,4 @@ function Button({ className, variant, color, appearance, shape, size, ...props }
   )
 }
 
-export { Button, buttonVariants, type ButtonProps }
+export { Button, buttonVariants, buttonVariantPresets, type ButtonProps }

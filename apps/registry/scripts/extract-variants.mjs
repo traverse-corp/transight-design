@@ -197,6 +197,19 @@ const extractCvaVariants = (source) => {
   return { groups, defaults }
 }
 
+/**
+ * `*VariantPresets = {` 객체의 1-depth 키 목록 추출.
+ * cva variants에 variant 키가 없어도 preset 객체에서 variant 이름을 인식.
+ */
+const extractPresetKeys = (source) => {
+  const re = /VariantPresets\s*=\s*\{/g
+  const m = re.exec(source)
+  if (!m) return null
+  const block = extractBlock(source, new RegExp(re.source, 'g'))
+  if (!block) return null
+  return extractKeys(block)
+}
+
 const main = () => {
   const files = readdirSync(COMPONENTS_DIR).filter((f) => /\.(ts|tsx)$/.test(f))
   const result = {}
@@ -206,7 +219,22 @@ const main = () => {
     const full = join(COMPONENTS_DIR, f)
     const source = readFileSync(full, 'utf-8')
     const variants = extractCvaVariants(source)
-    if (variants) result[name] = variants
+    if (!variants) continue
+
+    // cva.variants에 variant 키가 없으면 *VariantPresets 객체에서 키 가져옴
+    if (!variants.groups.variant) {
+      const presetKeys = extractPresetKeys(source)
+      if (presetKeys && presetKeys.length > 0) {
+        // variant를 groups 맨 앞에 삽입 (순서 유지)
+        variants.groups = { variant: presetKeys, ...variants.groups }
+        // defaultVariants에 명시된 variant가 있으면 유지, 없으면 첫 키를 기본값으로
+        if (!variants.defaults.variant) {
+          variants.defaults.variant = presetKeys[0]
+        }
+      }
+    }
+
+    result[name] = variants
   }
 
   if (!existsSync(dirname(OUT_FILE))) mkdirSync(dirname(OUT_FILE), { recursive: true })

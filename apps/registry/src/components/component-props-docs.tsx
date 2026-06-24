@@ -37,7 +37,7 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
       description: '버튼의 색상 축입니다. 지정하면 variant preset의 color보다 우선합니다.'
     },
     {
-      name: 'appearance',
+      name: 'theme',
       type: "'solid' | 'outline' | 'soft'",
       defaultValue: "'solid'",
       description: '채움, 외곽선, 연한 배경 스타일을 결정합니다.'
@@ -68,7 +68,7 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
       description: '뱃지의 색상 축입니다. 지정하면 variant preset의 color보다 우선합니다.'
     },
     {
-      name: 'appearance',
+      name: 'theme',
       type: "'solid' | 'outline' | 'soft'",
       defaultValue: "'solid'",
       description: '채움, 외곽선, 연한 배경 스타일을 결정합니다.'
@@ -202,7 +202,7 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
           description: 'Button과 동일한 12색 시스템. solid 기본값은 dark 룩(cool-grey-11).'
         },
         {
-          name: 'appearance',
+          name: 'theme',
           type: "'solid' | 'outline' | 'soft'",
           defaultValue: "'solid'",
           description:
@@ -251,7 +251,7 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
     },
     {
       title: 'SelectTrigger',
-      description: 'select가 닫혀있을 때 보이는 트리거. Button과 동일한 color × appearance 12×3 매트릭스.',
+      description: 'select가 닫혀있을 때 보이는 트리거. Button과 동일한 color × theme 12×3 매트릭스.',
       props: [
         {
           name: 'color',
@@ -261,7 +261,7 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
             'Trigger의 border/text/focus 톤을 결정. Button과 같은 12색.'
         },
         {
-          name: 'appearance',
+          name: 'theme',
           type: "'solid' | 'outline' | 'soft'",
           defaultValue: "'outline'",
           description:

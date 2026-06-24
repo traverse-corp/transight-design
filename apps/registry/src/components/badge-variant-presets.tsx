@@ -24,7 +24,7 @@ export const BadgeVariantPresets = ({ variants }: { variants: string[] }) => {
         <div className="text-description mt-1 flex flex-col gap-1">
           <p>Variant는 반복해서 쓰는 Badge 조합을 이름으로 호출하는 preset입니다.</p>
           <p>
-            기본 설계는 color, appearance, shape, size 축을 직접 조합하는 방식이고, variant는
+            기본 설계는 color, theme, shape, size 축을 직접 조합하는 방식이고, variant는
             프로젝트에서 자주 쓰는 조합만 얇게 묶어둔 값입니다.
           </p>
         </div>

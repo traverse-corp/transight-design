@@ -18,7 +18,7 @@ export const Preview = () => {
   const [open, setOpen] = useState(false)
   return (
     <>
-      <Button appearance="outline" onClick={() => setOpen(true)}>
+      <Button theme="outline" onClick={() => setOpen(true)}>
         확인 다이얼로그 열기
       </Button>
       <AlertDialogRoot open={open} onOpenChange={setOpen}>

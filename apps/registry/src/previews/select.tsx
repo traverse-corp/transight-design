@@ -15,7 +15,7 @@ interface PreviewProps {
 }
 
 type Color = NonNullable<Parameters<typeof SelectTrigger>[0]['color']>
-type Appearance = NonNullable<Parameters<typeof SelectTrigger>[0]['appearance']>
+type Theme = NonNullable<Parameters<typeof SelectTrigger>[0]['theme']>
 type Shape = NonNullable<Parameters<typeof Select>[0]['shape']>
 type Size = NonNullable<Parameters<typeof SelectTrigger>[0]['size']>
 
@@ -28,7 +28,7 @@ export const Preview = ({ selections = {} }: PreviewProps) => {
       color={(selections.color as Color) ?? undefined}
     >
       <SelectTrigger
-        appearance={(selections.appearance as Appearance) ?? undefined}
+        theme={(selections.theme as Theme) ?? undefined}
         size={(selections.size as Size) ?? undefined}
         decorator={decorator}
         className='w-60'

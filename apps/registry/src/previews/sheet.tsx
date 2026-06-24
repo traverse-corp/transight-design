@@ -14,7 +14,7 @@ import { Button } from '@transight-design/ui/components/button'
 
 export const Preview = () => (
   <Sheet>
-    <SheetTrigger render={<Button appearance="outline">시트 열기</Button>} />
+    <SheetTrigger render={<Button theme="outline">시트 열기</Button>} />
     <SheetContent>
       <SheetHeader>
         <SheetTitle>설정</SheetTitle>

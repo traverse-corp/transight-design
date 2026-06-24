@@ -11,16 +11,16 @@ interface PreviewProps {
 }
 
 type Color = NonNullable<Parameters<typeof TooltipContent>[0]['color']>
-type Appearance = NonNullable<Parameters<typeof TooltipContent>[0]['appearance']>
+type Theme = NonNullable<Parameters<typeof TooltipContent>[0]['theme']>
 type Size = NonNullable<Parameters<typeof TooltipContent>[0]['size']>
 
 export const Preview = ({ selections = {} }: PreviewProps) => (
   <TooltipProvider>
     <Tooltip open>
-      <TooltipTrigger render={<Button appearance='outline'>마우스 올리기</Button>} />
+      <TooltipTrigger render={<Button theme='outline'>마우스 올리기</Button>} />
       <TooltipContent
         color={(selections.color as Color) ?? undefined}
-        appearance={(selections.appearance as Appearance) ?? undefined}
+        theme={(selections.theme as Theme) ?? undefined}
         size={(selections.size as Size) ?? undefined}
       >
         도움말 텍스트입니다.

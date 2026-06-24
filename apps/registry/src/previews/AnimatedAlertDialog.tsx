@@ -13,7 +13,7 @@ export const Preview = () => {
   const [open, setOpen] = useState(false)
   return (
     <>
-      <Button appearance="outline" onClick={() => setOpen(true)}>
+      <Button theme="outline" onClick={() => setOpen(true)}>
         애니메이션 알림 열기
       </Button>
       <AlertDialog open={open} onOpenChange={setOpen}>

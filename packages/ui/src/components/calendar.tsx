@@ -10,13 +10,13 @@ function Calendar({
   classNames,
   showOutsideDays = true,
   captionLayout = 'label',
-  buttonAppearance = 'soft',
+  buttonTheme = 'soft',
   locale,
   formatters,
   components,
   ...props
 }: React.ComponentProps<typeof DayPicker> & {
-  buttonAppearance?: React.ComponentProps<typeof Button>['appearance']
+  buttonTheme?: React.ComponentProps<typeof Button>['theme']
 }) {
   const defaultClassNames = getDefaultClassNames()
 
@@ -44,12 +44,12 @@ function Calendar({
           defaultClassNames.nav
         ),
         button_previous: cn(
-          buttonVariants({ appearance: buttonAppearance }),
+          buttonVariants({ theme: buttonTheme }),
           'size-(--cell-size) aria-disabled:opacity-50 p-0 select-none',
           defaultClassNames.button_previous
         ),
         button_next: cn(
-          buttonVariants({ appearance: buttonAppearance }),
+          buttonVariants({ theme: buttonTheme }),
           'size-(--cell-size) aria-disabled:opacity-50 p-0 select-none',
           defaultClassNames.button_next
         ),
@@ -158,7 +158,7 @@ function CalendarDayButton({
 
   return (
     <Button
-      appearance="soft"
+      theme="soft"
       data-day={day.date.toLocaleDateString(locale?.code)}
       data-selected-single={
         modifiers.selected &&

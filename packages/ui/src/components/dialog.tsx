@@ -165,7 +165,7 @@ const DialogPopup = ({
 }
 
 type DialogCloseProps = React.ComponentProps<typeof DialogPrimitive.Close> &
-  Pick<ButtonProps, 'color' | 'appearance' | 'shape' | 'size'>
+  Pick<ButtonProps, 'color' | 'theme' | 'shape' | 'size'>
 
 /**
  * children 없으면 X 아이콘 버튼으로 자동 렌더 (모서리 닫기용).
@@ -175,7 +175,7 @@ const DialogClose = ({
   children,
   className,
   color,
-  appearance,
+  theme,
   shape,
   size,
   ...props
@@ -201,7 +201,7 @@ const DialogClose = ({
       render={
         <Button
           color={color}
-          appearance={appearance}
+          theme={theme}
           shape={shape}
           size={size}
           className={className}

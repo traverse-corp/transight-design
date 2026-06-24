@@ -55,7 +55,7 @@ const SelectValue = ({ className, ...props }: SelectPrimitive.Value.Props) => (
   />
 )
 
-// ── Trigger 자체 톤 — Button의 color × appearance 패턴 미러링 ──
+// ── Trigger 자체 톤 — Button의 color × theme 패턴 미러링 ──
 // solid: 채움 (배경 + 흰 글씨)
 // outline: 흰 배경 + 색 border + 색 글씨 (기본)
 // soft: 옅은 색 배경 + 색 글씨
@@ -142,7 +142,7 @@ const selectTriggerVariants = cva(
         white: '',
         'gradient-blue': ''
       },
-      appearance: {
+      theme: {
         solid: '',
         outline: '',
         soft: ''
@@ -162,7 +162,7 @@ const selectTriggerVariants = cva(
     },
     defaultVariants: {
       color: 'gray',
-      appearance: 'outline',
+      theme: 'outline',
       shape: 'default',
       size: 'md'
     }
@@ -171,7 +171,7 @@ const selectTriggerVariants = cva(
 
 type SelectTriggerVariantProps = VariantProps<typeof selectTriggerVariants>
 export type SelectTriggerColor = NonNullable<SelectTriggerVariantProps['color']>
-export type SelectTriggerAppearance = NonNullable<SelectTriggerVariantProps['appearance']>
+export type SelectTriggerTheme = NonNullable<SelectTriggerVariantProps['theme']>
 export type SelectTriggerProps = SelectPrimitive.Trigger.Props &
   SelectTriggerVariantProps & {
     /**
@@ -184,7 +184,7 @@ export type SelectTriggerProps = SelectPrimitive.Trigger.Props &
 const SelectTrigger = ({
   className,
   color,
-  appearance,
+  theme,
   shape,
   size,
   decorator,
@@ -193,7 +193,7 @@ const SelectTrigger = ({
 }: SelectTriggerProps) => {
   const ctx = React.useContext(SelectContext)
   const resolvedColor: SelectTriggerColor = color ?? ctx.color
-  const resolvedAppearance: SelectTriggerAppearance = appearance ?? 'outline'
+  const resolvedTheme: SelectTriggerTheme = theme ?? 'outline'
   const resolvedShape: SelectShape = shape ?? ctx.shape
 
   return (
@@ -202,11 +202,11 @@ const SelectTrigger = ({
       className={cn(
         selectTriggerVariants({
           color: resolvedColor,
-          appearance: resolvedAppearance,
+          theme: resolvedTheme,
           shape: resolvedShape,
           size
         }),
-        selectTriggerColorStyles[resolvedColor][resolvedAppearance],
+        selectTriggerColorStyles[resolvedColor][resolvedTheme],
         className
       )}
       {...props}

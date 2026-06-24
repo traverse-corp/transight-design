@@ -17,7 +17,7 @@ const TooltipTrigger = (props: TooltipPrimitive.Trigger.Props) => (
   <TooltipPrimitive.Trigger data-slot='tooltip-trigger' {...props} />
 )
 
-// ── 색상 시스템 — Button의 color × appearance 패턴 미러링 ──
+// ── 색상 시스템 — Button의 color × theme 패턴 미러링 ──
 // solid: 채움 (배경 색, 흰 글씨). 가장 일반적인 툴팁 톤.
 // outline: 흰 배경 + 색 border + 색 글씨. 긴 도움말, 색 강조 약하게.
 // soft: 옅은 색 배경 + 색 글씨. 정보성 톤.
@@ -85,12 +85,12 @@ const tooltipColorStyles = {
 } as const
 
 type TooltipColor = keyof typeof tooltipColorStyles
-type TooltipAppearance = keyof (typeof tooltipColorStyles)['gray']
+type TooltipTheme = keyof (typeof tooltipColorStyles)['gray']
 
 const tooltipCompoundVariants = Object.entries(tooltipColorStyles).flatMap(([color, styles]) =>
-  Object.entries(styles).map(([appearance, className]) => ({
+  Object.entries(styles).map(([theme, className]) => ({
     color: color as TooltipColor,
-    appearance: appearance as TooltipAppearance,
+    theme: theme as TooltipTheme,
     className
   }))
 )
@@ -113,7 +113,7 @@ const tooltipContentVariants = cva(
         white: '',
         'gradient-blue': ''
       },
-      appearance: {
+      theme: {
         solid: '',
         outline: '',
         soft: ''
@@ -127,7 +127,7 @@ const tooltipContentVariants = cva(
     compoundVariants: tooltipCompoundVariants,
     defaultVariants: {
       color: 'gray',
-      appearance: 'solid',
+      theme: 'solid',
       size: 'md'
     }
   }
@@ -154,7 +154,7 @@ const tooltipArrowVariants = cva(
         white: 'bg-white',
         'gradient-blue': 'bg-primary-blue-1'
       },
-      appearance: {
+      theme: {
         solid: '',
         outline: 'hidden',
         soft: 'hidden'
@@ -162,7 +162,7 @@ const tooltipArrowVariants = cva(
     },
     defaultVariants: {
       color: 'gray',
-      appearance: 'solid'
+      theme: 'solid'
     }
   }
 )
@@ -174,7 +174,7 @@ export type TooltipContentProps = TooltipPrimitive.Popup.Props &
 const TooltipContent = ({
   className,
   color,
-  appearance,
+  theme,
   size,
   side = 'top',
   sideOffset = 4,
@@ -193,11 +193,11 @@ const TooltipContent = ({
     >
       <TooltipPrimitive.Popup
         data-slot='tooltip-content'
-        className={cn(tooltipContentVariants({ color, appearance, size }), className)}
+        className={cn(tooltipContentVariants({ color, theme, size }), className)}
         {...props}
       >
         {children}
-        <TooltipPrimitive.Arrow className={tooltipArrowVariants({ color, appearance })} />
+        <TooltipPrimitive.Arrow className={tooltipArrowVariants({ color, theme })} />
       </TooltipPrimitive.Popup>
     </TooltipPrimitive.Positioner>
   </TooltipPrimitive.Portal>

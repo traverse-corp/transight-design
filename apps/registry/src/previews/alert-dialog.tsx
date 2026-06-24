@@ -5,7 +5,7 @@ import { Button } from '@transight-design/ui/components/button'
 
 export const Preview = () => (
   <AlertDialogPrimitive.Root>
-    <AlertDialogPrimitive.Trigger render={<Button appearance="outline">삭제</Button>} />
+    <AlertDialogPrimitive.Trigger render={<Button theme="outline">삭제</Button>} />
     <AlertDialogPrimitive.Portal>
       <AlertDialogPrimitive.Backdrop className="fixed inset-0 z-50 bg-black/50" />
       <AlertDialogPrimitive.Popup className="border-cool-grey-04 fixed top-1/2 left-1/2 z-50 w-80 -translate-x-1/2 -translate-y-1/2 rounded-lg border bg-white p-6 shadow-lg">
@@ -18,7 +18,7 @@ export const Preview = () => (
         <div className="flex justify-end gap-2">
           <AlertDialogPrimitive.Close
             render={
-              <Button appearance="outline" size="sm">
+              <Button theme="outline" size="sm">
                 취소
               </Button>
             }

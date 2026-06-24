@@ -28,7 +28,7 @@ export const Preview = ({ selections = {} }: PreviewProps) => (
       <DialogTitle>새 작업</DialogTitle>
       <DialogDescription>새로운 트랜잭션 추적을 시작합니다.</DialogDescription>
       <DialogFooter className='mt-2'>
-        <DialogClose appearance='outline' size='sm'>
+        <DialogClose theme='outline' size='sm'>
           취소
         </DialogClose>
         <DialogClose color='blue' size='sm'>

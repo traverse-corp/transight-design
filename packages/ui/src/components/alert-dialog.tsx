@@ -138,7 +138,7 @@ function AlertDialogPopup({
 }
 
 type AlertDialogCloseProps = React.ComponentProps<typeof AlertDialogPrimitive.Close> &
-  Pick<ButtonProps, 'color' | 'appearance' | 'shape' | 'size'>
+  Pick<ButtonProps, 'color' | 'theme' | 'shape' | 'size'>
 
 /**
  * children이 없으면 X 아이콘 버튼으로 렌더링
@@ -148,7 +148,7 @@ function AlertDialogClose({
   children,
   className,
   color,
-  appearance,
+  theme,
   shape,
   size,
   ...props
@@ -176,7 +176,7 @@ function AlertDialogClose({
       render={
         <Button
           color={color}
-          appearance={appearance}
+          theme={theme}
           shape={shape}
           size={size}
           className={className}

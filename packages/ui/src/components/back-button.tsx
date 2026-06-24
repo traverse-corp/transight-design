@@ -17,7 +17,7 @@ const BackButton = ({
   onBack,
   label,
   iconOnly = false,
-  appearance = 'soft',
+  theme = 'soft',
   size = 'sm',
   className,
   ...props
@@ -35,7 +35,7 @@ const BackButton = ({
 
   return (
     <Button
-      appearance={appearance}
+      theme={theme}
       size={size}
       onClick={handleClick}
       className={className}

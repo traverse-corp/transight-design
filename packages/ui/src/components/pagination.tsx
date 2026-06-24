@@ -47,7 +47,7 @@ function PaginationLink({ className, isActive, size = 'md', ...props }: Paginati
 
   return (
     <Button
-      appearance={isActive ? 'outline' : 'soft'}
+      theme={isActive ? 'outline' : 'soft'}
       size={size}
       className={cn('size-9 p-0', className)}
       nativeButton={!props.href}

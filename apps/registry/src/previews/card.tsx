@@ -20,7 +20,7 @@ export const Preview = () => (
       </p>
     </CardContent>
     <CardFooter className="justify-end gap-2">
-      <Button appearance="outline" size="sm">
+      <Button theme="outline" size="sm">
         취소
       </Button>
       <Button size="sm">신청</Button>

@@ -11,16 +11,16 @@ import { Button } from '@transight-design/ui/components/button'
 import { PreviewModePanel } from './preview-mode-panel'
 
 type Color = NonNullable<Parameters<typeof TooltipContent>[0]['color']>
-type Appearance = NonNullable<Parameters<typeof TooltipContent>[0]['appearance']>
+type Theme = NonNullable<Parameters<typeof TooltipContent>[0]['theme']>
 type Size = NonNullable<Parameters<typeof TooltipContent>[0]['size']>
 type Side = NonNullable<Parameters<typeof TooltipContent>[0]['side']>
 type Align = NonNullable<Parameters<typeof TooltipContent>[0]['align']>
 type ButtonColor = NonNullable<Parameters<typeof Button>[0]['color']>
-type ButtonAppearance = NonNullable<Parameters<typeof Button>[0]['appearance']>
+type ButtonTheme = NonNullable<Parameters<typeof Button>[0]['theme']>
 type ButtonSize = NonNullable<Parameters<typeof Button>[0]['size']>
 
 // 컨트롤 정의 — {state key, 표시 label, 값} 형태로 분리해 Trigger/Content 탭에서
-// 같은 'appearance'/'size' 라벨을 쓰면서도 state key는 분리 유지 (탭이 다르니 사용자 혼동 없음).
+// 같은 'theme'/'size' 라벨을 쓰면서도 state key는 분리 유지 (탭이 다르니 사용자 혼동 없음).
 interface ControlDef {
   stateKey: keyof State
   label: string
@@ -46,7 +46,7 @@ const TRIGGER_CONTROLS: ControlDef[] = [
       'gradient-blue'
     ]
   },
-  { stateKey: 'triggerAppearance', label: 'appearance', values: ['solid', 'outline', 'soft'] },
+  { stateKey: 'triggerTheme', label: 'theme', values: ['solid', 'outline', 'soft'] },
   { stateKey: 'triggerSize', label: 'size', values: ['xs', 'sm', 'md', 'lg', 'xl'] }
 ]
 
@@ -69,7 +69,7 @@ const CONTENT_CONTROLS: ControlDef[] = [
       'gradient-blue'
     ]
   },
-  { stateKey: 'appearance', label: 'appearance', values: ['solid', 'outline', 'soft'] },
+  { stateKey: 'theme', label: 'theme', values: ['solid', 'outline', 'soft'] },
   { stateKey: 'size', label: 'size', values: ['sm', 'md', 'lg'] },
   { stateKey: 'side', label: 'side', values: ['top', 'right', 'bottom', 'left'] },
   { stateKey: 'align', label: 'align', values: ['start', 'center', 'end'] }
@@ -79,12 +79,12 @@ type Tab = 'trigger' | 'content'
 
 interface State {
   triggerColor: ButtonColor
-  triggerAppearance: ButtonAppearance
+  triggerTheme: ButtonTheme
   triggerSize: ButtonSize
   side: Side
   align: Align
   color: Color
-  appearance: Appearance
+  theme: Theme
   size: Size
 }
 
@@ -92,14 +92,14 @@ const codeFor = (s: State) =>
   `<Tooltip>
   <TooltipTrigger
     render={
-      <Button color="${s.triggerColor}" appearance="${s.triggerAppearance}" size="${s.triggerSize}">
+      <Button color="${s.triggerColor}" theme="${s.triggerTheme}" size="${s.triggerSize}">
         호버
       </Button>
     }
   />
   <TooltipContent
     color="${s.color}"
-    appearance="${s.appearance}"
+    theme="${s.theme}"
     size="${s.size}"
     side="${s.side}"
     align="${s.align}"
@@ -111,12 +111,12 @@ const codeFor = (s: State) =>
 export const TooltipPreviewShell = () => {
   const [state, setState] = useState<State>({
     triggerColor: 'gray',
-    triggerAppearance: 'outline',
+    triggerTheme: 'outline',
     triggerSize: 'md',
     side: 'top',
     align: 'center',
     color: 'gray',
-    appearance: 'solid',
+    theme: 'solid',
     size: 'md'
   })
   const [tab, setTab] = useState<Tab>('content')
@@ -136,7 +136,7 @@ export const TooltipPreviewShell = () => {
                   render={
                     <Button
                       color={state.triggerColor}
-                      appearance={state.triggerAppearance}
+                      theme={state.triggerTheme}
                       size={state.triggerSize}
                     >
                       마우스 올리기
@@ -145,7 +145,7 @@ export const TooltipPreviewShell = () => {
                 />
                 <TooltipContent
                   color={state.color}
-                  appearance={state.appearance}
+                  theme={state.theme}
                   size={state.size}
                   side={state.side}
                   align={state.align}

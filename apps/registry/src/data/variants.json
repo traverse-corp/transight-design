@@ -50,7 +50,7 @@
         "white",
         "gradient-blue"
       ],
-      "appearance": [
+      "theme": [
         "solid",
         "outline",
         "soft"
@@ -70,7 +70,7 @@
     },
     "defaults": {
       "color": "gray",
-      "appearance": "solid",
+      "theme": "solid",
       "shape": "default",
       "size": "md"
     }
@@ -97,7 +97,7 @@
         "white",
         "gradient-blue"
       ],
-      "appearance": [
+      "theme": [
         "solid",
         "outline",
         "soft"
@@ -116,11 +116,11 @@
       ]
     },
     "defaults": {
-      "variant": "default",
       "color": "gray",
-      "appearance": "solid",
+      "theme": "solid",
       "shape": "default",
-      "size": "md"
+      "size": "md",
+      "variant": "default"
     }
   },
   "card": {
@@ -336,7 +336,7 @@
         "white",
         "gradient-blue"
       ],
-      "appearance": [
+      "theme": [
         "solid",
         "outline",
         "soft"
@@ -356,7 +356,7 @@
     },
     "defaults": {
       "color": "gray",
-      "appearance": "outline",
+      "theme": "outline",
       "shape": "default",
       "size": "md"
     }
@@ -568,7 +568,7 @@
         "white",
         "gradient-blue"
       ],
-      "appearance": [
+      "theme": [
         "solid",
         "outline",
         "soft"
@@ -581,7 +581,7 @@
     },
     "defaults": {
       "color": "gray",
-      "appearance": "solid",
+      "theme": "solid",
       "size": "md"
     }
   }

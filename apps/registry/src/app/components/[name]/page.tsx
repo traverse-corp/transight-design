@@ -52,7 +52,7 @@ const ComponentPage = async ({ params }: PageProps) => {
       </section>
 
       <section>
-        <SectionTitle>Preview</SectionTitle>
+        <SectionTitle>Style</SectionTitle>
         <div className='border-cool-grey-04 rounded-lg border bg-white p-8'>
           <InteractivePreview name={item.name} />
         </div>

@@ -13,7 +13,7 @@ import { Button } from '@transight-design/ui/components/button'
 
 export const Preview = () => (
   <DropdownMenu>
-    <DropdownMenuTrigger render={<Button appearance="outline">메뉴 열기</Button>} />
+    <DropdownMenuTrigger render={<Button theme="outline">메뉴 열기</Button>} />
     <DropdownMenuContent className="w-48">
       <DropdownMenuLabel>계정</DropdownMenuLabel>
       <DropdownMenuSeparator />

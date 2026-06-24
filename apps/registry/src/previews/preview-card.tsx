@@ -14,7 +14,7 @@ export const Preview = () => (
     <PreviewCardTrigger
       render={
         <Button
-          appearance="soft"
+          theme="soft"
           className="h-auto bg-transparent p-0 hover:bg-transparent hover:underline"
         >
           마우스를 올려보세요

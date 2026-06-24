@@ -160,7 +160,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
 
 function CarouselPrevious({
   className,
-  appearance = 'outline',
+  theme = 'outline',
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
@@ -168,7 +168,7 @@ function CarouselPrevious({
   return (
     <Button
       data-slot="carousel-previous"
-      appearance={appearance}
+      theme={theme}
       className={cn(
         'absolute size-8 touch-manipulation rounded-full p-0',
         orientation === 'horizontal'
@@ -188,7 +188,7 @@ function CarouselPrevious({
 
 function CarouselNext({
   className,
-  appearance = 'outline',
+  theme = 'outline',
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { orientation, scrollNext, canScrollNext } = useCarousel()
@@ -196,7 +196,7 @@ function CarouselNext({
   return (
     <Button
       data-slot="carousel-next"
-      appearance={appearance}
+      theme={theme}
       className={cn(
         'absolute size-8 touch-manipulation rounded-full p-0',
         orientation === 'horizontal'

@@ -16,7 +16,7 @@ export const CopyButton: React.FC<{ text: string; className?: string }> = ({ tex
     setTimeout(() => setCopied(false), 1500)
   }
   return (
-    <Button appearance="soft" size="xs" className={className} onClick={handleCopy}>
+    <Button theme="soft" size="xs" className={className} onClick={handleCopy}>
       {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
     </Button>
   )

@@ -11,6 +11,11 @@ import { LabelVariantPresets } from './label-variant-presets'
 import { TooltipPreviewShell } from './tooltip-preview-shell'
 import { DialogPreviewShell } from './dialog-preview-shell'
 import { PreviewModePanel } from './preview-mode-panel'
+import { VariantBuilderModal } from './variant-builder-modal'
+import { Button } from '@transight-design/ui/components/button'
+
+/** 디자인 시스템 Style 4축 — 컨트롤 영역에서 우선 그룹으로 묶임 */
+const STYLE_AXES = new Set(['color', 'theme', 'shape', 'size'])
 
 interface VariantInfo {
   groups: Record<string, string[]>
@@ -25,7 +30,7 @@ interface InteractivePreviewProps {
 
 const GROUP_LABELS: Record<string, string> = {
   color: 'Color',
-  appearance: 'Appearance',
+  theme: 'Theme',
   shape: 'Shape',
   variant: 'Variant',
   size: 'Size',
@@ -172,42 +177,135 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
         }
       />
 
-      {info && (
-        <div className="border-cool-grey-04 flex flex-col gap-3 border-t pt-5">
-          {controlEntries.map(([groupName, values]) => (
-            <div key={groupName} className="flex flex-wrap items-center gap-2">
-              <span className="typo-sb12 text-cool-grey-07 w-16 shrink-0">
-                {GROUP_LABELS[groupName] ?? groupName}
-              </span>
-              <div className="flex flex-wrap gap-1">
-                {values.map((value) => {
-                  const active = selections[groupName] === value
-                  return (
-                    <button
-                      key={value}
-                      type="button"
-                      onClick={() => setSelections((prev) => ({ ...prev, [groupName]: value }))}
-                      className={
-                        active
-                          ? 'bg-cool-grey-09 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
-                          : 'text-cool-grey-07 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
-                      }
-                    >
-                      {value}
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
-          ))}
+      {info && <ControlGroupsPanel
+        entries={controlEntries}
+        selections={selections}
+        onChange={(groupName, value) =>
+          setSelections((prev) => ({ ...prev, [groupName]: value }))
+        }
+      />}
+
+      {/* Variant 섹션 — 모든 컴포넌트에 표시. preset 있으면 기존 패널, 없으면 생성기 버튼만. */}
+      <VariantSection
+        name={name}
+        presetVariants={presetVariants}
+        selections={selections}
+      />
+
+      {hasPropsDocs && <ComponentPropsDocs name={name} />}
+    </div>
+  )
+}
+
+interface ControlGroupsPanelProps {
+  entries: Array<[string, string[]]>
+  selections: Record<string, string>
+  onChange: (groupName: string, value: string) => void
+}
+
+/** Style 4축과 나머지 props 토글을 두 그룹 헤더로 분리해서 보여준다. */
+const ControlGroupsPanel = ({ entries, selections, onChange }: ControlGroupsPanelProps) => {
+  const styleEntries = entries.filter(([k]) => STYLE_AXES.has(k))
+  const otherEntries = entries.filter(([k]) => !STYLE_AXES.has(k))
+
+  const renderRow = ([groupName, values]: [string, string[]]) => (
+    <div key={groupName} className="flex flex-wrap items-center gap-2">
+      <span className="typo-sb12 text-cool-grey-07 w-16 shrink-0">
+        {GROUP_LABELS[groupName] ?? groupName}
+      </span>
+      <div className="flex flex-wrap gap-1">
+        {values.map((value) => {
+          const active = selections[groupName] === value
+          return (
+            <button
+              key={value}
+              type="button"
+              onClick={() => onChange(groupName, value)}
+              className={
+                active
+                  ? 'bg-cool-grey-09 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
+                  : 'text-cool-grey-07 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
+              }
+            >
+              {value}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="border-cool-grey-04 flex flex-col gap-5 border-t pt-5">
+      {styleEntries.length > 0 && (
+        <div className="flex flex-col gap-3">
+          <h4 className="typo-sb12 text-cool-grey-07 uppercase tracking-wide">Style</h4>
+          {styleEntries.map(renderRow)}
         </div>
       )}
+      {otherEntries.length > 0 && (
+        <div className="flex flex-col gap-3">
+          <h4 className="typo-sb12 text-cool-grey-07 uppercase tracking-wide">Props</h4>
+          {otherEntries.map(renderRow)}
+        </div>
+      )}
+    </div>
+  )
+}
 
-      {name === 'button' && presetVariants && <ButtonVariantPresets variants={presetVariants} />}
-      {name === 'badge' && presetVariants && <BadgeVariantPresets variants={presetVariants} />}
-      {name === 'input' && presetVariants && <InputVariantPresets variants={presetVariants} />}
-      {name === 'label' && presetVariants && <LabelVariantPresets variants={presetVariants} />}
-      {hasPropsDocs && <ComponentPropsDocs name={name} />}
+interface VariantSectionProps {
+  name: string
+  presetVariants?: string[]
+  selections: Record<string, string>
+}
+
+const toPascalCaseLocal = (value: string) =>
+  value
+    .split(/[-_\s]+/)
+    .filter(Boolean)
+    .map((part) => `${part[0]?.toUpperCase() ?? ''}${part.slice(1)}`)
+    .join('')
+
+const VariantSection = ({ name, presetVariants, selections }: VariantSectionProps) => {
+  const componentName = COMPONENT_LABELS[name] ?? toPascalCaseLocal(name)
+  // Variant 생성기에는 Style 4축만 baseline으로 넘긴다 (decorator 등 기타 prop은 제외).
+  const styleSelections = Object.fromEntries(
+    Object.entries(selections).filter(([k]) => STYLE_AXES.has(k))
+  )
+
+  const presetPanel =
+    name === 'button' && presetVariants ? (
+      <ButtonVariantPresets variants={presetVariants} />
+    ) : name === 'badge' && presetVariants ? (
+      <BadgeVariantPresets variants={presetVariants} />
+    ) : name === 'input' && presetVariants ? (
+      <InputVariantPresets variants={presetVariants} />
+    ) : name === 'label' && presetVariants ? (
+      <LabelVariantPresets variants={presetVariants} />
+    ) : null
+
+  return (
+    <div className="border-cool-grey-04 flex flex-col gap-4 border-t pt-5">
+      <div className="flex items-center justify-between">
+        <div>
+          <h3 className="typo-sb14 text-cool-grey-11">Variant</h3>
+          <p className="text-description mt-1">
+            {presetPanel
+              ? '미리 만들어 둔 Style 조합을 이름으로 호출하는 preset입니다.'
+              : '아직 등록된 variant가 없습니다. 현재 Style 토글 조합을 baseline으로 새 variant를 만들 수 있어요.'}
+          </p>
+        </div>
+        <VariantBuilderModal
+          componentName={componentName}
+          selections={styleSelections}
+          trigger={
+            <Button theme="outline" size="sm">
+              + Variant 추가
+            </Button>
+          }
+        />
+      </div>
+      {presetPanel}
     </div>
   )
 }
