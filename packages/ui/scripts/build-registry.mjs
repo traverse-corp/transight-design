@@ -369,15 +369,39 @@ const main = () => {
     }
   }
 
+  // ── 5c. AI Agent 가이드 (registry:item) ────────
+  // 사용자가 `npx ... add agent` 호출 시 AGENT.md를 프로젝트 루트에 떨어뜨림.
+  // AI 에이전트(Claude/Copilot 등)에게 "이 파일 먼저 읽어"로 가이드 제공.
+  const agentDir = join(SRC, 'agent')
+  const agentFile = join(agentDir, 'AGENT.md')
+  if (existsSync(agentFile)) {
+    items.push({
+      name: 'agent',
+      type: 'registry:item',
+      title: 'AI Agent 가이드',
+      description:
+        '디자인 시스템 사용 규칙 (Style/Variant/Props · 아이콘 · 임포트 경로) — AI 에이전트가 가장 먼저 읽고 따를 지시서',
+      files: [
+        {
+          path: relativeFrom(OUT, agentFile),
+          type: 'registry:file',
+          target: '~/transight-design.AGENT.md'
+        }
+      ]
+    })
+  }
+
   // ── 6. 필수 번들 (registry:item) ───────────────
+  // 핵심 컴포넌트 + AI Agent 가이드 — 첫 설치만으로 가이드도 함께 깔리게.
   items.push({
     name: 'essential',
     type: 'registry:item',
     title: 'Essential Pack',
-    description: '서비스 초기 구성에 필요한 핵심 UI 컴포넌트 묶음',
-    registryDependencies: ESSENTIAL_COMPONENTS.map(
-      (name) => `${REGISTRY_DEP_PREFIX}/${name}`
-    ).sort()
+    description: '서비스 초기 구성에 필요한 핵심 UI 컴포넌트 묶음 + AI Agent 가이드',
+    registryDependencies: [
+      ...ESSENTIAL_COMPONENTS.map((name) => `${REGISTRY_DEP_PREFIX}/${name}`),
+      `${REGISTRY_DEP_PREFIX}/agent`
+    ].sort()
   })
 
   // ── 7. 전체 번들 (registry:item) ───────────────

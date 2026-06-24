@@ -1,0 +1,223 @@
+# Transight Design System — AI Agent 지시서
+
+> 이 파일을 가장 먼저 읽고, 아래 규칙에 따라 코드를 작성한다.
+> 사용자가 "이 파일을 읽어"라고 명령하면 끝까지 정독한 뒤 작업을 시작한다.
+
+---
+
+## ROLE
+
+당신은 Transight 디자인 시스템(`@transight-design/*`)이 깔린 프로젝트에서 UI 코드를
+작성·수정한다. 모든 출력은 다음 규칙을 따라야 한다. 위반은 디자인 시스템 일관성을
+깨므로 거부하거나 자가 수정한다.
+
+---
+
+## 1. CSS 진입점 import 확인
+
+설치 직후 1회만. 진입 CSS에 다음이 들어있는지 확인하고, 없으면 추가한다.
+
+```css
+/* Vite — src/index.css */
+@import "./styles/index.css";
+
+/* Next.js App Router — app/globals.css */
+@import "../src/styles/index.css";
+```
+
+이 import가 빠지면 모든 컴포넌트의 색/타이포가 깨진다. **첫 작업 시 확인 필수**.
+
+설치된 스타일 폴더 구조 (`~/src/styles/`):
+
+| 파일 | 역할 |
+|---|---|
+| `index.css` | 진입점 — 아래 5종을 모두 import |
+| `tokens.css` | 색상 토큰 (cool-grey, primary-blue, ui-*) — Tailwind v4 @theme |
+| `typography.css` | `typo-*` 굵기 프리셋 + `text-*` 시맨틱 프리셋 |
+| `flex.css` | `flex-{justify}-{align}` 단축 유틸 |
+| `theme.css` | 시맨틱 매핑 / Base UI 변수 |
+| `font-suit.css` | SUIT Variable 폰트 페이스 |
+
+상세 규칙은 동일 위치에 함께 설치된 `~/src/styles/AGENT.md` (스타일 시스템 강제 규칙) 참고.
+
+---
+
+## 2. 컴포넌트 사용 — 임포트 경로
+
+설치된 컴포넌트는 카테고리별로 분리되어 떨어진다.
+
+```tsx
+// shadcn base 컴포넌트
+import { Button } from '@/components/base/button'
+import { Badge } from '@/components/base/badge'
+import { Input } from '@/components/base/input'
+import { Dialog, DialogPopup, DialogTitle } from '@/components/base/dialog'
+
+// traverse 자체 추가 (custom)
+import { ClickableTx } from '@/components/custom/clickable-tx'
+
+// 아이콘 시스템 (디렉토리가 따로 분리됨)
+import { Icon } from '@/icons/icon'
+import { IconSprite } from '@/icons/sprite.gen' // 앱 루트에 1회 마운트
+```
+
+**경로 규칙**:
+- 임의로 다른 경로 가정 금지 (`@/lib/components/...` 등 ❌). 위 세 위치만 사용.
+- 컴포넌트가 어디로 깔렸는지 모르면 `npx @transight-design/cli list`로 확인하거나, 사용자에게 어느 카테고리인지 묻는다.
+
+---
+
+## 3. 모든 컴포넌트의 3가지 prop 카테고리 (STYLE / VARIANT / PROPS)
+
+디자인 시스템 전 컴포넌트는 다음 세 그룹을 따른다.
+
+### A. STYLE props — 시각 4축
+
+| prop | 의미 | 값 |
+|---|---|---|
+| `color` | 색상 | `gray` / `blue` / `red` / `orange` / `yellow` / `olive` / `green` / `skyblue` / `purple` / `pink` / `white` / `gradient-blue` |
+| `theme` | 배색 (solid/outline/soft) | `solid` / `outline` / `soft` |
+| `shape` | 모서리 형태 | `default` / `pill` / `square` (일부) / `circle` (일부) |
+| `size` | 크기 단계 | `xs` / `sm` / `md` / `lg` / `xl` |
+
+**원칙**:
+- 색·모양·크기 변경은 **반드시 prop으로**. Tailwind 직접 클래스로 색을 박지 않는다.
+- raw hex (`#155dfc`, `text-[#000]`), Tailwind 기본 팔레트 (`text-blue-500`, `bg-gray-200`) **금지**.
+- 컴포넌트가 가진 축은 컴포넌트마다 다름. 없는 prop을 주면 무시되거나 컴파일 에러.
+
+✅ 좋은 예
+```tsx
+<Button color="red" theme="soft" shape="pill" size="sm">취소</Button>
+<Input shape="pill" size="lg" />
+<Checkbox color="green" size="md" />
+```
+
+❌ 나쁜 예
+```tsx
+<Button className="bg-red-500 text-white px-3">취소</Button>   // raw Tailwind
+<Button color="#ff0000">취소</Button>                          // raw hex
+<Input shape="rounded">                                        // 존재하지 않는 값
+```
+
+### B. VARIANT — Style 조합 preset
+
+자주 쓰는 Style 조합에 이름을 붙여둔 preset. 일부 컴포넌트(button/badge/input/label 등)에 존재.
+
+```tsx
+<Button variant="destructive">삭제</Button>    // color=red + theme=solid 와 동등
+<Button variant="success">완료</Button>        // color=green + theme=soft
+<Badge variant="vasp">VASP</Badge>             // 도메인 특화 preset
+```
+
+**규칙**:
+- 명시한 Style prop이 **항상 variant preset을 덮어쓴다**.
+  ```tsx
+  <Button variant="destructive" theme="outline">  // color=red(preset) + theme=outline(명시)
+  ```
+- 새 variant 추가는 컴포넌트 파일의 `<component>VariantPresets` 객체에 **한 줄만** 추가:
+  ```ts
+  // ~/src/components/base/button.tsx
+  const buttonVariantPresets = {
+    // ... 기존
+    'my-brand': { color: 'blue', theme: 'soft', shape: 'pill', size: 'md' }
+  } satisfies Record<string, ButtonPresetStyle>
+  ```
+  TypeScript의 variant union이 자동으로 확장됨.
+
+### C. PROPS — 그 외 컴포넌트 본질 prop
+
+`color`/`theme`/`shape`/`size`/`variant` 외 prop들. 컴포넌트마다 상이.
+
+| 컴포넌트 | 대표 PROPS |
+|---|---|
+| Input | `decorator` / `decoDir` / `onDecoratorClick` / `capsLockIndicator` |
+| Select | `decorator` |
+| Textarea | `maxLength` (자동 counter) |
+| Label | `requiredText` / `optionalText` |
+| Checkbox/Radio | `checked` / `onCheckedChange` / `indeterminate` |
+| Switch | `checked` / `onCheckedChange` |
+| Dialog | `from` (등장 방향) |
+| Tooltip | `side` / `align` / `sideOffset` |
+| 모든 입력 | `aria-invalid` (자동 빨간 border) |
+
+---
+
+## 4. 컴포넌트별 축 차이 — 빠르게 참고
+
+같은 prop 이름이라도 컴포넌트마다 일부 축이 없을 수 있다.
+
+| 컴포넌트 | color | theme | shape | size | variant |
+|---|---|---|---|---|---|
+| Button | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Badge | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Input |  |  | ✓ | ✓ | ✓ |
+| Textarea |  |  | ✓ | ✓ |  |
+| Label |  |  |  | ✓ | ✓ |
+| Checkbox | ✓ |  | ✓ | ✓ |  |
+| RadioGroup | ✓ |  | ✓ | ✓ |  |
+| Switch | ✓ |  | ✓ | ✓ |  |
+| Select | ✓ | ✓ | ✓ | ✓ |  |
+| Separator |  |  |  |  |  (별도 축: tone/thickness/orientation) |
+| Skeleton |  |  |  |  | ✓ (variant: rect/text/circle, animation) |
+| Spinner | ✓ |  |  | ✓ |  |
+| Tooltip | ✓ | ✓ |  | ✓ |  (TooltipContent에 적용) |
+| Dialog |  |  | ✓ | ✓ |  (DialogPopup에 적용) |
+
+---
+
+## 5. Icon 사용 — 두 시스템 역할 분리
+
+### 자체 Icon — 도메인 / 브랜드 시그니처
+traverse 서비스 특화 아이콘 (예: `ic-trace-bridge`, `ic-menu-txmap`, `ic-iaan-*`).
+```tsx
+import { Icon } from '@/icons/icon'
+
+<Icon src="ic-trace-bridge" color="primary-blue-1" size="md" />
+```
+
+규칙:
+- `src`는 ICON_NAMES union의 키만 (오타·없는 ID는 컴파일 에러)
+- `color`는 IconColor union의 토큰만 (raw hex / Tailwind 색 / 시맨틱 토큰 금지)
+- `size`는 `xs/sm/md/lg/xl` (12/14/16/20/24 px)
+- 인터랙티브 필요 시 button/a로 감쌈
+- `<IconSprite />`는 app/layout.tsx에 단 한 번만 마운트
+
+### lucide-react — 범용 UI 보조
+chevron / close (x) / check / arrow / 일반 검색 돋보기 등 어디서든 같은 의미.
+```tsx
+import { ChevronDown, X, Check, Search } from 'lucide-react'
+
+<ChevronDown className="h-4 w-4 text-cool-grey-08" />  // 색은 반드시 토큰 클래스
+```
+
+**금지**: heroicons / react-icons / 직접 inline SVG. 자체 Icon 또는 lucide 둘 중 하나만.
+
+상세 규칙: `~/src/icons/AGENT.md` (Icon System 강제 규칙) 참고.
+
+---
+
+## 6. SELF-CHECK — 코드 생성 직전 매번 확인
+
+- [ ] CSS 진입점(`@import "./styles/index.css"`) 들어가 있는가?
+- [ ] 임포트 경로가 `@/components/base/*` / `@/components/custom/*` / `@/icons/*` 중 하나인가?
+- [ ] 색 변경에 raw hex / Tailwind 기본 팔레트(`text-blue-500`)를 쓰지 않았는가?
+- [ ] Style prop이 컴포넌트가 실제로 지원하는 축인가?
+- [ ] 새 variant가 필요하면 `<component>VariantPresets` 객체에 한 줄 추가했는가?
+- [ ] Icon이 도메인 시그니처면 `<Icon>`, 범용 UI면 `lucide-react`를 썼는가?
+- [ ] `<IconSprite />`를 중복 마운트하지 않았는가?
+
+위 7개 중 하나라도 실패하면 출력을 수정한 뒤 다시 self-check.
+
+---
+
+## 7. 추가 / 업데이트
+
+- 새 컴포넌트 설치: `npx @transight-design/cli add <name>`
+- Essential 번들 설치: `npx @transight-design/cli add essential`
+- 카탈로그(미리보기 + Props docs): https://github.com/traverse-corp/transight-design
+
+레지스트리는 GitHub 메인을 따라가므로 새 컴포넌트·variant는 사용자가 다시 `add`만 호출하면 즉시 반영된다. (이미 설치된 파일은 `--overwrite`로 갱신)
+
+---
+
+문제 / 모호한 케이스는 사용자에게 묻는다. 디자인 시스템에 없는 색·아이콘·variant를 임의로 만들어내지 않는다.

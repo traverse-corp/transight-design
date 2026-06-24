@@ -735,6 +735,7 @@
       "description": "dialog 컴포넌트",
       "dependencies": [
         "@base-ui/react",
+        "class-variance-authority",
         "lucide-react",
         "motion"
       ],
@@ -1192,6 +1193,7 @@
       "description": "select 컴포넌트",
       "dependencies": [
         "@base-ui/react",
+        "class-variance-authority",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -1589,11 +1591,25 @@
       ]
     },
     {
+      "name": "agent",
+      "type": "registry:item",
+      "title": "AI Agent 가이드",
+      "description": "디자인 시스템 사용 규칙 (Style/Variant/Props · 아이콘 · 임포트 경로) — AI 에이전트가 가장 먼저 읽고 따를 지시서",
+      "files": [
+        {
+          "path": "src/agent/AGENT.md",
+          "type": "registry:file",
+          "target": "~/transight-design.AGENT.md"
+        }
+      ]
+    },
+    {
       "name": "essential",
       "type": "registry:item",
       "title": "Essential Pack",
-      "description": "서비스 초기 구성에 필요한 핵심 UI 컴포넌트 묶음",
+      "description": "서비스 초기 구성에 필요한 핵심 UI 컴포넌트 묶음 + AI Agent 가이드",
       "registryDependencies": [
+        "traverse-corp/transight-design/agent",
         "traverse-corp/transight-design/badge",
         "traverse-corp/transight-design/button",
         "traverse-corp/transight-design/checkbox",
@@ -1635,6 +1651,7 @@
         "traverse-corp/transight-design/SuspenseFallback",
         "traverse-corp/transight-design/TimePicker",
         "traverse-corp/transight-design/accordion",
+        "traverse-corp/transight-design/agent",
         "traverse-corp/transight-design/alert",
         "traverse-corp/transight-design/alert-dialog",
         "traverse-corp/transight-design/animated-beam",
