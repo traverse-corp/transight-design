@@ -1,6 +1,6 @@
 {
   "name": "@transight-design/cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Transight Design System CLI — thin wrapper around `shadcn`",
   "license": "MIT",
   "type": "module",
