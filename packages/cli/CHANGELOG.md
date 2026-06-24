@@ -1,5 +1,12 @@
 # @transight-design/cli
 
+## 0.2.1
+
+### Patch Changes
+
+- `variant add`가 transight-design monorepo dev 환경(`./packages/ui/src/components/<X>.tsx`)도
+  자동 탐색하도록 후보 경로 추가. 외부 사용자(shadcn install) 환경은 영향 없음.
+
 ## 0.2.0
 
 ### Minor Changes

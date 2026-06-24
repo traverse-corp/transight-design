@@ -22,7 +22,9 @@ interface VariantAddOptions {
 
 /**
  * 사용자 repo에서 `<component>.tsx` 파일 위치 탐색.
- * 기본 후보: `./src/components/base/<X>.tsx`, `./src/components/custom/<X>.tsx`.
+ * 기본 후보:
+ *   - shadcn install 결과: `./src/components/{base|custom}/<X>.tsx`
+ *   - transight-design monorepo dev: `./packages/ui/src/components/<X>.tsx`
  * --path 옵션으로 override 가능.
  */
 const resolveComponentPath = (component: string, override?: string): string | null => {
@@ -32,7 +34,8 @@ const resolveComponentPath = (component: string, override?: string): string | nu
   }
   const candidates = [
     join(process.cwd(), 'src', 'components', 'base', `${component}.tsx`),
-    join(process.cwd(), 'src', 'components', 'custom', `${component}.tsx`)
+    join(process.cwd(), 'src', 'components', 'custom', `${component}.tsx`),
+    join(process.cwd(), 'packages', 'ui', 'src', 'components', `${component}.tsx`)
   ]
   return candidates.find((p) => existsSync(p)) ?? null
 }
