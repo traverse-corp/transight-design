@@ -2,13 +2,46 @@
   "alert": {
     "groups": {
       "variant": [
+        "info",
+        "success",
+        "warning",
+        "error"
+      ],
+      "color": [
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
+      ],
+      "theme": [
+        "solid",
+        "outline",
+        "soft"
+      ],
+      "shape": [
         "default",
-        "destructive",
-        "alert"
+        "square"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
       ]
     },
     "defaults": {
-      "variant": "default"
+      "color": "gray",
+      "theme": "soft",
+      "shape": "default",
+      "size": "md",
+      "variant": "info"
     }
   },
   "AnimatedCheckbox": {
@@ -26,6 +59,25 @@
     "defaults": {
       "variant": "default",
       "size": "default"
+    }
+  },
+  "avatar": {
+    "groups": {
+      "size": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
+      "shape": [
+        "circle",
+        "square"
+      ]
+    },
+    "defaults": {
+      "size": "md",
+      "shape": "circle"
     }
   },
   "badge": {
@@ -125,13 +177,40 @@
   },
   "card": {
     "groups": {
-      "variant": [
+      "color": [
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
+      ],
+      "theme": [
+        "solid",
+        "outline",
+        "soft"
+      ],
+      "shape": [
         "default",
-        "glass"
+        "square"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
       ]
     },
     "defaults": {
-      "variant": "default"
+      "color": "white",
+      "theme": "outline",
+      "shape": "default",
+      "size": "md"
     }
   },
   "checkbox": {
@@ -488,13 +567,40 @@
   },
   "tabs": {
     "groups": {
-      "variant": [
-        "default",
+      "shape": [
+        "pill",
         "line"
+      ],
+      "theme": [
+        "solid",
+        "outline",
+        "soft"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "color": [
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
       ]
     },
     "defaults": {
-      "variant": "default"
+      "shape": "pill",
+      "theme": "solid",
+      "size": "md",
+      "color": "blue"
     }
   },
   "textarea": {

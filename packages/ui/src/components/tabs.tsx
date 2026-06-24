@@ -1,74 +1,137 @@
+import * as React from 'react'
 import { Tabs as TabsPrimitive } from '@base-ui/react/tabs'
 import { cva, type VariantProps } from 'class-variance-authority'
-
 import { cn } from '@/lib/utils'
 
-function Tabs({ className, orientation = 'horizontal', ...props }: TabsPrimitive.Root.Props) {
-  return (
-    <TabsPrimitive.Root
-      data-slot='tabs'
-      data-orientation={orientation}
-      className={cn('group/tabs flex gap-2 data-horizontal:flex-col', className)}
-      {...props}
-    />
-  )
+const Tabs = ({ className, orientation = 'horizontal', ...props }: TabsPrimitive.Root.Props) => (
+  <TabsPrimitive.Root
+    data-slot='tabs'
+    data-orientation={orientation}
+    className={cn(
+      'group/tabs flex w-full gap-2 data-[orientation=horizontal]:flex-col',
+      className
+    )}
+    {...props}
+  />
+)
+
+// 색은 12개 enum. 활성 색은 CSS 변수(--tab-active)에 토큰을 주입하고 trigger className이 var()로 참조.
+const TAB_COLOR_TOKEN: Record<string, string> = {
+  gray: 'var(--color-cool-grey-09)',
+  blue: 'var(--color-primary-blue-1)',
+  red: 'var(--color-ui-red)',
+  orange: 'var(--color-ui-orange)',
+  yellow: 'var(--color-ui-yellow)',
+  olive: 'var(--color-ui-olive)',
+  green: 'var(--color-ui-green)',
+  skyblue: 'var(--color-ui-skyblue)',
+  purple: 'var(--color-ui-purple)',
+  pink: 'var(--color-ui-pink)',
+  white: 'var(--color-cool-grey-09)',
+  'gradient-blue': 'var(--color-primary-blue-1)'
 }
 
-const tabsListVariants = cva(
-  'rounded-lg p-[3px] group-data-horizontal/tabs:h-9 data-[variant=line]:rounded-none group/tabs-list text-muted-foreground inline-flex w-fit items-center justify-center group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col',
+const tabsListClassVariants = cva(
+  'group/tabs-list inline-flex w-full items-center justify-start group-data-vertical/tabs:h-fit group-data-vertical/tabs:w-fit group-data-vertical/tabs:flex-col',
   {
     variants: {
-      variant: {
-        default: 'bg-muted',
-        line: 'gap-1 bg-transparent h-12'
+      shape: {
+        pill: 'bg-cool-grey-02 rounded-lg p-[3px]',
+        line: 'border-cool-grey-04 gap-1 border-b group-data-vertical/tabs:border-b-0 group-data-vertical/tabs:border-r'
+      },
+      theme: {
+        solid: '',
+        outline: '',
+        soft: ''
+      },
+      size: {
+        sm: 'h-8',
+        md: 'h-9',
+        lg: 'h-11'
+      },
+      color: {
+        gray: '',
+        blue: '',
+        red: '',
+        orange: '',
+        yellow: '',
+        olive: '',
+        green: '',
+        skyblue: '',
+        purple: '',
+        pink: '',
+        white: '',
+        'gradient-blue': ''
       }
     },
     defaultVariants: {
-      variant: 'default'
+      shape: 'pill',
+      theme: 'solid',
+      size: 'md',
+      color: 'blue'
     }
   }
 )
 
-function TabsList({
+type TabsListVariantProps = VariantProps<typeof tabsListClassVariants>
+type TabsListColor = NonNullable<TabsListVariantProps['color']>
+
+const TabsList = ({
   className,
-  variant = 'default',
+  shape,
+  theme,
+  size,
+  color,
+  style,
   ...props
-}: TabsPrimitive.List.Props & VariantProps<typeof tabsListVariants>) {
+}: TabsPrimitive.List.Props & TabsListVariantProps) => {
+  const resolvedColor: TabsListColor = color ?? 'blue'
   return (
     <TabsPrimitive.List
       data-slot='tabs-list'
-      data-variant={variant}
-      className={cn(tabsListVariants({ variant }), className)}
+      data-shape={shape ?? 'pill'}
+      data-theme={theme ?? 'solid'}
+      data-size={size ?? 'md'}
+      style={{
+        ['--tab-active' as string]: TAB_COLOR_TOKEN[resolvedColor] ?? TAB_COLOR_TOKEN.blue,
+        ...style
+      }}
+      className={cn(tabsListClassVariants({ shape, theme, size, color }), className)}
       {...props}
     />
   )
 }
 
-function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
-  return (
-    <TabsPrimitive.Tab
-      data-slot='tabs-trigger'
-      className={cn(
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring text-cool-grey-07 hover:text-primary-blue-1 dark:text-muted-foreground dark:hover:text-primary-blue-1 relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 font-medium whitespace-nowrap transition-all group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 group-data-[variant=default]/tabs-list:data-active:shadow-sm group-data-[variant=line]/tabs-list:data-active:shadow-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        'group-data-[variant=line]/tabs-list:data-active:text-primary-blue-1 group-data-[variant=line]/tabs-list:data-active:border-b-primary-blue-1 group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:rounded-none group-data-[variant=line]/tabs-list:data-active:border-b-2',
-        'data-active:bg-background dark:data-active:text-primary-blue-1 dark:data-active:border-input dark:data-active:bg-input/30 data-active:text-primary-blue-1 group-data-[variant=line]/tabs-list:data-active:bg-transparent',
-        'after:bg-foreground after:absolute after:opacity-0 after:transition-opacity group-data-horizontal/tabs:after:inset-x-0 group-data-horizontal/tabs:after:bottom-[-5px] group-data-horizontal/tabs:after:h-0.5 group-data-vertical/tabs:after:inset-y-0 group-data-vertical/tabs:after:-right-1 group-data-vertical/tabs:after:w-0.5',
-        'transition-all duration-200',
-        className
-      )}
-      {...props}
-    />
-  )
-}
+// trigger 활성 시각은 부모 TabsList의 data-shape × data-theme 조합에서 결정.
+// 활성 색은 --tab-active CSS 변수에서 읽음.
+const tabsTriggerClasses = cn(
+  'group-data-[size=sm]/tabs-list:typo-m12 group-data-[size=md]/tabs-list:typo-m13 group-data-[size=lg]/tabs-list:typo-m14',
+  'text-cool-grey-07 hover:text-cool-grey-11 disabled:opacity-50 disabled:pointer-events-none aria-disabled:opacity-50 aria-disabled:pointer-events-none',
+  'relative inline-flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap transition-colors group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start',
+  "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  // ── shape=pill 기본 형태 (theme 무관 공통) ─────────
+  'group-data-[shape=pill]/tabs-list:rounded-md group-data-[shape=pill]/tabs-list:px-3 group-data-[shape=pill]/tabs-list:py-1 group-data-[shape=pill]/tabs-list:border group-data-[shape=pill]/tabs-list:border-transparent',
+  // pill + solid: 활성 탭이 색으로 채워짐, 텍스트 흰색
+  'group-data-[shape=pill]/tabs-list:group-data-[theme=solid]/tabs-list:data-active:bg-[var(--tab-active)] group-data-[shape=pill]/tabs-list:group-data-[theme=solid]/tabs-list:data-active:text-white group-data-[shape=pill]/tabs-list:group-data-[theme=solid]/tabs-list:data-active:shadow-sm',
+  // pill + outline: 활성 탭 흰 배경 + 색 border + 색 텍스트
+  'group-data-[shape=pill]/tabs-list:group-data-[theme=outline]/tabs-list:data-active:bg-white group-data-[shape=pill]/tabs-list:group-data-[theme=outline]/tabs-list:data-active:border-[color:var(--tab-active)] group-data-[shape=pill]/tabs-list:group-data-[theme=outline]/tabs-list:data-active:text-[var(--tab-active)]',
+  // pill + soft: 활성 탭 흰 배경 + 색 텍스트 + 옅은 shadow
+  'group-data-[shape=pill]/tabs-list:group-data-[theme=soft]/tabs-list:data-active:bg-white group-data-[shape=pill]/tabs-list:group-data-[theme=soft]/tabs-list:data-active:text-[var(--tab-active)] group-data-[shape=pill]/tabs-list:group-data-[theme=soft]/tabs-list:data-active:shadow-sm',
+  // ── shape=line (theme 영향 없음) ─────────
+  'group-data-[shape=line]/tabs-list:px-3 group-data-[shape=line]/tabs-list:py-2 group-data-[shape=line]/tabs-list:-mb-px group-data-[shape=line]/tabs-list:border-b-2 group-data-[shape=line]/tabs-list:border-transparent',
+  'group-data-[shape=line]/tabs-list:data-active:text-[var(--tab-active)] group-data-[shape=line]/tabs-list:data-active:border-[color:var(--tab-active)]'
+)
 
-function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {
-  return (
-    <TabsPrimitive.Panel
-      data-slot='tabs-content'
-      className={cn('flex-1 text-sm outline-none', className)}
-      {...props}
-    />
-  )
-}
+const TabsTrigger = ({ className, ...props }: TabsPrimitive.Tab.Props) => (
+  <TabsPrimitive.Tab data-slot='tabs-trigger' className={cn(tabsTriggerClasses, className)} {...props} />
+)
 
-export { Tabs, TabsList, TabsTrigger, TabsContent, tabsListVariants }
+const TabsContent = ({ className, ...props }: TabsPrimitive.Panel.Props) => (
+  <TabsPrimitive.Panel
+    data-slot='tabs-content'
+    className={cn('text-cool-grey-09 typo-m14 flex-1 outline-none', className)}
+    {...props}
+  />
+)
+
+export { Tabs, TabsList, TabsTrigger, TabsContent, tabsListClassVariants }

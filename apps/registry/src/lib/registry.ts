@@ -160,8 +160,11 @@ export interface NavGroup {
  * URL로 직접 접근하면 다른 컴포넌트들도 볼 수 있다 (사이드바에서만 가림).
  */
 const VISIBLE_COMPONENTS: ReadonlySet<string> = new Set([
+  'alert',
+  'avatar',
   'badge',
   'button',
+  'card',
   'checkbox',
   'dialog',
   'input',
@@ -174,6 +177,7 @@ const VISIBLE_COMPONENTS: ReadonlySet<string> = new Set([
   'skeleton',
   'spinner',
   'switch',
+  'tabs',
   'textarea',
   'tooltip'
 ])

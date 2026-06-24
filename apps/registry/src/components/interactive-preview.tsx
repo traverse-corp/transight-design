@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { PREVIEWS, hasPreview, type PreviewComponent } from '@/previews'
 import variantsData from '@/data/variants.json'
+import { AlertVariantPresets } from './alert-variant-presets'
 import { BadgeVariantPresets } from './badge-variant-presets'
 import { ButtonVariantPresets } from './button-variant-presets'
 import { ComponentPropsDocs, hasVisiblePropsDocs } from './component-props-docs'
@@ -14,8 +15,12 @@ import { VariantBuilderModal } from './variant-builder-modal'
 import { SectionTitle, SectionCard } from './section-title'
 import { Button } from '@transight-design/ui/components/button'
 
-/** 디자인 시스템 Style 4축 — 컨트롤 영역에서 우선 그룹으로 묶임 */
-const STYLE_AXES = new Set(['color', 'theme', 'shape', 'size'])
+/**
+ * 디자인 시스템 Style 4축 + variant 구조 enum — 컨트롤 영역에서 STYLE 카드 토글로 노출.
+ * variant는 button/badge/label/alert에서는 preset alias (별도 Variant 카드)지만,
+ * 그 외 컴포넌트(tabs 등)에선 시각 구조 enum이라 STYLE 카드 토글로 같이 노출.
+ */
+const STYLE_AXES = new Set(['color', 'theme', 'shape', 'size', 'variant'])
 
 interface VariantInfo {
   groups: Record<string, string[]>
@@ -107,7 +112,8 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
     getDefaultSelections(name, info)
   )
   const entries = Object.entries(info?.groups ?? {})
-  const hasVariantPresets = name === 'button' || name === 'badge' || name === 'label'
+  const hasVariantPresets =
+    name === 'button' || name === 'badge' || name === 'label' || name === 'alert'
   // Props 카드는 hasVisiblePropsDocs(name)로 사전 판단 — 빈 entry면 섹션 자체가 안 그려진다.
   const controlEntries: Array<[string, string[]]> =
     name === 'input'
@@ -291,6 +297,8 @@ const VariantSection = ({ name, presetVariants, selections }: VariantSectionProp
       <BadgeVariantPresets variants={presetVariants} />
     ) : name === 'label' && presetVariants ? (
       <LabelVariantPresets variants={presetVariants} />
+    ) : name === 'alert' && presetVariants ? (
+      <AlertVariantPresets variants={presetVariants} />
     ) : null
 
   return (
