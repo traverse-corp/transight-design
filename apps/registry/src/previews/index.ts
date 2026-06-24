@@ -39,6 +39,7 @@ import { Preview as LabelPreview } from './label'
 import { Preview as NoItemPreview } from './NoItem'
 import { Preview as PaginationPreview } from './pagination'
 import { Preview as PaginationsPreview } from './Paginations'
+import { Preview as PasswordInputPreview } from './password-input'
 import { Preview as PopoverPreview } from './popover'
 import { Preview as PreviewCardPreview } from './preview-card'
 import { Preview as RadioGroupPreview } from './radio-group'
@@ -46,6 +47,7 @@ import { Preview as RadioButtonPreview } from './RadioButton'
 import { Preview as ResizablePreview } from './resizable'
 import { Preview as ScrollAreaPreview } from './scroll-area'
 import { Preview as SearchBarPreview } from './SearchBar'
+import { Preview as SearchInputPreview } from './search-input'
 import { Preview as SelectPreview } from './select'
 import { Preview as SeparatorPreview } from './separator'
 import { Preview as SheetPreview } from './sheet'
@@ -112,6 +114,7 @@ export const PREVIEWS: Record<string, PreviewComponent> = {
   NoItem: NoItemPreview,
   pagination: PaginationPreview,
   Paginations: PaginationsPreview,
+  'password-input': PasswordInputPreview,
   popover: PopoverPreview,
   'preview-card': PreviewCardPreview,
   'radio-group': RadioGroupPreview,
@@ -119,6 +122,7 @@ export const PREVIEWS: Record<string, PreviewComponent> = {
   resizable: ResizablePreview,
   'scroll-area': ScrollAreaPreview,
   SearchBar: SearchBarPreview,
+  'search-input': SearchInputPreview,
   select: SelectPreview,
   separator: SeparatorPreview,
   sheet: SheetPreview,

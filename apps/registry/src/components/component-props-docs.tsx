@@ -88,53 +88,41 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
   ],
   input: [
     {
-      name: 'variant',
-      type: "'default' | 'search' | 'password'",
-      defaultValue: "'default'",
-      description:
-        '자주 쓰는 input 조합을 preset으로 호출합니다. search는 pill + 시작 decorator(검색 아이콘), password는 type=password + Caps Lock 인디케이터를 자동 적용합니다.'
-    },
-    {
-      name: 'shape',
-      type: "'default' | 'pill' | 'square'",
-      defaultValue: "'default'",
-      description: '모서리 형태를 결정합니다. preset의 shape보다 우선합니다.'
-    },
-    {
-      name: 'size',
-      type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
-      defaultValue: "'md'",
-      description: 'input 높이, 패딩, 텍스트 크기를 결정합니다.'
-    },
-    {
       name: 'decorator',
       type: 'React.ReactNode',
-      description:
-        'input 앞/뒤에 붙일 컴포넌트(아이콘 등). preset의 decorator를 덮어씁니다. 미지정 시 preset 기본값이 사용됩니다.'
+      description: 'input 앞/뒤에 붙일 컴포넌트(아이콘 등). decoDir로 위치 지정.'
     },
     {
       name: 'decoDir',
       type: "'start' | 'end'",
       defaultValue: "'start'",
-      description: 'decorator가 붙는 방향을 결정합니다.'
+      description: 'decorator가 붙는 방향.'
     },
     {
       name: 'onDecoratorClick',
       type: '(e: MouseEvent<HTMLButtonElement>) => void',
       description:
-        '지정 시 decorator wrapper가 button으로 렌더되어 클릭 가능해집니다. 검색 실행, 비밀번호 보기 토글 등 input 옆 액션 트리거에 사용합니다.'
+        '지정 시 decorator wrapper가 button으로 렌더되어 클릭 가능. 검색/clear 등 input 옆 액션 트리거에 사용.'
+    }
+  ],
+  'search-input': [
+    {
+      name: 'shape',
+      type: "'default' | 'pill' | 'square'",
+      defaultValue: "'pill'",
+      description: '모서리 형태. 기본 pill (Input의 default와 다름).'
     },
     {
-      name: 'capsLockIndicator',
-      type: 'boolean | React.ReactNode',
-      description:
-        'Caps Lock 활성 시 표시 여부/내용. password preset에서 기본 활성. false면 숨김, ReactNode면 커스텀 인디케이터로 교체.'
+      name: 'size',
+      type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+      defaultValue: "'md'",
+      description: 'input 크기. Input과 동일.'
     },
     {
-      name: 'aria-invalid',
-      type: 'boolean',
+      name: 'onSearch',
+      type: '(value: string) => void',
       description:
-        '에러 표시 트리거. true면 wrapper border가 자동으로 빨간색이 됩니다. 별도 error prop 없이 표준 a11y 속성을 사용합니다.'
+        '검색 액션. Search 아이콘 클릭 또는 Enter 입력 시 호출. controlled value는 호출자가 관리.'
     }
   ],
   dialog: [
@@ -150,21 +138,6 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
       type: "'default' | 'square'",
       defaultValue: "'default'",
       description: 'default(rounded-lg) / square(rounded-none). DialogPopup에 전달.'
-    },
-    {
-      name: 'open',
-      type: 'boolean',
-      description: 'controlled open 상태. onOpenChange와 함께 사용. Dialog root에 전달.'
-    },
-    {
-      name: 'defaultOpen',
-      type: 'boolean',
-      description: 'uncontrolled 초기 open 상태.'
-    },
-    {
-      name: 'onOpenChange',
-      type: '(open: boolean) => void',
-      description: 'open 상태 변경 콜백.'
     },
     {
       name: 'from',
@@ -283,11 +256,6 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
           type: 'React.ReactNode',
           description:
             'trigger 시작 위치(왼쪽)에 표시할 데코레이터. 보통 아이콘. 위치는 항상 start (chevron이 end를 차지하므로 end는 안 받음).'
-        },
-        {
-          name: 'aria-invalid',
-          type: 'boolean',
-          description: '에러 표시 트리거. true면 border가 자동으로 빨간색이 됩니다.'
         }
       ]
     },
@@ -330,11 +298,6 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
           name: 'value',
           type: 'string',
           description: '아이템 선택 시 form value로 들어가는 값. 필수.'
-        },
-        {
-          name: 'disabled',
-          type: 'boolean',
-          description: '비활성. 클릭 안 되고 opacity 50%.'
         }
       ]
     }
@@ -396,129 +359,13 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
       description: 'thin(1px) / medium(2px) / thick(4px). 보통 thin이 충분.'
     }
   ],
-  switch: [
-    {
-      name: 'color',
-      type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
-      defaultValue: "'blue'",
-      description:
-        'on 상태일 때 track 색을 결정합니다. Button의 solid 색상 시스템과 동일한 12색. off 상태는 cool-grey-05 고정.'
-    },
-    {
-      name: 'shape',
-      type: "'default' | 'square'",
-      defaultValue: "'default'",
-      description:
-        'default(rounded-full pill) / square(rounded-md). switch는 본질적으로 pill이라 두 형태만 의미 있음.'
-    },
-    {
-      name: 'size',
-      type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
-      defaultValue: "'md'",
-      description:
-        'track width/height + thumb 크기 + on/off translate 거리를 함께 결정합니다.'
-    },
-    {
-      name: 'checked',
-      type: 'boolean',
-      description: '현재 on/off 상태 (controlled). onCheckedChange와 함께 사용.'
-    },
-    {
-      name: 'onCheckedChange',
-      type: '(checked: boolean) => void',
-      description: '상태 변경 콜백.'
-    },
-    {
-      name: 'disabled',
-      type: 'boolean',
-      description: 'true면 클릭 비활성 + opacity 40%.'
-    }
-  ],
-  'radio-group': [
-    {
-      name: 'color',
-      type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
-      defaultValue: "'blue'",
-      description:
-        '선택된 radio의 ring(테두리) + inner dot 색을 결정합니다. Button의 solid 색상 시스템과 동일한 12색.'
-    },
-    {
-      name: 'shape',
-      type: "'circle' | 'square'",
-      defaultValue: "'circle'",
-      description: 'circle(rounded-full) / square(rounded-none). radio는 본질적으로 원형이라 두 형태만 의미 있음.'
-    },
-    {
-      name: 'size',
-      type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
-      defaultValue: "'md'",
-      description: 'radio 크기 — 14/16/18/22/26px 정사각형. inner dot도 함께 스케일.'
-    },
-    {
-      name: 'value',
-      type: 'string',
-      description: '현재 선택된 값 (controlled). onValueChange와 함께 사용.'
-    },
-    {
-      name: 'defaultValue',
-      type: 'string',
-      description: '초기 선택 값 (uncontrolled).'
-    },
-    {
-      name: 'onValueChange',
-      type: '(value: string) => void',
-      description: '선택 변경 콜백.'
-    },
-    {
-      name: 'disabled',
-      type: 'boolean',
-      description: 'true면 그룹 내 모든 radio 비활성.'
-    }
-  ],
+  // switch: Style 4축 외 특이 prop 없음 — entry 자체 생략 (Props 섹션 안 그려짐)
+  // radio-group: Style 4축 + 표준 form 패턴(value/defaultValue/onValueChange/disabled)만 — entry 생략
   checkbox: [
-    {
-      name: 'color',
-      type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
-      defaultValue: "'blue'",
-      description:
-        '체크된 상태의 배경/border 색을 결정합니다. Button의 solid 색상 시스템과 동일한 12색.'
-    },
-    {
-      name: 'shape',
-      type: "'default' | 'square' | 'circle'",
-      defaultValue: "'default'",
-      description: 'default(rounded-sm) / square(rounded-none) / circle(rounded-full) 모서리 형태.'
-    },
-    {
-      name: 'size',
-      type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
-      defaultValue: "'md'",
-      description: 'checkbox 크기 — 14/16/18/22/26px 정사각형. indicator도 같이 스케일됩니다.'
-    },
-    {
-      name: 'checked',
-      type: 'boolean',
-      description: 'controlled 체크 상태. onCheckedChange와 함께 사용.'
-    },
-    {
-      name: 'defaultChecked',
-      type: 'boolean',
-      description: 'uncontrolled 초기 체크 상태.'
-    },
     {
       name: 'indeterminate',
       type: 'boolean',
       description: 'true면 가운데 가로줄(─) indicator로 부분 선택 상태 표시. 체크 색상도 함께 발동.'
-    },
-    {
-      name: 'onCheckedChange',
-      type: '(checked: boolean) => void',
-      description: '체크 상태 변경 콜백.'
-    },
-    {
-      name: 'disabled',
-      type: 'boolean',
-      description: 'true면 클릭 비활성 + opacity 50%.'
     }
   ],
   textarea: [
@@ -539,11 +386,6 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
       type: 'number',
       description:
         '지정 시 우측 하단에 자동 counter(현재길이/maxLength) 표시. 값이 controlled(value)일 때만 길이가 정확합니다.'
-    },
-    {
-      name: 'aria-invalid',
-      type: 'boolean',
-      description: '에러 표시 트리거. true면 border가 자동으로 빨간색이 됩니다.'
     }
   ],
   label: [
@@ -618,37 +460,59 @@ const PropsTable = ({ props }: { props: PropDoc[] }) => (
   </div>
 )
 
+/** Style 카드 / Variant 카드에서 이미 노출되는 prop은 Props 표에서 제외 */
+const STYLE_PROP_NAMES = new Set(['color', 'theme', 'shape', 'size', 'variant'])
+
+const stripStyleProps = (props: PropDoc[]): PropDoc[] =>
+  props.filter((p) => !STYLE_PROP_NAMES.has(p.name))
+
+/** 사전 검사 — ComponentPropsDocs가 실제로 비어있지 않은 표를 그릴지 미리 판단 */
+export const hasVisiblePropsDocs = (name: string): boolean => {
+  const entry = PROPS_DOCS[name]
+  if (!entry || entry.length === 0) return false
+  if (isPropGroups(entry)) {
+    return entry.some((g) => stripStyleProps(g.props).length > 0)
+  }
+  return stripStyleProps(entry).length > 0
+}
+
 export const ComponentPropsDocs = ({ name }: { name: string }) => {
   const entry = PROPS_DOCS[name]
 
   if (!entry || entry.length === 0) return null
 
-  return (
-    <div className="border-cool-grey-04 flex flex-col gap-3 border-t pt-5">
-      <div>
-        <h3 className="typo-sb14 text-cool-grey-11">Props</h3>
-        <p className="text-description mt-1">
-          자주 조합하는 스타일은 variant로 묶고, 세부 조정은 아래 props로 직접 제어합니다.
-        </p>
-      </div>
-
-      {isPropGroups(entry) ? (
-        <div className="flex flex-col gap-5">
-          {entry.map((group) => (
-            <div key={group.title} className="flex flex-col gap-2">
-              <div>
-                <h4 className="typo-sb13 text-cool-grey-11">{group.title}</h4>
-                {group.description && (
-                  <p className="text-description mt-0.5">{group.description}</p>
-                )}
+  if (isPropGroups(entry)) {
+    const filteredGroups = entry
+      .map((g) => ({ ...g, props: stripStyleProps(g.props) }))
+      .filter((g) => g.props.length > 0)
+    if (filteredGroups.length === 0) return null
+    return (
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-8">
+          {filteredGroups.map((group, idx) => (
+            <div
+              key={group.title}
+              className={
+                idx > 0
+                  ? 'border-cool-grey-04 flex flex-col gap-3 border-t pt-8'
+                  : 'flex flex-col gap-3'
+              }
+            >
+              <div className="flex items-baseline gap-3">
+                <span className="bg-primary-blue-1 inline-block h-3.5 w-1 rounded-sm" />
+                <h4 className="typo-b16 text-cool-grey-11">{group.title}</h4>
               </div>
+              {group.description && <p className="text-description -mt-1">{group.description}</p>}
               <PropsTable props={group.props} />
             </div>
           ))}
         </div>
-      ) : (
-        <PropsTable props={entry} />
-      )}
-    </div>
-  )
+      </div>
+    )
+  }
+
+  const filtered = stripStyleProps(entry)
+  if (filtered.length === 0) return null
+
+  return <PropsTable props={filtered} />
 }

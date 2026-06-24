@@ -5,13 +5,13 @@ import { PREVIEWS, hasPreview, type PreviewComponent } from '@/previews'
 import variantsData from '@/data/variants.json'
 import { BadgeVariantPresets } from './badge-variant-presets'
 import { ButtonVariantPresets } from './button-variant-presets'
-import { ComponentPropsDocs } from './component-props-docs'
-import { InputVariantPresets } from './input-variant-presets'
+import { ComponentPropsDocs, hasVisiblePropsDocs } from './component-props-docs'
 import { LabelVariantPresets } from './label-variant-presets'
 import { TooltipPreviewShell } from './tooltip-preview-shell'
 import { DialogPreviewShell } from './dialog-preview-shell'
 import { PreviewModePanel } from './preview-mode-panel'
 import { VariantBuilderModal } from './variant-builder-modal'
+import { SectionTitle, SectionCard } from './section-title'
 import { Button } from '@transight-design/ui/components/button'
 
 /** 디자인 시스템 Style 4축 — 컨트롤 영역에서 우선 그룹으로 묶임 */
@@ -57,8 +57,8 @@ const toPascalCase = (value: string) =>
 const getDefaultSelections = (name: string, info?: VariantInfo) => {
   if (!info) return {}
   if (name === 'input') {
-    const { variant: _variant, decoDir: _decoDir, ...defaults } = info.defaults
-    return { ...defaults, decorator: 'none' }
+    // decorator는 합성 토글 (off/on), decoDir은 cva entries 그대로
+    return { ...info.defaults, decorator: 'off' }
   }
 
   if (!['button', 'badge'].includes(name)) return info.defaults
@@ -89,9 +89,7 @@ const getPreviewCode = (
   }
 
   const propEntries = Object.keys(groups)
-    .filter(
-      (groupName) => !(['button', 'badge', 'input'].includes(name) && groupName === 'variant')
-    )
+    .filter((groupName) => !(['button', 'badge'].includes(name) && groupName === 'variant'))
     .map((groupName) => [groupName, selections[groupName]] as const)
     .filter(([, value]) => Boolean(value))
 
@@ -109,27 +107,13 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
     getDefaultSelections(name, info)
   )
   const entries = Object.entries(info?.groups ?? {})
-  const hasVariantPresets =
-    name === 'button' || name === 'badge' || name === 'input' || name === 'label'
-  // ComponentPropsDocs를 렌더할 컴포넌트 목록 — variant preset이 없어도 props docs는
-  // 있을 수 있음 (textarea처럼 shape/size만 가진 컴포넌트)
-  const hasPropsDocs =
-    hasVariantPresets ||
-    name === 'textarea' ||
-    name === 'checkbox' ||
-    name === 'radio-group' ||
-    name === 'switch' ||
-    name === 'separator' ||
-    name === 'skeleton' ||
-    name === 'spinner' ||
-    name === 'tooltip' ||
-    name === 'dialog' ||
-    name === 'select'
+  const hasVariantPresets = name === 'button' || name === 'badge' || name === 'label'
+  // Props 카드는 hasVisiblePropsDocs(name)로 사전 판단 — 빈 entry면 섹션 자체가 안 그려진다.
   const controlEntries: Array<[string, string[]]> =
     name === 'input'
       ? [
-          ...entries.filter(([groupName]) => groupName !== 'variant' && groupName !== 'decoDir'),
-          ['decorator', ['none', 'start', 'end']]
+          ...entries.filter(([groupName]) => groupName !== 'variant'),
+          ['decorator', ['off', 'on']]
         ]
       : name === 'select'
         ? [...entries, ['decorator', ['off', 'on']]]
@@ -148,110 +132,137 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
   }
 
   // tooltip / dialog는 compound 컴포넌트라 Trigger/Content 두 element로 props가 갈라짐.
-  // 자체 shell에서 탭 분리 + 자체 컨트롤을 모두 처리한다.
+  // 자체 shell이 Style 영역을 담당. Variant / Props 섹션은 일반 컴포넌트와 동일.
+  const variantNodeShared =
+    presetVariants && presetVariants.length > 0 ? (
+      <VariantSection name={name} presetVariants={presetVariants} selections={selections} />
+    ) : null
+
   if (name === 'tooltip') {
     return (
-      <div className="flex flex-col gap-5">
-        <TooltipPreviewShell />
-        {hasPropsDocs && <ComponentPropsDocs name={name} />}
-      </div>
+      <ThreeSectionLayout
+        styleNode={<TooltipPreviewShell />}
+        variantNode={variantNodeShared}
+        propsNode={hasVisiblePropsDocs(name) ? <ComponentPropsDocs name={name} /> : null}
+      />
     )
   }
   if (name === 'dialog') {
     return (
-      <div className="flex flex-col gap-5">
-        <DialogPreviewShell />
-        {hasPropsDocs && <ComponentPropsDocs name={name} />}
-      </div>
+      <ThreeSectionLayout
+        styleNode={<DialogPreviewShell />}
+        variantNode={variantNodeShared}
+        propsNode={hasVisiblePropsDocs(name) ? <ComponentPropsDocs name={name} /> : null}
+      />
     )
   }
 
+  // STYLE 카드 토글은 4축(color/theme/shape/size)만. 그 외 props는 PROPS 카드 표에 텍스트로만.
+  const styleEntries = controlEntries.filter(([k]) => STYLE_AXES.has(k))
+  const onSelectionChange = (groupName: string, value: string) =>
+    setSelections((prev) => ({ ...prev, [groupName]: value }))
+
   return (
-    <div className="flex flex-col gap-5">
-      <PreviewModePanel
-        code={getPreviewCode(name, selections, controlGroups)}
-        preview={
-          <div className="flex min-h-40 items-center justify-center">
-            <Preview selections={selections} />
-          </div>
-        }
-      />
-
-      {info && <ControlGroupsPanel
-        entries={controlEntries}
-        selections={selections}
-        onChange={(groupName, value) =>
-          setSelections((prev) => ({ ...prev, [groupName]: value }))
-        }
-      />}
-
-      {/* Variant 섹션 — 모든 컴포넌트에 표시. preset 있으면 기존 패널, 없으면 생성기 버튼만. */}
-      <VariantSection
-        name={name}
-        presetVariants={presetVariants}
-        selections={selections}
-      />
-
-      {hasPropsDocs && <ComponentPropsDocs name={name} />}
-    </div>
+    <ThreeSectionLayout
+      styleNode={
+        <>
+          <PreviewModePanel
+            code={getPreviewCode(name, selections, controlGroups)}
+            preview={
+              <div className="flex min-h-40 items-center justify-center">
+                <Preview selections={selections} />
+              </div>
+            }
+          />
+          {styleEntries.length > 0 && (
+            <ControlRowsPanel
+              entries={styleEntries}
+              selections={selections}
+              onChange={onSelectionChange}
+            />
+          )}
+        </>
+      }
+      variantNode={
+        presetVariants && presetVariants.length > 0 ? (
+          <VariantSection name={name} presetVariants={presetVariants} selections={selections} />
+        ) : null
+      }
+      propsNode={hasVisiblePropsDocs(name) ? <ComponentPropsDocs name={name} /> : null}
+    />
   )
 }
 
-interface ControlGroupsPanelProps {
+interface ThreeSectionLayoutProps {
+  styleNode: React.ReactNode
+  variantNode: React.ReactNode
+  propsNode: React.ReactNode
+}
+
+const VARIANT_DESCRIPTION =
+  '미리 만들어 둔 Style 4축(color/theme/shape/size) 조합을 이름으로 호출하는 preset. 명시한 Style prop이 항상 preset을 덮어쓴다.'
+
+/** Style / Variant / Props 세 섹션을 각자 SectionTitle + SectionCard로 묶음. null 노드는 섹션 통째로 생략. */
+const ThreeSectionLayout = ({ styleNode, variantNode, propsNode }: ThreeSectionLayoutProps) => (
+  <div className="flex flex-col gap-10">
+    <section>
+      <SectionTitle>Style</SectionTitle>
+      <SectionCard>
+        <div className="flex flex-col gap-5">{styleNode}</div>
+      </SectionCard>
+    </section>
+    {variantNode && (
+      <section>
+        <SectionTitle description={VARIANT_DESCRIPTION}>Variant</SectionTitle>
+        <SectionCard>{variantNode}</SectionCard>
+      </section>
+    )}
+    {propsNode && (
+      <section>
+        <SectionTitle>Props</SectionTitle>
+        <SectionCard>{propsNode}</SectionCard>
+      </section>
+    )}
+  </div>
+)
+
+interface ControlRowsPanelProps {
   entries: Array<[string, string[]]>
   selections: Record<string, string>
   onChange: (groupName: string, value: string) => void
 }
 
-/** Style 4축과 나머지 props 토글을 두 그룹 헤더로 분리해서 보여준다. */
-const ControlGroupsPanel = ({ entries, selections, onChange }: ControlGroupsPanelProps) => {
-  const styleEntries = entries.filter(([k]) => STYLE_AXES.has(k))
-  const otherEntries = entries.filter(([k]) => !STYLE_AXES.has(k))
-
-  const renderRow = ([groupName, values]: [string, string[]]) => (
-    <div key={groupName} className="flex flex-wrap items-center gap-2">
-      <span className="typo-sb12 text-cool-grey-07 w-16 shrink-0">
-        {GROUP_LABELS[groupName] ?? groupName}
-      </span>
-      <div className="flex flex-wrap gap-1">
-        {values.map((value) => {
-          const active = selections[groupName] === value
-          return (
-            <button
-              key={value}
-              type="button"
-              onClick={() => onChange(groupName, value)}
-              className={
-                active
-                  ? 'bg-cool-grey-09 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
-                  : 'text-cool-grey-07 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
-              }
-            >
-              {value}
-            </button>
-          )
-        })}
+/** 토글 컨트롤 행들을 위쪽 구분선 + 세로 정렬로 보여준다. Style/Props 카드에서 공통 사용. */
+const ControlRowsPanel = ({ entries, selections, onChange }: ControlRowsPanelProps) => (
+  <div className="border-cool-grey-04 flex flex-col gap-3 border-t pt-5">
+    {entries.map(([groupName, values]) => (
+      <div key={groupName} className="flex flex-wrap items-center gap-2">
+        <span className="typo-sb12 text-cool-grey-07 w-16 shrink-0">
+          {GROUP_LABELS[groupName] ?? groupName}
+        </span>
+        <div className="flex flex-wrap gap-1">
+          {values.map((value) => {
+            const active = selections[groupName] === value
+            return (
+              <button
+                key={value}
+                type="button"
+                onClick={() => onChange(groupName, value)}
+                className={
+                  active
+                    ? 'bg-cool-grey-09 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
+                    : 'text-cool-grey-07 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
+                }
+              >
+                {value}
+              </button>
+            )
+          })}
+        </div>
       </div>
-    </div>
-  )
-
-  return (
-    <div className="border-cool-grey-04 flex flex-col gap-5 border-t pt-5">
-      {styleEntries.length > 0 && (
-        <div className="flex flex-col gap-3">
-          <h4 className="typo-sb12 text-cool-grey-07 uppercase tracking-wide">Style</h4>
-          {styleEntries.map(renderRow)}
-        </div>
-      )}
-      {otherEntries.length > 0 && (
-        <div className="flex flex-col gap-3">
-          <h4 className="typo-sb12 text-cool-grey-07 uppercase tracking-wide">Props</h4>
-          {otherEntries.map(renderRow)}
-        </div>
-      )}
-    </div>
-  )
-}
+    ))}
+  </div>
+)
 
 interface VariantSectionProps {
   name: string
@@ -278,34 +289,24 @@ const VariantSection = ({ name, presetVariants, selections }: VariantSectionProp
       <ButtonVariantPresets variants={presetVariants} />
     ) : name === 'badge' && presetVariants ? (
       <BadgeVariantPresets variants={presetVariants} />
-    ) : name === 'input' && presetVariants ? (
-      <InputVariantPresets variants={presetVariants} />
     ) : name === 'label' && presetVariants ? (
       <LabelVariantPresets variants={presetVariants} />
     ) : null
 
   return (
-    <div className="border-cool-grey-04 flex flex-col gap-4 border-t pt-5">
-      <div className="flex items-center justify-between">
-        <div>
-          <h3 className="typo-sb14 text-cool-grey-11">Variant</h3>
-          <p className="text-description mt-1">
-            {presetPanel
-              ? '미리 만들어 둔 Style 조합을 이름으로 호출하는 preset입니다.'
-              : '아직 등록된 variant가 없습니다. 현재 Style 토글 조합을 baseline으로 새 variant를 만들 수 있어요.'}
-          </p>
-        </div>
+    <div className="flex flex-col gap-5">
+      {presetPanel}
+      <div className="flex items-center justify-end">
         <VariantBuilderModal
           componentName={componentName}
           selections={styleSelections}
           trigger={
-            <Button theme="outline" size="sm">
+            <Button theme="outline" size="xs">
               + Variant 추가
             </Button>
           }
         />
       </div>
-      {presetPanel}
     </div>
   )
 }

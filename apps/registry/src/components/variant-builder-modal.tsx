@@ -24,17 +24,28 @@ interface VariantBuilderModalProps {
 
 const STYLE_AXES = ['color', 'theme', 'shape', 'size'] as const
 
-/** 셸 한 줄 명령으로 빌드 — AI 무관, 사용자가 직접 실행하거나 AI에 위임 */
+/**
+ * 셸 명령으로 빌드 — AI 무관, 사용자가 직접 실행하거나 AI에 위임.
+ * 가독성과 popup 폭 안전을 위해 한 줄당 하나의 옵션으로 줄바꿈 (POSIX 백슬래시).
+ */
 const buildCliCommand = (
   componentName: string,
   variantName: string,
   selections: Record<string, string>
 ) => {
   const lower = componentName.toLowerCase()
-  const styleArgs = STYLE_AXES.filter((axis) => selections[axis])
-    .map((axis) => `--${axis}=${selections[axis]}`)
-    .join(' ')
-  return `npx @transight-design/cli variant add --component=${lower} --name=${variantName} ${styleArgs}`.trim()
+  const lines = [
+    `npx @transight-design/cli variant add \\`,
+    `  --component=${lower} \\`,
+    `  --name=${variantName}`
+  ]
+  for (const axis of STYLE_AXES) {
+    if (selections[axis]) {
+      lines[lines.length - 1] += ' \\'
+      lines.push(`  --${axis}=${selections[axis]}`)
+    }
+  }
+  return lines.join('\n')
 }
 
 export const VariantBuilderModal = ({
@@ -49,7 +60,7 @@ export const VariantBuilderModal = ({
   return (
     <Dialog>
       <DialogTrigger render={trigger} />
-      <DialogPopup size='lg'>
+      <DialogPopup size='xl'>
         <DialogTitle>Variant 추가</DialogTitle>
         <DialogDescription>
           현재 Style 토글 조합을 새 variant로 등록하는 CLI 명령을 만들어드립니다.

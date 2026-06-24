@@ -18,18 +18,7 @@ export const ButtonVariantPresets = ({ variants }: { variants: string[] }) => {
   const [selectedVariant, setSelectedVariant] = useState(variants[0] ?? 'default')
 
   return (
-    <div className="border-cool-grey-04 flex flex-col gap-4 border-t pt-5">
-      <div>
-        <h3 className="typo-sb14 text-cool-grey-11">Variant presets</h3>
-        <div className="text-description mt-1 flex flex-col gap-1">
-          <p>Variant는 반복해서 쓰는 Button 조합을 이름으로 호출하는 preset입니다.</p>
-          <p>
-            기본 설계는 color, theme, shape, size 축을 직접 조합하는 방식이고, variant는
-            프로젝트에서 자주 쓰는 조합만 얇게 묶어둔 값입니다.
-          </p>
-        </div>
-      </div>
-
+    <div className="flex flex-col gap-4">
       <PreviewModePanel
         code={codeForVariant(selectedVariant)}
         preview={
@@ -43,7 +32,7 @@ export const ButtonVariantPresets = ({ variants }: { variants: string[] }) => {
         }
       />
 
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="border-cool-grey-04 flex flex-wrap items-center gap-2 border-t pt-5">
         <span className="typo-sb12 text-cool-grey-07 w-16 shrink-0">Variant</span>
         <div className="flex flex-wrap gap-1">
           {variants.map((variant) => {

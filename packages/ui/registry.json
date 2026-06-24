@@ -1048,6 +1048,26 @@
       ]
     },
     {
+      "name": "password-input",
+      "type": "registry:ui",
+      "title": "password-input",
+      "description": "password-input 컴포넌트",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/input",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/password-input.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/password-input.tsx"
+        }
+      ]
+    },
+    {
       "name": "popover",
       "type": "registry:ui",
       "title": "popover",
@@ -1163,6 +1183,26 @@
           "path": "src/components/scroll-area.tsx",
           "type": "registry:ui",
           "target": "~/src/components/base/scroll-area.tsx"
+        }
+      ]
+    },
+    {
+      "name": "search-input",
+      "type": "registry:ui",
+      "title": "search-input",
+      "description": "search-input 컴포넌트",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/input",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/search-input.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/search-input.tsx"
         }
       ]
     },
@@ -1689,11 +1729,13 @@
         "traverse-corp/transight-design/lib-tokens",
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/pagination",
+        "traverse-corp/transight-design/password-input",
         "traverse-corp/transight-design/popover",
         "traverse-corp/transight-design/preview-card",
         "traverse-corp/transight-design/radio-group",
         "traverse-corp/transight-design/resizable",
         "traverse-corp/transight-design/scroll-area",
+        "traverse-corp/transight-design/search-input",
         "traverse-corp/transight-design/select",
         "traverse-corp/transight-design/separator",
         "traverse-corp/transight-design/sheet",

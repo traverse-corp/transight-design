@@ -31,18 +31,7 @@ export const LabelVariantPresets = ({ variants }: { variants: string[] }) => {
   const [selectedVariant, setSelectedVariant] = useState(variants[0] ?? 'default')
 
   return (
-    <div className='border-cool-grey-04 flex flex-col gap-4 border-t pt-5'>
-      <div>
-        <h3 className='typo-sb14 text-cool-grey-11'>Variant presets</h3>
-        <div className='text-description mt-1 flex flex-col gap-1'>
-          <p>Variant는 반복해서 쓰는 Label 조합을 이름으로 호출하는 preset입니다.</p>
-          <p>
-            기본 설계는 size · tone 축을 직접 조합하는 방식이고, variant는 children 뒤에 자동으로
-            붙는 표식(asterisk, 선택 라벨)을 가진 프리셋입니다. 명시적 prop이 preset 위에 적용됩니다.
-          </p>
-        </div>
-      </div>
-
+    <div className='flex flex-col gap-4'>
       <PreviewModePanel
         code={codeForVariant(selectedVariant)}
         preview={
@@ -56,7 +45,7 @@ export const LabelVariantPresets = ({ variants }: { variants: string[] }) => {
         }
       />
 
-      <div className='flex flex-wrap items-center gap-2'>
+      <div className='border-cool-grey-04 flex flex-wrap items-center gap-2 border-t pt-5'>
         <span className='typo-sb12 text-cool-grey-07 w-16 shrink-0'>Variant</span>
         <div className='flex flex-wrap gap-1'>
           {variants.map((variant) => {

@@ -51,12 +51,7 @@ const ComponentPage = async ({ params }: PageProps) => {
         <ItemInstallCommands itemName={item.name} />
       </section>
 
-      <section>
-        <SectionTitle>Style</SectionTitle>
-        <div className='border-cool-grey-04 rounded-lg border bg-white p-8'>
-          <InteractivePreview name={item.name} />
-        </div>
-      </section>
+      <InteractivePreview name={item.name} />
     </main>
   )
 }

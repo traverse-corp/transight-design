@@ -34,7 +34,8 @@
         "lea",
         "vasp",
         "tx-swap",
-        "tx-bridge"
+        "tx-bridge",
+        "alert"
       ],
       "color": [
         "gray",
@@ -236,11 +237,6 @@
   },
   "input": {
     "groups": {
-      "variant": [
-        "default",
-        "search",
-        "password"
-      ],
       "shape": [
         "default",
         "pill",
@@ -259,7 +255,6 @@
       ]
     },
     "defaults": {
-      "variant": "default",
       "shape": "default",
       "size": "md",
       "decoDir": "start"

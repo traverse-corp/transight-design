@@ -139,8 +139,8 @@ const badgeVariantPresets = {
   lea: { color: 'blue', theme: 'soft' },
   vasp: { color: 'yellow', theme: 'soft' },
   'tx-swap': { color: 'orange', theme: 'soft' },
-  'tx-bridge': { color: 'purple', theme: 'soft' }
-} satisfies Record<string, BadgePresetStyle>
+  'tx-bridge': { color: 'purple', theme: 'soft' },
+  'alert': { color: 'red', theme: 'solid', shape: 'pill', size: 'md' }} satisfies Record<string, BadgePresetStyle>
 
 type BadgePresetVariant = keyof typeof badgeVariantPresets
 

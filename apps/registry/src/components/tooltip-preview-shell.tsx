@@ -119,7 +119,7 @@ export const TooltipPreviewShell = () => {
     theme: 'solid',
     size: 'md'
   })
-  const [tab, setTab] = useState<Tab>('content')
+  const [tab, setTab] = useState<Tab>('trigger')
 
   const set = <K extends keyof State>(key: K, value: State[K]) =>
     setState((prev) => ({ ...prev, [key]: value }))
