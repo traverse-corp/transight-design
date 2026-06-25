@@ -1,4 +1,27 @@
 {
+  "accordion": {
+    "groups": {
+      "variant": [
+        "default",
+        "contained",
+        "separated"
+      ],
+      "shape": [
+        "default",
+        "square"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "defaults": {
+      "variant": "default",
+      "shape": "default",
+      "size": "md"
+    }
+  },
   "alert": {
     "groups": {
       "variant": [

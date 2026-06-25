@@ -6,27 +6,39 @@ import {
   AccordionPanel
 } from '@transight-design/ui/components/accordion'
 
-export const Preview = () => (
-  <Accordion className='w-80' defaultValue={['item-1']}>
+interface PreviewProps {
+  selections?: Record<string, string>
+}
+
+type Variant = NonNullable<Parameters<typeof Accordion>[0]['variant']>
+type Shape = NonNullable<Parameters<typeof Accordion>[0]['shape']>
+type Size = NonNullable<Parameters<typeof Accordion>[0]['size']>
+
+export const Preview = ({ selections = {} }: PreviewProps) => (
+  <Accordion
+    className='w-1/2 min-w-72'
+    defaultValue={['item-1']}
+    variant={(selections.variant as Variant) ?? undefined}
+    shape={(selections.shape as Shape) ?? undefined}
+    size={(selections.size as Size) ?? undefined}
+  >
     <AccordionItem value='item-1'>
       <AccordionHeader>
-        <AccordionTrigger className='typo-sb14 text-cool-grey-11 w-full text-left'>
-          첫 번째 항목
-        </AccordionTrigger>
+        <AccordionTrigger>첫 번째 항목</AccordionTrigger>
       </AccordionHeader>
-      <AccordionPanel>
-        <p className='text-body py-2'>첫 번째 항목의 내용입니다.</p>
-      </AccordionPanel>
+      <AccordionPanel>첫 번째 항목의 내용입니다.</AccordionPanel>
     </AccordionItem>
     <AccordionItem value='item-2'>
       <AccordionHeader>
-        <AccordionTrigger className='typo-sb14 text-cool-grey-11 w-full text-left'>
-          두 번째 항목
-        </AccordionTrigger>
+        <AccordionTrigger>두 번째 항목</AccordionTrigger>
       </AccordionHeader>
-      <AccordionPanel>
-        <p className='text-body py-2'>두 번째 항목의 내용입니다.</p>
-      </AccordionPanel>
+      <AccordionPanel>두 번째 항목의 내용입니다.</AccordionPanel>
+    </AccordionItem>
+    <AccordionItem value='item-3'>
+      <AccordionHeader>
+        <AccordionTrigger>세 번째 항목</AccordionTrigger>
+      </AccordionHeader>
+      <AccordionPanel>세 번째 항목의 내용입니다.</AccordionPanel>
     </AccordionItem>
   </Accordion>
 )
