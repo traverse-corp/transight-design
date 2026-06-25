@@ -1,8 +1,9 @@
+'use client'
+
 import * as React from 'react'
 import { AlertDialog as AlertDialogPrimitive } from '@base-ui/react/alert-dialog'
 import { AnimatePresence, motion, type HTMLMotionProps } from 'motion/react'
-import { X } from 'lucide-react'
-
+import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { Button, type ButtonProps } from '@/components/button'
 import { useControlledState } from '@/lib/hooks/use-controlled-state'
@@ -18,38 +19,43 @@ const [AlertDialogProvider, useAlertDialog] =
 
 type AlertDialogProps = React.ComponentProps<typeof AlertDialogPrimitive.Root>
 
-function AlertDialog(props: AlertDialogProps) {
+const AlertDialog = (props: AlertDialogProps) => {
   const [isOpen, setIsOpen] = useControlledState({
     value: props?.open,
-    defaultValue: props?.defaultOpen,
+    defaultValue: props?.defaultOpen ?? false,
     onChange: props?.onOpenChange
   })
 
   return (
-    <AlertDialogProvider value={{ isOpen, setIsOpen }}>
-      <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} onOpenChange={setIsOpen} />
+    <AlertDialogProvider value={{ isOpen: isOpen || false, setIsOpen }}>
+      <AlertDialogPrimitive.Root
+        data-slot='alert-dialog'
+        {...props}
+        open={isOpen || false}
+        onOpenChange={setIsOpen}
+      />
     </AlertDialogProvider>
   )
 }
 
 type AlertDialogTriggerProps = React.ComponentProps<typeof AlertDialogPrimitive.Trigger>
 
-function AlertDialogTrigger(props: AlertDialogTriggerProps) {
-  return <AlertDialogPrimitive.Trigger data-slot="alert-dialog-trigger" {...props} />
-}
+const AlertDialogTrigger = (props: AlertDialogTriggerProps) => (
+  <AlertDialogPrimitive.Trigger data-slot='alert-dialog-trigger' {...props} />
+)
 
 type AlertDialogPortalProps = Omit<
   React.ComponentProps<typeof AlertDialogPrimitive.Portal>,
   'keepMounted'
 >
 
-function AlertDialogPortal(props: AlertDialogPortalProps) {
+const AlertDialogPortal = (props: AlertDialogPortalProps) => {
   const { isOpen } = useAlertDialog()
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <AlertDialogPrimitive.Portal data-slot="alert-dialog-portal" keepMounted {...props} />
+        <AlertDialogPrimitive.Portal data-slot='alert-dialog-portal' keepMounted {...props} />
       )}
     </AnimatePresence>
   )
@@ -61,44 +67,71 @@ type AlertDialogBackdropProps = Omit<
 > &
   HTMLMotionProps<'div'>
 
-function AlertDialogBackdrop({
+const AlertDialogBackdrop = ({
+  className,
   transition = { duration: 0.2, ease: 'easeInOut' },
   ...props
-}: AlertDialogBackdropProps) {
-  return (
-    <AlertDialogPrimitive.Backdrop
-      data-slot="alert-dialog-backdrop"
-      render={
-        <motion.div
-          key="alert-dialog-backdrop"
-          initial={{ opacity: 0, filter: 'blur(4px)' }}
-          animate={{ opacity: 1, filter: 'blur(0px)' }}
-          exit={{ opacity: 0, filter: 'blur(4px)' }}
-          transition={transition}
-          {...props}
-        />
+}: AlertDialogBackdropProps) => (
+  <AlertDialogPrimitive.Backdrop
+    data-slot='alert-dialog-backdrop'
+    render={
+      <motion.div
+        key='alert-dialog-backdrop'
+        className={cn('fixed inset-0 z-50 bg-cool-grey-black/50', className)}
+        initial={{ opacity: 0, filter: 'blur(4px)' }}
+        animate={{ opacity: 1, filter: 'blur(0px)' }}
+        exit={{ opacity: 0, filter: 'blur(4px)' }}
+        transition={transition}
+        {...props}
+      />
+    }
+  />
+)
+
+const alertDialogPopupVariants = cva(
+  'bg-white border-cool-grey-03 fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 border p-6 shadow-lg',
+  {
+    variants: {
+      size: {
+        sm: 'sm:max-w-sm',
+        md: 'sm:max-w-md',
+        lg: 'sm:max-w-lg',
+        xl: 'sm:max-w-xl'
+      },
+      shape: {
+        default: 'rounded-lg',
+        square: 'rounded-none'
       }
-    />
-  )
-}
+    },
+    defaultVariants: {
+      size: 'md',
+      shape: 'default'
+    }
+  }
+)
 
 type AlertDialogFlipDirection = 'top' | 'bottom' | 'left' | 'right'
+type AlertDialogPopupVariantProps = VariantProps<typeof alertDialogPopupVariants>
 
 type AlertDialogPopupProps = Omit<
   React.ComponentProps<typeof AlertDialogPrimitive.Popup>,
   'render'
 > &
-  HTMLMotionProps<'div'> & {
+  HTMLMotionProps<'div'> &
+  AlertDialogPopupVariantProps & {
     from?: AlertDialogFlipDirection
   }
 
-function AlertDialogPopup({
+const AlertDialogPopup = ({
   from = 'top',
   initialFocus,
   finalFocus,
+  size,
+  shape,
   transition = { type: 'spring', stiffness: 150, damping: 25 },
+  className,
   ...props
-}: AlertDialogPopupProps) {
+}: AlertDialogPopupProps) => {
   const initialRotation = from === 'bottom' || from === 'left' ? '20deg' : '-20deg'
   const isVertical = from === 'top' || from === 'bottom'
   const rotateAxis = isVertical ? 'rotateX' : 'rotateY'
@@ -111,8 +144,9 @@ function AlertDialogPopup({
         finalFocus={finalFocus}
         render={
           <motion.div
-            key="alert-dialog-popup"
-            data-slot="alert-dialog-popup"
+            key='alert-dialog-popup'
+            data-slot='alert-dialog-popup'
+            className={cn(alertDialogPopupVariants({ size, shape, className }))}
             initial={{
               opacity: 0,
               filter: 'blur(4px)',
@@ -140,11 +174,8 @@ function AlertDialogPopup({
 type AlertDialogCloseProps = React.ComponentProps<typeof AlertDialogPrimitive.Close> &
   Pick<ButtonProps, 'color' | 'theme' | 'shape' | 'size'>
 
-/**
- * children이 없으면 X 아이콘 버튼으로 렌더링
- * children이 있으면 Button과 동일한 variant/size 스타일 적용
- */
-function AlertDialogClose({
+// alert-dialog는 모서리 X 닫기 버튼이 없음 (강제 결정 UX). children 필수 — 취소/확인 버튼만.
+const AlertDialogClose = ({
   children,
   className,
   color,
@@ -152,66 +183,63 @@ function AlertDialogClose({
   shape,
   size,
   ...props
-}: AlertDialogCloseProps) {
-  // children이 없으면 기본 X 아이콘 버튼
-  if (!children) {
-    return (
-      <AlertDialogPrimitive.Close
-        data-slot="alert-dialog-close"
-        className={cn(
-          'flex-center size-6 cursor-pointer rounded-sm opacity-70 transition-opacity hover:opacity-100',
-          className
-        )}
-        {...props}
-      >
-        <X className="size-4" />
-        <span className="sr-only">Close</span>
-      </AlertDialogPrimitive.Close>
-    )
-  }
-
-  return (
-    <AlertDialogPrimitive.Close
-      data-slot="alert-dialog-close"
-      render={
-        <Button
-          color={color}
-          theme={theme}
-          shape={shape}
-          size={size}
-          className={className}
-        />
-      }
-      {...props}
-    >
-      {children}
-    </AlertDialogPrimitive.Close>
-  )
-}
+}: AlertDialogCloseProps) => (
+  <AlertDialogPrimitive.Close
+    data-slot='alert-dialog-close'
+    render={
+      <Button
+        color={color}
+        theme={theme}
+        shape={shape}
+        size={size}
+        className={className}
+      />
+    }
+    {...props}
+  >
+    {children}
+  </AlertDialogPrimitive.Close>
+)
 
 type AlertDialogHeaderProps = React.ComponentProps<'div'>
 
-function AlertDialogHeader(props: AlertDialogHeaderProps) {
-  return <div data-slot="alert-dialog-header" {...props} />
-}
+const AlertDialogHeader = ({ className, ...props }: AlertDialogHeaderProps) => (
+  <div
+    data-slot='alert-dialog-header'
+    className={cn('flex flex-col gap-1.5', className)}
+    {...props}
+  />
+)
 
 type AlertDialogFooterProps = React.ComponentProps<'div'>
 
-function AlertDialogFooter(props: AlertDialogFooterProps) {
-  return <div data-slot="alert-dialog-footer" {...props} />
-}
+const AlertDialogFooter = ({ className, ...props }: AlertDialogFooterProps) => (
+  <div
+    data-slot='alert-dialog-footer'
+    className={cn('flex flex-col-reverse gap-2 sm:flex-row sm:justify-end', className)}
+    {...props}
+  />
+)
 
 type AlertDialogTitleProps = React.ComponentProps<typeof AlertDialogPrimitive.Title>
 
-function AlertDialogTitle(props: AlertDialogTitleProps) {
-  return <AlertDialogPrimitive.Title data-slot="alert-dialog-title" {...props} />
-}
+const AlertDialogTitle = ({ className, ...props }: AlertDialogTitleProps) => (
+  <AlertDialogPrimitive.Title
+    data-slot='alert-dialog-title'
+    className={cn('typo-b18 text-cool-grey-11', className)}
+    {...props}
+  />
+)
 
 type AlertDialogDescriptionProps = React.ComponentProps<typeof AlertDialogPrimitive.Description>
 
-function AlertDialogDescription(props: AlertDialogDescriptionProps) {
-  return <AlertDialogPrimitive.Description data-slot="alert-dialog-description" {...props} />
-}
+const AlertDialogDescription = ({ className, ...props }: AlertDialogDescriptionProps) => (
+  <AlertDialogPrimitive.Description
+    data-slot='alert-dialog-description'
+    className={cn('typo-m13 text-cool-grey-09', className)}
+    {...props}
+  />
+)
 
 export {
   AlertDialog,
@@ -225,6 +253,7 @@ export {
   AlertDialogTitle,
   AlertDialogDescription,
   useAlertDialog,
+  alertDialogPopupVariants,
   type AlertDialogProps,
   type AlertDialogTriggerProps,
   type AlertDialogPortalProps,

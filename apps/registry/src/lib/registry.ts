@@ -162,6 +162,7 @@ export interface NavGroup {
 const VISIBLE_COMPONENTS: ReadonlySet<string> = new Set([
   'accordion',
   'alert',
+  'alert-dialog',
   'avatar',
   'badge',
   'button',

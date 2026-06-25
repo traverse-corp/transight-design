@@ -22,6 +22,24 @@
       "size": "md"
     }
   },
+  "alert-dialog": {
+    "groups": {
+      "size": [
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
+      "shape": [
+        "default",
+        "square"
+      ]
+    },
+    "defaults": {
+      "size": "md",
+      "shape": "default"
+    }
+  },
   "alert": {
     "groups": {
       "variant": [
