@@ -325,6 +325,23 @@
       "orientation": "vertical"
     }
   },
+  "hover-card": {
+    "groups": {
+      "shape": [
+        "default",
+        "square"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "defaults": {
+      "shape": "default",
+      "size": "md"
+    }
+  },
   "input-group": {
     "groups": {
       "align": [
@@ -391,6 +408,23 @@
     },
     "defaults": {
       "variant": "default",
+      "size": "md"
+    }
+  },
+  "popover": {
+    "groups": {
+      "shape": [
+        "default",
+        "square"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "defaults": {
+      "shape": "default",
       "size": "md"
     }
   },

@@ -1,14 +1,33 @@
 'use client'
 
-import { Popover, PopoverContent, PopoverTrigger } from '@transight-design/ui/components/popover'
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger
+} from '@transight-design/ui/components/popover'
 import { Button } from '@transight-design/ui/components/button'
 
-export const Preview = () => (
+interface PreviewProps {
+  selections?: Record<string, string>
+}
+
+type Shape = NonNullable<Parameters<typeof PopoverContent>[0]['shape']>
+type Size = NonNullable<Parameters<typeof PopoverContent>[0]['size']>
+
+export const Preview = ({ selections = {} }: PreviewProps) => (
   <Popover>
-    <PopoverTrigger render={<Button theme="outline">팝오버 열기</Button>} />
-    <PopoverContent className="w-64">
-      <p className="typo-sb14 text-cool-grey-11">알림</p>
-      <p className="text-description mt-1">새로운 메시지가 3건 있습니다.</p>
+    <PopoverTrigger render={<Button theme='outline'>팝오버 열기</Button>} />
+    <PopoverContent
+      shape={(selections.shape as Shape) ?? undefined}
+      size={(selections.size as Size) ?? undefined}
+    >
+      <PopoverHeader>
+        <PopoverTitle>알림</PopoverTitle>
+        <PopoverDescription>새로운 메시지가 3건 있습니다.</PopoverDescription>
+      </PopoverHeader>
     </PopoverContent>
   </Popover>
 )
