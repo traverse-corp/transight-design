@@ -168,6 +168,7 @@ const VISIBLE_COMPONENTS: ReadonlySet<string> = new Set([
   'card',
   'checkbox',
   'dialog',
+  'dropdown-menu',
   'input',
   'label',
   'password-input',

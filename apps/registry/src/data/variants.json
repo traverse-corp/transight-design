@@ -290,6 +290,18 @@
       "shape": "default"
     }
   },
+  "dropdown-menu": {
+    "groups": {
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "defaults": {
+      "size": "md"
+    }
+  },
   "empty": {
     "groups": {
       "variant": [
