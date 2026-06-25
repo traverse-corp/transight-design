@@ -179,6 +179,7 @@ const VISIBLE_COMPONENTS: ReadonlySet<string> = new Set([
   'search-input',
   'select',
   'separator',
+  'sheet',
   'skeleton',
   'spinner',
   'switch',

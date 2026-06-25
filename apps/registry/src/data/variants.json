@@ -544,6 +544,25 @@
       "thickness": "thin"
     }
   },
+  "sheet": {
+    "groups": {
+      "side": [
+        "right",
+        "left",
+        "top",
+        "bottom"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "defaults": {
+      "side": "right",
+      "size": "md"
+    }
+  },
   "sidebar": {
     "groups": {
       "variant": [

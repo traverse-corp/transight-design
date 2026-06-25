@@ -12,16 +12,26 @@ import {
 } from '@transight-design/ui/components/sheet'
 import { Button } from '@transight-design/ui/components/button'
 
-export const Preview = () => (
+interface PreviewProps {
+  selections?: Record<string, string>
+}
+
+type Side = NonNullable<Parameters<typeof SheetContent>[0]['side']>
+type Size = NonNullable<Parameters<typeof SheetContent>[0]['size']>
+
+export const Preview = ({ selections = {} }: PreviewProps) => (
   <Sheet>
-    <SheetTrigger render={<Button theme="outline">시트 열기</Button>} />
-    <SheetContent>
+    <SheetTrigger render={<Button theme='outline'>시트 열기</Button>} />
+    <SheetContent
+      side={(selections.side as Side) ?? undefined}
+      size={(selections.size as Size) ?? undefined}
+    >
       <SheetHeader>
         <SheetTitle>설정</SheetTitle>
         <SheetDescription>계정 정보를 확인하고 수정합니다.</SheetDescription>
       </SheetHeader>
-      <div className="py-4">
-        <p className="text-body">시트 본문 영역입니다.</p>
+      <div className='px-4 py-2'>
+        <p className='typo-m13 text-cool-grey-09'>시트 본문 영역입니다.</p>
       </div>
       <SheetFooter>
         <SheetClose render={<Button>저장</Button>} />
