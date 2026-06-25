@@ -289,6 +289,23 @@
       "size": "md"
     }
   },
+  "command": {
+    "groups": {
+      "shape": [
+        "default",
+        "square"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "defaults": {
+      "shape": "default",
+      "size": "md"
+    }
+  },
   "dialog": {
     "groups": {
       "size": [

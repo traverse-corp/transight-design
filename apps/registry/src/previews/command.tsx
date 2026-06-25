@@ -5,16 +5,31 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator
+  CommandSeparator,
+  CommandShortcut
 } from '@transight-design/ui/components/command'
 
-export const Preview = () => (
-  <Command className='border-cool-grey-04 w-80 rounded-lg border'>
+interface PreviewProps {
+  selections?: Record<string, string>
+}
+
+type Shape = NonNullable<Parameters<typeof Command>[0]['shape']>
+type Size = NonNullable<Parameters<typeof Command>[0]['size']>
+
+export const Preview = ({ selections = {} }: PreviewProps) => (
+  <Command
+    className='border-cool-grey-04 w-80 border'
+    shape={(selections.shape as Shape) ?? undefined}
+    size={(selections.size as Size) ?? undefined}
+  >
     <CommandInput placeholder='검색...' />
     <CommandList>
       <CommandEmpty>결과 없음</CommandEmpty>
       <CommandGroup heading='추천'>
-        <CommandItem>대시보드</CommandItem>
+        <CommandItem>
+          대시보드
+          <CommandShortcut>⌘D</CommandShortcut>
+        </CommandItem>
         <CommandItem>주소 동결</CommandItem>
         <CommandItem>리포트</CommandItem>
       </CommandGroup>
