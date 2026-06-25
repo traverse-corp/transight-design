@@ -27,3 +27,6 @@ pnpm-debug.log*
 
 # 빌드 산출물
 *.tsbuildinfo
+
+# Claude Code 로컬 규칙
+CLAUDE.local.md
