@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import { Menu as MenuPrimitive } from '@base-ui/react/menu'
 import { cva, type VariantProps } from 'class-variance-authority'
@@ -71,13 +73,31 @@ const DropdownMenuGroup = ({ ...props }: MenuPrimitive.Group.Props) => (
   <MenuPrimitive.Group data-slot='dropdown-menu-group' {...props} />
 )
 
+// Label은 Group 컨텍스트 없이 어디서나 쓸 수 있는 일반 styled div.
+// Group ARIA labelling이 필요한 경우 별도 DropdownMenuGroupLabel을 그 안에서 사용.
 const DropdownMenuLabel = ({
+  className,
+  inset,
+  ...props
+}: React.ComponentProps<'div'> & { inset?: boolean }) => (
+  <div
+    data-slot='dropdown-menu-label'
+    data-inset={inset}
+    className={cn(
+      'text-cool-grey-07 typo-sb11 px-2 py-1.5 uppercase tracking-wide data-inset:pl-8',
+      className
+    )}
+    {...props}
+  />
+)
+
+const DropdownMenuGroupLabel = ({
   className,
   inset,
   ...props
 }: MenuPrimitive.GroupLabel.Props & { inset?: boolean }) => (
   <MenuPrimitive.GroupLabel
-    data-slot='dropdown-menu-label'
+    data-slot='dropdown-menu-group-label'
     data-inset={inset}
     className={cn(
       'text-cool-grey-07 typo-sb11 px-2 py-1.5 uppercase tracking-wide data-inset:pl-8',
@@ -245,6 +265,7 @@ export {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuLabel,
+  DropdownMenuGroupLabel,
   DropdownMenuItem,
   DropdownMenuCheckboxItem,
   DropdownMenuRadioGroup,

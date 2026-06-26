@@ -1,7 +1,6 @@
 import type { ComponentType } from 'react'
 import { Preview as AccordionPreview } from './accordion'
 import { Preview as AlertPreview } from './alert'
-import { Preview as AlertDialogLowerPreview } from './alert-dialog'
 import { Preview as AlertDialogPreview } from './AlertDialog'
 import { Preview as AnimatedAlertDialogPreview } from './AnimatedAlertDialog'
 import { Preview as AnimatedBeamPreview } from './animated-beam'
@@ -19,7 +18,6 @@ import { Preview as CheckboxPreview } from './checkbox'
 import { Preview as ClickableAddrPreview } from './clickable-addr'
 import { Preview as ClickableTxPreview } from './clickable-tx'
 import { Preview as CoinIconPreview } from './CoinIcon'
-import { Preview as CommandPreview } from './command'
 import { Preview as CopyButtonPreview } from './CopyButton'
 import { Preview as CopyWrapperPreview } from './CopyWrapper'
 import { Preview as DateTimeInputPreview } from './date-time-input'
@@ -76,7 +74,6 @@ export type PreviewComponent = ComponentType<PreviewProps>
 export const PREVIEWS: Record<string, PreviewComponent> = {
   accordion: AccordionPreview,
   alert: AlertPreview,
-  'alert-dialog': AlertDialogLowerPreview,
   AlertDialog: AlertDialogPreview,
   AnimatedAlertDialog: AnimatedAlertDialogPreview,
   'animated-beam': AnimatedBeamPreview,
@@ -94,7 +91,6 @@ export const PREVIEWS: Record<string, PreviewComponent> = {
   'clickable-addr': ClickableAddrPreview,
   'clickable-tx': ClickableTxPreview,
   CoinIcon: CoinIconPreview,
-  command: CommandPreview,
   CopyButton: CopyButtonPreview,
   CopyWrapper: CopyWrapperPreview,
   'date-time-input': DateTimeInputPreview,

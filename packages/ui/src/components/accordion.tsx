@@ -24,48 +24,74 @@ const [AccordionProvider, useAccordion] = getStrictContext<AccordionContextType>
 const [AccordionItemProvider, useAccordionItem] =
   getStrictContext<AccordionItemContextType>('AccordionItemContext')
 
-// Root variant 시각 구조 (preset alias 아님, 구조 enum).
-//   - default: 각 item 사이 가로 구분선
-//   - contained: 전체 wrapping border + rounded
-//   - separated: 각 item이 독립 카드 (border + spacing)
-const accordionRootClassVariants = cva('flex flex-col', {
+// 활성(open) 항목 액센트 색은 --accordion-active CSS 변수로 주입, trigger className이 var() 참조.
+const ACCORDION_COLOR_TOKEN: Record<string, string> = {
+  gray: 'var(--color-cool-grey-09)',
+  blue: 'var(--color-primary-blue-1)',
+  red: 'var(--color-ui-red)',
+  orange: 'var(--color-ui-orange)',
+  yellow: 'var(--color-ui-yellow)',
+  olive: 'var(--color-ui-olive)',
+  green: 'var(--color-ui-green)',
+  skyblue: 'var(--color-ui-skyblue)',
+  purple: 'var(--color-ui-purple)',
+  pink: 'var(--color-ui-pink)',
+  white: 'var(--color-cool-grey-09)',
+  'gradient-blue': 'var(--color-primary-blue-1)'
+}
+
+// shape는 시각 구조, color는 활성(open) trigger의 액센트.
+//   - shape=default: 가로 divide만
+//   - shape=contained: 외곽 border + rounded, 내부 divide
+//   - shape=separated: 각 item 독립 카드 (border + shadow + gap)
+const accordionRootClassVariants = cva('group/accordion flex flex-col', {
   variants: {
-    variant: {
-      default: 'divide-cool-grey-04 divide-y',
-      contained: 'border-cool-grey-04 divide-cool-grey-04 divide-y overflow-hidden border',
-      separated: 'gap-2'
-    },
     shape: {
-      default: 'rounded-lg',
-      square: 'rounded-none'
+      // divide/border 색은 --accordion-active를 30% 섞은 색으로 — 액센트는 유지하되 라인이 시끄럽지 않게
+      default:
+        'divide-[color:color-mix(in_oklab,var(--accordion-active)_30%,transparent)] divide-y',
+      contained:
+        'border-[color:color-mix(in_oklab,var(--accordion-active)_30%,transparent)] divide-[color:color-mix(in_oklab,var(--accordion-active)_30%,transparent)] divide-y overflow-hidden rounded-lg border',
+      separated: 'gap-3'
     },
     size: {
       sm: '',
       md: '',
       lg: ''
+    },
+    color: {
+      gray: '',
+      blue: '',
+      red: '',
+      orange: '',
+      yellow: '',
+      olive: '',
+      green: '',
+      skyblue: '',
+      purple: '',
+      pink: '',
+      white: '',
+      'gradient-blue': ''
     }
   },
-  compoundVariants: [
-    // contained일 때만 root에 rounded 효과가 의미 있음 (divide 위에 wrapping)
-    { variant: 'default', className: 'rounded-none' },
-    { variant: 'separated', className: 'rounded-none' }
-  ],
   defaultVariants: {
-    variant: 'default',
     shape: 'default',
-    size: 'md'
+    size: 'md',
+    color: 'blue'
   }
 })
 
 type AccordionVariantProps = VariantProps<typeof accordionRootClassVariants>
+type AccordionColor = NonNullable<AccordionVariantProps['color']>
 
 type AccordionProps = React.ComponentProps<typeof AccordionPrimitive.Root> & AccordionVariantProps
 
 const Accordion = ({
   className,
-  variant,
   shape,
   size,
+  color,
+  style,
   ...props
 }: AccordionProps) => {
   const [value, setValue] = useControlledState<string | string[] | undefined>({
@@ -75,14 +101,20 @@ const Accordion = ({
       value: string | string[] | undefined
     ) => void
   })
+  const resolvedColor: AccordionColor = color ?? 'blue'
 
   return (
     <AccordionProvider value={{ value, setValue }}>
       <AccordionPrimitive.Root
         data-slot='accordion'
-        data-variant={variant ?? 'default'}
+        data-shape={shape ?? 'default'}
         data-size={size ?? 'md'}
-        className={cn(accordionRootClassVariants({ variant, shape, size }), className)}
+        style={{
+          ['--accordion-active' as string]:
+            ACCORDION_COLOR_TOKEN[resolvedColor] ?? ACCORDION_COLOR_TOKEN.blue,
+          ...style
+        }}
+        className={cn(accordionRootClassVariants({ shape, size, color }), className)}
         {...props}
         onValueChange={setValue as unknown as AccordionProps['onValueChange']}
       />
@@ -106,8 +138,8 @@ const AccordionItem = ({ className, ...props }: AccordionItemProps) => {
       <AccordionPrimitive.Item
         data-slot='accordion-item'
         className={cn(
-          // separated variant일 때만 각 item이 자체 border/rounded 카드
-          'group-data-[variant=separated]/accordion:border-cool-grey-04 group-data-[variant=separated]/accordion:rounded-lg group-data-[variant=separated]/accordion:border',
+          // shape=separated일 때만 각 item이 자체 border/rounded 카드 (border 색은 --accordion-active 30%)
+          'group-data-[shape=separated]/accordion:border-[color:color-mix(in_oklab,var(--accordion-active)_30%,transparent)] group-data-[shape=separated]/accordion:rounded-lg group-data-[shape=separated]/accordion:bg-white group-data-[shape=separated]/accordion:border group-data-[shape=separated]/accordion:shadow-sm',
           className
         )}
         {...props}
@@ -131,19 +163,20 @@ const AccordionTrigger = ({ nativeButton, className, children, ...props }: Accor
       data-slot='accordion-trigger'
       nativeButton={isNative}
       className={cn(
-        'group/accordion-trigger flex w-full items-center justify-between gap-2 text-left transition-colors hover:text-primary-blue-1 focus-visible:outline-none',
-        // size별 padding + typo
-        'data-[size=sm]:px-3 data-[size=sm]:py-2 data-[size=sm]:typo-sb13',
-        'data-[size=md]:px-4 data-[size=md]:py-3 data-[size=md]:typo-sb14',
-        'data-[size=lg]:px-5 data-[size=lg]:py-4 data-[size=lg]:typo-sb16',
-        'text-cool-grey-11',
+        'group/accordion-trigger flex w-full items-center justify-between gap-2 text-left transition-colors focus-visible:outline-none text-cool-grey-11',
+        // size별 padding + typo (root group/accordion의 data-size를 group-data로 추적)
+        'group-data-[size=sm]/accordion:px-4 group-data-[size=sm]/accordion:py-2 group-data-[size=sm]/accordion:typo-sb13',
+        'group-data-[size=md]/accordion:px-5 group-data-[size=md]/accordion:py-3 group-data-[size=md]/accordion:typo-sb14',
+        'group-data-[size=lg]/accordion:px-6 group-data-[size=lg]/accordion:py-4 group-data-[size=lg]/accordion:typo-sb16',
+        // 활성(open) trigger 텍스트/chevron만 --accordion-active 색으로 강조
+        'data-[panel-open]:text-[var(--accordion-active)]',
         className
       )}
       {...props}
     >
       <span className='flex-1'>{children}</span>
       <ChevronDown
-        className='text-cool-grey-07 h-4 w-4 shrink-0 transition-transform duration-200 group-data-[panel-open]/accordion-trigger:rotate-180'
+        className='text-[var(--accordion-active)] h-4 w-4 shrink-0 transition-transform duration-200 group-data-[panel-open]/accordion-trigger:rotate-180'
         aria-hidden
       />
     </AccordionPrimitive.Trigger>
@@ -168,9 +201,9 @@ const AccordionPanel = ({
   const { isOpen } = useAccordionItem()
   const panelClass = cn(
     'text-cool-grey-09 typo-m13',
-    'data-[size=sm]:px-3 data-[size=sm]:pb-2',
-    'data-[size=md]:px-4 data-[size=md]:pb-3',
-    'data-[size=lg]:px-5 data-[size=lg]:pb-4',
+    'group-data-[size=sm]/accordion:px-4 group-data-[size=sm]/accordion:pb-2',
+    'group-data-[size=md]/accordion:px-5 group-data-[size=md]/accordion:pb-3',
+    'group-data-[size=lg]/accordion:px-6 group-data-[size=lg]/accordion:pb-4',
     className
   )
 

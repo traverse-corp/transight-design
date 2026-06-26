@@ -2,30 +2,22 @@
 
 import { useState } from 'react'
 import {
-  Dialog,
-  DialogClose,
-  DialogDescription,
-  DialogFooter,
-  DialogPopup,
-  DialogTitle,
-  DialogTrigger
-} from '@transight-design/ui/components/dialog'
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger
+} from '@transight-design/ui/components/dropdown-menu'
 import { Button } from '@transight-design/ui/components/button'
 import { PreviewModePanel } from './preview-mode-panel'
 
-type PopupSize = NonNullable<Parameters<typeof DialogPopup>[0]['size']>
-type PopupShape = NonNullable<Parameters<typeof DialogPopup>[0]['shape']>
+type Size = NonNullable<Parameters<typeof DropdownMenuContent>[0]['size']>
 type ButtonColor = NonNullable<Parameters<typeof Button>[0]['color']>
 type ButtonTheme = NonNullable<Parameters<typeof Button>[0]['theme']>
 type ButtonSize = NonNullable<Parameters<typeof Button>[0]['size']>
-
-interface State {
-  triggerColor: ButtonColor
-  triggerTheme: ButtonTheme
-  triggerSize: ButtonSize
-  size: PopupSize
-  shape: PopupShape
-}
 
 interface ControlDef {
   stateKey: keyof State
@@ -55,40 +47,50 @@ const TRIGGER_CONTROLS: ControlDef[] = [
 ]
 
 const CONTENT_CONTROLS: ControlDef[] = [
-  { stateKey: 'size', label: 'size', values: ['sm', 'md', 'lg', 'xl', 'full'] },
-  { stateKey: 'shape', label: 'shape', values: ['default', 'square'] }
+  { stateKey: 'size', label: 'size', values: ['sm', 'md', 'lg'] }
 ]
 
 type Tab = 'trigger' | 'content'
 
+interface State {
+  triggerColor: ButtonColor
+  triggerTheme: ButtonTheme
+  triggerSize: ButtonSize
+  size: Size
+}
+
 const codeFor = (s: State) =>
-  `<Dialog>
-  <DialogTrigger
+  `<DropdownMenu>
+  <DropdownMenuTrigger
     render={
       <Button color="${s.triggerColor}" theme="${s.triggerTheme}" size="${s.triggerSize}">
-        다이얼로그 열기
+        메뉴 열기
       </Button>
     }
   />
-  <DialogPopup size="${s.size}" shape="${s.shape}">
-    <DialogTitle>새 작업</DialogTitle>
-    <DialogDescription>새로운 트랜잭션 추적을 시작합니다.</DialogDescription>
-    <DialogFooter>
-      <DialogClose theme="outline" size="sm">취소</DialogClose>
-      <DialogClose color="blue" size="sm">시작</DialogClose>
-    </DialogFooter>
-  </DialogPopup>
-</Dialog>`
+  <DropdownMenuContent size="${s.size}">
+    <DropdownMenuLabel>계정</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuGroup>
+      <DropdownMenuItem>
+        프로필
+        <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
+      </DropdownMenuItem>
+      <DropdownMenuItem>설정</DropdownMenuItem>
+    </DropdownMenuGroup>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem variant="destructive">로그아웃</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`
 
-export const DialogPreviewShell = () => {
+export const DropdownMenuPreviewShell = () => {
   const [state, setState] = useState<State>({
     triggerColor: 'gray',
-    triggerTheme: 'solid',
+    triggerTheme: 'outline',
     triggerSize: 'md',
-    size: 'md',
-    shape: 'default'
+    size: 'md'
   })
-  const [tab, setTab] = useState<Tab>('content')
+  const [tab, setTab] = useState<Tab>('trigger')
 
   const set = <K extends keyof State>(key: K, value: State[K]) =>
     setState((prev) => ({ ...prev, [key]: value }))
@@ -99,31 +101,33 @@ export const DialogPreviewShell = () => {
         code={codeFor(state)}
         preview={
           <div className='flex min-h-40 items-center justify-center'>
-            <Dialog>
-              <DialogTrigger
+            <DropdownMenu>
+              <DropdownMenuTrigger
                 render={
                   <Button
                     color={state.triggerColor}
                     theme={state.triggerTheme}
                     size={state.triggerSize}
                   >
-                    다이얼로그 열기
+                    메뉴 열기
                   </Button>
                 }
               />
-              <DialogPopup size={state.size} shape={state.shape}>
-                <DialogTitle>새 작업</DialogTitle>
-                <DialogDescription>새로운 트랜잭션 추적을 시작합니다.</DialogDescription>
-                <DialogFooter className='mt-2'>
-                  <DialogClose theme='outline' size='sm'>
-                    취소
-                  </DialogClose>
-                  <DialogClose color='blue' size='sm'>
-                    시작
-                  </DialogClose>
-                </DialogFooter>
-              </DialogPopup>
-            </Dialog>
+              <DropdownMenuContent className='w-48' size={state.size}>
+                <DropdownMenuLabel>계정</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    프로필
+                    <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>설정</DropdownMenuItem>
+                  <DropdownMenuItem>알림</DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem variant='destructive'>로그아웃</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         }
       />
@@ -143,7 +147,7 @@ export const DialogPreviewShell = () => {
                     : 'text-cool-grey-07 hover:text-cool-grey-11 typo-m14 -mb-px border-b-2 border-transparent px-3 py-2 transition-colors'
                 }
               >
-                {t === 'trigger' ? 'DialogTrigger' : 'DialogPopup'}
+                {t === 'trigger' ? 'DropdownMenuTrigger' : 'DropdownMenuContent'}
               </button>
             )
           })}

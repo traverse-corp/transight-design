@@ -10,17 +10,17 @@ interface PreviewProps {
   selections?: Record<string, string>
 }
 
-type Variant = NonNullable<Parameters<typeof Accordion>[0]['variant']>
 type Shape = NonNullable<Parameters<typeof Accordion>[0]['shape']>
 type Size = NonNullable<Parameters<typeof Accordion>[0]['size']>
+type Color = NonNullable<Parameters<typeof Accordion>[0]['color']>
 
 export const Preview = ({ selections = {} }: PreviewProps) => (
   <Accordion
     className='w-1/2 min-w-72'
     defaultValue={['item-1']}
-    variant={(selections.variant as Variant) ?? undefined}
     shape={(selections.shape as Shape) ?? undefined}
     size={(selections.size as Size) ?? undefined}
+    color={(selections.color as Color) ?? undefined}
   >
     <AccordionItem value='item-1'>
       <AccordionHeader>

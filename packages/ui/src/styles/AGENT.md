@@ -29,17 +29,22 @@
 토큰 목록은 `tokens.css` 또는 `GUIDE.md` 참고. 모르는 색은 묻지 말고 가까운
 의미를 가진 토큰을 선택한다. (예: 위험은 `ui-red`, 정보는 `primary-blue-1`)
 
-### R2. 타이포는 typo-*/text-* 프리셋만 사용한다
+### R2. 타이포는 typo-{w}{s} 단일 클래스만 사용한다
 
 ✅ **허용**
-- 굵기 × 크기: `typo-m14`, `typo-sb12`, `typo-eb32`, `typo-mono-m12`
+- 합성 유틸: `typo-{w}{s}` 형태로만. 9 weight × 15 size 전 조합 지원.
+  - 굵기 약자: `t`(100) / `el`(200) / `l`(300) / `r`(400) / `m`(500) / `sb`(600) / `b`(700) / `eb`(800) / `bk`(900)
+  - 크기 그리드: 8/9/10/11/12/13/14/15/16 (1px), 18, 24/32/40/48/56 (8px)
+  - 예: `typo-sb14`, `typo-eb32`, `typo-l24`, `typo-bk48`
+- 모노스페이스: `typo-mono-m12`, `typo-mono-b14`
 - 시맨틱: `text-page-title`, `text-section-title`, `text-body`, `text-label`, `text-description`, `text-overline`, `text-subtitle`
 
 ❌ **금지**
-- Tailwind 원시 조합: `text-sm font-semibold`, `text-[14px]`, `font-bold`
-- 임의 크기: `text-[15px] leading-[1.4]`
+- 굵기/크기 분리: `typo-14 font-semibold` (단일 합성 클래스 사용)
+- Tailwind 원시 클래스: `text-sm`, `text-base`, `font-bold`, `text-[14px]`
+- 그리드 밖 임의 크기 (예: `typo-m17`, `typo-r25`)
 
-**우선순위**: 의미가 명확하면 `text-*` 시맨틱 → 그 외 `typo-*` 굵기·크기.
+**우선순위**: 의미가 명확하면 `text-*` 시맨틱 → 그 외 `typo-{w}{s}` 합성.
 
 ### R3. 정렬은 flex-* 단축형 우선
 
@@ -85,6 +90,7 @@
 | 섹션 헤더 | `<h2 className="text-section-title">` |
 | 폼 라벨 | `<label className="text-label">` |
 | 코드 스니펫 | `<code className="typo-mono-m12 text-cool-grey-09">` |
+| 임의 크기·굵기 조합 | `<span className="typo-l15">` |
 | 카드 배경 (밝음) | `bg-cool-grey-white` 또는 `bg-white` |
 | 카드 배경 (옅은 회색) | `bg-cool-grey-02` |
 | 카드 테두리 | `border border-cool-grey-04` |
@@ -118,7 +124,7 @@
 |--------------|-----|
 | `text-sm text-gray-600` | `text-description` 또는 `typo-m13 text-cool-grey-07` |
 | `text-xs font-semibold uppercase` | `text-overline` |
-| `text-2xl font-bold` | `typo-eb24` 또는 `text-section-title` |
+| `text-2xl font-bold` | `typo-b24` 또는 `text-section-title` |
 | `bg-white border border-gray-200` | `bg-white border border-cool-grey-04` |
 | `text-red-500` | `text-ui-red` |
 | `bg-blue-50 text-blue-700` | `bg-primary-blue-opacity-10 text-primary-blue-1` |

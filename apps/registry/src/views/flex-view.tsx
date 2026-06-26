@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'motion/react'
+import { PreviewModePanel } from '@/components/preview-mode-panel'
 
 interface FlexGroup {
   label: string
@@ -58,28 +59,39 @@ export const FlexView = () => {
 
   return (
     <div className='flex flex-col gap-6'>
-      {/* ── Preview ──────────────── */}
+      {/* ── Preview / Code 토글 ──────────────── */}
       <section>
         <h2 className='typo-sb12 text-cool-grey-07 mb-3 uppercase tracking-wide'>Preview</h2>
-        <div
-          className={`${current} bg-cool-grey-01 border-cool-grey-04 h-64 gap-2 rounded-lg border p-4`}
-        >
-          {[
-            'bg-primary-blue-1',
-            'bg-primary-blue-2',
-            'bg-primary-blue-deep'
-          ].map((color) => (
-            <motion.div
-              key={color}
-              layout
-              transition={{ type: 'spring', stiffness: 320, damping: 28 }}
-              className={`${color} h-12 w-12 rounded-md`}
-            />
-          ))}
-        </div>
-        <p className='typo-mono-m12 text-cool-grey-07 mt-2 text-center'>
-          현재 적용: <span className='text-primary-blue-1'>{current}</span>
-        </p>
+        <PreviewModePanel
+          preview={
+            <div className='flex flex-col gap-2'>
+              <div
+                className={`${current} bg-cool-grey-01 border-cool-grey-04 h-64 gap-2 rounded-lg border p-4`}
+              >
+                {[
+                  'bg-primary-blue-1',
+                  'bg-primary-blue-2',
+                  'bg-primary-blue-deep'
+                ].map((color) => (
+                  <motion.div
+                    key={color}
+                    layout
+                    transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+                    className={`${color} h-12 w-12 rounded-md`}
+                  />
+                ))}
+              </div>
+              <p className='typo-mono-m12 text-cool-grey-07 text-center'>
+                현재 적용: <span className='text-primary-blue-1'>{current}</span>
+              </p>
+            </div>
+          }
+          code={`<div className="${current} gap-2">
+  <div className="bg-primary-blue-1 h-12 w-12 rounded-md" />
+  <div className="bg-primary-blue-2 h-12 w-12 rounded-md" />
+  <div className="bg-primary-blue-deep h-12 w-12 rounded-md" />
+</div>`}
+        />
       </section>
 
       {/* ── Utility list ──────────────── */}

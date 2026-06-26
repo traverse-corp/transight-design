@@ -10,6 +10,9 @@ import { ComponentPropsDocs, hasVisiblePropsDocs } from './component-props-docs'
 import { LabelVariantPresets } from './label-variant-presets'
 import { TooltipPreviewShell } from './tooltip-preview-shell'
 import { DialogPreviewShell } from './dialog-preview-shell'
+import { DropdownMenuPreviewShell } from './dropdown-menu-preview-shell'
+import { PopoverPreviewShell } from './popover-preview-shell'
+import { SheetPreviewShell } from './sheet-preview-shell'
 import { PreviewModePanel } from './preview-mode-panel'
 import { VariantBuilderModal } from './variant-builder-modal'
 import { SectionTitle, SectionCard } from './section-title'
@@ -157,6 +160,33 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
     return (
       <ThreeSectionLayout
         styleNode={<DialogPreviewShell />}
+        variantNode={variantNodeShared}
+        propsNode={hasVisiblePropsDocs(name) ? <ComponentPropsDocs name={name} /> : null}
+      />
+    )
+  }
+  if (name === 'dropdown-menu') {
+    return (
+      <ThreeSectionLayout
+        styleNode={<DropdownMenuPreviewShell />}
+        variantNode={variantNodeShared}
+        propsNode={hasVisiblePropsDocs(name) ? <ComponentPropsDocs name={name} /> : null}
+      />
+    )
+  }
+  if (name === 'popover') {
+    return (
+      <ThreeSectionLayout
+        styleNode={<PopoverPreviewShell />}
+        variantNode={variantNodeShared}
+        propsNode={hasVisiblePropsDocs(name) ? <ComponentPropsDocs name={name} /> : null}
+      />
+    )
+  }
+  if (name === 'sheet') {
+    return (
+      <ThreeSectionLayout
+        styleNode={<SheetPreviewShell />}
         variantNode={variantNodeShared}
         propsNode={hasVisiblePropsDocs(name) ? <ComponentPropsDocs name={name} /> : null}
       />

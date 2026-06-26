@@ -1,154 +1,158 @@
 'use client'
 
 import { useState } from 'react'
+import { PreviewModePanel } from '@/components/preview-mode-panel'
 
-interface TypoEntry {
-  className: string
-  description?: string
-}
+const SIZES = [8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 24, 32, 40, 48, 56] as const
+type Size = (typeof SIZES)[number]
 
-interface TypoGroup {
-  label: string
-  entries: TypoEntry[]
-}
+const WEIGHTS = [
+  { value: 100, label: 'Thin', abbrev: 't' },
+  { value: 200, label: 'ExtraLight', abbrev: 'el' },
+  { value: 300, label: 'Light', abbrev: 'l' },
+  { value: 400, label: 'Regular', abbrev: 'r' },
+  { value: 500, label: 'Medium', abbrev: 'm' },
+  { value: 600, label: 'Semibold', abbrev: 'sb' },
+  { value: 700, label: 'Bold', abbrev: 'b' },
+  { value: 800, label: 'ExtraBold', abbrev: 'eb' },
+  { value: 900, label: 'Black', abbrev: 'bk' }
+] as const
 
-const TYPO_GROUPS: TypoGroup[] = [
-  {
-    label: 'Regular (400)',
-    entries: [
-      { className: 'typo-r8' },
-      { className: 'typo-r9' },
-      { className: 'typo-r10' },
-      { className: 'typo-r11' },
-      { className: 'typo-r12' }
-    ]
-  },
-  {
-    label: 'Medium (500)',
-    entries: [
-      { className: 'typo-m10' },
-      { className: 'typo-m11' },
-      { className: 'typo-m12' },
-      { className: 'typo-m13' },
-      { className: 'typo-m14' },
-      { className: 'typo-m16' },
-      { className: 'typo-m18' }
-    ]
-  },
-  {
-    label: 'Semibold (600)',
-    entries: [
-      { className: 'typo-sb9' },
-      { className: 'typo-sb10' },
-      { className: 'typo-sb11' },
-      { className: 'typo-sb12' },
-      { className: 'typo-sb13' },
-      { className: 'typo-sb14' },
-      { className: 'typo-sb16' },
-      { className: 'typo-sb18' }
-    ]
-  },
-  {
-    label: 'Bold (700)',
-    entries: [
-      { className: 'typo-b14' },
-      { className: 'typo-b16' },
-      { className: 'typo-b18' },
-      { className: 'typo-b24' }
-    ]
-  },
-  {
-    label: 'ExtraBold (800)',
-    entries: [
-      { className: 'typo-eb14' },
-      { className: 'typo-eb32' },
-      { className: 'typo-eb54' }
-    ]
-  },
-  {
-    label: 'Monospace',
-    entries: [
-      { className: 'typo-mono-r10' },
-      { className: 'typo-mono-r11' },
-      { className: 'typo-mono-m12' },
-      { className: 'typo-mono-m14' },
-      { className: 'typo-mono-b14' }
-    ]
-  },
-  {
-    label: 'Variant',
-    entries: [
-      { className: 'typo-sb16-tight' },
-      { className: 'typo-sb10-wider' },
-      { className: 'typo-r12-relaxed' },
-      { className: 'typo-m14-relaxed' }
-    ]
-  },
-  {
-    label: 'Semantic',
-    entries: [
-      { className: 'text-page-title' },
-      { className: 'text-section-title' },
-      { className: 'text-modal-title' },
-      { className: 'text-label' },
-      { className: 'text-body' },
-      { className: 'text-subtitle' },
-      { className: 'text-caption' },
-      { className: 'text-description' },
-      { className: 'text-overline' },
-      { className: 'text-disabled' },
-      { className: 'text-error' },
-      { className: 'text-link' }
-    ]
-  }
-]
+type WeightValue = (typeof WEIGHTS)[number]['value']
+
+const SEMANTIC = [
+  'text-page-title',
+  'text-section-title',
+  'text-modal-title',
+  'text-label',
+  'text-body',
+  'text-subtitle',
+  'text-caption',
+  'text-description',
+  'text-overline',
+  'text-disabled',
+  'text-error',
+  'text-link'
+] as const
+
+const MONO = ['typo-mono-r10', 'typo-mono-r11', 'typo-mono-m12', 'typo-mono-m14', 'typo-mono-b14'] as const
+
+const VARIANTS = ['typo-sb16-tight', 'typo-sb10-wider', 'typo-r12-relaxed', 'typo-m14-relaxed'] as const
 
 export const TypoView = () => {
-  const [current, setCurrent] = useState<string>('typo-eb32')
+  const [size, setSize] = useState<Size>(32)
+  const [weight, setWeight] = useState<WeightValue>(800)
+  const [extra, setExtra] = useState<string | null>(null)
+
+  const weightEntry = WEIGHTS.find((w) => w.value === weight) ?? WEIGHTS[3]
+  const composedClass = extra ?? `typo-${weightEntry.abbrev}${size}`
 
   return (
     <div className='flex flex-col gap-6'>
-      {/* ── Preview ──────────────── */}
+      {/* ── Preview / Code 토글 ──────────────── */}
       <section>
-        <h2 className='typo-sb12 text-cool-grey-07 mb-3 uppercase tracking-wide'>Preview</h2>
-        <div className='border-cool-grey-04 text-cool-grey-11 flex min-h-40 items-center justify-center rounded-lg border bg-white p-10'>
-          {/* 부모에 기본 색만 두고, current는 단독 적용 — text-error/text-link 같은 시맨틱 색이 그대로 보이도록 */}
-          <span className={current}>TranSight Design</span>
-        </div>
-        <p className='typo-mono-m12 text-cool-grey-07 mt-2 text-center'>
-          현재 적용: <span className='text-primary-blue-1'>{current}</span>
-        </p>
+        <h2 className='typo-12 font-semibold text-cool-grey-07 mb-3 uppercase tracking-wide'>Preview</h2>
+        <PreviewModePanel
+          preview={
+            <div className='flex flex-col gap-2'>
+              <div className='border-cool-grey-04 text-cool-grey-11 flex-center min-h-40 rounded-lg border bg-white p-10'>
+                <span className={composedClass}>TranSight Design</span>
+              </div>
+              <p className='typo-mono-m12 text-cool-grey-07 text-center'>
+                현재 적용: <span className='text-primary-blue-1'>{composedClass}</span>
+              </p>
+            </div>
+          }
+          code={`<span className="${composedClass}">TranSight Design</span>`}
+        />
       </section>
 
-      {/* ── Utility list ──────────────── */}
-      <section>
-        <h2 className='typo-sb12 text-cool-grey-07 mb-3 uppercase tracking-wide'>Utilities</h2>
-        <div className='flex flex-col gap-5'>
-          {TYPO_GROUPS.map((group) => (
-            <div key={group.label}>
-              <h3 className='typo-sb12 text-cool-grey-09 mb-2'>{group.label}</h3>
-              <div className='flex flex-wrap gap-1.5'>
-                {group.entries.map((entry) => {
-                  const active = entry.className === current
-                  return (
-                    <button
-                      key={entry.className}
-                      type='button'
-                      onClick={() => setCurrent(entry.className)}
-                      className={
-                        active
-                          ? 'bg-primary-blue-1 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
-                          : 'border-cool-grey-04 hover:border-primary-blue-1 hover:text-primary-blue-1 typo-mono-m12 text-cool-grey-09 rounded-md border bg-white px-2.5 py-1'
-                      }
-                    >
-                      {entry.className}
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
-          ))}
+      {/* ── Size × Weight 그리드 ──────────────── */}
+      <section className='flex flex-col gap-5'>
+        <div>
+          <h3 className='typo-12 font-semibold text-cool-grey-09 mb-2'>Size (px)</h3>
+          <div className='flex flex-wrap gap-1.5'>
+            {SIZES.map((s) => {
+              const active = !extra && s === size
+              return (
+                <button
+                  key={s}
+                  type='button'
+                  onClick={() => {
+                    setSize(s)
+                    setExtra(null)
+                  }}
+                  className={
+                    active
+                      ? 'bg-primary-blue-1 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
+                      : 'border-cool-grey-04 hover:border-primary-blue-1 hover:text-primary-blue-1 typo-mono-m12 text-cool-grey-09 rounded-md border bg-white px-2.5 py-1'
+                  }
+                >
+                  {s}
+                </button>
+              )
+            })}
+          </div>
         </div>
+
+        <div>
+          <h3 className='typo-12 font-semibold text-cool-grey-09 mb-2'>Weight</h3>
+          <div className='flex flex-wrap gap-1.5'>
+            {WEIGHTS.map((w) => {
+              const active = !extra && w.value === weight
+              return (
+                <button
+                  key={w.value}
+                  type='button'
+                  onClick={() => {
+                    setWeight(w.value)
+                    setExtra(null)
+                  }}
+                  className={
+                    active
+                      ? 'bg-primary-blue-1 typo-mono-m12 flex-center gap-1.5 rounded-md px-2.5 py-1 text-white'
+                      : 'border-cool-grey-04 hover:border-primary-blue-1 hover:text-primary-blue-1 typo-mono-m12 text-cool-grey-09 flex-center gap-1.5 rounded-md border bg-white px-2.5 py-1'
+                  }
+                >
+                  <span>{w.value}</span>
+                  <span className='opacity-60'>{w.label}</span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 시맨틱 / Variant / Mono — 단일 클릭 프리셋 ──────────────── */}
+      <section className='flex flex-col gap-5'>
+        {[
+          { label: 'Semantic', entries: SEMANTIC },
+          { label: 'Variant', entries: VARIANTS },
+          { label: 'Monospace', entries: MONO }
+        ].map((group) => (
+          <div key={group.label}>
+            <h3 className='typo-12 font-semibold text-cool-grey-09 mb-2'>{group.label}</h3>
+            <div className='flex flex-wrap gap-1.5'>
+              {group.entries.map((cls) => {
+                const active = extra === cls
+                return (
+                  <button
+                    key={cls}
+                    type='button'
+                    onClick={() => setExtra(cls)}
+                    className={
+                      active
+                        ? 'bg-primary-blue-1 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
+                        : 'border-cool-grey-04 hover:border-primary-blue-1 hover:text-primary-blue-1 typo-mono-m12 text-cool-grey-09 rounded-md border bg-white px-2.5 py-1'
+                    }
+                  >
+                    {cls}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        ))}
       </section>
     </div>
   )

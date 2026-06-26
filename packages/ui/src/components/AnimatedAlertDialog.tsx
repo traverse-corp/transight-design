@@ -1,26 +1,29 @@
 import * as React from 'react'
 
+// alert-dialog 통합 후 dialog 컴포넌트를 alertdialog 역할로 재사용 (role/dismissible은 사용처에서 지정)
 import {
-  AlertDialog as AlertDialogPrimitive,
-  AlertDialogPopup as AlertDialogPopupPrimitive,
-  AlertDialogDescription as AlertDialogDescriptionPrimitive,
-  AlertDialogFooter as AlertDialogFooterPrimitive,
-  AlertDialogHeader as AlertDialogHeaderPrimitive,
-  AlertDialogTitle as AlertDialogTitlePrimitive,
-  AlertDialogTrigger as AlertDialogTriggerPrimitive,
-  AlertDialogPortal as AlertDialogPortalPrimitive,
-  AlertDialogBackdrop as AlertDialogBackdropPrimitive,
-  AlertDialogClose as AlertDialogClosePrimitive,
-  type AlertDialogProps as AlertDialogPrimitiveProps,
-  type AlertDialogPopupProps as AlertDialogPopupPrimitiveProps,
-  type AlertDialogDescriptionProps as AlertDialogDescriptionPrimitiveProps,
-  type AlertDialogFooterProps as AlertDialogFooterPrimitiveProps,
-  type AlertDialogHeaderProps as AlertDialogHeaderPrimitiveProps,
-  type AlertDialogTitleProps as AlertDialogTitlePrimitiveProps,
-  type AlertDialogTriggerProps as AlertDialogTriggerPrimitiveProps,
-  type AlertDialogBackdropProps as AlertDialogBackdropPrimitiveProps,
-  type AlertDialogCloseProps as AlertDialogClosePrimitiveProps
-} from '@/components/alert-dialog'
+  Dialog as AlertDialogPrimitive,
+  DialogPopup as AlertDialogPopupPrimitive,
+  DialogDescription as AlertDialogDescriptionPrimitive,
+  DialogTrigger as AlertDialogTriggerPrimitive,
+  DialogPortal as AlertDialogPortalPrimitive,
+  DialogBackdrop as AlertDialogBackdropPrimitive,
+  DialogClose as AlertDialogClosePrimitive,
+  DialogTitle as AlertDialogTitlePrimitive,
+  type DialogProps as AlertDialogPrimitiveProps,
+  type DialogPopupProps as AlertDialogPopupPrimitiveProps,
+  type DialogDescriptionProps as AlertDialogDescriptionPrimitiveProps,
+  type DialogTitleProps as AlertDialogTitlePrimitiveProps,
+  type DialogTriggerProps as AlertDialogTriggerPrimitiveProps,
+  type DialogBackdropProps as AlertDialogBackdropPrimitiveProps,
+  type DialogCloseProps as AlertDialogClosePrimitiveProps
+} from '@/components/dialog'
+
+// dialog는 Header/Footer를 외부에서 div로 받으므로 여기서도 div로 alias 처리
+type AlertDialogHeaderPrimitiveProps = React.ComponentProps<'div'>
+type AlertDialogFooterPrimitiveProps = React.ComponentProps<'div'>
+const AlertDialogHeaderPrimitive = (props: AlertDialogHeaderPrimitiveProps) => <div {...props} />
+const AlertDialogFooterPrimitive = (props: AlertDialogFooterPrimitiveProps) => <div {...props} />
 import { buttonVariants } from '@/components/button'
 import { cn } from '@/lib/utils'
 

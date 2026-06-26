@@ -1,15 +1,22 @@
 /* ================================================================
  * Transight Design System — 타이포그래피
  *
- * 1. 폰트 패밀리 / 모노스페이스 등록 (@theme)
- * 2. 굵기별 프리셋 (typo-*)
- * 3. 시맨틱 프리셋 (text-page-title, text-body, …)
+ * 공개 API: typo-{weight}{size} 단일 클래스만 사용한다.
+ *   <span class="typo-sb14">…</span>
  *
- * 네이밍: typo-{weight}{size}
- *   r=Regular(400), m=Medium(500), sb=Semibold(600), b=Bold(700), eb=ExtraBold(800)
+ * 굵기 약자 (100~900 전 범위):
+ *   t=100(Thin) / el=200(ExtraLight) / l=300(Light)
+ *   r=400(Regular) / m=500(Medium) / sb=600(Semibold)
+ *   b=700(Bold) / eb=800(ExtraBold) / bk=900(Black)
  *
- * 주의: SUIT Variable 폰트 페이스 @import는 font-suit.css에 분리됨.
- *       이 파일을 사용하기 전 font-suit.css를 entry CSS 최상단에 import할 것.
+ * 크기 그리드:
+ *   8 9 10 11 12 13 14 15 16    (1px 간격)
+ *   18                           (레거시 유지)
+ *   24 32 40 48 56               (8px 간격)
+ *
+ * 시맨틱 프리셋 (text-*): 크기+굵기+색까지 완결. 의미 명확하면 우선.
+ *
+ * SUIT Variable 폰트는 font-suit.css에서 @import (entry CSS 최상단).
  * ================================================================ */
 
 @theme {
@@ -22,171 +29,179 @@
     ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 }
 
-/* ── Regular (400) ── */
-@utility typo-r8 {
-  font-weight: 400;
-  font-size: 8px;
-  line-height: 150%;
-  letter-spacing: 0;
-}
-@utility typo-r9 {
-  font-weight: 400;
-  font-size: 9px;
-  line-height: 150%;
-  letter-spacing: 0;
-}
-@utility typo-r10 {
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-r11 {
-  font-weight: 400;
-  font-size: 11px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-r12 {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
+/* ──────────────────────────────────────────────────────────────────
+ * 내부 크기 atom (private) — public 합성용. 직접 사용 금지.
+ * font-size + line-height + letter-spacing만 설정.
+ * ────────────────────────────────────────────────────────────────── */
 
-/* ── Medium (500) ── */
-@utility typo-m10 {
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 150%;
-  letter-spacing: 0;
-}
-@utility typo-m11 {
-  font-weight: 500;
-  font-size: 11px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-m12 {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 150%;
-  letter-spacing: 0;
-}
-@utility typo-m13 {
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 150%;
-  letter-spacing: 0.02em;
-}
-@utility typo-m14 {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-m16 {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-m18 {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
+@utility typo-size-8 { font-size: 8px; line-height: 150%; letter-spacing: 0; }
+@utility typo-size-9 { font-size: 9px; line-height: 150%; letter-spacing: 0; }
+@utility typo-size-10 { font-size: 10px; line-height: 160%; letter-spacing: 0; }
+@utility typo-size-11 { font-size: 11px; line-height: 160%; letter-spacing: 0; }
+@utility typo-size-12 { font-size: 12px; line-height: 160%; letter-spacing: 0; }
+@utility typo-size-13 { font-size: 13px; line-height: 150%; letter-spacing: 0.02em; }
+@utility typo-size-14 { font-size: 14px; line-height: 160%; letter-spacing: 0; }
+@utility typo-size-15 { font-size: 15px; line-height: 160%; letter-spacing: 0; }
+@utility typo-size-16 { font-size: 16px; line-height: 160%; letter-spacing: 0; }
+@utility typo-size-18 { font-size: 18px; line-height: 160%; letter-spacing: 0; }
+@utility typo-size-24 { font-size: 24px; line-height: 160%; letter-spacing: 0; }
+@utility typo-size-32 { font-size: 32px; line-height: 130%; letter-spacing: 0; }
+@utility typo-size-40 { font-size: 40px; line-height: 130%; letter-spacing: 0; }
+@utility typo-size-48 { font-size: 48px; line-height: 130%; letter-spacing: -0.005em; }
+@utility typo-size-56 { font-size: 56px; line-height: 120%; letter-spacing: -0.005em; }
 
-/* ── Semibold (600) ── */
-@utility typo-sb9 {
-  font-weight: 600;
-  font-size: 9px;
-  line-height: 150%;
-  letter-spacing: 0;
-}
-@utility typo-sb10 {
-  font-weight: 600;
-  font-size: 10px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-sb11 {
-  font-weight: 600;
-  font-size: 11px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-sb12 {
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-sb13 {
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-sb14 {
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-sb16 {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-sb18 {
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
+/* ──────────────────────────────────────────────────────────────────
+ * Thin (100)
+ * ────────────────────────────────────────────────────────────────── */
+@utility typo-t8 { @apply typo-size-8; font-weight: 100; }
+@utility typo-t9 { @apply typo-size-9; font-weight: 100; }
+@utility typo-t10 { @apply typo-size-10; font-weight: 100; }
+@utility typo-t11 { @apply typo-size-11; font-weight: 100; }
+@utility typo-t12 { @apply typo-size-12; font-weight: 100; }
+@utility typo-t13 { @apply typo-size-13; font-weight: 100; }
+@utility typo-t14 { @apply typo-size-14; font-weight: 100; }
+@utility typo-t15 { @apply typo-size-15; font-weight: 100; }
+@utility typo-t16 { @apply typo-size-16; font-weight: 100; }
+@utility typo-t18 { @apply typo-size-18; font-weight: 100; }
+@utility typo-t24 { @apply typo-size-24; font-weight: 100; }
+@utility typo-t32 { @apply typo-size-32; font-weight: 100; }
+@utility typo-t40 { @apply typo-size-40; font-weight: 100; }
+@utility typo-t48 { @apply typo-size-48; font-weight: 100; }
+@utility typo-t56 { @apply typo-size-56; font-weight: 100; }
 
-/* ── Bold (700) ── */
-@utility typo-b14 {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 160%;
-  letter-spacing: -0.005em;
-}
-@utility typo-b16 {
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 160%;
-  letter-spacing: -0.005em;
-}
-@utility typo-b18 {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-b24 {
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
+/* ──────────────────────────────────────────────────────────────────
+ * ExtraLight (200)
+ * ────────────────────────────────────────────────────────────────── */
+@utility typo-el8 { @apply typo-size-8; font-weight: 200; }
+@utility typo-el9 { @apply typo-size-9; font-weight: 200; }
+@utility typo-el10 { @apply typo-size-10; font-weight: 200; }
+@utility typo-el11 { @apply typo-size-11; font-weight: 200; }
+@utility typo-el12 { @apply typo-size-12; font-weight: 200; }
+@utility typo-el13 { @apply typo-size-13; font-weight: 200; }
+@utility typo-el14 { @apply typo-size-14; font-weight: 200; }
+@utility typo-el15 { @apply typo-size-15; font-weight: 200; }
+@utility typo-el16 { @apply typo-size-16; font-weight: 200; }
+@utility typo-el18 { @apply typo-size-18; font-weight: 200; }
+@utility typo-el24 { @apply typo-size-24; font-weight: 200; }
+@utility typo-el32 { @apply typo-size-32; font-weight: 200; }
+@utility typo-el40 { @apply typo-size-40; font-weight: 200; }
+@utility typo-el48 { @apply typo-size-48; font-weight: 200; }
+@utility typo-el56 { @apply typo-size-56; font-weight: 200; }
 
-/* ── ExtraBold (800) ── */
-@utility typo-eb14 {
-  font-weight: 800;
-  font-size: 14px;
-  line-height: 160%;
-  letter-spacing: 0;
-}
-@utility typo-eb32 {
-  font-weight: 800;
-  font-size: 32px;
-  line-height: 130%;
-  letter-spacing: 0;
-}
+/* ──────────────────────────────────────────────────────────────────
+ * Light (300)
+ * ────────────────────────────────────────────────────────────────── */
+@utility typo-l8 { @apply typo-size-8; font-weight: 300; }
+@utility typo-l9 { @apply typo-size-9; font-weight: 300; }
+@utility typo-l10 { @apply typo-size-10; font-weight: 300; }
+@utility typo-l11 { @apply typo-size-11; font-weight: 300; }
+@utility typo-l12 { @apply typo-size-12; font-weight: 300; }
+@utility typo-l13 { @apply typo-size-13; font-weight: 300; }
+@utility typo-l14 { @apply typo-size-14; font-weight: 300; }
+@utility typo-l15 { @apply typo-size-15; font-weight: 300; }
+@utility typo-l16 { @apply typo-size-16; font-weight: 300; }
+@utility typo-l18 { @apply typo-size-18; font-weight: 300; }
+@utility typo-l24 { @apply typo-size-24; font-weight: 300; }
+@utility typo-l32 { @apply typo-size-32; font-weight: 300; }
+@utility typo-l40 { @apply typo-size-40; font-weight: 300; }
+@utility typo-l48 { @apply typo-size-48; font-weight: 300; }
+@utility typo-l56 { @apply typo-size-56; font-weight: 300; }
+
+/* ──────────────────────────────────────────────────────────────────
+ * Regular (400)
+ * ────────────────────────────────────────────────────────────────── */
+@utility typo-r8 { @apply typo-size-8; font-weight: 400; }
+@utility typo-r9 { @apply typo-size-9; font-weight: 400; }
+@utility typo-r10 { @apply typo-size-10; font-weight: 400; }
+@utility typo-r11 { @apply typo-size-11; font-weight: 400; }
+@utility typo-r12 { @apply typo-size-12; font-weight: 400; }
+@utility typo-r13 { @apply typo-size-13; font-weight: 400; }
+@utility typo-r14 { @apply typo-size-14; font-weight: 400; }
+@utility typo-r15 { @apply typo-size-15; font-weight: 400; }
+@utility typo-r16 { @apply typo-size-16; font-weight: 400; }
+@utility typo-r18 { @apply typo-size-18; font-weight: 400; }
+@utility typo-r24 { @apply typo-size-24; font-weight: 400; }
+@utility typo-r32 { @apply typo-size-32; font-weight: 400; }
+@utility typo-r40 { @apply typo-size-40; font-weight: 400; }
+@utility typo-r48 { @apply typo-size-48; font-weight: 400; }
+@utility typo-r56 { @apply typo-size-56; font-weight: 400; }
+
+/* ──────────────────────────────────────────────────────────────────
+ * Medium (500)
+ * ────────────────────────────────────────────────────────────────── */
+@utility typo-m8 { @apply typo-size-8; font-weight: 500; }
+@utility typo-m9 { @apply typo-size-9; font-weight: 500; }
+@utility typo-m10 { @apply typo-size-10; font-weight: 500; }
+@utility typo-m11 { @apply typo-size-11; font-weight: 500; }
+@utility typo-m12 { @apply typo-size-12; font-weight: 500; }
+@utility typo-m13 { @apply typo-size-13; font-weight: 500; }
+@utility typo-m14 { @apply typo-size-14; font-weight: 500; }
+@utility typo-m15 { @apply typo-size-15; font-weight: 500; }
+@utility typo-m16 { @apply typo-size-16; font-weight: 500; }
+@utility typo-m18 { @apply typo-size-18; font-weight: 500; }
+@utility typo-m24 { @apply typo-size-24; font-weight: 500; }
+@utility typo-m32 { @apply typo-size-32; font-weight: 500; }
+@utility typo-m40 { @apply typo-size-40; font-weight: 500; }
+@utility typo-m48 { @apply typo-size-48; font-weight: 500; }
+@utility typo-m56 { @apply typo-size-56; font-weight: 500; }
+
+/* ──────────────────────────────────────────────────────────────────
+ * Semibold (600)
+ * ────────────────────────────────────────────────────────────────── */
+@utility typo-sb8 { @apply typo-size-8; font-weight: 600; }
+@utility typo-sb9 { @apply typo-size-9; font-weight: 600; }
+@utility typo-sb10 { @apply typo-size-10; font-weight: 600; }
+@utility typo-sb11 { @apply typo-size-11; font-weight: 600; }
+@utility typo-sb12 { @apply typo-size-12; font-weight: 600; }
+@utility typo-sb13 { @apply typo-size-13; font-weight: 600; }
+@utility typo-sb14 { @apply typo-size-14; font-weight: 600; }
+@utility typo-sb15 { @apply typo-size-15; font-weight: 600; }
+@utility typo-sb16 { @apply typo-size-16; font-weight: 600; }
+@utility typo-sb18 { @apply typo-size-18; font-weight: 600; }
+@utility typo-sb24 { @apply typo-size-24; font-weight: 600; }
+@utility typo-sb32 { @apply typo-size-32; font-weight: 600; }
+@utility typo-sb40 { @apply typo-size-40; font-weight: 600; }
+@utility typo-sb48 { @apply typo-size-48; font-weight: 600; }
+@utility typo-sb56 { @apply typo-size-56; font-weight: 600; }
+
+/* ──────────────────────────────────────────────────────────────────
+ * Bold (700)
+ * ────────────────────────────────────────────────────────────────── */
+@utility typo-b8 { @apply typo-size-8; font-weight: 700; }
+@utility typo-b9 { @apply typo-size-9; font-weight: 700; }
+@utility typo-b10 { @apply typo-size-10; font-weight: 700; }
+@utility typo-b11 { @apply typo-size-11; font-weight: 700; }
+@utility typo-b12 { @apply typo-size-12; font-weight: 700; }
+@utility typo-b13 { @apply typo-size-13; font-weight: 700; }
+@utility typo-b14 { @apply typo-size-14; font-weight: 700; }
+@utility typo-b15 { @apply typo-size-15; font-weight: 700; }
+@utility typo-b16 { @apply typo-size-16; font-weight: 700; }
+@utility typo-b18 { @apply typo-size-18; font-weight: 700; }
+@utility typo-b24 { @apply typo-size-24; font-weight: 700; }
+@utility typo-b32 { @apply typo-size-32; font-weight: 700; }
+@utility typo-b40 { @apply typo-size-40; font-weight: 700; }
+@utility typo-b48 { @apply typo-size-48; font-weight: 700; }
+@utility typo-b56 { @apply typo-size-56; font-weight: 700; }
+
+/* ──────────────────────────────────────────────────────────────────
+ * ExtraBold (800)
+ * ────────────────────────────────────────────────────────────────── */
+@utility typo-eb8 { @apply typo-size-8; font-weight: 800; }
+@utility typo-eb9 { @apply typo-size-9; font-weight: 800; }
+@utility typo-eb10 { @apply typo-size-10; font-weight: 800; }
+@utility typo-eb11 { @apply typo-size-11; font-weight: 800; }
+@utility typo-eb12 { @apply typo-size-12; font-weight: 800; }
+@utility typo-eb13 { @apply typo-size-13; font-weight: 800; }
+@utility typo-eb14 { @apply typo-size-14; font-weight: 800; }
+@utility typo-eb15 { @apply typo-size-15; font-weight: 800; }
+@utility typo-eb16 { @apply typo-size-16; font-weight: 800; }
+@utility typo-eb18 { @apply typo-size-18; font-weight: 800; }
+@utility typo-eb24 { @apply typo-size-24; font-weight: 800; }
+@utility typo-eb32 { @apply typo-size-32; font-weight: 800; }
+@utility typo-eb40 { @apply typo-size-40; font-weight: 800; }
+@utility typo-eb48 { @apply typo-size-48; font-weight: 800; }
+@utility typo-eb56 { @apply typo-size-56; font-weight: 800; }
+/* 레거시 54px (신규 그리드 밖) */
 @utility typo-eb54 {
   font-weight: 800;
   font-size: 54px;
@@ -194,112 +209,60 @@
   letter-spacing: -0.005em;
 }
 
-/* ── Variant: tracking/leading 변형 ── */
-@utility typo-sb16-tight {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 160%;
-  letter-spacing: -0.025em;
-}
-@utility typo-sb10-wider {
-  font-weight: 600;
-  font-size: 10px;
-  line-height: 160%;
-  letter-spacing: 0.05em;
-}
-@utility typo-r12-relaxed {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.625;
-  letter-spacing: 0;
-}
-@utility typo-m14-relaxed {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.625;
-  letter-spacing: 0;
-}
+/* ──────────────────────────────────────────────────────────────────
+ * Black (900)
+ * ────────────────────────────────────────────────────────────────── */
+@utility typo-bk8 { @apply typo-size-8; font-weight: 900; }
+@utility typo-bk9 { @apply typo-size-9; font-weight: 900; }
+@utility typo-bk10 { @apply typo-size-10; font-weight: 900; }
+@utility typo-bk11 { @apply typo-size-11; font-weight: 900; }
+@utility typo-bk12 { @apply typo-size-12; font-weight: 900; }
+@utility typo-bk13 { @apply typo-size-13; font-weight: 900; }
+@utility typo-bk14 { @apply typo-size-14; font-weight: 900; }
+@utility typo-bk15 { @apply typo-size-15; font-weight: 900; }
+@utility typo-bk16 { @apply typo-size-16; font-weight: 900; }
+@utility typo-bk18 { @apply typo-size-18; font-weight: 900; }
+@utility typo-bk24 { @apply typo-size-24; font-weight: 900; }
+@utility typo-bk32 { @apply typo-size-32; font-weight: 900; }
+@utility typo-bk40 { @apply typo-size-40; font-weight: 900; }
+@utility typo-bk48 { @apply typo-size-48; font-weight: 900; }
+@utility typo-bk56 { @apply typo-size-56; font-weight: 900; }
 
-/* ── Monospace ── */
-@utility typo-mono-r10 {
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 160%;
-  letter-spacing: 0;
-  font-family: var(--font-mono);
-}
-@utility typo-mono-r11 {
-  font-weight: 400;
-  font-size: 11px;
-  line-height: 160%;
-  letter-spacing: 0;
-  font-family: var(--font-mono);
-}
-@utility typo-mono-m12 {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 150%;
-  letter-spacing: 0;
-  font-family: var(--font-mono);
-}
-@utility typo-mono-m14 {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 160%;
-  letter-spacing: 0;
-  font-family: var(--font-mono);
-}
-@utility typo-mono-b14 {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 160%;
-  letter-spacing: -0.005em;
-  font-family: var(--font-mono);
-}
+/* ──────────────────────────────────────────────────────────────────
+ * Variant — tracking/leading 변형
+ * ────────────────────────────────────────────────────────────────── */
+@utility typo-sb16-tight { @apply typo-sb16; letter-spacing: -0.025em; }
+@utility typo-sb10-wider { @apply typo-sb10; letter-spacing: 0.05em; }
+@utility typo-r12-relaxed { @apply typo-r12; line-height: 1.625; }
+@utility typo-m14-relaxed { @apply typo-m14; line-height: 1.625; }
 
-/* ── 시맨틱 타이포그래피 (크기+굵기+행간+자간+색상 완결 프리셋) ── */
+/* ──────────────────────────────────────────────────────────────────
+ * Monospace
+ * ────────────────────────────────────────────────────────────────── */
+@utility typo-mono-r10 { @apply typo-r10; font-family: var(--font-mono); }
+@utility typo-mono-r11 { @apply typo-r11; font-family: var(--font-mono); }
+@utility typo-mono-m12 { @apply typo-m12; font-family: var(--font-mono); line-height: 150%; }
+@utility typo-mono-m14 { @apply typo-m14; font-family: var(--font-mono); }
+@utility typo-mono-b14 { @apply typo-b14; font-family: var(--font-mono); letter-spacing: -0.005em; }
 
-@utility text-page-title {
-  @apply typo-eb32 text-cool-grey-11;
-}
-@utility text-section-title {
-  @apply typo-b24 text-cool-grey-11;
-}
-@utility text-modal-title {
-  @apply typo-b18 text-cool-grey-10;
-}
-@utility text-label {
-  @apply typo-sb14 text-cool-grey-11;
-}
-@utility text-body {
-  @apply typo-m13 text-cool-grey-09;
-}
-@utility text-subtitle {
-  @apply typo-m14 text-cool-grey-09;
-}
-@utility text-caption {
-  @apply typo-r12 text-cool-grey-09;
-}
-@utility text-description {
-  @apply typo-r12 text-cool-grey-07;
-}
-@utility text-overline {
-  @apply typo-sb9 text-cool-grey-07;
-}
-@utility text-disabled {
-  @apply typo-r12 text-cool-grey-04;
-}
-@utility text-error {
-  @apply typo-sb14 text-ui-red;
-}
-@utility text-link {
-  @apply typo-m14 text-primary-blue-1;
-}
+/* ──────────────────────────────────────────────────────────────────
+ * 시맨틱 (크기 + 굵기 + 색까지 완결)
+ * ────────────────────────────────────────────────────────────────── */
+@utility text-page-title { @apply typo-eb32 text-cool-grey-11; }
+@utility text-section-title { @apply typo-b24 text-cool-grey-11; }
+@utility text-modal-title { @apply typo-b18 text-cool-grey-10; }
+@utility text-label { @apply typo-sb14 text-cool-grey-11; }
+@utility text-body { @apply typo-m13 text-cool-grey-09; }
+@utility text-subtitle { @apply typo-m14 text-cool-grey-09; }
+@utility text-caption { @apply typo-r12 text-cool-grey-09; }
+@utility text-description { @apply typo-r12 text-cool-grey-07; }
+@utility text-overline { @apply typo-sb9 text-cool-grey-07; }
+@utility text-disabled { @apply typo-r12 text-cool-grey-04; }
+@utility text-error { @apply typo-sb14 text-ui-red; }
+@utility text-link { @apply typo-m14 text-primary-blue-1; }
 
 /* 어두운 배경 위 텍스트 — text-white 대신 사용 */
-@utility text-on-dark {
-  color: #ffffff;
-}
+@utility text-on-dark { color: #ffffff; }
 
 /* ── pre / 토스트 폰트 고정 ── */
 pre,

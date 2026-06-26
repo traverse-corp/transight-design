@@ -216,33 +216,11 @@
       "description": "accordion 컴포넌트",
       "dependencies": [
         "@base-ui/react",
-        "motion"
-      ],
-      "registryDependencies": [
-        "traverse-corp/transight-design/hook-use-controlled-state",
-        "traverse-corp/transight-design/lib-get-strict-context",
-        "traverse-corp/transight-design/styles"
-      ],
-      "files": [
-        {
-          "path": "src/components/accordion.tsx",
-          "type": "registry:ui",
-          "target": "~/src/components/base/accordion.tsx"
-        }
-      ]
-    },
-    {
-      "name": "alert-dialog",
-      "type": "registry:ui",
-      "title": "alert-dialog",
-      "description": "alert-dialog 컴포넌트",
-      "dependencies": [
-        "@base-ui/react",
+        "class-variance-authority",
         "lucide-react",
         "motion"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/button",
         "traverse-corp/transight-design/hook-use-controlled-state",
         "traverse-corp/transight-design/lib-get-strict-context",
         "traverse-corp/transight-design/lib-utils",
@@ -250,9 +228,9 @@
       ],
       "files": [
         {
-          "path": "src/components/alert-dialog.tsx",
+          "path": "src/components/accordion.tsx",
           "type": "registry:ui",
-          "target": "~/src/components/base/alert-dialog.tsx"
+          "target": "~/src/components/base/accordion.tsx"
         }
       ]
     },
@@ -342,8 +320,8 @@
       "title": "AnimatedAlertDialog",
       "description": "AnimatedAlertDialog 컴포넌트",
       "registryDependencies": [
-        "traverse-corp/transight-design/alert-dialog",
         "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/dialog",
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/styles"
       ],
@@ -400,7 +378,8 @@
       "title": "avatar",
       "description": "avatar 컴포넌트",
       "dependencies": [
-        "@base-ui/react"
+        "@base-ui/react",
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/lib-utils",
@@ -626,29 +605,6 @@
       ]
     },
     {
-      "name": "command",
-      "type": "registry:ui",
-      "title": "command",
-      "description": "command 컴포넌트",
-      "dependencies": [
-        "cmdk",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "traverse-corp/transight-design/dialog",
-        "traverse-corp/transight-design/input-group",
-        "traverse-corp/transight-design/lib-utils",
-        "traverse-corp/transight-design/styles"
-      ],
-      "files": [
-        {
-          "path": "src/components/command.tsx",
-          "type": "registry:ui",
-          "target": "~/src/components/base/command.tsx"
-        }
-      ]
-    },
-    {
       "name": "CopyButton",
       "type": "registry:ui",
       "title": "CopyButton",
@@ -761,6 +717,7 @@
       "description": "dropdown-menu 컴포넌트",
       "dependencies": [
         "@base-ui/react",
+        "class-variance-authority",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -867,7 +824,8 @@
       "title": "hover-card",
       "description": "hover-card 컴포넌트",
       "dependencies": [
-        "@base-ui/react"
+        "@base-ui/react",
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/lib-utils",
@@ -933,11 +891,9 @@
       "description": "input 컴포넌트",
       "dependencies": [
         "@base-ui/react",
-        "class-variance-authority",
-        "lucide-react"
+        "class-variance-authority"
       ],
       "registryDependencies": [
-        "traverse-corp/transight-design/hook-use-caps-lock",
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/styles"
       ],
@@ -1056,6 +1012,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/hook-use-caps-lock",
         "traverse-corp/transight-design/input",
         "traverse-corp/transight-design/styles"
       ],
@@ -1073,7 +1030,8 @@
       "title": "popover",
       "description": "popover 컴포넌트",
       "dependencies": [
-        "@base-ui/react"
+        "@base-ui/react",
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "traverse-corp/transight-design/lib-utils",
@@ -1276,6 +1234,7 @@
       "description": "sheet 컴포넌트",
       "dependencies": [
         "@base-ui/react",
+        "class-variance-authority",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -1693,7 +1652,6 @@
         "traverse-corp/transight-design/accordion",
         "traverse-corp/transight-design/agent",
         "traverse-corp/transight-design/alert",
-        "traverse-corp/transight-design/alert-dialog",
         "traverse-corp/transight-design/animated-beam",
         "traverse-corp/transight-design/avatar",
         "traverse-corp/transight-design/back-button",
@@ -1705,7 +1663,6 @@
         "traverse-corp/transight-design/checkbox",
         "traverse-corp/transight-design/clickable-addr",
         "traverse-corp/transight-design/clickable-tx",
-        "traverse-corp/transight-design/command",
         "traverse-corp/transight-design/date-time-input",
         "traverse-corp/transight-design/dialog",
         "traverse-corp/transight-design/dropdown-menu",

@@ -1,43 +1,35 @@
 {
   "accordion": {
     "groups": {
-      "variant": [
+      "shape": [
         "default",
         "contained",
         "separated"
-      ],
-      "shape": [
-        "default",
-        "square"
       ],
       "size": [
         "sm",
         "md",
         "lg"
-      ]
-    },
-    "defaults": {
-      "variant": "default",
-      "shape": "default",
-      "size": "md"
-    }
-  },
-  "alert-dialog": {
-    "groups": {
-      "size": [
-        "sm",
-        "md",
-        "lg",
-        "xl"
       ],
-      "shape": [
-        "default",
-        "square"
+      "color": [
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
       ]
     },
     "defaults": {
+      "shape": "default",
       "size": "md",
-      "shape": "default"
+      "color": "blue"
     }
   },
   "alert": {
@@ -285,23 +277,6 @@
     },
     "defaults": {
       "color": "blue",
-      "shape": "default",
-      "size": "md"
-    }
-  },
-  "command": {
-    "groups": {
-      "shape": [
-        "default",
-        "square"
-      ],
-      "size": [
-        "sm",
-        "md",
-        "lg"
-      ]
-    },
-    "defaults": {
       "shape": "default",
       "size": "md"
     }

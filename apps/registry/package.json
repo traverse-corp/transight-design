@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "predev": "node ../../packages/ui/scripts/build-icons.mjs && node scripts/sync-registry.mjs && node scripts/extract-variants.mjs",
-    "dev": "next dev --turbo --port 3000",
+    "dev": "next dev --turbo --port 3002",
     "prebuild": "node ../../packages/ui/scripts/build-icons.mjs && node scripts/sync-registry.mjs && node scripts/extract-variants.mjs",
     "build": "next build",
-    "start": "next start --port 3000",
+    "start": "next start --port 3002",
     "pretypecheck": "node ../../packages/ui/scripts/build-icons.mjs",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf .next .turbo public/r"

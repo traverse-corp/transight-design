@@ -40,6 +40,9 @@
 @source inline("shadow-{primary,search-bar,input,hover}");
 @source inline("text-{4xs,3xs,2xs,xs,md,sm,base,lg,xl,2xl,3xl}");
 
+/* 타이포 — 동적 typo-{w}{s} 조합용 safelist (9 weight × 15 size) */
+@source inline("typo-{t,el,l,r,m,sb,b,eb,bk}{8,9,10,11,12,13,14,15,16,18,24,32,40,48,56}");
+
 body {
   @apply bg-background text-foreground;
 }

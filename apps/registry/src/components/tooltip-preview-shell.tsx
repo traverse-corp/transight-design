@@ -13,66 +13,41 @@ import { PreviewModePanel } from './preview-mode-panel'
 type Color = NonNullable<Parameters<typeof TooltipContent>[0]['color']>
 type Theme = NonNullable<Parameters<typeof TooltipContent>[0]['theme']>
 type Size = NonNullable<Parameters<typeof TooltipContent>[0]['size']>
-type Side = NonNullable<Parameters<typeof TooltipContent>[0]['side']>
-type Align = NonNullable<Parameters<typeof TooltipContent>[0]['align']>
 type ButtonColor = NonNullable<Parameters<typeof Button>[0]['color']>
 type ButtonTheme = NonNullable<Parameters<typeof Button>[0]['theme']>
 type ButtonSize = NonNullable<Parameters<typeof Button>[0]['size']>
 
-// 컨트롤 정의 — {state key, 표시 label, 값} 형태로 분리해 Trigger/Content 탭에서
-// 같은 'theme'/'size' 라벨을 쓰면서도 state key는 분리 유지 (탭이 다르니 사용자 혼동 없음).
 interface ControlDef {
   stateKey: keyof State
   label: string
   values: readonly string[]
 }
 
+const COLORS: readonly string[] = [
+  'gray',
+  'blue',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'skyblue',
+  'purple',
+  'pink',
+  'white',
+  'gradient-blue'
+]
+
 const TRIGGER_CONTROLS: ControlDef[] = [
-  {
-    stateKey: 'triggerColor',
-    label: 'color',
-    values: [
-      'gray',
-      'blue',
-      'red',
-      'orange',
-      'yellow',
-      'olive',
-      'green',
-      'skyblue',
-      'purple',
-      'pink',
-      'white',
-      'gradient-blue'
-    ]
-  },
+  { stateKey: 'triggerColor', label: 'color', values: COLORS },
   { stateKey: 'triggerTheme', label: 'theme', values: ['solid', 'outline', 'soft'] },
   { stateKey: 'triggerSize', label: 'size', values: ['xs', 'sm', 'md', 'lg', 'xl'] }
 ]
 
 const CONTENT_CONTROLS: ControlDef[] = [
-  {
-    stateKey: 'color',
-    label: 'color',
-    values: [
-      'gray',
-      'blue',
-      'red',
-      'orange',
-      'yellow',
-      'olive',
-      'green',
-      'skyblue',
-      'purple',
-      'pink',
-      'white',
-      'gradient-blue'
-    ]
-  },
+  { stateKey: 'color', label: 'color', values: COLORS },
   { stateKey: 'theme', label: 'theme', values: ['solid', 'outline', 'soft'] },
-  { stateKey: 'size', label: 'size', values: ['sm', 'md', 'lg'] },
-  { stateKey: 'side', label: 'side', values: ['top', 'right', 'bottom', 'left'] },
-  { stateKey: 'align', label: 'align', values: ['start', 'center', 'end'] }
+  { stateKey: 'size', label: 'size', values: ['sm', 'md', 'lg'] }
 ]
 
 type Tab = 'trigger' | 'content'
@@ -81,8 +56,6 @@ interface State {
   triggerColor: ButtonColor
   triggerTheme: ButtonTheme
   triggerSize: ButtonSize
-  side: Side
-  align: Align
   color: Color
   theme: Theme
   size: Size
@@ -97,13 +70,7 @@ const codeFor = (s: State) =>
       </Button>
     }
   />
-  <TooltipContent
-    color="${s.color}"
-    theme="${s.theme}"
-    size="${s.size}"
-    side="${s.side}"
-    align="${s.align}"
-  >
+  <TooltipContent color="${s.color}" theme="${s.theme}" size="${s.size}">
     도움말 텍스트입니다.
   </TooltipContent>
 </Tooltip>`
@@ -113,8 +80,6 @@ export const TooltipPreviewShell = () => {
     triggerColor: 'gray',
     triggerTheme: 'outline',
     triggerSize: 'md',
-    side: 'top',
-    align: 'center',
     color: 'gray',
     theme: 'solid',
     size: 'md'
@@ -143,13 +108,7 @@ export const TooltipPreviewShell = () => {
                     </Button>
                   }
                 />
-                <TooltipContent
-                  color={state.color}
-                  theme={state.theme}
-                  size={state.size}
-                  side={state.side}
-                  align={state.align}
-                >
+                <TooltipContent color={state.color} theme={state.theme} size={state.size}>
                   도움말 텍스트입니다.
                 </TooltipContent>
               </Tooltip>
@@ -159,7 +118,6 @@ export const TooltipPreviewShell = () => {
       />
 
       <div className='border-cool-grey-04 flex flex-col gap-4 border-t pt-5'>
-        {/* 탭 — Trigger / Content */}
         <div className='border-cool-grey-04 flex gap-1 border-b'>
           {(['trigger', 'content'] as Tab[]).map((t) => {
             const active = tab === t
@@ -180,7 +138,6 @@ export const TooltipPreviewShell = () => {
           })}
         </div>
 
-        {/* 탭별 컨트롤 */}
         <div className='flex flex-col gap-3'>
           {(tab === 'trigger' ? TRIGGER_CONTROLS : CONTENT_CONTROLS).map((ctrl) => (
             <ControlRow

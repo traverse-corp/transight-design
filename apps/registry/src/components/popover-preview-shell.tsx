@@ -2,19 +2,18 @@
 
 import { useState } from 'react'
 import {
-  Dialog,
-  DialogClose,
-  DialogDescription,
-  DialogFooter,
-  DialogPopup,
-  DialogTitle,
-  DialogTrigger
-} from '@transight-design/ui/components/dialog'
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger
+} from '@transight-design/ui/components/popover'
 import { Button } from '@transight-design/ui/components/button'
 import { PreviewModePanel } from './preview-mode-panel'
 
-type PopupSize = NonNullable<Parameters<typeof DialogPopup>[0]['size']>
-type PopupShape = NonNullable<Parameters<typeof DialogPopup>[0]['shape']>
+type Shape = NonNullable<Parameters<typeof PopoverContent>[0]['shape']>
+type Size = NonNullable<Parameters<typeof PopoverContent>[0]['size']>
 type ButtonColor = NonNullable<Parameters<typeof Button>[0]['color']>
 type ButtonTheme = NonNullable<Parameters<typeof Button>[0]['theme']>
 type ButtonSize = NonNullable<Parameters<typeof Button>[0]['size']>
@@ -23,8 +22,8 @@ interface State {
   triggerColor: ButtonColor
   triggerTheme: ButtonTheme
   triggerSize: ButtonSize
-  size: PopupSize
-  shape: PopupShape
+  shape: Shape
+  size: Size
 }
 
 interface ControlDef {
@@ -55,40 +54,38 @@ const TRIGGER_CONTROLS: ControlDef[] = [
 ]
 
 const CONTENT_CONTROLS: ControlDef[] = [
-  { stateKey: 'size', label: 'size', values: ['sm', 'md', 'lg', 'xl', 'full'] },
-  { stateKey: 'shape', label: 'shape', values: ['default', 'square'] }
+  { stateKey: 'shape', label: 'shape', values: ['default', 'square'] },
+  { stateKey: 'size', label: 'size', values: ['sm', 'md', 'lg'] }
 ]
 
 type Tab = 'trigger' | 'content'
 
 const codeFor = (s: State) =>
-  `<Dialog>
-  <DialogTrigger
+  `<Popover>
+  <PopoverTrigger
     render={
       <Button color="${s.triggerColor}" theme="${s.triggerTheme}" size="${s.triggerSize}">
-        다이얼로그 열기
+        팝오버 열기
       </Button>
     }
   />
-  <DialogPopup size="${s.size}" shape="${s.shape}">
-    <DialogTitle>새 작업</DialogTitle>
-    <DialogDescription>새로운 트랜잭션 추적을 시작합니다.</DialogDescription>
-    <DialogFooter>
-      <DialogClose theme="outline" size="sm">취소</DialogClose>
-      <DialogClose color="blue" size="sm">시작</DialogClose>
-    </DialogFooter>
-  </DialogPopup>
-</Dialog>`
+  <PopoverContent shape="${s.shape}" size="${s.size}">
+    <PopoverHeader>
+      <PopoverTitle>알림</PopoverTitle>
+      <PopoverDescription>새로운 메시지가 3건 있습니다.</PopoverDescription>
+    </PopoverHeader>
+  </PopoverContent>
+</Popover>`
 
-export const DialogPreviewShell = () => {
+export const PopoverPreviewShell = () => {
   const [state, setState] = useState<State>({
     triggerColor: 'gray',
-    triggerTheme: 'solid',
+    triggerTheme: 'outline',
     triggerSize: 'md',
-    size: 'md',
-    shape: 'default'
+    shape: 'default',
+    size: 'md'
   })
-  const [tab, setTab] = useState<Tab>('content')
+  const [tab, setTab] = useState<Tab>('trigger')
 
   const set = <K extends keyof State>(key: K, value: State[K]) =>
     setState((prev) => ({ ...prev, [key]: value }))
@@ -99,31 +96,25 @@ export const DialogPreviewShell = () => {
         code={codeFor(state)}
         preview={
           <div className='flex min-h-40 items-center justify-center'>
-            <Dialog>
-              <DialogTrigger
+            <Popover>
+              <PopoverTrigger
                 render={
                   <Button
                     color={state.triggerColor}
                     theme={state.triggerTheme}
                     size={state.triggerSize}
                   >
-                    다이얼로그 열기
+                    팝오버 열기
                   </Button>
                 }
               />
-              <DialogPopup size={state.size} shape={state.shape}>
-                <DialogTitle>새 작업</DialogTitle>
-                <DialogDescription>새로운 트랜잭션 추적을 시작합니다.</DialogDescription>
-                <DialogFooter className='mt-2'>
-                  <DialogClose theme='outline' size='sm'>
-                    취소
-                  </DialogClose>
-                  <DialogClose color='blue' size='sm'>
-                    시작
-                  </DialogClose>
-                </DialogFooter>
-              </DialogPopup>
-            </Dialog>
+              <PopoverContent shape={state.shape} size={state.size}>
+                <PopoverHeader>
+                  <PopoverTitle>알림</PopoverTitle>
+                  <PopoverDescription>새로운 메시지가 3건 있습니다.</PopoverDescription>
+                </PopoverHeader>
+              </PopoverContent>
+            </Popover>
           </div>
         }
       />
@@ -143,7 +134,7 @@ export const DialogPreviewShell = () => {
                     : 'text-cool-grey-07 hover:text-cool-grey-11 typo-m14 -mb-px border-b-2 border-transparent px-3 py-2 transition-colors'
                 }
               >
-                {t === 'trigger' ? 'DialogTrigger' : 'DialogPopup'}
+                {t === 'trigger' ? 'PopoverTrigger' : 'PopoverContent'}
               </button>
             )
           })}
