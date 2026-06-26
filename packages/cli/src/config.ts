@@ -11,6 +11,15 @@ export const GITHUB_REPO: string = 'traverse-corp/transight-design'
 /** 전체 번들 아이템 이름 (registry.json의 마지막 item) */
 export const BUNDLE_ITEM: string = 'transight-design'
 
+/** init 단계에서 선택 가능한 번들 — base / essential / all */
+export const BUNDLE_ITEMS = {
+  base: 'base',
+  essential: 'essential',
+  all: BUNDLE_ITEM
+} as const
+
+export type BundleKey = keyof typeof BUNDLE_ITEMS
+
 /** GitHub 주소 빌더 — `traverse-corp/transight-design/button[#ref]` 형태 */
 export const githubAddress = (item: string, ref?: string): string => {
   const base: string = `${GITHUB_REPO}/${item}`

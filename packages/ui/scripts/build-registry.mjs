@@ -62,7 +62,6 @@ const ESSENTIAL_COMPONENTS = [
 export const BASE_COMPONENTS = new Set([
   'accordion',
   'alert',
-  'alert-dialog',
   'avatar',
   'badge',
   'button',
@@ -70,7 +69,6 @@ export const BASE_COMPONENTS = new Set([
   'card',
   'carousel',
   'checkbox',
-  'command',
   'dialog',
   'dropdown-menu',
   'empty',
@@ -400,6 +398,22 @@ const main = () => {
     description: '서비스 초기 구성에 필요한 핵심 UI 컴포넌트 묶음 + AI Agent 가이드',
     registryDependencies: [
       ...ESSENTIAL_COMPONENTS.map((name) => `${REGISTRY_DEP_PREFIX}/${name}`),
+      `${REGISTRY_DEP_PREFIX}/agent`
+    ].sort()
+  })
+
+  // ── 6b. Base 번들 (registry:item) ───────────────
+  // shadcn 표준 base 컴포넌트(BASE_COMPONENTS) + AI Agent 가이드. 실제 등록된 아이템만 포함.
+  const existingNames = new Set(items.map((i) => i.name))
+  items.push({
+    name: 'base',
+    type: 'registry:item',
+    title: 'Base Components',
+    description: 'shadcn 표준 base 컴포넌트 묶음 + AI Agent 가이드',
+    registryDependencies: [
+      ...[...BASE_COMPONENTS]
+        .filter((n) => existingNames.has(n))
+        .map((name) => `${REGISTRY_DEP_PREFIX}/${name}`),
       `${REGISTRY_DEP_PREFIX}/agent`
     ].sort()
   })
