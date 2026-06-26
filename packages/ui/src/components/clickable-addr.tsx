@@ -39,7 +39,7 @@ interface ClickableAddrProps {
 export const ClickableAddr: React.FC<ClickableAddrProps> = ({
   addr,
   chars = 6,
-  className = 'text-cool-grey-09',
+  className = 'text-fg-default',
   copyOnly = false,
   compact = false,
   highlightAddr,
@@ -105,7 +105,7 @@ export const ClickableAddr: React.FC<ClickableAddrProps> = ({
         {copied ? (
           <Check className='text-ui-green size-3' />
         ) : (
-          <Copy className='text-cool-grey-05 hover:text-cool-grey-09 size-3' />
+          <Copy className='text-fg-disabled hover:text-fg-default size-3' />
         )}
       </span>
     </span>

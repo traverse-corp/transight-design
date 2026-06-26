@@ -6,14 +6,14 @@ interface MetadataPanelProps {
 
 const Section = ({ title, items }: { title: string; items: string[] }) => (
   <div>
-    <h3 className='mb-2 text-xs font-semibold uppercase tracking-wide text-cool-grey-07'>
+    <h3 className='mb-2 text-xs font-semibold uppercase tracking-wide text-fg-muted'>
       {title}
     </h3>
     <ul className='flex flex-wrap gap-1.5'>
       {items.map((dep) => (
         <li
           key={dep}
-          className='rounded-md border border-cool-grey-04 bg-cool-grey-01 px-2 py-0.5 font-mono text-xs'
+          className='rounded-md border border-border-default bg-bg-subtle px-2 py-0.5 font-mono text-xs'
         >
           {dep}
         </li>
@@ -28,9 +28,9 @@ export const MetadataPanel = ({ item }: MetadataPanelProps) => {
     !!item.registryDependencies && item.registryDependencies.length > 0
 
   return (
-    <aside className='flex flex-col gap-5 rounded-lg border border-cool-grey-04 bg-white p-5'>
+    <aside className='flex flex-col gap-5 rounded-lg border border-border-default bg-bg-card p-5'>
       <div>
-        <h3 className='mb-2 text-xs font-semibold uppercase tracking-wide text-cool-grey-07'>
+        <h3 className='mb-2 text-xs font-semibold uppercase tracking-wide text-fg-muted'>
           Type
         </h3>
         <code className='font-mono text-sm'>{item.type}</code>
@@ -41,7 +41,7 @@ export const MetadataPanel = ({ item }: MetadataPanelProps) => {
       )}
       {item.files && item.files.length > 0 && (
         <div>
-          <h3 className='mb-2 text-xs font-semibold uppercase tracking-wide text-cool-grey-07'>
+          <h3 className='mb-2 text-xs font-semibold uppercase tracking-wide text-fg-muted'>
             파일
           </h3>
           <ul className='flex flex-col gap-1'>

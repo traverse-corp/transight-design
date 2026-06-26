@@ -119,8 +119,8 @@ export const PopoverPreviewShell = () => {
         }
       />
 
-      <div className='border-cool-grey-04 flex flex-col gap-4 border-t pt-5'>
-        <div className='border-cool-grey-04 flex gap-1 border-b'>
+      <div className='border-border-default flex flex-col gap-4 border-t pt-5'>
+        <div className='border-border-default flex gap-1 border-b'>
           {(['trigger', 'content'] as Tab[]).map((t) => {
             const active = tab === t
             return (
@@ -131,7 +131,7 @@ export const PopoverPreviewShell = () => {
                 className={
                   active
                     ? 'border-primary-blue-1 text-primary-blue-1 typo-sb14 -mb-px border-b-2 px-3 py-2'
-                    : 'text-cool-grey-07 hover:text-cool-grey-11 typo-m14 -mb-px border-b-2 border-transparent px-3 py-2 transition-colors'
+                    : 'text-fg-muted hover:text-fg-strong typo-m14 -mb-px border-b-2 border-transparent px-3 py-2 transition-colors'
                 }
               >
                 {t === 'trigger' ? 'PopoverTrigger' : 'PopoverContent'}
@@ -165,7 +165,7 @@ interface ControlRowProps {
 
 const ControlRow = ({ label, values, active, onChange }: ControlRowProps) => (
   <div className='flex flex-wrap items-center gap-2'>
-    <span className='typo-sb12 text-cool-grey-07 w-20 shrink-0'>{label}</span>
+    <span className='typo-sb12 text-fg-muted w-20 shrink-0'>{label}</span>
     <div className='flex flex-wrap gap-1'>
       {values.map((value) => {
         const isActive = active === value
@@ -176,8 +176,8 @@ const ControlRow = ({ label, values, active, onChange }: ControlRowProps) => (
             onClick={() => onChange(value)}
             className={
               isActive
-                ? 'bg-cool-grey-09 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
-                : 'text-cool-grey-07 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
+                ? 'bg-fg-strong typo-mono-m12 rounded-md px-2.5 py-1 text-fg-inverse'
+                : 'text-fg-muted hover:bg-bg-muted hover:text-fg-strong typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
             }
           >
             {value}

@@ -16,7 +16,7 @@ interface PageProps {
 }
 
 const SectionTitle = ({ children }: { children: ReactNode }) => (
-  <h2 className='typo-sb12 text-cool-grey-07 mb-3 uppercase tracking-wide'>{children}</h2>
+  <h2 className='typo-sb12 text-fg-muted mb-3 uppercase tracking-wide'>{children}</h2>
 )
 
 /** style-* item은 /styles/browse/<slug>로 redirect — 사이드바에서 빠졌지만 legacy 링크 안전망 */
@@ -41,7 +41,7 @@ const ComponentPage = async ({ params }: PageProps) => {
   return (
     <main>
       <header className='mb-8'>
-        <h1 className='typo-eb32 text-cool-grey-11'>{title}</h1>
+        <h1 className='typo-eb32 text-fg-strong'>{title}</h1>
         {description && <p className='text-subtitle mt-2'>{description}</p>}
       </header>
 

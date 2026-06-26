@@ -66,7 +66,7 @@ function DatePicker({
       */}
       <PopoverTrigger
         className={twMerge(
-          'border-cool-grey-04 hover:border-cool-grey-07 flex-between-center relative h-15 w-70 rounded-md border bg-white p-3 text-sm shadow-sm',
+          'border-border-default hover:border-border-strong flex-between-center relative h-15 w-70 rounded-md border bg-bg-card p-3 text-sm shadow-sm',
           isSelectTime ? 'text-xs' : 'text-sm',
           className
         )}

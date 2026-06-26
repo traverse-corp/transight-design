@@ -27,7 +27,7 @@ const SheetOverlay = ({ className, ...props }: SheetPrimitive.Backdrop.Props) =>
   <SheetPrimitive.Backdrop
     data-slot='sheet-overlay'
     className={cn(
-      'fixed inset-0 z-50 bg-cool-grey-black/50 duration-100 data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-ending-style:opacity-0 data-starting-style:opacity-0',
+      'fixed inset-0 z-50 bg-overlay-backdrop duration-100 data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-ending-style:opacity-0 data-starting-style:opacity-0',
       className
     )}
     {...props}
@@ -36,7 +36,7 @@ const SheetOverlay = ({ className, ...props }: SheetPrimitive.Backdrop.Props) =>
 
 // side는 sheet의 핵심 시각 축이므로 STYLE 4축에서 shape 자리를 차지함.
 const sheetContentClassVariants = cva(
-  'bg-white border-cool-grey-04 fixed z-50 flex flex-col gap-4 typo-m13 text-cool-grey-11 shadow-lg transition duration-200 ease-in-out bg-clip-padding data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0',
+  'bg-bg-card border-border-default fixed z-50 flex flex-col gap-4 typo-m13 text-fg-strong shadow-dialog transition duration-200 ease-in-out bg-clip-padding data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0',
   {
     variants: {
       side: {
@@ -132,7 +132,7 @@ const SheetFooter = ({ className, ...props }: React.ComponentProps<'div'>) => (
 const SheetTitle = ({ className, ...props }: SheetPrimitive.Title.Props) => (
   <SheetPrimitive.Title
     data-slot='sheet-title'
-    className={cn('typo-b18 text-cool-grey-11', className)}
+    className={cn('typo-b18 text-fg-strong', className)}
     {...props}
   />
 )
@@ -140,7 +140,7 @@ const SheetTitle = ({ className, ...props }: SheetPrimitive.Title.Props) => (
 const SheetDescription = ({ className, ...props }: SheetPrimitive.Description.Props) => (
   <SheetPrimitive.Description
     data-slot='sheet-description'
-    className={cn('typo-m13 text-cool-grey-09', className)}
+    className={cn('typo-m13 text-fg-default', className)}
     {...props}
   />
 )

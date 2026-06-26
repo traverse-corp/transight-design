@@ -24,9 +24,9 @@ const StylesInstallPage = () => (
 
     <div className='h-screen min-w-0 flex-1 overflow-y-auto py-10'>
       <header className='mb-8'>
-        <h1 className='typo-b24 text-cool-grey-11'>Install</h1>
+        <h1 className='typo-b24 text-fg-strong'>Install</h1>
         <p className='text-description mt-1'>
-          진입점 <code className='typo-mono-m12 text-cool-grey-09'>styles</code>를 설치하면 tokens ·
+          진입점 <code className='typo-mono-m12 text-fg-default'>styles</code>를 설치하면 tokens ·
           typography · flex · theme · font-suit 5종이 함께 깔립니다.
         </p>
       </header>

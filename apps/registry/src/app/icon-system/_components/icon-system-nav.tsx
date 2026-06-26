@@ -26,13 +26,13 @@ export const IconSystemNav = ({ children }: IconSystemNavProps) => {
       {/* Go Main */}
       <Link
         href='/'
-        className='flex-start-center typo-sb14 text-cool-grey-08 hover:text-primary-blue-1 mb-6 gap-1.5 rounded-md px-2 py-1.5'
+        className='flex-start-center typo-sb14 text-fg-default hover:text-primary-blue-1 mb-6 gap-1.5 rounded-md px-2 py-1.5'
       >
         <span aria-hidden>←</span>
         <span>Go Main</span>
       </Link>
 
-      <h3 className='typo-b14 text-cool-grey-11 mb-3 px-2'>Icon System</h3>
+      <h3 className='typo-b14 text-fg-strong mb-3 px-2'>Icon System</h3>
 
       {/* Browse / Install 탭 */}
       <nav className='mb-6 flex flex-col gap-0.5'>
@@ -45,7 +45,7 @@ export const IconSystemNav = ({ children }: IconSystemNavProps) => {
               className={
                 active
                   ? 'bg-primary-blue-opacity-10 text-primary-blue-1 typo-sb14 block rounded-md px-3 py-1.5'
-                  : 'text-cool-grey-08 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-m14 block rounded-md px-3 py-1.5'
+                  : 'text-fg-default hover:bg-bg-muted hover:text-fg-strong typo-m14 block rounded-md px-3 py-1.5'
               }
             >
               {tab.label}

@@ -47,7 +47,7 @@ function PreviewCardPanel({
       >
         <PreviewCardPopupPrimitive
           className={cn(
-            'bg-popover text-popover-foreground w-64 origin-(--transform-origin) rounded-md border p-4 shadow-md outline-hidden',
+            'bg-popover text-popover-foreground w-64 origin-(--transform-origin) rounded-md border p-4 shadow-popover outline-hidden',
             className
           )}
           style={style}

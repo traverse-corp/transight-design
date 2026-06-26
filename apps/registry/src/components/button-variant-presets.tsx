@@ -32,8 +32,8 @@ export const ButtonVariantPresets = ({ variants }: { variants: string[] }) => {
         }
       />
 
-      <div className="border-cool-grey-04 flex flex-wrap items-center gap-2 border-t pt-5">
-        <span className="typo-sb12 text-cool-grey-07 w-16 shrink-0">Variant</span>
+      <div className="border-border-default flex flex-wrap items-center gap-2 border-t pt-5">
+        <span className="typo-sb12 text-fg-muted w-16 shrink-0">Variant</span>
         <div className="flex flex-wrap gap-1">
           {variants.map((variant) => {
             const active = selectedVariant === variant
@@ -44,8 +44,8 @@ export const ButtonVariantPresets = ({ variants }: { variants: string[] }) => {
                 onClick={() => setSelectedVariant(variant)}
                 className={
                   active
-                    ? 'bg-cool-grey-09 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
-                    : 'text-cool-grey-07 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
+                    ? 'bg-fg-strong typo-mono-m12 rounded-md px-2.5 py-1 text-fg-inverse'
+                    : 'text-fg-muted hover:bg-bg-muted hover:text-fg-strong typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
                 }
               >
                 {variant}

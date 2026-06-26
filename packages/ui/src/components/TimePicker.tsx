@@ -17,8 +17,8 @@ export const TimePicker: React.FC<TimePickerProps> = ({ className = '' }) => {
           <button
             key={index}
             className={twMerge(
-              'flex-center hover:bg-ts-primary-blue-1 w-full cursor-pointer p-2 hover:text-white',
-              hours === index ? 'bg-ts-primary-blue-1 text-white' : 'bg-white'
+              'flex-center hover:bg-ts-primary-blue-1 w-full cursor-pointer p-2 hover:text-on-dark',
+              hours === index ? 'bg-ts-primary-blue-1 text-on-dark' : 'bg-bg-card'
             )}
             onClick={() => setHour(index)}
           >
@@ -31,8 +31,8 @@ export const TimePicker: React.FC<TimePickerProps> = ({ className = '' }) => {
           <button
             key={index}
             className={twMerge(
-              'flex-center hover:bg-ts-primary-blue-1 w-full cursor-pointer p-2 hover:text-white',
-              minutes === index * 5 ? 'bg-ts-primary-blue-1 text-white' : 'bg-white'
+              'flex-center hover:bg-ts-primary-blue-1 w-full cursor-pointer p-2 hover:text-on-dark',
+              minutes === index * 5 ? 'bg-ts-primary-blue-1 text-on-dark' : 'bg-bg-card'
             )}
             onClick={() => setMinutes(index * 5)}
           >

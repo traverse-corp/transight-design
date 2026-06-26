@@ -59,7 +59,7 @@ const AvatarFallback = ({ className, ...props }: AvatarPrimitive.Fallback.Props)
   <AvatarPrimitive.Fallback
     data-slot='avatar-fallback'
     className={cn(
-      'bg-cool-grey-02 text-cool-grey-09 flex size-full items-center justify-center',
+      'bg-bg-muted text-fg-default flex size-full items-center justify-center',
       // size별 font 자동 스케일
       'group-data-[size=xs]/avatar:typo-sb10',
       'group-data-[size=sm]/avatar:typo-sb11',
@@ -114,7 +114,7 @@ const AvatarGroupCount = ({
   <div
     data-slot='avatar-group-count'
     className={cn(
-      'bg-cool-grey-02 text-cool-grey-09 ring-white relative flex shrink-0 items-center justify-center ring-2',
+      'bg-bg-muted text-fg-default ring-white relative flex shrink-0 items-center justify-center ring-2',
       avatarRootClassVariants({ size, shape }).replace('group/avatar', '').trim(),
       shape === 'square' ? 'rounded-md' : 'rounded-full',
       className

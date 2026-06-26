@@ -10,7 +10,7 @@ const tableContainerVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-cool-grey-04 gap-12 rounded-lg border shadow-md',
+        default: 'border-border-default gap-12 rounded-lg border shadow-popover',
         /* 패널 내부 삽입용 — border/shadow/gap/rounded 없음 */
         embedded: 'gap-0 border-0 shadow-none rounded-none p-0'
       }
@@ -111,9 +111,9 @@ const tableHeadVariants = cva(
 
 /** 정렬 방향에 따른 아이콘 렌더링 */
 const sortIcons: Record<string, React.ReactNode> = {
-  asc: <ChevronUp className='text-cool-grey-09 h-4 w-4' />,
-  desc: <ChevronDown className='text-cool-grey-09 h-4 w-4' />,
-  none: <ChevronsUpDown className='text-cool-grey-07 h-4 w-4' />
+  asc: <ChevronUp className='text-fg-default h-4 w-4' />,
+  desc: <ChevronDown className='text-fg-default h-4 w-4' />,
+  none: <ChevronsUpDown className='text-fg-muted h-4 w-4' />
 }
 
 function TableHead({

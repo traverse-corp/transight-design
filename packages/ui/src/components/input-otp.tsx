@@ -47,7 +47,7 @@ const inputOTPSlotVariants = cva(
       variant: {
         default:
           'border-input data-[active=true]:border-ring data-[active=true]:ring-ring/50 size-9 border-y border-r text-sm shadow-xs first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:ring-3 data-[active=true]:z-10',
-        auth: 'border-cool-grey-05 focus:border-primary-blue-1 focus:bg-primary-blue-opacity-10 text-cool-grey-10 disabled:text-cool-grey-04 h-12 w-12 rounded-lg border-2 bg-white text-lg font-semibold disabled:bg-white data-[active=true]:border-ring data-[active=true]:ring-ring/50 '
+        auth: 'border-border-default focus:border-primary-blue-1 focus:bg-primary-blue-opacity-10 text-fg-strong disabled:text-fg-disabled h-12 w-12 rounded-lg border-2 bg-bg-card text-lg font-semibold disabled:bg-bg-card data-[active=true]:border-ring data-[active=true]:ring-ring/50 '
       }
     },
     defaultVariants: {

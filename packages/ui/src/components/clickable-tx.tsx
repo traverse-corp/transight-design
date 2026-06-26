@@ -27,7 +27,7 @@ export const ClickableTxHash: React.FC<ClickableTxHashProps> = ({
   txHash,
   network,
   chars = 6,
-  className = 'text-cool-grey-09',
+  className = 'text-fg-default',
   compact = false,
   onSelect,
   copyMessage
@@ -79,7 +79,7 @@ export const ClickableTxHash: React.FC<ClickableTxHashProps> = ({
         {copied ? (
           <Check className='text-ui-green size-3' />
         ) : (
-          <Copy className='text-cool-grey-05 hover:text-cool-grey-09 size-3' />
+          <Copy className='text-fg-disabled hover:text-fg-default size-3' />
         )}
       </span>
     </span>

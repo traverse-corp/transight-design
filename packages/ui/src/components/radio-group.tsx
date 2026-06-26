@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils'
 // ── 색상 시스템 — Button의 solid 패턴 미러링 (12색) ──────────────────
 // 선택 시 ring border + inner dot 색을 함께 결정.
 const radioColorStyles = {
-  gray: { ring: 'border-cool-grey-09', dot: 'bg-cool-grey-09' },
+  gray: { ring: 'border-border-strong', dot: 'bg-fg-strong' },
   blue: { ring: 'border-primary-blue-1', dot: 'bg-primary-blue-1' },
   red: { ring: 'border-ui-red', dot: 'bg-ui-red' },
   orange: { ring: 'border-ui-orange', dot: 'bg-ui-orange' },
@@ -19,7 +19,7 @@ const radioColorStyles = {
   skyblue: { ring: 'border-ui-skyblue', dot: 'bg-ui-skyblue' },
   purple: { ring: 'border-ui-purple', dot: 'bg-ui-purple' },
   pink: { ring: 'border-ui-pink', dot: 'bg-ui-pink' },
-  white: { ring: 'border-cool-grey-04', dot: 'bg-cool-grey-09' },
+  white: { ring: 'border-border-default', dot: 'bg-fg-strong' },
   'gradient-blue': {
     ring: 'border-primary-blue-1',
     dot: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2'
@@ -35,7 +35,7 @@ const radioDotSizeStyles = {
 } as const
 
 const radioClassVariants = cva(
-  'group/radio-group-item relative inline-flex shrink-0 items-center justify-center border bg-white shadow-sm transition-colors outline-none disabled:cursor-not-allowed disabled:opacity-50',
+  'group/radio-group-item relative inline-flex shrink-0 items-center justify-center border bg-bg-card shadow-sm transition-colors outline-none disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       color: {
@@ -127,7 +127,7 @@ const RadioGroupItem = ({ className, ...props }: RadioGroupItemProps) => {
       className={cn(
         radioClassVariants({ color, shape, size }),
         // 미체크: cool-grey-04 border / 체크: color ring
-        'border-cool-grey-04',
+        'border-border-default',
         // checked일 때 색상 ring을 동적으로 적용 — group selector로 inner 영역 토글
         className
       )}

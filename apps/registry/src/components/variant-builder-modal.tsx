@@ -69,7 +69,7 @@ export const VariantBuilderModal = ({
         </DialogDescription>
 
         <div className='flex flex-col gap-2'>
-          <label className='typo-sb12 text-cool-grey-07' htmlFor='variant-name'>
+          <label className='typo-sb12 text-fg-muted' htmlFor='variant-name'>
             Variant 이름
           </label>
           <input
@@ -78,12 +78,12 @@ export const VariantBuilderModal = ({
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder='예: success / muted / brand-blue'
-            className='border-cool-grey-04 focus:border-primary-blue-1 typo-m14 rounded-md border bg-white px-3 py-2 outline-none'
+            className='border-border-default focus:border-primary-blue-1 typo-m14 rounded-md border bg-bg-card px-3 py-2 outline-none'
           />
         </div>
 
         <div className='flex flex-col gap-2'>
-          <span className='typo-sb12 text-cool-grey-07'>CLI 명령</span>
+          <span className='typo-sb12 text-fg-muted'>CLI 명령</span>
           <CodeBlock code={command} language='bash' maxHeight='auto' />
           <p className='text-description'>
             CLI가 사용자 repo의 컴포넌트 파일을 찾아 <code className='typo-mono-m12'>VariantPresets</code>{' '}

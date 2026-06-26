@@ -2,7 +2,7 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
-const skeletonClassVariants = cva('bg-cool-grey-03', {
+const skeletonClassVariants = cva('bg-bg-muted', {
   variants: {
     // rect: 카드/패널 — h/w를 className으로 지정
     // text: 한 줄 텍스트 — h-4 자동, w만 className으로

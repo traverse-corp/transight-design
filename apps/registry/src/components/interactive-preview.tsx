@@ -270,10 +270,10 @@ interface ControlRowsPanelProps {
 
 /** 토글 컨트롤 행들을 위쪽 구분선 + 세로 정렬로 보여준다. Style/Props 카드에서 공통 사용. */
 const ControlRowsPanel = ({ entries, selections, onChange }: ControlRowsPanelProps) => (
-  <div className="border-cool-grey-04 flex flex-col gap-3 border-t pt-5">
+  <div className="border-border-default flex flex-col gap-3 border-t pt-5">
     {entries.map(([groupName, values]) => (
       <div key={groupName} className="flex flex-wrap items-center gap-2">
-        <span className="typo-sb12 text-cool-grey-07 w-16 shrink-0">
+        <span className="typo-sb12 text-fg-muted w-16 shrink-0">
           {GROUP_LABELS[groupName] ?? groupName}
         </span>
         <div className="flex flex-wrap gap-1">
@@ -286,8 +286,8 @@ const ControlRowsPanel = ({ entries, selections, onChange }: ControlRowsPanelPro
                 onClick={() => onChange(groupName, value)}
                 className={
                   active
-                    ? 'bg-cool-grey-09 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
-                    : 'text-cool-grey-07 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
+                    ? 'bg-fg-strong typo-mono-m12 rounded-md px-2.5 py-1 text-fg-inverse'
+                    : 'text-fg-muted hover:bg-bg-muted hover:text-fg-strong typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
                 }
               >
                 {value}

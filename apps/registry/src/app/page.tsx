@@ -51,13 +51,13 @@ const Home = () => (
   <main className="mx-auto max-w-4xl px-6 py-20">
     {/* 히어로 */}
     <section className="mb-12 text-center">
-      <h1 className="typo-eb54 text-cool-grey-11 text-[clamp(40px,7vw,72px)]">
+      <h1 className="typo-eb54 text-fg-strong text-[clamp(40px,7vw,72px)]">
         TranSight Design System
       </h1>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <Link
           href="https://github.com/traverse-corp/transight-design"
-          className="typo-sb14 text-cool-grey-09 border-cool-grey-04 hover:border-primary-blue-1 hover:text-primary-blue-1 inline-flex h-11 items-center rounded-md border bg-white px-6 transition-colors"
+          className="typo-sb14 text-fg-default border-border-default hover:border-primary-blue-1 hover:text-primary-blue-1 inline-flex h-11 items-center rounded-md border bg-bg-card px-6 transition-colors"
         >
           GitHub
         </Link>
@@ -68,13 +68,13 @@ const Home = () => (
     <section className="mb-16 grid grid-cols-1 gap-4 md:grid-cols-3">
       <Link
         href="/styles"
-        className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
+        className="border-border-default hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-bg-card p-6 transition-all"
       >
-        <div className="bg-cool-grey-02 flex h-11 w-11 items-center justify-center rounded-lg">
+        <div className="bg-bg-muted flex h-11 w-11 items-center justify-center rounded-lg">
           <Palette className="text-ui-purple h-5 w-5" />
         </div>
         <div>
-          <div className="typo-sb16 text-cool-grey-11">Styles</div>
+          <div className="typo-sb16 text-fg-strong">Styles</div>
           <div className="text-description mt-1">
             Tokens · Typography · Flex — 디자인 시스템의 기반 스타일 레이어.
           </div>
@@ -86,13 +86,13 @@ const Home = () => (
 
       <Link
         href="/components"
-        className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
+        className="border-border-default hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-bg-card p-6 transition-all"
       >
         <div className="bg-primary-blue-opacity-10 flex h-11 w-11 items-center justify-center rounded-lg">
           <Boxes className="text-primary-blue-1 h-5 w-5" />
         </div>
         <div>
-          <div className="typo-sb16 text-cool-grey-11">Components</div>
+          <div className="typo-sb16 text-fg-strong">Components</div>
           <div className="text-description mt-1">
             Base UI 기반 컴포넌트 카탈로그. variant·color·size·shape로 조립.
           </div>
@@ -104,13 +104,13 @@ const Home = () => (
 
       <Link
         href="/icon-system"
-        className="border-cool-grey-04 hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-white p-6 transition-all"
+        className="border-border-default hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-bg-card p-6 transition-all"
       >
         <div className="bg-primary-skyblue-1 flex h-11 w-11 items-center justify-center rounded-lg">
           <LayoutGrid className="text-primary-blue-deep h-5 w-5" />
         </div>
         <div>
-          <div className="typo-sb16 text-cool-grey-11">Icon System</div>
+          <div className="typo-sb16 text-fg-strong">Icon System</div>
           <div className="text-description mt-1">
             58개 SVG sprite + 팔레트 토큰 색상 × 5단계 크기로 강제된 Icon 컴포넌트.
           </div>
@@ -162,14 +162,14 @@ const Home = () => (
       <h3 className="text-label mt-6 mb-2">2. 컴포넌트 사용</h3>
       <p className="text-description mb-3">
         설치된 컴포넌트는 카테고리별로{' '}
-        <code className="typo-mono-m12 text-cool-grey-09">components/base/</code> 또는{' '}
-        <code className="typo-mono-m12 text-cool-grey-09">components/custom/</code>에 떨어집니다.
+        <code className="typo-mono-m12 text-fg-default">components/base/</code> 또는{' '}
+        <code className="typo-mono-m12 text-fg-default">components/custom/</code>에 떨어집니다.
       </p>
       <CodeBlock code={USAGE_CODE} language="tsx" maxHeight="auto" />
     </section>
 
     {/* 푸터 */}
-    <footer className="text-description border-cool-grey-04 mt-16 border-t pt-6">
+    <footer className="text-description border-border-default mt-16 border-t pt-6">
       <p>
         MIT License ·{' '}
         <Link

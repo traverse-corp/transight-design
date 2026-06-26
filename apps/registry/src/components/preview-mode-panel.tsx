@@ -21,8 +21,8 @@ export const PreviewModePanel = ({ preview, code, codeLabel = 'tsx' }: PreviewMo
           onClick={() => setMode('preview')}
           className={
             mode === 'preview'
-              ? 'bg-cool-grey-09 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
-              : 'text-cool-grey-07 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
+              ? 'bg-fg-strong typo-mono-m12 rounded-md px-2.5 py-1 text-fg-inverse'
+              : 'text-fg-muted hover:bg-bg-muted hover:text-fg-strong typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
           }
         >
           Component
@@ -32,8 +32,8 @@ export const PreviewModePanel = ({ preview, code, codeLabel = 'tsx' }: PreviewMo
           onClick={() => setMode('code')}
           className={
             mode === 'code'
-              ? 'bg-cool-grey-09 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
-              : 'text-cool-grey-07 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
+              ? 'bg-fg-strong typo-mono-m12 rounded-md px-2.5 py-1 text-fg-inverse'
+              : 'text-fg-muted hover:bg-bg-muted hover:text-fg-strong typo-mono-m12 rounded-md px-2.5 py-1 transition-colors'
           }
         >
           {`</>`}

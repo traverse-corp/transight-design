@@ -41,10 +41,7 @@ export const initCommand: Command = new Command('init')
   .description('Transight Design System 번들 설치 (base / essential / all 중 선택)')
   .option('--dry-run', '실행하지 않고 호출할 명령만 출력', false)
   .option('--ref <ref>', 'GitHub 레퍼런스 (브랜치·태그·SHA)')
-  .option(
-    '--bundle <name>',
-    '대화 프롬프트 생략 — base | essential | all'
-  )
+  .option('--bundle <name>', '대화 프롬프트 생략 — base | essential | all')
   .action(async (options: InitOptions) => {
     console.log(pc.bold(pc.cyan('Transight Design System')) + ' — init')
 
@@ -68,9 +65,22 @@ export const initCommand: Command = new Command('init')
     }
 
     const itemName = BUNDLE_ITEMS[bundle]
-    const code: number = await runShadcn(
-      ['add', githubAddress(itemName, options.ref)],
-      { dryRun: options.dryRun }
-    )
+    const code: number = await runShadcn(['add', githubAddress(itemName, options.ref)], {
+      dryRun: options.dryRun
+    })
+
+    if (code === 0 && !options.dryRun) {
+      const agentInstruction = 'transight-design.AGENT.md에 따라 디자인 시스템 초기 설정을 적용해줘'
+      console.log('')
+      console.log(pc.green('✓ 설치 완료'))
+      console.log('')
+      console.log(pc.bold('다음으로 AI Agent에게 아래 문구를 지시하세요:'))
+      console.log('')
+      console.log('  ' + pc.cyan(pc.bold(agentInstruction)))
+      console.log('')
+      console.log(pc.dim('(위 문구를 그대로 복사해 터미널에 붙여넣으세요)'))
+      console.log('')
+    }
+
     process.exit(code)
   })

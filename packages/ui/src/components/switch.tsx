@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 
 // ── 색상 시스템 — Button의 solid 패턴 미러링 (12색). on 상태 track 색 ──
 const switchColorStyles = {
-  gray: 'bg-cool-grey-09',
+  gray: 'bg-fg-strong',
   blue: 'bg-primary-blue-1',
   red: 'bg-ui-red',
   orange: 'bg-ui-orange',
@@ -16,7 +16,7 @@ const switchColorStyles = {
   skyblue: 'bg-ui-skyblue',
   purple: 'bg-ui-purple',
   pink: 'bg-ui-pink',
-  white: 'bg-cool-grey-04',
+  white: 'bg-bg-muted',
   'gradient-blue': 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2'
 } as const
 
@@ -103,14 +103,14 @@ const Switch = ({
       onClick={() => onCheckedChange(!checked)}
       className={cn(
         switchClassVariants({ color: resolvedColor, shape: resolvedShape, size: resolvedSize }),
-        checked ? switchColorStyles[resolvedColor] : 'bg-cool-grey-05',
+        checked ? switchColorStyles[resolvedColor] : 'bg-bg-muted',
         className
       )}
       {...props}
     >
       <span
         className={cn(
-          'inline-block bg-white shadow-sm transition-transform',
+          'inline-block bg-bg-card shadow-sm transition-transform',
           sizeClasses.thumb,
           resolvedShape === 'square' ? 'rounded-sm' : 'rounded-full',
           checked ? sizeClasses.on : sizeClasses.off

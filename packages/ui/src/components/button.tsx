@@ -3,66 +3,82 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
 
+// 시맨틱 토큰 사용:
+//   - outline 표면: bg-transparent (라이트/다크 둘 다) — border + text만 색
+//   - solid의 흰 글씨는 text-on-dark (브랜드 솔리드 색 위 영구 white)
+//   - gray.* / white.* 의 중성 톤은 bg-bg-{muted|subtle|card} + text-fg-{strong|default|muted}
 const buttonColorStyles = {
   gray: {
-    solid: 'bg-cool-grey-04 text-cool-grey-09 hover:bg-cool-grey-04/90 shadow-md',
-    outline: 'border border-cool-grey-06 bg-white text-cool-grey-07 hover:bg-cool-grey-01',
-    soft: 'bg-cool-grey-02 text-cool-grey-09 shadow-none hover:bg-cool-grey-03'
+    solid: 'bg-bg-muted text-fg-default hover:bg-bg-muted/90 shadow-card',
+    outline:
+      'border border-border-strong bg-transparent text-fg-muted hover:bg-hover-bg',
+    soft: 'bg-bg-muted text-fg-default shadow-none hover:bg-bg-subtle'
   },
   blue: {
-    solid: 'bg-primary-blue-1 text-white hover:bg-primary-blue-1/90 shadow-sm',
-    outline: 'border border-primary-blue-1 bg-white text-primary-blue-1 hover:bg-cool-grey-01',
+    solid: 'bg-primary-blue-1 text-on-dark hover:bg-primary-blue-1/90 shadow-card',
+    outline:
+      'border border-primary-blue-1 bg-transparent text-primary-blue-1 hover:bg-hover-bg',
     soft: 'bg-primary-blue-opacity-10 text-primary-blue-1 shadow-none hover:bg-primary-blue-opacity-20'
   },
   red: {
-    solid: 'bg-ui-red text-white hover:bg-ui-red/90 shadow-sm',
-    outline: 'border border-ui-red bg-white text-ui-red hover:bg-cool-grey-01',
+    solid: 'bg-ui-red text-on-dark hover:bg-ui-red/90 shadow-card',
+    outline:
+      'border border-ui-red bg-transparent text-ui-red hover:bg-hover-bg',
     soft: 'bg-ui-pale-red text-ui-red shadow-none hover:bg-ui-pale-red/80'
   },
   orange: {
-    solid: 'bg-ui-orange text-white hover:bg-ui-orange/90 shadow-sm',
-    outline: 'border border-ui-orange bg-white text-ui-orange hover:bg-cool-grey-01',
+    solid: 'bg-ui-orange text-on-dark hover:bg-ui-orange/90 shadow-card',
+    outline:
+      'border border-ui-orange bg-transparent text-ui-orange hover:bg-hover-bg',
     soft: 'bg-ui-pale-orange text-ui-orange shadow-none hover:bg-ui-pale-orange/80'
   },
   yellow: {
-    solid: 'bg-ui-yellow text-white hover:bg-ui-yellow/90 shadow-sm',
-    outline: 'border border-ui-yellow bg-white text-ui-yellow hover:bg-cool-grey-01',
+    solid: 'bg-ui-yellow text-on-dark hover:bg-ui-yellow/90 shadow-card',
+    outline:
+      'border border-ui-yellow bg-transparent text-ui-yellow hover:bg-hover-bg',
     soft: 'bg-ui-pale-yellow text-ui-yellow shadow-none hover:bg-ui-pale-yellow/80'
   },
   olive: {
-    solid: 'bg-ui-olive text-white hover:bg-ui-olive/90 shadow-sm',
-    outline: 'border border-ui-olive bg-white text-ui-olive hover:bg-cool-grey-01',
+    solid: 'bg-ui-olive text-on-dark hover:bg-ui-olive/90 shadow-card',
+    outline:
+      'border border-ui-olive bg-transparent text-ui-olive hover:bg-hover-bg',
     soft: 'bg-ui-olive/10 text-ui-olive shadow-none hover:bg-ui-olive/20'
   },
   green: {
-    solid: 'bg-ui-green text-white hover:bg-ui-green/90 shadow-sm',
-    outline: 'border border-ui-green bg-white text-ui-green hover:bg-cool-grey-01',
+    solid: 'bg-ui-green text-on-dark hover:bg-ui-green/90 shadow-card',
+    outline:
+      'border border-ui-green bg-transparent text-ui-green hover:bg-hover-bg',
     soft: 'bg-ui-pale-green text-ui-green shadow-none hover:bg-ui-pale-green/80'
   },
   skyblue: {
-    solid: 'bg-ui-skyblue text-white hover:bg-ui-skyblue/90 shadow-sm',
-    outline: 'border border-ui-skyblue bg-white text-ui-skyblue hover:bg-cool-grey-01',
+    solid: 'bg-ui-skyblue text-on-dark hover:bg-ui-skyblue/90 shadow-card',
+    outline:
+      'border border-ui-skyblue bg-transparent text-ui-skyblue hover:bg-hover-bg',
     soft: 'bg-ui-skyblue/10 text-ui-skyblue shadow-none hover:bg-ui-skyblue/20'
   },
   purple: {
-    solid: 'bg-ui-purple text-white hover:bg-ui-purple/90 shadow-sm',
-    outline: 'border border-ui-purple bg-white text-ui-purple hover:bg-cool-grey-01',
+    solid: 'bg-ui-purple text-on-dark hover:bg-ui-purple/90 shadow-card',
+    outline:
+      'border border-ui-purple bg-transparent text-ui-purple hover:bg-hover-bg',
     soft: 'bg-ui-pale-purple text-ui-purple shadow-none hover:bg-ui-pale-purple/80'
   },
   pink: {
-    solid: 'bg-ui-pink text-white hover:bg-ui-pink/90 shadow-sm',
-    outline: 'border border-ui-pink bg-white text-ui-pink hover:bg-cool-grey-01',
+    solid: 'bg-ui-pink text-on-dark hover:bg-ui-pink/90 shadow-card',
+    outline:
+      'border border-ui-pink bg-transparent text-ui-pink hover:bg-hover-bg',
     soft: 'bg-ui-pale-pink text-ui-pink shadow-none hover:bg-ui-pale-pink/80'
   },
   white: {
-    solid: 'bg-white text-cool-grey-07 shadow-none hover:bg-cool-grey-01',
-    outline: 'border border-cool-grey-04 bg-white text-cool-grey-07 hover:bg-cool-grey-01',
-    soft: 'bg-white/80 text-cool-grey-07 shadow-none hover:bg-cool-grey-01'
+    solid: 'bg-bg-card text-fg-muted shadow-none hover:bg-hover-bg',
+    outline:
+      'border border-border-default bg-transparent text-fg-muted hover:bg-hover-bg',
+    soft: 'bg-bg-card/80 text-fg-muted shadow-none hover:bg-hover-bg'
   },
   'gradient-blue': {
     solid:
-      'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-white hover:bg-primary-blue-1/90 shadow-sm',
-    outline: 'border border-primary-blue-1 bg-white text-primary-blue-1 hover:bg-cool-grey-01',
+      'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-on-dark hover:bg-primary-blue-1/90 shadow-card',
+    outline:
+      'border border-primary-blue-1 bg-transparent text-primary-blue-1 hover:bg-hover-bg',
     soft: 'bg-primary-blue-opacity-10 text-primary-blue-1 shadow-none hover:bg-primary-blue-opacity-20'
   }
 } as const

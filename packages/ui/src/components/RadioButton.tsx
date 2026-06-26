@@ -14,7 +14,7 @@ const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
         <input
           ref={ref}
           type='radio'
-          className='accent-primary-blue-1 border-cool-grey-05 h-5 w-5 disabled:opacity-40'
+          className='accent-primary-blue-1 border-border-default h-5 w-5 disabled:opacity-40'
           {...props}
         />
         {children && <span className='text-md'>{children}</span>}

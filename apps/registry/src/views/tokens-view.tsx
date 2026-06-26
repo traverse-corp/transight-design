@@ -7,11 +7,11 @@ import {
 } from '@/lib/token-data'
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <h2 className='typo-b18 text-cool-grey-11 mb-4'>{children}</h2>
+  <h2 className='typo-b18 text-fg-strong mb-4'>{children}</h2>
 )
 
 const SubLabel = ({ children }: { children: React.ReactNode }) => (
-  <h3 className='typo-sb12 text-cool-grey-07 mb-3 uppercase tracking-wide'>{children}</h3>
+  <h3 className='typo-sb12 text-fg-muted mb-3 uppercase tracking-wide'>{children}</h3>
 )
 
 export const TokensView = () => (
@@ -43,12 +43,12 @@ export const TokensView = () => (
         {GRADIENT_SWATCHES.map((g) => (
           <div
             key={g.name}
-            className='border-cool-grey-04 overflow-hidden rounded-lg border bg-white'
+            className='border-border-default overflow-hidden rounded-lg border bg-bg-card'
           >
             <div className={`${g.bgClass} h-32`} />
-            <div className='border-cool-grey-04 border-t px-4 py-3'>
-              <p className='typo-sb14 text-cool-grey-11'>{g.name}</p>
-              <p className='typo-mono-r10 text-cool-grey-07 mt-1 truncate'>{g.value}</p>
+            <div className='border-border-default border-t px-4 py-3'>
+              <p className='typo-sb14 text-fg-strong'>{g.name}</p>
+              <p className='typo-mono-r10 text-fg-muted mt-1 truncate'>{g.value}</p>
             </div>
           </div>
         ))}
@@ -61,10 +61,10 @@ export const TokensView = () => (
       <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
         {SHADOW_SWATCHES.map((s) => (
           <div key={s.name} className='flex flex-col items-center gap-4 p-6'>
-            <div className={`${s.utilityClass} h-24 w-32 rounded-md bg-white`} />
+            <div className={`${s.utilityClass} h-24 w-32 rounded-md bg-bg-card`} />
             <div className='text-center'>
-              <p className='typo-sb14 text-cool-grey-11'>{s.name}</p>
-              <p className='typo-mono-r10 text-cool-grey-07 mt-1'>{s.value}</p>
+              <p className='typo-sb14 text-fg-strong'>{s.name}</p>
+              <p className='typo-mono-r10 text-fg-muted mt-1'>{s.value}</p>
             </div>
           </div>
         ))}
@@ -77,12 +77,12 @@ export const TokensView = () => (
       <p className='text-description mb-6'>
         각 사이즈 토큰의 실제 크기는 아래와 같습니다.
       </p>
-      <div className='border-cool-grey-04 divide-cool-grey-04 flex flex-col divide-y rounded-lg border bg-white'>
+      <div className='border-border-default divide-border-default flex flex-col divide-y rounded-lg border bg-bg-card'>
         {TEXT_SIZE_SWATCHES.map((t) => (
           <div key={t.name} className='flex items-baseline gap-4 px-5 py-3'>
-            <span className='typo-mono-m12 text-cool-grey-07 w-32 shrink-0'>{t.name}</span>
-            <span className='typo-mono-r10 text-cool-grey-07 w-14 shrink-0'>{t.value}</span>
-            <span className={`${t.sizeClass} text-cool-grey-11 truncate font-bold`}>
+            <span className='typo-mono-m12 text-fg-muted w-32 shrink-0'>{t.name}</span>
+            <span className='typo-mono-r10 text-fg-muted w-14 shrink-0'>{t.value}</span>
+            <span className={`${t.sizeClass} text-fg-strong truncate font-bold`}>
               TranSight Design
             </span>
           </div>

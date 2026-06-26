@@ -12,19 +12,19 @@ import { cn } from '@/lib/utils'
 // 클래스는 컴포넌트 안에서 isActive ? styles[color] : 미체크 클래스 로 동적 적용.
 // cva.variants에는 키만 노출해 extract-variants 가 카탈로그 컨트롤을 생성하게 한다.
 const checkboxColorStyles = {
-  gray: 'bg-cool-grey-04 border-cool-grey-04 text-cool-grey-09',
-  blue: 'bg-primary-blue-1 border-primary-blue-1 text-white',
-  red: 'bg-ui-red border-ui-red text-white',
-  orange: 'bg-ui-orange border-ui-orange text-white',
-  yellow: 'bg-ui-yellow border-ui-yellow text-white',
-  olive: 'bg-ui-olive border-ui-olive text-white',
-  green: 'bg-ui-green border-ui-green text-white',
-  skyblue: 'bg-ui-skyblue border-ui-skyblue text-white',
-  purple: 'bg-ui-purple border-ui-purple text-white',
-  pink: 'bg-ui-pink border-ui-pink text-white',
-  white: 'bg-white border-cool-grey-04 text-cool-grey-09',
+  gray: 'bg-bg-muted border-border-default text-fg-default',
+  blue: 'bg-primary-blue-1 border-primary-blue-1 text-on-dark',
+  red: 'bg-ui-red border-ui-red text-on-dark',
+  orange: 'bg-ui-orange border-ui-orange text-on-dark',
+  yellow: 'bg-ui-yellow border-ui-yellow text-on-dark',
+  olive: 'bg-ui-olive border-ui-olive text-on-dark',
+  green: 'bg-ui-green border-ui-green text-on-dark',
+  skyblue: 'bg-ui-skyblue border-ui-skyblue text-on-dark',
+  purple: 'bg-ui-purple border-ui-purple text-on-dark',
+  pink: 'bg-ui-pink border-ui-pink text-on-dark',
+  white: 'bg-bg-card border-border-default text-fg-default',
   'gradient-blue':
-    'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 border-primary-blue-1 text-white'
+    'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 border-primary-blue-1 text-on-dark'
 } as const
 
 const checkboxIndicatorSizeStyles = {
@@ -130,7 +130,7 @@ const Checkbox = ({
   const isActive = Boolean(isChecked) || Boolean(indeterminate)
   const stateClasses = isActive
     ? checkboxColorStyles[resolvedColor]
-    : 'bg-white border-cool-grey-04 text-transparent'
+    : 'bg-bg-card border-border-default text-transparent'
 
   return (
     <CheckboxProvider

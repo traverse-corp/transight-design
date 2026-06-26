@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 
 // border-current로 색을 currentColor에서 받으므로 text-* 토큰으로 제어.
 const spinnerColorStyles = {
-  gray: 'text-cool-grey-09',
+  gray: 'text-fg-default',
   blue: 'text-primary-blue-1',
   red: 'text-ui-red',
   orange: 'text-ui-orange',
@@ -14,7 +14,7 @@ const spinnerColorStyles = {
   skyblue: 'text-ui-skyblue',
   purple: 'text-ui-purple',
   pink: 'text-ui-pink',
-  white: 'text-white',
+  white: 'text-on-dark',
   'gradient-blue': 'text-primary-blue-1'
 } as const
 

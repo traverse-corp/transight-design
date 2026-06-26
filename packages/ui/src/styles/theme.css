@@ -1,34 +1,83 @@
 /* ================================================================
- * Transight Design System — shadcn 시맨틱 토큰 매핑
- * Tailwind v4 3단 패턴:
- *   1. :root / .dark 에 원시 값 별칭 (라이트·다크)
- *   2. @theme inline 으로 시맨틱 → CSS var 연결 (유틸리티 자동 생성)
- *   3. 컴포넌트는 bg-primary, text-foreground 처럼 시맨틱 유틸만 사용
+ * Transight Design System — 시맨틱 토큰 (다크모드 대응)
+ *
+ * 컴포넌트/호출부는 raw 색(bg-cool-grey-*, bg-white 등) 금지, 항상 시맨틱.
+ *   <div class="bg-card text-fg-default border-border-default">
+ *
+ * 매핑 원칙:
+ *   foreground 4단 — strong / default / muted / disabled
+ *   surface    5단 — page / card / subtle / muted / inverse
+ *   border     3단 — default / subtle / strong
+ *   상태       — ring-focus / overlay / hover-bg / active-bg
+ *   shadow     3단 — card / dialog / popover
+ *   gradient   4종 — cta / deep / fade-dark / glow
+ *
+ * shadcn 호환을 위해 기존 시맨틱(background/foreground/card/border/primary/...)도 유지.
+ * 새 시맨틱은 fg-* / bg-* / border-* / shadow-* 접두로 별도 운영.
  * ================================================================ */
 
 @custom-variant dark (&:is(.dark *));
 
-/* ── 라이트 모드 ── */
+/* ──────────────────────────────────────────────────────────────────
+ * 라이트 모드
+ * ────────────────────────────────────────────────────────────────── */
 :root {
   --radius: 0.625rem;
 
-  --background: var(--color-cool-grey-white);
-  --foreground: var(--color-cool-grey-11);
-  --card: var(--color-cool-grey-white);
-  --card-foreground: var(--color-cool-grey-11);
-  --popover: var(--color-cool-grey-white);
-  --popover-foreground: var(--color-cool-grey-11);
+  /* ── Foreground (텍스트 위계 4단) ───────────────── */
+  --fg-strong: var(--color-cool-grey-11);       /* 헤더/강조 */
+  --fg-default: var(--color-cool-grey-09);      /* 본문 (가장 많이) */
+  --fg-muted: var(--color-cool-grey-07);        /* 보조/캡션 */
+  --fg-disabled: var(--color-cool-grey-05);     /* 비활성 */
+  --fg-inverse: var(--color-cool-grey-white);   /* 어두운 표면 위 텍스트 */
+
+  /* ── Surface (배경 위계 5단) ───────────────────── */
+  --bg-page: var(--color-cool-grey-white);      /* 페이지 본 배경 */
+  --bg-card: var(--color-cool-grey-white);      /* 카드/팝업/dialog 표면 */
+  --bg-subtle: var(--color-cool-grey-01);       /* 더 옅은 면 (테이블 stripe 등) */
+  --bg-muted: var(--color-cool-grey-02);        /* hover/소프트 강조 */
+  --bg-inverse: var(--color-cool-grey-11);      /* 사이드바·툴팁 (항상 짙음) */
+
+  /* ── Border 3단 ───────────────────────────────── */
+  --border-default: var(--color-cool-grey-04);
+  --border-subtle: var(--color-cool-grey-03);
+  --border-strong: var(--color-cool-grey-06);
+
+  /* ── 상태 / 인터랙션 ────────────────────────────── */
+  --ring-focus: rgb(21 109 252 / 0.5);                              /* primary-blue-1/50 */
+  --overlay-backdrop: rgb(0 0 0 / 0.4);
+  --hover-bg: var(--color-cool-grey-01);
+  --active-bg: var(--color-cool-grey-02);
+
+  /* ── Shadow ────────────────────────────────────── */
+  --shadow-card: 0 1px 3px rgb(0 0 0 / 0.08), 0 1px 2px rgb(0 0 0 / 0.04);
+  --shadow-popover: 0 4px 12px rgb(0 0 0 / 0.12), 0 2px 4px rgb(0 0 0 / 0.06);
+  --shadow-dialog: 0 8px 24px rgb(0 0 0 / 0.15), 0 4px 8px rgb(0 0 0 / 0.08);
+
+  /* ── Gradient ──────────────────────────────────── */
+  --gradient-cta: linear-gradient(135deg, var(--color-primary-blue-1) 0%, var(--color-primary-blue-2) 100%);
+  --gradient-deep: linear-gradient(90deg, var(--color-primary-blue-1) 0%, var(--color-primary-blue-deep) 100%);
+  --gradient-fade-dark: linear-gradient(to top, rgb(255 255 255 / 0.92) 0%, rgb(255 255 255 / 0.32) 55%, transparent 100%);
+  --gradient-glow: radial-gradient(circle, rgb(21 109 252 / 0.25) 0%, transparent 70%);
+
+  /* ── shadcn 호환 시맨틱 (기존 컴포넌트 호환용 — 새 코드는 fg- / bg- 시맨틱 권장) ── */
+  --background: var(--bg-page);
+  --foreground: var(--fg-strong);
+  --card: var(--bg-card);
+  --card-foreground: var(--fg-strong);
+  --popover: var(--bg-card);
+  --popover-foreground: var(--fg-strong);
   --primary: var(--color-primary-blue-1);
-  --primary-foreground: var(--color-cool-grey-white);
+  --primary-foreground: var(--fg-inverse);
   --secondary: var(--color-cool-grey-03);
-  --secondary-foreground: var(--color-cool-grey-09);
+  --secondary-foreground: var(--fg-default);
   --muted: var(--color-cool-grey-03);
-  --muted-foreground: var(--color-cool-grey-07);
+  --muted-foreground: var(--fg-muted);
   --accent: var(--color-cool-grey-03);
-  --accent-foreground: var(--color-cool-grey-09);
+  --accent-foreground: var(--fg-default);
   --destructive: var(--color-ui-red);
-  --border: var(--color-cool-grey-04);
-  --input: var(--color-cool-grey-04);
+  --border: var(--border-default);
+  --input: var(--border-default);
   --ring: var(--color-primary-blue-1);
 
   --chart-1: var(--color-ui-red);
@@ -37,36 +86,75 @@
   --chart-4: var(--color-ui-yellow);
   --chart-5: var(--color-ui-orange);
 
-  --sidebar: var(--color-cool-grey-11);
-  --sidebar-foreground: var(--color-cool-grey-white);
+  --sidebar: var(--bg-inverse);
+  --sidebar-foreground: var(--fg-inverse);
   --sidebar-primary: var(--color-primary-blue-1);
-  --sidebar-primary-foreground: var(--color-cool-grey-white);
+  --sidebar-primary-foreground: var(--fg-inverse);
   --sidebar-accent: var(--color-sidebar-button-bg);
-  --sidebar-accent-foreground: var(--color-cool-grey-white);
-  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-accent-foreground: var(--fg-inverse);
+  --sidebar-border: rgb(255 255 255 / 0.1);
   --sidebar-ring: var(--color-cool-grey-08);
 }
 
-/* ── 다크 모드 ── */
+/* ──────────────────────────────────────────────────────────────────
+ * 다크 모드
+ * ────────────────────────────────────────────────────────────────── */
 .dark {
-  --background: var(--color-cool-grey-11);
-  --foreground: var(--color-cool-grey-white);
-  --card: var(--color-cool-grey-10);
-  --card-foreground: var(--color-cool-grey-white);
-  --popover: var(--color-cool-grey-10);
-  --popover-foreground: var(--color-cool-grey-white);
+  /* ── Foreground ────────────────────────────────── */
+  --fg-strong: var(--color-cool-grey-white);
+  --fg-default: var(--color-cool-grey-04);
+  --fg-muted: var(--color-cool-grey-06);
+  --fg-disabled: var(--color-cool-grey-08);
+  --fg-inverse: var(--color-cool-grey-11);
+
+  /* ── Surface ───────────────────────────────────── */
+  --bg-page: var(--color-cool-grey-14);
+  --bg-card: var(--color-cool-grey-13);
+  --bg-subtle: var(--color-cool-grey-12);
+  --bg-muted: var(--color-cool-grey-11);
+  --bg-inverse: var(--color-cool-grey-02);   /* 다크에서 inverse는 밝은 표면 */
+
+  /* ── Border ────────────────────────────────────── */
+  --border-default: rgb(255 255 255 / 0.1);
+  --border-subtle: rgb(255 255 255 / 0.05);
+  --border-strong: rgb(255 255 255 / 0.2);
+
+  /* ── 상태 ──────────────────────────────────────── */
+  --ring-focus: rgb(55 94 240 / 0.6);                               /* primary-blue-accent/60 */
+  --overlay-backdrop: rgb(0 0 0 / 0.7);
+  --hover-bg: rgb(255 255 255 / 0.05);
+  --active-bg: rgb(255 255 255 / 0.1);
+
+  /* ── Shadow (다크에서 알파 ↑) ──────────────────── */
+  --shadow-card: 0 4px 15px rgb(0 0 0 / 0.4);
+  --shadow-popover: 0 8px 24px rgb(0 0 0 / 0.45);
+  --shadow-dialog: 0 32px 64px rgb(0 0 0 / 0.5);
+
+  /* ── Gradient ──────────────────────────────────── */
+  --gradient-cta: linear-gradient(135deg, var(--color-primary-blue-1) 0%, var(--color-primary-blue-2) 100%);
+  --gradient-deep: linear-gradient(90deg, var(--color-primary-blue-1) 0%, var(--color-primary-blue-deep) 100%);
+  --gradient-fade-dark: linear-gradient(to top, rgb(8 8 8 / 0.92) 0%, rgb(8 8 8 / 0.32) 55%, rgb(8 8 8 / 0.08) 100%);
+  --gradient-glow: radial-gradient(circle, rgb(55 94 240 / 0.4) 0%, transparent 70%);
+
+  /* ── shadcn 호환 ───────────────────────────────── */
+  --background: var(--bg-page);
+  --foreground: var(--fg-strong);
+  --card: var(--bg-card);
+  --card-foreground: var(--fg-strong);
+  --popover: var(--bg-card);
+  --popover-foreground: var(--fg-strong);
   --primary: var(--color-primary-blue-1);
-  --primary-foreground: var(--color-cool-grey-white);
-  --secondary: var(--color-cool-grey-09);
-  --secondary-foreground: var(--color-cool-grey-white);
-  --muted: var(--color-cool-grey-09);
-  --muted-foreground: var(--color-cool-grey-06);
-  --accent: var(--color-cool-grey-09);
-  --accent-foreground: var(--color-cool-grey-white);
+  --primary-foreground: var(--fg-inverse);
+  --secondary: var(--bg-muted);
+  --secondary-foreground: var(--fg-default);
+  --muted: var(--bg-muted);
+  --muted-foreground: var(--fg-muted);
+  --accent: var(--bg-muted);
+  --accent-foreground: var(--fg-default);
   --destructive: var(--color-ui-red);
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: var(--color-cool-grey-08);
+  --border: var(--border-default);
+  --input: var(--border-default);
+  --ring: var(--color-primary-blue-1);
 
   --chart-1: var(--color-primary-blue-1);
   --chart-2: var(--color-ui-green);
@@ -74,23 +162,63 @@
   --chart-4: var(--color-ui-purple);
   --chart-5: var(--color-ui-red);
 
-  --sidebar: var(--color-cool-grey-11);
-  --sidebar-foreground: var(--color-cool-grey-white);
+  --sidebar: var(--color-cool-grey-13);
+  --sidebar-foreground: var(--fg-strong);
   --sidebar-primary: var(--color-primary-blue-1);
-  --sidebar-primary-foreground: var(--color-cool-grey-white);
+  --sidebar-primary-foreground: var(--fg-inverse);
   --sidebar-accent: var(--color-sidebar-button-bg);
-  --sidebar-accent-foreground: var(--color-cool-grey-white);
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: var(--color-cool-grey-08);
+  --sidebar-accent-foreground: var(--fg-inverse);
+  --sidebar-border: rgb(255 255 255 / 0.1);
+  --sidebar-ring: var(--color-cool-grey-06);
 }
 
-/* ── 시맨틱 → 유틸리티 연결 ── */
+/* ──────────────────────────────────────────────────────────────────
+ * Tailwind v4 — 시맨틱 → 유틸리티 자동 생성
+ * 새 토큰은 @theme inline의 --color-* / --shadow-* / --background-image-* 키로 매핑
+ * ────────────────────────────────────────────────────────────────── */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
+  /* Foreground — text-fg-{strong/default/muted/disabled/inverse} */
+  --color-fg-strong: var(--fg-strong);
+  --color-fg-default: var(--fg-default);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-disabled: var(--fg-disabled);
+  --color-fg-inverse: var(--fg-inverse);
+
+  /* Surface — bg-bg-{page/card/subtle/muted/inverse} */
+  --color-bg-page: var(--bg-page);
+  --color-bg-card: var(--bg-card);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-bg-muted: var(--bg-muted);
+  --color-bg-inverse: var(--bg-inverse);
+
+  /* Border — border-border-{default/subtle/strong} */
+  --color-border-default: var(--border-default);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+
+  /* 상태 */
+  --color-ring-focus: var(--ring-focus);
+  --color-overlay-backdrop: var(--overlay-backdrop);
+  --color-hover-bg: var(--hover-bg);
+  --color-active-bg: var(--active-bg);
+
+  /* Shadow — shadow-{card/popover/dialog} */
+  --shadow-card: var(--shadow-card);
+  --shadow-popover: var(--shadow-popover);
+  --shadow-dialog: var(--shadow-dialog);
+
+  /* Gradient — bg-gradient-{cta/deep/fade-dark/glow} */
+  --background-image-gradient-cta: var(--gradient-cta);
+  --background-image-gradient-deep: var(--gradient-deep);
+  --background-image-gradient-fade-dark: var(--gradient-fade-dark);
+  --background-image-gradient-glow: var(--gradient-glow);
+
+  /* shadcn 호환 시맨틱 */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -124,7 +252,9 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* ── 베이스 레이어 ── */
+/* ──────────────────────────────────────────────────────────────────
+ * 베이스 레이어
+ * ────────────────────────────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border;

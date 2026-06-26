@@ -36,8 +36,8 @@ export const InstallCommands = ({ options }: InstallCommandsProps) => {
               onClick={() => setActiveIdx(idx)}
               className={
                 isActive
-                  ? 'bg-cool-grey-09 typo-sb12 rounded-md px-3 py-1.5 text-white'
-                  : 'text-cool-grey-07 hover:bg-cool-grey-02 hover:text-cool-grey-11 typo-sb12 rounded-md px-3 py-1.5 transition-colors'
+                  ? 'bg-fg-strong typo-sb12 rounded-md px-3 py-1.5 text-fg-inverse'
+                  : 'text-fg-muted hover:bg-bg-muted hover:text-fg-strong typo-sb12 rounded-md px-3 py-1.5 transition-colors'
               }
             >
               {opt.label}

@@ -4,67 +4,72 @@ import { cn } from '@/lib/utils'
 
 // ── 색상 시스템 — Button과 동일 color × theme 매트릭스 (12 × 3) ──
 // 카드는 큰 컨테이너라 outline / soft가 자연스러움. solid는 강조 카드(헤더, premium 등)에 한정.
+// 정책:
+//   - outline: bg-bg-card (콘텐츠 카드 — 표면 가시. button과 달리 transparent 안 함)
+//   - solid의 흰 글씨는 text-on-dark
+//   - yellow.solid 등 밝은 브랜드 색 위 dark 텍스트는 text-fg-strong (다크 모드에서 white로 자동)
+//   - soft 텍스트는 brand 색 (text-ui-X) — bg가 brand pale(다크모드 비스왑)이라 fg-default 쓰면 다크에서 안 보임
 const cardColorStyles = {
   gray: {
-    solid: 'bg-cool-grey-09 text-white border-cool-grey-09',
-    outline: 'bg-white text-cool-grey-09 border-cool-grey-04',
-    soft: 'bg-cool-grey-02 text-cool-grey-09 border-cool-grey-02'
+    solid: 'bg-bg-inverse text-fg-inverse border-bg-inverse',
+    outline: 'bg-bg-card text-fg-default border-border-default',
+    soft: 'bg-bg-muted text-fg-default border-transparent'
   },
   blue: {
-    solid: 'bg-primary-blue-1 text-white border-primary-blue-1',
-    outline: 'bg-white text-cool-grey-09 border-primary-blue-1',
-    soft: 'bg-primary-blue-opacity-10 text-cool-grey-09 border-primary-blue-opacity-10'
+    solid: 'bg-primary-blue-1 text-on-dark border-primary-blue-1',
+    outline: 'bg-bg-card text-fg-default border-primary-blue-1',
+    soft: 'bg-primary-blue-opacity-10 text-primary-blue-1 border-transparent'
   },
   red: {
-    solid: 'bg-ui-red text-white border-ui-red',
-    outline: 'bg-white text-cool-grey-09 border-ui-red',
-    soft: 'bg-ui-pale-red text-cool-grey-09 border-ui-pale-red'
+    solid: 'bg-ui-red text-on-dark border-ui-red',
+    outline: 'bg-bg-card text-fg-default border-ui-red',
+    soft: 'bg-ui-pale-red text-ui-red border-transparent'
   },
   orange: {
-    solid: 'bg-ui-orange text-white border-ui-orange',
-    outline: 'bg-white text-cool-grey-09 border-ui-orange',
-    soft: 'bg-ui-pale-orange text-cool-grey-09 border-ui-pale-orange'
+    solid: 'bg-ui-orange text-on-dark border-ui-orange',
+    outline: 'bg-bg-card text-fg-default border-ui-orange',
+    soft: 'bg-ui-pale-orange text-ui-orange border-transparent'
   },
   yellow: {
-    solid: 'bg-ui-yellow text-cool-grey-09 border-ui-yellow',
-    outline: 'bg-white text-cool-grey-09 border-ui-yellow',
-    soft: 'bg-ui-pale-yellow text-cool-grey-09 border-ui-pale-yellow'
+    solid: 'bg-ui-yellow text-fg-strong border-ui-yellow',
+    outline: 'bg-bg-card text-fg-default border-ui-yellow',
+    soft: 'bg-ui-pale-yellow text-ui-yellow border-transparent'
   },
   olive: {
-    solid: 'bg-ui-olive text-white border-ui-olive',
-    outline: 'bg-white text-cool-grey-09 border-ui-olive',
-    soft: 'bg-ui-olive/10 text-cool-grey-09 border-ui-olive/10'
+    solid: 'bg-ui-olive text-on-dark border-ui-olive',
+    outline: 'bg-bg-card text-fg-default border-ui-olive',
+    soft: 'bg-ui-olive/10 text-ui-olive border-transparent'
   },
   green: {
-    solid: 'bg-ui-green text-white border-ui-green',
-    outline: 'bg-white text-cool-grey-09 border-ui-green',
-    soft: 'bg-ui-pale-green text-cool-grey-09 border-ui-pale-green'
+    solid: 'bg-ui-green text-on-dark border-ui-green',
+    outline: 'bg-bg-card text-fg-default border-ui-green',
+    soft: 'bg-ui-pale-green text-ui-green border-transparent'
   },
   skyblue: {
-    solid: 'bg-ui-skyblue text-white border-ui-skyblue',
-    outline: 'bg-white text-cool-grey-09 border-ui-skyblue',
-    soft: 'bg-ui-skyblue/10 text-cool-grey-09 border-ui-skyblue/10'
+    solid: 'bg-ui-skyblue text-on-dark border-ui-skyblue',
+    outline: 'bg-bg-card text-fg-default border-ui-skyblue',
+    soft: 'bg-ui-skyblue/10 text-ui-skyblue border-transparent'
   },
   purple: {
-    solid: 'bg-ui-purple text-white border-ui-purple',
-    outline: 'bg-white text-cool-grey-09 border-ui-purple',
-    soft: 'bg-ui-pale-purple text-cool-grey-09 border-ui-pale-purple'
+    solid: 'bg-ui-purple text-on-dark border-ui-purple',
+    outline: 'bg-bg-card text-fg-default border-ui-purple',
+    soft: 'bg-ui-pale-purple text-ui-purple border-transparent'
   },
   pink: {
-    solid: 'bg-ui-pink text-white border-ui-pink',
-    outline: 'bg-white text-cool-grey-09 border-ui-pink',
-    soft: 'bg-ui-pale-pink text-cool-grey-09 border-ui-pale-pink'
+    solid: 'bg-ui-pink text-on-dark border-ui-pink',
+    outline: 'bg-bg-card text-fg-default border-ui-pink',
+    soft: 'bg-ui-pale-pink text-ui-pink border-transparent'
   },
   white: {
-    solid: 'bg-white text-cool-grey-09 border-cool-grey-04',
-    outline: 'bg-white text-cool-grey-09 border-cool-grey-04',
-    soft: 'bg-white/80 text-cool-grey-09 border-cool-grey-04'
+    solid: 'bg-bg-card text-fg-default border-border-default',
+    outline: 'bg-bg-card text-fg-default border-border-default',
+    soft: 'bg-bg-card/80 text-fg-default border-border-default'
   },
   'gradient-blue': {
     solid:
-      'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-white border-primary-blue-1',
-    outline: 'bg-white text-cool-grey-09 border-primary-blue-1',
-    soft: 'bg-primary-blue-opacity-10 text-cool-grey-09 border-primary-blue-opacity-10'
+      'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-on-dark border-primary-blue-1',
+    outline: 'bg-bg-card text-fg-default border-primary-blue-1',
+    soft: 'bg-primary-blue-opacity-10 text-primary-blue-1 border-transparent'
   }
 } as const
 
@@ -79,7 +84,7 @@ const cardCompoundVariants = Object.entries(cardColorStyles).flatMap(([color, st
   }))
 )
 
-const cardClassVariants = cva('border shadow-sm transition-colors', {
+const cardClassVariants = cva('border shadow-card transition-colors', {
   variants: {
     color: {
       gray: '',

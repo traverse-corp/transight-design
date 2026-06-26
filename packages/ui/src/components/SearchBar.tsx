@@ -17,11 +17,11 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
     }
 
     return (
-      <InputGroup className={twMerge('h-10 w-150 bg-white', className)}>
+      <InputGroup className={twMerge('h-10 w-150 bg-bg-card', className)}>
         <InputGroupInput ref={ref} {...props} onKeyDown={handleEnterSearch} />
         <InputGroupAddon align='inline-end'>
           <InputGroupButton onClick={() => onSearch(String(props.value || ''))}>
-            <Search className='text-cool-grey-09' />
+            <Search className='text-fg-default' />
           </InputGroupButton>
         </InputGroupAddon>
       </InputGroup>

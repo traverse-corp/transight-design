@@ -14,7 +14,7 @@ const PopoverTrigger = ({ ...props }: PopoverPrimitive.Trigger.Props) => (
 )
 
 const popoverContentClassVariants = cva(
-  'z-50 flex origin-(--transform-origin) flex-col gap-4 border-cool-grey-04 typo-m13 text-cool-grey-11 border bg-white shadow-md outline-hidden duration-100 data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+  'z-50 flex origin-(--transform-origin) flex-col gap-4 border-border-default typo-m13 text-fg-strong border bg-bg-card shadow-popover outline-hidden duration-100 data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
   {
     variants: {
       shape: {
@@ -74,7 +74,7 @@ const PopoverHeader = ({ className, ...props }: React.ComponentProps<'div'>) => 
 const PopoverTitle = ({ className, ...props }: PopoverPrimitive.Title.Props) => (
   <PopoverPrimitive.Title
     data-slot='popover-title'
-    className={cn('typo-sb14 text-cool-grey-11', className)}
+    className={cn('typo-sb14 text-fg-strong', className)}
     {...props}
   />
 )
@@ -82,7 +82,7 @@ const PopoverTitle = ({ className, ...props }: PopoverPrimitive.Title.Props) => 
 const PopoverDescription = ({ className, ...props }: PopoverPrimitive.Description.Props) => (
   <PopoverPrimitive.Description
     data-slot='popover-description'
-    className={cn('typo-m12 text-cool-grey-09', className)}
+    className={cn('typo-m12 text-fg-default', className)}
     {...props}
   />
 )

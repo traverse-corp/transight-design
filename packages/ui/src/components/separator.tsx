@@ -12,8 +12,8 @@ const separatorClassVariants = cva('shrink-0', {
       vertical: 'self-stretch'
     },
     tone: {
-      muted: 'bg-cool-grey-04',
-      strong: 'bg-cool-grey-06',
+      muted: 'bg-bg-muted',
+      strong: 'bg-bg-muted',
       accent: 'bg-primary-blue-1'
     },
     thickness: {

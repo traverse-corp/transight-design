@@ -14,12 +14,12 @@ const toggleGroupItemVariants = cva(
   {
     variants: {
       variant: {
-        pill: 'h-5 rounded-full px-2 text-xs font-semibold aria-pressed:bg-white aria-pressed:text-cool-grey-10 aria-pressed:shadow-sm text-cool-grey-07 hover:text-cool-grey-09',
+        pill: 'h-5 rounded-full px-2 text-xs font-semibold aria-pressed:bg-bg-card aria-pressed:text-fg-strong aria-pressed:shadow-sm text-fg-muted hover:text-fg-default',
         filter:
-          'h-6 rounded-md px-2 text-sm font-medium aria-pressed:bg-primary-blue-1 aria-pressed:text-white text-cool-grey-07 hover:bg-cool-grey-03',
-        chip: 'rounded-full border px-4 py-2.5 h-auto aria-pressed:border-primary-blue-1 aria-pressed:bg-primary-blue-1/8 border-cool-grey-04 bg-white hover:border-cool-grey-06',
+          'h-6 rounded-md px-2 text-sm font-medium aria-pressed:bg-primary-blue-1 aria-pressed:text-on-dark text-fg-muted hover:bg-bg-muted',
+        chip: 'rounded-full border px-4 py-2.5 h-auto aria-pressed:border-primary-blue-1 aria-pressed:bg-primary-blue-1/8 border-border-default bg-bg-card hover:border-border-strong',
         toolbar:
-          'h-7 rounded-full px-3 typo-sb12 aria-pressed:bg-cool-grey-09 aria-pressed:text-white text-cool-grey-07 hover:text-cool-grey-09 transition-colors',
+          'h-7 rounded-full px-3 typo-sb12 aria-pressed:bg-fg-strong aria-pressed:text-on-dark text-fg-muted hover:text-fg-default transition-colors',
         card: 'h-8 rounded-md border px-4 text-sm font-medium cursor-pointer'
       }
     }
@@ -28,8 +28,8 @@ const toggleGroupItemVariants = cva(
 
 // ToggleGroup 컨테이너 variant별 스타일
 const groupContainerStyles: Record<string, string> = {
-  pill: 'bg-cool-grey-03 h-6 rounded-full p-0.5',
-  toolbar: 'bg-cool-grey-03 h-8 rounded-full p-0.5 shadow-sm backdrop-blur-md'
+  pill: 'bg-bg-muted h-6 rounded-full p-0.5',
+  toolbar: 'bg-bg-muted h-8 rounded-full p-0.5 shadow-sm backdrop-blur-md'
 }
 
 type SpecialVariant = 'pill' | 'filter' | 'chip' | 'toolbar' | 'card'

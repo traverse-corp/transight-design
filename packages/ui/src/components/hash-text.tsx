@@ -56,7 +56,7 @@ export const HashText: React.FC<{
         }}
         className={cn(
           'cursor-pointer items-center justify-center rounded-md p-0.5',
-          'text-cool-grey-07 hover:text-cool-grey-10 hover:bg-cool-grey-03/60',
+          'text-fg-muted hover:text-fg-strong hover:bg-bg-muted/60',
           alwaysCopy
             ? 'ml-1 inline-flex shrink-0'
             : 'pointer-events-none absolute top-1/2 right-0 z-10 inline-flex -translate-y-1/2 opacity-0 transition-opacity group-hover/hash:pointer-events-auto group-hover/hash:opacity-100'

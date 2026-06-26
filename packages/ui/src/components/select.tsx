@@ -61,63 +61,63 @@ const SelectValue = ({ className, ...props }: SelectPrimitive.Value.Props) => (
 // soft: 옅은 색 배경 + 색 글씨
 const selectTriggerColorStyles = {
   gray: {
-    solid: 'bg-cool-grey-09 border-cool-grey-09 text-white focus-within:border-cool-grey-10',
-    outline: 'border-cool-grey-04 text-cool-grey-09 focus-within:border-primary-blue-1',
-    soft: 'bg-cool-grey-02 border-cool-grey-02 text-cool-grey-09 focus-within:border-cool-grey-06'
+    solid: 'bg-fg-strong border-border-strong text-on-dark focus-within:border-border-strong',
+    outline: 'border-border-default text-fg-default focus-within:border-primary-blue-1',
+    soft: 'bg-bg-muted border-border-subtle text-fg-default focus-within:border-border-strong'
   },
   blue: {
-    solid: 'bg-primary-blue-1 border-primary-blue-1 text-white focus-within:border-primary-blue-2',
+    solid: 'bg-primary-blue-1 border-primary-blue-1 text-on-dark focus-within:border-primary-blue-2',
     outline: 'border-primary-blue-1 text-primary-blue-1 focus-within:border-primary-blue-2',
     soft: 'bg-primary-blue-opacity-10 border-primary-blue-opacity-10 text-primary-blue-1 focus-within:border-primary-blue-1'
   },
   red: {
-    solid: 'bg-ui-red border-ui-red text-white focus-within:border-ui-red',
+    solid: 'bg-ui-red border-ui-red text-on-dark focus-within:border-ui-red',
     outline: 'border-ui-red text-ui-red focus-within:border-ui-red',
     soft: 'bg-ui-pale-red border-ui-pale-red text-ui-red focus-within:border-ui-red'
   },
   orange: {
-    solid: 'bg-ui-orange border-ui-orange text-white focus-within:border-ui-orange',
+    solid: 'bg-ui-orange border-ui-orange text-on-dark focus-within:border-ui-orange',
     outline: 'border-ui-orange text-ui-orange focus-within:border-ui-orange',
     soft: 'bg-ui-pale-orange border-ui-pale-orange text-ui-orange focus-within:border-ui-orange'
   },
   yellow: {
-    solid: 'bg-ui-yellow border-ui-yellow text-white focus-within:border-ui-yellow',
+    solid: 'bg-ui-yellow border-ui-yellow text-on-dark focus-within:border-ui-yellow',
     outline: 'border-ui-yellow text-ui-yellow focus-within:border-ui-yellow',
     soft: 'bg-ui-pale-yellow border-ui-pale-yellow text-ui-yellow focus-within:border-ui-yellow'
   },
   olive: {
-    solid: 'bg-ui-olive border-ui-olive text-white focus-within:border-ui-olive',
+    solid: 'bg-ui-olive border-ui-olive text-on-dark focus-within:border-ui-olive',
     outline: 'border-ui-olive text-ui-olive focus-within:border-ui-olive',
     soft: 'bg-ui-olive/10 border-ui-olive/10 text-ui-olive focus-within:border-ui-olive'
   },
   green: {
-    solid: 'bg-ui-green border-ui-green text-white focus-within:border-ui-green',
+    solid: 'bg-ui-green border-ui-green text-on-dark focus-within:border-ui-green',
     outline: 'border-ui-green text-ui-green focus-within:border-ui-green',
     soft: 'bg-ui-pale-green border-ui-pale-green text-ui-green focus-within:border-ui-green'
   },
   skyblue: {
-    solid: 'bg-ui-skyblue border-ui-skyblue text-white focus-within:border-ui-skyblue',
+    solid: 'bg-ui-skyblue border-ui-skyblue text-on-dark focus-within:border-ui-skyblue',
     outline: 'border-ui-skyblue text-ui-skyblue focus-within:border-ui-skyblue',
     soft: 'bg-ui-skyblue/10 border-ui-skyblue/10 text-ui-skyblue focus-within:border-ui-skyblue'
   },
   purple: {
-    solid: 'bg-ui-purple border-ui-purple text-white focus-within:border-ui-purple',
+    solid: 'bg-ui-purple border-ui-purple text-on-dark focus-within:border-ui-purple',
     outline: 'border-ui-purple text-ui-purple focus-within:border-ui-purple',
     soft: 'bg-ui-pale-purple border-ui-pale-purple text-ui-purple focus-within:border-ui-purple'
   },
   pink: {
-    solid: 'bg-ui-pink border-ui-pink text-white focus-within:border-ui-pink',
+    solid: 'bg-ui-pink border-ui-pink text-on-dark focus-within:border-ui-pink',
     outline: 'border-ui-pink text-ui-pink focus-within:border-ui-pink',
     soft: 'bg-ui-pale-pink border-ui-pale-pink text-ui-pink focus-within:border-ui-pink'
   },
   white: {
-    solid: 'bg-white border-cool-grey-04 text-cool-grey-09 focus-within:border-primary-blue-1',
-    outline: 'border-cool-grey-04 text-cool-grey-09 focus-within:border-primary-blue-1',
-    soft: 'bg-white/80 border-cool-grey-04 text-cool-grey-09 focus-within:border-primary-blue-1'
+    solid: 'bg-bg-card border-border-default text-fg-default focus-within:border-primary-blue-1',
+    outline: 'border-border-default text-fg-default focus-within:border-primary-blue-1',
+    soft: 'bg-bg-card/80 border-border-default text-fg-default focus-within:border-primary-blue-1'
   },
   'gradient-blue': {
     solid:
-      'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 border-primary-blue-1 text-white focus-within:border-primary-blue-deep',
+      'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 border-primary-blue-1 text-on-dark focus-within:border-primary-blue-deep',
     outline: 'border-primary-blue-1 text-primary-blue-1 focus-within:border-primary-blue-deep',
     soft: 'bg-primary-blue-opacity-10 border-primary-blue-opacity-10 text-primary-blue-1 focus-within:border-primary-blue-1'
   }
@@ -125,7 +125,7 @@ const selectTriggerColorStyles = {
 
 // data-[placeholder]:opacity-60 — placeholder는 trigger text 색을 그대로 따르되 옅게 표시.
 const selectTriggerVariants = cva(
-  'flex w-full items-center justify-between gap-1.5 border bg-white shadow-sm transition-colors outline-none [&[data-placeholder]]:opacity-90 [&[data-placeholder]_[data-slot=select-value]]:opacity-60 aria-invalid:border-ui-red aria-invalid:focus-within:border-ui-red aria-invalid:shadow-[0_0_0_1px_rgba(239,68,68,0.1)] disabled:cursor-not-allowed disabled:opacity-50',
+  'flex w-full items-center justify-between gap-1.5 border bg-bg-card shadow-sm transition-colors outline-none [&[data-placeholder]]:opacity-90 [&[data-placeholder]_[data-slot=select-value]]:opacity-60 aria-invalid:border-ui-red aria-invalid:focus-within:border-ui-red aria-invalid:shadow-[0_0_0_1px_rgba(239,68,68,0.1)] disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       color: {
@@ -233,8 +233,8 @@ const contentRadiusForShape: Record<SelectShape, string> = {
 // SelectItem의 hover/focus 배경 + 텍스트 색, ItemIndicator(체크) 색을 color별로 매핑.
 const selectItemColorStyles: Record<SelectTriggerColor, { focus: string; check: string }> = {
   gray: {
-    focus: 'focus:bg-cool-grey-02 focus:text-cool-grey-11',
-    check: 'text-cool-grey-09'
+    focus: 'focus:bg-bg-muted focus:text-fg-strong',
+    check: 'text-fg-default'
   },
   blue: {
     focus: 'focus:bg-primary-blue-opacity-10 focus:text-primary-blue-1',
@@ -249,8 +249,8 @@ const selectItemColorStyles: Record<SelectTriggerColor, { focus: string; check: 
   purple: { focus: 'focus:bg-ui-pale-purple focus:text-ui-purple', check: 'text-ui-purple' },
   pink: { focus: 'focus:bg-ui-pale-pink focus:text-ui-pink', check: 'text-ui-pink' },
   white: {
-    focus: 'focus:bg-cool-grey-02 focus:text-cool-grey-11',
-    check: 'text-cool-grey-09'
+    focus: 'focus:bg-bg-muted focus:text-fg-strong',
+    check: 'text-fg-default'
   },
   'gradient-blue': {
     focus: 'focus:bg-primary-blue-opacity-10 focus:text-primary-blue-1',
@@ -289,7 +289,7 @@ const SelectContent = ({
           data-slot='select-content'
           data-align-trigger={alignItemWithTrigger}
           className={cn(
-            'bg-white text-cool-grey-09 border-cool-grey-04 data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 relative isolate z-50 max-h-(--available-height) w-(--anchor-width) min-w-36 origin-(--transform-origin) overflow-x-hidden overflow-y-auto border shadow-md duration-100 data-[align-trigger=true]:animate-none',
+            'bg-bg-card text-fg-default border-border-default data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 relative isolate z-50 max-h-(--available-height) w-(--anchor-width) min-w-36 origin-(--transform-origin) overflow-x-hidden overflow-y-auto border shadow-popover duration-100 data-[align-trigger=true]:animate-none',
             radius,
             className
           )}
@@ -307,7 +307,7 @@ const SelectContent = ({
 const SelectLabel = ({ className, ...props }: SelectPrimitive.GroupLabel.Props) => (
   <SelectPrimitive.GroupLabel
     data-slot='select-label'
-    className={cn('text-cool-grey-07 typo-sb11 px-2 py-1.5 uppercase tracking-wide', className)}
+    className={cn('text-fg-muted typo-sb11 px-2 py-1.5 uppercase tracking-wide', className)}
     {...props}
   />
 )
@@ -320,7 +320,7 @@ const SelectItem = ({ className, children, ...props }: SelectPrimitive.Item.Prop
     <SelectPrimitive.Item
       data-slot='select-item'
       className={cn(
-        "typo-m14 text-cool-grey-09 data-disabled:opacity-50 relative flex w-full cursor-default items-center gap-2 rounded-md py-1.5 pr-8 pl-2 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "typo-m14 text-fg-default data-disabled:opacity-50 relative flex w-full cursor-default items-center gap-2 rounded-md py-1.5 pr-8 pl-2 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         colorClasses.focus,
         className
       )}
@@ -348,7 +348,7 @@ const SelectItem = ({ className, children, ...props }: SelectPrimitive.Item.Prop
 const SelectSeparator = ({ className, ...props }: SelectPrimitive.Separator.Props) => (
   <SelectPrimitive.Separator
     data-slot='select-separator'
-    className={cn('bg-cool-grey-04 pointer-events-none -mx-1 my-1 h-px', className)}
+    className={cn('bg-bg-muted pointer-events-none -mx-1 my-1 h-px', className)}
     {...props}
   />
 )
@@ -360,7 +360,7 @@ const SelectScrollUpButton = ({
   <SelectPrimitive.ScrollUpArrow
     data-slot='select-scroll-up-button'
     className={cn(
-      "bg-white top-0 z-10 flex w-full cursor-default items-center justify-center py-1 [&_svg:not([class*='size-'])]:size-4",
+      "bg-bg-card top-0 z-10 flex w-full cursor-default items-center justify-center py-1 [&_svg:not([class*='size-'])]:size-4",
       className
     )}
     {...props}
@@ -376,7 +376,7 @@ const SelectScrollDownButton = ({
   <SelectPrimitive.ScrollDownArrow
     data-slot='select-scroll-down-button'
     className={cn(
-      "bg-white bottom-0 z-10 flex w-full cursor-default items-center justify-center py-1 [&_svg:not([class*='size-'])]:size-4",
+      "bg-bg-card bottom-0 z-10 flex w-full cursor-default items-center justify-center py-1 [&_svg:not([class*='size-'])]:size-4",
       className
     )}
     {...props}

@@ -9,12 +9,12 @@ import { Input, type InputProps } from '@/components/input'
 
 // input-group 내부에서만 쓰는 옛 input 스타일 — input.tsx에서 분리되어 자체 보관
 const legacyInputVariantStyles = {
-  default: 'border-cool-grey-03 focus-within:border-primary-blue-1',
+  default: 'border-border-subtle focus-within:border-primary-blue-1',
   error:
     'border-ui-red focus-within:border-ui-red shadow-[0_0_0_1px_rgba(239,68,68,0.1)]',
   minimal: 'border-none bg-transparent shadow-none px-0',
   capsule: 'rounded-full border-primary-blue-1 pr-1 pl-3',
-  form: 'bg-white border-cool-grey-03 text-cool-grey-09 focus-within:border-primary-blue-1'
+  form: 'bg-bg-card border-border-subtle text-fg-default focus-within:border-primary-blue-1'
 } as const
 
 const legacyInputSizeStyles = {
@@ -33,7 +33,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<'div'>) {
       data-slot="input-group"
       role="group"
       className={cn(
-        'border-cool-grey-04 dark:bg-input/30 has-[[data-slot][aria-invalid=true]]:ring-destructive/20 has-[[data-slot][aria-invalid=true]]:border-destructive dark:has-[[data-slot][aria-invalid=true]]:ring-destructive/40 group/input-group in-data-[slot=combobox-content]:focus-within:border-primary-blue-1 has-[[data-slot=input-group-control]:focus-visible]:border-primary-blue-1 has-[[data-slot=input-group-control]:focus-visible]:ring-primary-blue-1 relative flex h-12 w-full min-w-0 items-center rounded-md border shadow-xs transition-[color,box-shadow] outline-none in-data-[slot=combobox-content]:focus-within:ring-0 has-[[data-slot=input-group-control]:focus-visible]:ring-1 has-[[data-slot][aria-invalid=true]]:ring-1 has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-50 has-[textarea:disabled]:cursor-not-allowed has-[textarea:disabled]:opacity-50 has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>textarea]:h-auto has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pr-1.5 has-[>[data-align=inline-start]]:[&>input]:pl-1.5',
+        'border-border-default dark:bg-input/30 has-[[data-slot][aria-invalid=true]]:ring-destructive/20 has-[[data-slot][aria-invalid=true]]:border-destructive dark:has-[[data-slot][aria-invalid=true]]:ring-destructive/40 group/input-group in-data-[slot=combobox-content]:focus-within:border-primary-blue-1 has-[[data-slot=input-group-control]:focus-visible]:border-primary-blue-1 has-[[data-slot=input-group-control]:focus-visible]:ring-primary-blue-1 relative flex h-12 w-full min-w-0 items-center rounded-md border shadow-xs transition-[color,box-shadow] outline-none in-data-[slot=combobox-content]:focus-within:ring-0 has-[[data-slot=input-group-control]:focus-visible]:ring-1 has-[[data-slot][aria-invalid=true]]:ring-1 has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-50 has-[textarea:disabled]:cursor-not-allowed has-[textarea:disabled]:opacity-50 has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>textarea]:h-auto has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pr-1.5 has-[>[data-align=inline-start]]:[&>input]:pl-1.5',
         className
       )}
       {...props}

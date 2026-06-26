@@ -61,12 +61,12 @@ export const FlexView = () => {
     <div className='flex flex-col gap-6'>
       {/* ── Preview / Code 토글 ──────────────── */}
       <section>
-        <h2 className='typo-sb12 text-cool-grey-07 mb-3 uppercase tracking-wide'>Preview</h2>
+        <h2 className='typo-sb12 text-fg-muted mb-3 uppercase tracking-wide'>Preview</h2>
         <PreviewModePanel
           preview={
             <div className='flex flex-col gap-2'>
               <div
-                className={`${current} bg-cool-grey-01 border-cool-grey-04 h-64 gap-2 rounded-lg border p-4`}
+                className={`${current} bg-bg-subtle border-border-default h-64 gap-2 rounded-lg border p-4`}
               >
                 {[
                   'bg-primary-blue-1',
@@ -81,7 +81,7 @@ export const FlexView = () => {
                   />
                 ))}
               </div>
-              <p className='typo-mono-m12 text-cool-grey-07 text-center'>
+              <p className='typo-mono-m12 text-fg-muted text-center'>
                 현재 적용: <span className='text-primary-blue-1'>{current}</span>
               </p>
             </div>
@@ -96,11 +96,11 @@ export const FlexView = () => {
 
       {/* ── Utility list ──────────────── */}
       <section>
-        <h2 className='typo-sb12 text-cool-grey-07 mb-3 uppercase tracking-wide'>Utilities</h2>
+        <h2 className='typo-sb12 text-fg-muted mb-3 uppercase tracking-wide'>Utilities</h2>
         <div className='flex flex-col gap-5'>
           {FLEX_GROUPS.map((group) => (
             <div key={group.label}>
-              <h3 className='typo-sb12 text-cool-grey-09 mb-2'>{group.label}</h3>
+              <h3 className='typo-sb12 text-fg-default mb-2'>{group.label}</h3>
               <div className='flex flex-wrap gap-1.5'>
                 {group.classes.map((cls) => {
                   const active = cls === current
@@ -111,8 +111,8 @@ export const FlexView = () => {
                       onClick={() => setCurrent(cls)}
                       className={
                         active
-                          ? 'bg-primary-blue-1 typo-mono-m12 rounded-md px-2.5 py-1 text-white'
-                          : 'border-cool-grey-04 hover:border-primary-blue-1 hover:text-primary-blue-1 typo-mono-m12 text-cool-grey-09 rounded-md border bg-white px-2.5 py-1'
+                          ? 'bg-primary-blue-1 typo-mono-m12 rounded-md px-2.5 py-1 text-fg-inverse'
+                          : 'border-border-default hover:border-primary-blue-1 hover:text-primary-blue-1 typo-mono-m12 text-fg-default rounded-md border bg-bg-card px-2.5 py-1'
                       }
                     >
                       {cls}

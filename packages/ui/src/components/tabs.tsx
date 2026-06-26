@@ -36,8 +36,8 @@ const tabsListClassVariants = cva(
   {
     variants: {
       shape: {
-        pill: 'bg-cool-grey-02 rounded-lg p-[3px]',
-        line: 'border-cool-grey-04 gap-1 border-b group-data-vertical/tabs:border-b-0 group-data-vertical/tabs:border-r'
+        pill: 'bg-bg-muted rounded-lg p-[3px]',
+        line: 'border-border-default gap-1 border-b group-data-vertical/tabs:border-b-0 group-data-vertical/tabs:border-r'
       },
       theme: {
         solid: '',
@@ -106,17 +106,17 @@ const TabsList = ({
 // 활성 색은 --tab-active CSS 변수에서 읽음.
 const tabsTriggerClasses = cn(
   'group-data-[size=sm]/tabs-list:typo-m12 group-data-[size=md]/tabs-list:typo-m13 group-data-[size=lg]/tabs-list:typo-m14',
-  'text-cool-grey-07 hover:text-cool-grey-11 disabled:opacity-50 disabled:pointer-events-none aria-disabled:opacity-50 aria-disabled:pointer-events-none',
+  'text-fg-muted hover:text-fg-strong disabled:opacity-50 disabled:pointer-events-none aria-disabled:opacity-50 aria-disabled:pointer-events-none',
   'relative inline-flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap transition-colors group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start',
   "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   // ── shape=pill 기본 형태 (theme 무관 공통) ─────────
   'group-data-[shape=pill]/tabs-list:rounded-md group-data-[shape=pill]/tabs-list:px-3 group-data-[shape=pill]/tabs-list:py-1 group-data-[shape=pill]/tabs-list:border group-data-[shape=pill]/tabs-list:border-transparent',
   // pill + solid: 활성 탭이 색으로 채워짐, 텍스트 흰색
-  'group-data-[shape=pill]/tabs-list:group-data-[theme=solid]/tabs-list:data-active:bg-[var(--tab-active)] group-data-[shape=pill]/tabs-list:group-data-[theme=solid]/tabs-list:data-active:text-white group-data-[shape=pill]/tabs-list:group-data-[theme=solid]/tabs-list:data-active:shadow-sm',
+  'group-data-[shape=pill]/tabs-list:group-data-[theme=solid]/tabs-list:data-active:bg-[var(--tab-active)] group-data-[shape=pill]/tabs-list:group-data-[theme=solid]/tabs-list:data-active:text-on-dark group-data-[shape=pill]/tabs-list:group-data-[theme=solid]/tabs-list:data-active:shadow-sm',
   // pill + outline: 활성 탭 흰 배경 + 색 border + 색 텍스트
-  'group-data-[shape=pill]/tabs-list:group-data-[theme=outline]/tabs-list:data-active:bg-white group-data-[shape=pill]/tabs-list:group-data-[theme=outline]/tabs-list:data-active:border-[color:var(--tab-active)] group-data-[shape=pill]/tabs-list:group-data-[theme=outline]/tabs-list:data-active:text-[var(--tab-active)]',
+  'group-data-[shape=pill]/tabs-list:group-data-[theme=outline]/tabs-list:data-active:bg-bg-card group-data-[shape=pill]/tabs-list:group-data-[theme=outline]/tabs-list:data-active:border-[color:var(--tab-active)] group-data-[shape=pill]/tabs-list:group-data-[theme=outline]/tabs-list:data-active:text-[var(--tab-active)]',
   // pill + soft: 활성 탭 흰 배경 + 색 텍스트 + 옅은 shadow
-  'group-data-[shape=pill]/tabs-list:group-data-[theme=soft]/tabs-list:data-active:bg-white group-data-[shape=pill]/tabs-list:group-data-[theme=soft]/tabs-list:data-active:text-[var(--tab-active)] group-data-[shape=pill]/tabs-list:group-data-[theme=soft]/tabs-list:data-active:shadow-sm',
+  'group-data-[shape=pill]/tabs-list:group-data-[theme=soft]/tabs-list:data-active:bg-bg-card group-data-[shape=pill]/tabs-list:group-data-[theme=soft]/tabs-list:data-active:text-[var(--tab-active)] group-data-[shape=pill]/tabs-list:group-data-[theme=soft]/tabs-list:data-active:shadow-sm',
   // ── shape=line (theme 영향 없음) ─────────
   'group-data-[shape=line]/tabs-list:px-3 group-data-[shape=line]/tabs-list:py-2 group-data-[shape=line]/tabs-list:-mb-px group-data-[shape=line]/tabs-list:border-b-2 group-data-[shape=line]/tabs-list:border-transparent',
   'group-data-[shape=line]/tabs-list:data-active:text-[var(--tab-active)] group-data-[shape=line]/tabs-list:data-active:border-[color:var(--tab-active)]'
@@ -129,7 +129,7 @@ const TabsTrigger = ({ className, ...props }: TabsPrimitive.Tab.Props) => (
 const TabsContent = ({ className, ...props }: TabsPrimitive.Panel.Props) => (
   <TabsPrimitive.Panel
     data-slot='tabs-content'
-    className={cn('text-cool-grey-09 typo-m14 flex-1 outline-none', className)}
+    className={cn('text-fg-default typo-m14 flex-1 outline-none', className)}
     {...props}
   />
 )

@@ -41,7 +41,7 @@ const StyleBrowsePage = async ({ params }: PageProps) => {
 
       <div className='h-screen min-w-0 flex-1 overflow-y-auto py-10'>
         <header className='mb-8'>
-          <h1 className='typo-b24 text-cool-grey-11'>{meta.displayName}</h1>
+          <h1 className='typo-b24 text-fg-strong'>{meta.displayName}</h1>
           <p className='text-description mt-1'>{meta.description}</p>
         </header>
 

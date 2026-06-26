@@ -139,7 +139,7 @@ const AccordionItem = ({ className, ...props }: AccordionItemProps) => {
         data-slot='accordion-item'
         className={cn(
           // shape=separated일 때만 각 item이 자체 border/rounded 카드 (border 색은 --accordion-active 30%)
-          'group-data-[shape=separated]/accordion:border-[color:color-mix(in_oklab,var(--accordion-active)_30%,transparent)] group-data-[shape=separated]/accordion:rounded-lg group-data-[shape=separated]/accordion:bg-white group-data-[shape=separated]/accordion:border group-data-[shape=separated]/accordion:shadow-sm',
+          'group-data-[shape=separated]/accordion:border-[color:color-mix(in_oklab,var(--accordion-active)_30%,transparent)] group-data-[shape=separated]/accordion:rounded-lg group-data-[shape=separated]/accordion:bg-bg-card group-data-[shape=separated]/accordion:border group-data-[shape=separated]/accordion:shadow-sm',
           className
         )}
         {...props}
@@ -163,7 +163,7 @@ const AccordionTrigger = ({ nativeButton, className, children, ...props }: Accor
       data-slot='accordion-trigger'
       nativeButton={isNative}
       className={cn(
-        'group/accordion-trigger flex w-full items-center justify-between gap-2 text-left transition-colors focus-visible:outline-none text-cool-grey-11',
+        'group/accordion-trigger flex w-full items-center justify-between gap-2 text-left transition-colors focus-visible:outline-none text-fg-strong',
         // size별 padding + typo (root group/accordion의 data-size를 group-data로 추적)
         'group-data-[size=sm]/accordion:px-4 group-data-[size=sm]/accordion:py-2 group-data-[size=sm]/accordion:typo-sb13',
         'group-data-[size=md]/accordion:px-5 group-data-[size=md]/accordion:py-3 group-data-[size=md]/accordion:typo-sb14',
@@ -200,7 +200,7 @@ const AccordionPanel = ({
 }: AccordionPanelProps) => {
   const { isOpen } = useAccordionItem()
   const panelClass = cn(
-    'text-cool-grey-09 typo-m13',
+    'text-fg-default typo-m13',
     'group-data-[size=sm]/accordion:px-4 group-data-[size=sm]/accordion:pb-2',
     'group-data-[size=md]/accordion:px-5 group-data-[size=md]/accordion:pb-3',
     'group-data-[size=lg]/accordion:px-6 group-data-[size=lg]/accordion:pb-4',

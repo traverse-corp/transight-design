@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils'
 // 호출자는 <Input aria-invalid={hasError} /> 또는 react-hook-form 등 폼 라이브러리가
 // 자동으로 박아주는 aria-invalid에 의존. 별도 prop은 두지 않는다.
 const inputClassVariants = cva(
-  'flex w-full items-center border bg-white shadow-sm transition-colors border-cool-grey-03 focus-within:border-primary-blue-1 has-[input[aria-invalid="true"]]:border-ui-red has-[input[aria-invalid="true"]]:focus-within:border-ui-red has-[input[aria-invalid="true"]]:shadow-[0_0_0_1px_rgba(239,68,68,0.1)] has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-50',
+  'flex w-full items-center border bg-bg-card dark:bg-bg-muted shadow-card transition-colors border-border-subtle focus-within:border-primary-blue-1 has-[input[aria-invalid="true"]]:border-ui-red has-[input[aria-invalid="true"]]:focus-within:border-ui-red has-[input[aria-invalid="true"]]:shadow-[0_0_0_1px_rgba(239,68,68,0.1)] has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-50',
   {
     variants: {
       shape: {
@@ -58,13 +58,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const renderDecorator = (side: 'start' | 'end') => {
       const sideClass = side === 'start' ? 'mr-2' : 'ml-2'
-      const base = `text-cool-grey-07 ${sideClass} flex shrink-0 items-center`
+      const base = `text-fg-muted ${sideClass} flex shrink-0 items-center`
       if (onDecoratorClick) {
         return (
           <button
             type='button'
             onClick={onDecoratorClick}
-            className={`${base} hover:text-cool-grey-09 cursor-pointer transition-colors`}
+            className={`${base} hover:text-fg-default cursor-pointer transition-colors`}
           >
             {decorator}
           </button>
@@ -86,7 +86,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       >
         {hasStartDecorator && renderDecorator('start')}
         <BaseInput
-          className='placeholder:text-cool-grey-07 flex w-full bg-transparent focus-visible:outline-none disabled:cursor-not-allowed'
+          className='placeholder:text-fg-muted text-fg-default flex w-full bg-transparent focus-visible:outline-none disabled:cursor-not-allowed'
           ref={ref}
           type={type}
           {...props}

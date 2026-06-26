@@ -2,65 +2,72 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
+// 시맨틱 토큰 사용 (button과 동일 정책):
+//   - outline 표면: bg-transparent (라이트/다크 둘 다)
+//   - solid의 흰 글씨는 text-on-dark
 const badgeColorStyles = {
   gray: {
-    solid: 'bg-cool-grey-04 text-cool-grey-09',
-    outline: 'border border-cool-grey-06 bg-white text-cool-grey-07',
-    soft: 'bg-cool-grey-02 text-cool-grey-09'
+    solid: 'bg-bg-muted text-fg-default',
+    outline: 'border border-border-strong bg-transparent text-fg-muted',
+    soft: 'bg-bg-muted text-fg-default'
   },
   blue: {
-    solid: 'bg-primary-blue-1 text-white',
-    outline: 'border border-primary-blue-1 bg-white text-primary-blue-1',
+    solid: 'bg-primary-blue-1 text-on-dark',
+    outline:
+      'border border-primary-blue-1 bg-transparent text-primary-blue-1',
     soft: 'bg-primary-blue-opacity-10 text-primary-blue-1'
   },
   red: {
-    solid: 'bg-ui-red text-white',
-    outline: 'border border-ui-red bg-white text-ui-red',
+    solid: 'bg-ui-red text-on-dark',
+    outline: 'border border-ui-red bg-transparent text-ui-red',
     soft: 'bg-ui-pale-red text-ui-red'
   },
   orange: {
-    solid: 'bg-ui-orange text-white',
-    outline: 'border border-ui-orange bg-white text-ui-orange',
+    solid: 'bg-ui-orange text-on-dark',
+    outline: 'border border-ui-orange bg-transparent text-ui-orange',
     soft: 'bg-ui-pale-orange text-ui-orange'
   },
   yellow: {
-    solid: 'bg-ui-yellow text-white',
-    outline: 'border border-ui-yellow bg-white text-ui-yellow',
+    solid: 'bg-ui-yellow text-on-dark',
+    outline: 'border border-ui-yellow bg-transparent text-ui-yellow',
     soft: 'bg-ui-pale-yellow text-ui-yellow'
   },
   olive: {
-    solid: 'bg-ui-olive text-white',
-    outline: 'border border-ui-olive bg-white text-ui-olive',
+    solid: 'bg-ui-olive text-on-dark',
+    outline: 'border border-ui-olive bg-transparent text-ui-olive',
     soft: 'bg-ui-olive/10 text-ui-olive'
   },
   green: {
-    solid: 'bg-ui-green text-white',
-    outline: 'border border-ui-green bg-white text-ui-green',
+    solid: 'bg-ui-green text-on-dark',
+    outline: 'border border-ui-green bg-transparent text-ui-green',
     soft: 'bg-ui-pale-green text-ui-green'
   },
   skyblue: {
-    solid: 'bg-ui-skyblue text-white',
-    outline: 'border border-ui-skyblue bg-white text-ui-skyblue',
+    solid: 'bg-ui-skyblue text-on-dark',
+    outline:
+      'border border-ui-skyblue bg-transparent text-ui-skyblue',
     soft: 'bg-ui-skyblue/10 text-ui-skyblue'
   },
   purple: {
-    solid: 'bg-ui-purple text-white',
-    outline: 'border border-ui-purple bg-white text-ui-purple',
+    solid: 'bg-ui-purple text-on-dark',
+    outline: 'border border-ui-purple bg-transparent text-ui-purple',
     soft: 'bg-ui-pale-purple text-ui-purple'
   },
   pink: {
-    solid: 'bg-ui-pink text-white',
-    outline: 'border border-ui-pink bg-white text-ui-pink',
+    solid: 'bg-ui-pink text-on-dark',
+    outline: 'border border-ui-pink bg-transparent text-ui-pink',
     soft: 'bg-ui-pale-pink text-ui-pink'
   },
   white: {
-    solid: 'bg-white text-cool-grey-07',
-    outline: 'border border-cool-grey-04 bg-white text-cool-grey-07',
-    soft: 'bg-white/80 text-cool-grey-07'
+    solid: 'bg-bg-card text-fg-muted',
+    outline:
+      'border border-border-default bg-transparent text-fg-muted',
+    soft: 'bg-bg-card/80 text-fg-muted'
   },
   'gradient-blue': {
-    solid: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-white',
-    outline: 'border border-primary-blue-1 bg-white text-primary-blue-1',
+    solid: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-on-dark',
+    outline:
+      'border border-primary-blue-1 bg-transparent text-primary-blue-1',
     soft: 'bg-primary-blue-opacity-10 text-primary-blue-1'
   }
 } as const

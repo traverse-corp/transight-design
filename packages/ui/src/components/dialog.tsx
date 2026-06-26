@@ -69,7 +69,7 @@ const DialogBackdrop = ({
     render={
       <motion.div
         key='dialog-backdrop'
-        className={cn('fixed inset-0 z-50 bg-cool-grey-black/50', className)}
+        className={cn('fixed inset-0 z-50 bg-overlay-backdrop', className)}
         initial={{ opacity: 0, filter: 'blur(4px)' }}
         animate={{ opacity: 1, filter: 'blur(0px)' }}
         exit={{ opacity: 0, filter: 'blur(4px)' }}
@@ -81,7 +81,7 @@ const DialogBackdrop = ({
 )
 
 const dialogPopupVariants = cva(
-  'bg-white border-cool-grey-03 fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 border p-6 shadow-lg',
+  'bg-bg-card border-border-subtle fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 border p-6 shadow-dialog',
   {
     variants: {
       size: {
@@ -185,12 +185,12 @@ const DialogClose = ({
       <DialogPrimitive.Close
         data-slot='dialog-close'
         className={cn(
-          'flex-center border-cool-grey-04 hover:bg-cool-grey-02 cursor-pointer rounded-sm border p-1 transition-colors',
+          'flex-center border-border-default hover:bg-bg-muted cursor-pointer rounded-sm border p-1 transition-colors',
           className
         )}
         {...props}
       >
-        <X className='text-cool-grey-07 size-4' />
+        <X className='text-fg-muted size-4' />
       </DialogPrimitive.Close>
     )
   }
@@ -235,7 +235,7 @@ type DialogTitleProps = React.ComponentProps<typeof DialogPrimitive.Title>
 const DialogTitle = ({ className, ...props }: DialogTitleProps) => (
   <DialogPrimitive.Title
     data-slot='dialog-title'
-    className={cn('typo-b18 text-cool-grey-11', className)}
+    className={cn('typo-b18 text-fg-strong', className)}
     {...props}
   />
 )

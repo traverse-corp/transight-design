@@ -426,10 +426,10 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
 }
 
 const PropsTable = ({ props }: { props: PropDoc[] }) => (
-  <div className="border-cool-grey-04 overflow-hidden rounded-lg border">
+  <div className="border-border-default overflow-hidden rounded-lg border">
     <table className="w-full table-fixed text-left">
-      <thead className="bg-cool-grey-01">
-        <tr className="typo-sb12 text-cool-grey-07">
+      <thead className="bg-bg-subtle">
+        <tr className="typo-sb12 text-fg-muted">
           <th className="w-32 px-3 py-2">Prop</th>
           <th className="w-64 px-3 py-2">Type</th>
           <th className="w-24 px-3 py-2">Default</th>
@@ -438,18 +438,18 @@ const PropsTable = ({ props }: { props: PropDoc[] }) => (
       </thead>
       <tbody>
         {props.map((prop) => (
-          <tr key={prop.name} className="border-cool-grey-04 border-t align-top">
+          <tr key={prop.name} className="border-border-default border-t align-top">
             <td className="px-3 py-2">
-              <code className="typo-mono-m12 text-cool-grey-11">{prop.name}</code>
+              <code className="typo-mono-m12 text-fg-strong">{prop.name}</code>
             </td>
             <td className="px-3 py-2">
-              <code className="typo-mono-m12 text-cool-grey-08 break-words">{prop.type}</code>
+              <code className="typo-mono-m12 text-fg-default break-words">{prop.type}</code>
             </td>
             <td className="px-3 py-2">
               {prop.defaultValue ? (
-                <code className="typo-mono-m12 text-cool-grey-08">{prop.defaultValue}</code>
+                <code className="typo-mono-m12 text-fg-default">{prop.defaultValue}</code>
               ) : (
-                <span className="text-cool-grey-06 typo-mono-m12">-</span>
+                <span className="text-fg-muted typo-mono-m12">-</span>
               )}
             </td>
             <td className="text-description px-3 py-2">{prop.description}</td>
@@ -494,13 +494,13 @@ export const ComponentPropsDocs = ({ name }: { name: string }) => {
               key={group.title}
               className={
                 idx > 0
-                  ? 'border-cool-grey-04 flex flex-col gap-3 border-t pt-8'
+                  ? 'border-border-default flex flex-col gap-3 border-t pt-8'
                   : 'flex flex-col gap-3'
               }
             >
               <div className="flex items-baseline gap-3">
                 <span className="bg-primary-blue-1 inline-block h-3.5 w-1 rounded-sm" />
-                <h4 className="typo-b16 text-cool-grey-11">{group.title}</h4>
+                <h4 className="typo-b16 text-fg-strong">{group.title}</h4>
               </div>
               {group.description && <p className="text-description -mt-1">{group.description}</p>}
               <PropsTable props={group.props} />

@@ -342,7 +342,7 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
     <div
       ref={containerRef}
       className={cn(
-        'border-cool-grey-04 flex h-8 min-w-0 flex-1 cursor-text items-center rounded-md border bg-white px-1.5',
+        'border-border-default flex h-8 min-w-0 flex-1 cursor-text items-center rounded-md border bg-bg-card px-1.5',
         activeSeg && 'border-primary-blue-1',
         className
       )}
@@ -360,7 +360,7 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
             autoComplete='off'
             className={cn(
               'typo-r12 border-none bg-transparent text-center outline-none',
-              'placeholder:text-cool-grey-05',
+              'placeholder:text-fg-disabled',
               seg === 'yyyy' ? 'w-9' : 'w-5',
               activeSeg === seg && 'bg-primary-blue-1/10 rounded-sm'
             )}
@@ -375,7 +375,7 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e, seg)}
           />
           {SEPARATOR[seg] && (
-            <span className='text-cool-grey-05 typo-r12 pointer-events-none select-none'>
+            <span className='text-fg-disabled typo-r12 pointer-events-none select-none'>
               {SEPARATOR[seg]}
             </span>
           )}

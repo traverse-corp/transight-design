@@ -36,10 +36,10 @@ const IconSystemInstallPage = () => (
 
     <div className='h-screen min-w-0 flex-1 overflow-y-auto py-10'>
       <header className='mb-8'>
-        <h1 className='typo-b24 text-cool-grey-11'>Install</h1>
+        <h1 className='typo-b24 text-fg-strong'>Install</h1>
         <p className='text-description mt-1'>
           Icon System만 따로 설치할 수 있습니다. 컴포넌트는 함께 설치되지 않고,{' '}
-          <code className='typo-mono-m12 text-cool-grey-09'>styles</code>만 자동 동반됩니다.
+          <code className='typo-mono-m12 text-fg-default'>styles</code>만 자동 동반됩니다.
         </p>
       </header>
 
@@ -56,7 +56,7 @@ const IconSystemInstallPage = () => (
       <section className='mb-10'>
         <h2 className='text-section-title mb-3'>2. 앱 루트에 IconSprite 마운트</h2>
         <p className='text-description mb-3'>
-          모든 <code className='typo-mono-m12 text-cool-grey-09'>{'<Icon />'}</code>는 한 번 마운트된
+          모든 <code className='typo-mono-m12 text-fg-default'>{'<Icon />'}</code>는 한 번 마운트된
           sprite의 symbol을 참조합니다. 루트 레이아웃에 단 한 번만 둡니다.
         </p>
         <CodeBlock code={MOUNT_GUIDE} language='tsx' maxHeight='auto' />
@@ -65,10 +65,10 @@ const IconSystemInstallPage = () => (
       <section className='mb-10'>
         <h2 className='text-section-title mb-3'>3. 사용</h2>
         <p className='text-description mb-3'>
-          <code className='typo-mono-m12 text-cool-grey-09'>src</code>는 아이콘 ID,{' '}
-          <code className='typo-mono-m12 text-cool-grey-09'>color</code>는 팔레트 토큰 strict union,{' '}
-          <code className='typo-mono-m12 text-cool-grey-09'>size</code>는{' '}
-          <code className='typo-mono-m12 text-cool-grey-09'>xs/sm/md/lg/xl</code>입니다. 없는 토큰을
+          <code className='typo-mono-m12 text-fg-default'>src</code>는 아이콘 ID,{' '}
+          <code className='typo-mono-m12 text-fg-default'>color</code>는 팔레트 토큰 strict union,{' '}
+          <code className='typo-mono-m12 text-fg-default'>size</code>는{' '}
+          <code className='typo-mono-m12 text-fg-default'>xs/sm/md/lg/xl</code>입니다. 없는 토큰을
           넘기면 컴파일 에러.
         </p>
         <CodeBlock code={USAGE_CODE} language='tsx' maxHeight='auto' />

@@ -1,7 +1,7 @@
 /**
  * Tokens 페이지 표시용 데이터.
  * packages/ui의 TS 토큰 export를 그룹 메타와 조합하여 swatch 형태로 정렬.
- * 클래스명(`bg-cool-grey-01` 등)은 우리 토큰 컨벤션과 일치한다.
+ * 클래스명(`bg-bg-subtle` 등)은 우리 토큰 컨벤션과 일치한다.
  */
 
 import {
@@ -40,7 +40,7 @@ const isLight = (hex: string): boolean => {
   return (r * 299 + g * 587 + b * 114) / 1000 > 160
 }
 
-const textFor = (hex: string): string => (isLight(hex) ? 'text-cool-grey-11' : 'text-white')
+const textFor = (hex: string): string => (isLight(hex) ? 'text-fg-strong' : 'text-fg-inverse')
 
 // ── Cool Grey ──────────────────────────────────
 // 명시적 순서 (white → 01~11 → black). Object.entries는 키 순서 보장이 약해서 직접 지정.
@@ -74,15 +74,15 @@ const primaryBlueSwatches: Swatch[] = [
   { name: 'primary-blue-1', value: PRIMARY.blue1, bgClass: 'bg-primary-blue-1', textClass: textFor(PRIMARY.blue1) },
   { name: 'primary-blue-2', value: PRIMARY.blue2, bgClass: 'bg-primary-blue-2', textClass: textFor(PRIMARY.blue2) },
   { name: 'primary-blue-deep', value: PRIMARY.blueDeep, bgClass: 'bg-primary-blue-deep', textClass: textFor(PRIMARY.blueDeep) },
-  { name: 'primary-blue-opacity-10', value: 'rgb(21 109 252 / 0.1)', bgClass: 'bg-primary-blue-opacity-10', textClass: 'text-cool-grey-11' },
-  { name: 'primary-blue-opacity-20', value: 'rgb(21 109 252 / 0.2)', bgClass: 'bg-primary-blue-opacity-20', textClass: 'text-cool-grey-11' }
+  { name: 'primary-blue-opacity-10', value: 'rgb(21 109 252 / 0.1)', bgClass: 'bg-primary-blue-opacity-10', textClass: 'text-fg-strong' },
+  { name: 'primary-blue-opacity-20', value: 'rgb(21 109 252 / 0.2)', bgClass: 'bg-primary-blue-opacity-20', textClass: 'text-fg-strong' }
 ]
 
 // ── Primary Skyblue ─────────────────────────────
 const primarySkyblueSwatches: Swatch[] = [
   { name: 'primary-skyblue-1', value: PRIMARY.skyblue1, bgClass: 'bg-primary-skyblue-1', textClass: textFor(PRIMARY.skyblue1) },
   { name: 'primary-skyblue-2', value: PRIMARY.skyblue2, bgClass: 'bg-primary-skyblue-2', textClass: textFor(PRIMARY.skyblue2) },
-  { name: 'primary-blue2-opacity-20', value: 'rgb(136 173 255 / 0.2)', bgClass: 'bg-primary-blue2-opacity-20', textClass: 'text-cool-grey-11' }
+  { name: 'primary-blue2-opacity-20', value: 'rgb(136 173 255 / 0.2)', bgClass: 'bg-primary-blue2-opacity-20', textClass: 'text-fg-strong' }
 ]
 
 // ── Accent ──────────────────────────────────────
@@ -92,8 +92,8 @@ const accentSwatches: Swatch[] = [
 
 // ── Glass ────────────────────────────────────────
 const glassSwatches: Swatch[] = [
-  { name: 'glass-white', value: 'rgba(255,255,255,0.1)', bgClass: 'bg-glass-white', textClass: 'text-cool-grey-11' },
-  { name: 'glass-border', value: 'rgba(255,255,255,0.05)', bgClass: 'bg-glass-border', textClass: 'text-cool-grey-11' }
+  { name: 'glass-white', value: 'rgba(255,255,255,0.1)', bgClass: 'bg-glass-white', textClass: 'text-fg-strong' },
+  { name: 'glass-border', value: 'rgba(255,255,255,0.05)', bgClass: 'bg-glass-border', textClass: 'text-fg-strong' }
 ]
 
 // ── Sidebar ──────────────────────────────────────

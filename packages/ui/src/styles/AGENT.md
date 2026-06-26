@@ -15,19 +15,45 @@
 
 ## RULES
 
-### R1. 색상은 토큰으로만 표현한다
+### R1. 색상은 시맨틱 토큰으로만 표현한다 (라이트/다크 모드 대응)
 
-✅ **허용**
-- Tailwind 클래스: `bg-cool-grey-02`, `text-primary-blue-1`, `border-ui-red`, …
-- CSS var: `style={{ color: 'var(--color-ui-purple)' }}` (값이 런타임에 결정될 때만)
+✅ **허용 (시맨틱)** — `theme.css`의 시맨틱 토큰. 라이트/다크 자동 스왑.
+- **Foreground**: `text-fg-strong` / `text-fg-default` / `text-fg-muted` / `text-fg-disabled` / `text-fg-inverse`
+- **Surface**: `bg-bg-page` / `bg-bg-card` / `bg-bg-subtle` / `bg-bg-muted` / `bg-bg-inverse`
+- **Border**: `border-border-default` / `border-border-subtle` / `border-border-strong`
+- **상태/상호작용**: `ring-ring-focus`, `bg-overlay-backdrop`, `bg-hover-bg`, `bg-active-bg`
+- **Shadow**: `shadow-card` / `shadow-popover` / `shadow-dialog`
+- **Gradient**: `bg-gradient-cta` / `bg-gradient-deep` / `bg-gradient-fade-dark` / `bg-gradient-glow`
+- **shadcn 호환 alias**: `bg-background` / `text-foreground` / `bg-card` / `border-border` 등 (기존 코드 호환)
+
+✅ **허용 (브랜드/스테이터스 토큰)** — 의미가 라이트/다크 동일한 색
+- `text-primary-blue-1`, `bg-ui-red`, `border-ui-green`, `bg-primary-skyblue-1` …
+
+✅ **허용 (alpha modulation 예외)** — 다크 표면 위 trick
+- `text-white/N`, `border-white/N`, `bg-black/N` — alpha가 명시된 modulation만 OK
 
 ❌ **금지**
-- raw hex: `#155dfc`, `text-[#131b2d]`, `bg-[rgb(...)]`
-- Tailwind 기본 팔레트: `bg-blue-500`, `text-gray-700` (Transight 토큰이 아님)
-- inline style로 고정 색상: `style={{ color: '#000' }}`
+- **raw cool-grey 스케일**: `bg-cool-grey-02`, `text-cool-grey-09`, `border-cool-grey-04` — 모두 시맨틱으로 치환 (라이트값에 박혀 다크모드 깨짐)
+- **raw white/black**: `bg-white`, `text-white` (alpha 없는), `bg-black`, `text-black` — 시맨틱으로
+- **raw hex**: `#155dfc`, `text-[#131b2d]`, `bg-[rgb(...)]`
+- **Tailwind 기본 팔레트**: `bg-blue-500`, `text-gray-700`, `bg-grey-14` 등
+- **inline style 고정 색**: `style={{ color: '#000' }}`
 
-토큰 목록은 `tokens.css` 또는 `GUIDE.md` 참고. 모르는 색은 묻지 말고 가까운
-의미를 가진 토큰을 선택한다. (예: 위험은 `ui-red`, 정보는 `primary-blue-1`)
+**매핑 가이드 (raw → semantic)**
+| raw | semantic |
+|---|---|
+| `text-cool-grey-11` | `text-fg-strong` |
+| `text-cool-grey-09` | `text-fg-default` |
+| `text-cool-grey-07` | `text-fg-muted` |
+| `text-cool-grey-05` | `text-fg-disabled` |
+| `text-white` (다크 표면 위 영구) | `text-fg-inverse` 또는 `text-fg-strong` (다크모드 자동 흰색) |
+| `bg-white` (페이지) | `bg-bg-page` |
+| `bg-white` (카드/팝업) | `bg-bg-card` |
+| `bg-cool-grey-01/02` | `bg-bg-subtle` / `bg-bg-muted` |
+| `bg-cool-grey-11`/`bg-grey-14` (어두운 표면) | `bg-bg-inverse` 또는 그대로 (sidebar류) |
+| `border-cool-grey-04` | `border-border-default` |
+| `border-cool-grey-03` | `border-border-subtle` |
+| `border-cool-grey-06+` | `border-border-strong` |
 
 ### R2. 타이포는 typo-{w}{s} 단일 클래스만 사용한다
 

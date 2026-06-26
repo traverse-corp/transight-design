@@ -20,7 +20,7 @@ const DropdownMenuTrigger = ({ ...props }: MenuPrimitive.Trigger.Props) => (
 
 // size로 popup padding + 자식 item 크기 자동 스케일 (group/dropdown-menu 자식이 group-data-[size=...] 추적).
 const dropdownContentClassVariants = cva(
-  'group/dropdown-menu border-cool-grey-04 isolate z-50 max-h-(--available-height) w-(--anchor-width) min-w-32 origin-(--transform-origin) scrollbar-custom overflow-x-hidden overflow-y-auto rounded-md border bg-white shadow-md duration-100 outline-none data-closed:overflow-hidden data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+  'group/dropdown-menu border-border-default isolate z-50 max-h-(--available-height) w-(--anchor-width) min-w-32 origin-(--transform-origin) scrollbar-custom overflow-x-hidden overflow-y-auto rounded-md border bg-bg-card shadow-popover duration-100 outline-none data-closed:overflow-hidden data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
   {
     variants: {
       size: {
@@ -84,7 +84,7 @@ const DropdownMenuLabel = ({
     data-slot='dropdown-menu-label'
     data-inset={inset}
     className={cn(
-      'text-cool-grey-07 typo-sb11 px-2 py-1.5 uppercase tracking-wide data-inset:pl-8',
+      'text-fg-muted typo-sb11 px-2 py-1.5 uppercase tracking-wide data-inset:pl-8',
       className
     )}
     {...props}
@@ -100,7 +100,7 @@ const DropdownMenuGroupLabel = ({
     data-slot='dropdown-menu-group-label'
     data-inset={inset}
     className={cn(
-      'text-cool-grey-07 typo-sb11 px-2 py-1.5 uppercase tracking-wide data-inset:pl-8',
+      'text-fg-muted typo-sb11 px-2 py-1.5 uppercase tracking-wide data-inset:pl-8',
       className
     )}
     {...props}
@@ -113,7 +113,7 @@ const itemBaseClass = cn(
   'group-data-[size=sm]/dropdown-menu:typo-m12 group-data-[size=sm]/dropdown-menu:px-1.5 group-data-[size=sm]/dropdown-menu:py-1',
   'group-data-[size=md]/dropdown-menu:typo-m13 group-data-[size=md]/dropdown-menu:px-2 group-data-[size=md]/dropdown-menu:py-1.5',
   'group-data-[size=lg]/dropdown-menu:typo-m14 group-data-[size=lg]/dropdown-menu:px-2.5 group-data-[size=lg]/dropdown-menu:py-2',
-  'text-cool-grey-11 hover:bg-cool-grey-02 focus:bg-cool-grey-02 data-highlighted:bg-cool-grey-02',
+  'text-fg-strong hover:bg-bg-muted focus:bg-bg-muted data-highlighted:bg-bg-muted',
   'data-disabled:pointer-events-none data-disabled:opacity-50',
   'data-inset:pl-8',
   "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
@@ -159,13 +159,13 @@ const DropdownMenuSubTrigger = ({
     data-inset={inset}
     className={cn(
       itemBaseClass,
-      'data-popup-open:bg-cool-grey-02 data-open:bg-cool-grey-02',
+      'data-popup-open:bg-bg-muted data-open:bg-bg-muted',
       className
     )}
     {...props}
   >
     {children}
-    <ChevronRightIcon className='text-cool-grey-07 ml-auto' />
+    <ChevronRightIcon className='text-fg-muted ml-auto' />
   </MenuPrimitive.SubmenuTrigger>
 )
 
@@ -179,7 +179,7 @@ const DropdownMenuSubContent = ({
 }: React.ComponentProps<typeof DropdownMenuContent>) => (
   <DropdownMenuContent
     data-slot='dropdown-menu-sub-content'
-    className={cn('w-auto min-w-[96px] shadow-lg', className)}
+    className={cn('w-auto min-w-[96px] shadow-dialog', className)}
     align={align}
     alignOffset={alignOffset}
     side={side}
@@ -245,7 +245,7 @@ const DropdownMenuRadioItem = ({
 const DropdownMenuSeparator = ({ className, ...props }: MenuPrimitive.Separator.Props) => (
   <MenuPrimitive.Separator
     data-slot='dropdown-menu-separator'
-    className={cn('bg-cool-grey-04 -mx-1 my-1 h-px', className)}
+    className={cn('bg-bg-muted -mx-1 my-1 h-px', className)}
     {...props}
   />
 )
@@ -253,7 +253,7 @@ const DropdownMenuSeparator = ({ className, ...props }: MenuPrimitive.Separator.
 const DropdownMenuShortcut = ({ className, ...props }: React.ComponentProps<'span'>) => (
   <span
     data-slot='dropdown-menu-shortcut'
-    className={cn('text-cool-grey-07 typo-m11 ml-auto tracking-widest', className)}
+    className={cn('text-fg-muted typo-m11 ml-auto tracking-widest', className)}
     {...props}
   />
 )

@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 // 에러 톤은 wrapper의 data-invalid="true" 또는 peer/group invalid 상태로 자동 적용.
 // 호출자가 Label에 직접 색을 박지 않도록 prop으로 노출하지 않는다.
 const labelClassVariants = cva(
-  'inline-flex items-center gap-1 leading-none select-none text-cool-grey-09 group-data-[invalid=true]:text-ui-red peer-data-[invalid=true]:text-ui-red group-data-[disabled=true]:opacity-50 group-data-[disabled=true]:pointer-events-none peer-disabled:opacity-50 peer-disabled:cursor-not-allowed',
+  'inline-flex items-center gap-1 leading-none select-none text-fg-default group-data-[invalid=true]:text-ui-red peer-data-[invalid=true]:text-ui-red group-data-[disabled=true]:opacity-50 group-data-[disabled=true]:pointer-events-none peer-disabled:opacity-50 peer-disabled:cursor-not-allowed',
   {
     variants: {
       variant: {
@@ -61,7 +61,7 @@ const renderSuffix = (
     )
   }
   if (variant === 'optional') {
-    return <span className='text-cool-grey-07 typo-m12'>{optionalText}</span>
+    return <span className='text-fg-muted typo-m12'>{optionalText}</span>
   }
   return null
 }

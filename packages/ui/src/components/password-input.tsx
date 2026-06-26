@@ -29,7 +29,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
           decoDir='end'
           decorator={
             <span title='Caps Lock is Activated' className='flex items-center'>
-              <ArrowBigUpDash className='text-cool-grey-05 h-4 w-4' />
+              <ArrowBigUpDash className='text-fg-disabled h-4 w-4' />
             </span>
           }
           {...props}

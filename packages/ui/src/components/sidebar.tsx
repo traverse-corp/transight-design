@@ -439,7 +439,7 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<'li'>) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  'text-cool-grey-07 ring-sidebar-ring hover:sidebar-highlight active:sidebar-highlight data-active:sidebar-highlight data-open:hover:sidebar-highlight gap-2 rounded-md p-2 text-left text-sm transition-colors group-has-data-[sidebar=menu-action]/menu-item:pr-8 group-data-[collapsible=icon]:w-full! group-data-[collapsible=icon]:p-2! data-active:font-medium peer/menu-button flex w-full items-center overflow-hidden outline-hidden group/menu-button disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&_svg]:size-6 [&_svg]:shrink-0',
+  'text-fg-muted ring-sidebar-ring hover:sidebar-highlight active:sidebar-highlight data-active:sidebar-highlight data-open:hover:sidebar-highlight gap-2 rounded-md p-2 text-left text-sm transition-colors group-has-data-[sidebar=menu-action]/menu-item:pr-8 group-data-[collapsible=icon]:w-full! group-data-[collapsible=icon]:p-2! data-active:font-medium peer/menu-button flex w-full items-center overflow-hidden outline-hidden group/menu-button disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&_svg]:size-6 [&_svg]:shrink-0',
   {
     variants: {
       variant: {

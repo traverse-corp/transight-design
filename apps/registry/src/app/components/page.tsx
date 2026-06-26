@@ -10,15 +10,15 @@ const StatCard = ({
   count: number | string
   sub: string
 }) => (
-  <div className='border-cool-grey-04 rounded-lg border bg-white p-4'>
+  <div className='border-border-default rounded-lg border bg-bg-card p-4'>
     <p className='text-overline'>{label}</p>
-    <p className='typo-b24 text-cool-grey-11 mt-1'>{count}</p>
+    <p className='typo-b24 text-fg-strong mt-1'>{count}</p>
     <p className='text-description mt-1'>{sub}</p>
   </div>
 )
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <h2 className='typo-sb12 text-cool-grey-07 mb-4 uppercase tracking-wide'>{children}</h2>
+  <h2 className='typo-sb12 text-fg-muted mb-4 uppercase tracking-wide'>{children}</h2>
 )
 
 const ComponentsHome = () => {
@@ -55,7 +55,7 @@ const ComponentsHome = () => {
             <li key={name}>
               <Link
                 href={`/components/${name}`}
-                className='typo-m14 text-cool-grey-09 border-cool-grey-04 hover:border-primary-blue-1 hover:text-primary-blue-1 block rounded-md border bg-white px-3 py-2 transition-colors'
+                className='typo-m14 text-fg-default border-border-default hover:border-primary-blue-1 hover:text-primary-blue-1 block rounded-md border bg-bg-card px-3 py-2 transition-colors'
               >
                 {name}
               </Link>

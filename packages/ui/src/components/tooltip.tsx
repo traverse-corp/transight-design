@@ -23,63 +23,64 @@ const TooltipTrigger = (props: TooltipPrimitive.Trigger.Props) => (
 // soft: 옅은 색 배경 + 색 글씨. 정보성 톤.
 const tooltipColorStyles = {
   gray: {
-    solid: 'bg-cool-grey-11 text-white border-cool-grey-11',
-    outline: 'bg-white text-cool-grey-09 border-cool-grey-06',
-    soft: 'bg-cool-grey-02 text-cool-grey-09 border-cool-grey-02'
+    // bg-bg-inverse는 다크모드에서 light로 swap → text도 invert (text-fg-inverse 짝)
+    solid: 'bg-bg-inverse text-fg-inverse border-border-strong',
+    outline: 'bg-bg-card text-fg-default border-border-strong',
+    soft: 'bg-bg-muted text-fg-default border-border-subtle'
   },
   blue: {
-    solid: 'bg-primary-blue-1 text-white border-primary-blue-1',
-    outline: 'bg-white text-primary-blue-1 border-primary-blue-1',
+    solid: 'bg-primary-blue-1 text-on-dark border-primary-blue-1',
+    outline: 'bg-bg-card text-primary-blue-1 border-primary-blue-1',
     soft: 'bg-primary-blue-opacity-10 text-primary-blue-1 border-primary-blue-opacity-10'
   },
   red: {
-    solid: 'bg-ui-red text-white border-ui-red',
-    outline: 'bg-white text-ui-red border-ui-red',
+    solid: 'bg-ui-red text-on-dark border-ui-red',
+    outline: 'bg-bg-card text-ui-red border-ui-red',
     soft: 'bg-ui-pale-red text-ui-red border-ui-pale-red'
   },
   orange: {
-    solid: 'bg-ui-orange text-white border-ui-orange',
-    outline: 'bg-white text-ui-orange border-ui-orange',
+    solid: 'bg-ui-orange text-on-dark border-ui-orange',
+    outline: 'bg-bg-card text-ui-orange border-ui-orange',
     soft: 'bg-ui-pale-orange text-ui-orange border-ui-pale-orange'
   },
   yellow: {
-    solid: 'bg-ui-yellow text-white border-ui-yellow',
-    outline: 'bg-white text-ui-yellow border-ui-yellow',
+    solid: 'bg-ui-yellow text-on-dark border-ui-yellow',
+    outline: 'bg-bg-card text-ui-yellow border-ui-yellow',
     soft: 'bg-ui-pale-yellow text-ui-yellow border-ui-pale-yellow'
   },
   olive: {
-    solid: 'bg-ui-olive text-white border-ui-olive',
-    outline: 'bg-white text-ui-olive border-ui-olive',
+    solid: 'bg-ui-olive text-on-dark border-ui-olive',
+    outline: 'bg-bg-card text-ui-olive border-ui-olive',
     soft: 'bg-ui-olive/10 text-ui-olive border-ui-olive/10'
   },
   green: {
-    solid: 'bg-ui-green text-white border-ui-green',
-    outline: 'bg-white text-ui-green border-ui-green',
+    solid: 'bg-ui-green text-on-dark border-ui-green',
+    outline: 'bg-bg-card text-ui-green border-ui-green',
     soft: 'bg-ui-pale-green text-ui-green border-ui-pale-green'
   },
   skyblue: {
-    solid: 'bg-ui-skyblue text-white border-ui-skyblue',
-    outline: 'bg-white text-ui-skyblue border-ui-skyblue',
+    solid: 'bg-ui-skyblue text-on-dark border-ui-skyblue',
+    outline: 'bg-bg-card text-ui-skyblue border-ui-skyblue',
     soft: 'bg-ui-skyblue/10 text-ui-skyblue border-ui-skyblue/10'
   },
   purple: {
-    solid: 'bg-ui-purple text-white border-ui-purple',
-    outline: 'bg-white text-ui-purple border-ui-purple',
+    solid: 'bg-ui-purple text-on-dark border-ui-purple',
+    outline: 'bg-bg-card text-ui-purple border-ui-purple',
     soft: 'bg-ui-pale-purple text-ui-purple border-ui-pale-purple'
   },
   pink: {
-    solid: 'bg-ui-pink text-white border-ui-pink',
-    outline: 'bg-white text-ui-pink border-ui-pink',
+    solid: 'bg-ui-pink text-on-dark border-ui-pink',
+    outline: 'bg-bg-card text-ui-pink border-ui-pink',
     soft: 'bg-ui-pale-pink text-ui-pink border-ui-pale-pink'
   },
   white: {
-    solid: 'bg-white text-cool-grey-09 border-cool-grey-04',
-    outline: 'bg-white text-cool-grey-09 border-cool-grey-04',
-    soft: 'bg-white/80 text-cool-grey-09 border-cool-grey-04'
+    solid: 'bg-bg-card text-fg-default border-border-default',
+    outline: 'bg-bg-card text-fg-default border-border-default',
+    soft: 'bg-bg-card/80 text-fg-default border-border-default'
   },
   'gradient-blue': {
-    solid: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-white border-primary-blue-1',
-    outline: 'bg-white text-primary-blue-1 border-primary-blue-1',
+    solid: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-on-dark border-primary-blue-1',
+    outline: 'bg-bg-card text-primary-blue-1 border-primary-blue-1',
     soft: 'bg-primary-blue-opacity-10 text-primary-blue-1 border-primary-blue-opacity-10'
   }
 } as const
@@ -141,7 +142,7 @@ const tooltipArrowVariants = cva(
   {
     variants: {
       color: {
-        gray: 'bg-cool-grey-11',
+        gray: 'bg-bg-inverse',
         blue: 'bg-primary-blue-1',
         red: 'bg-ui-red',
         orange: 'bg-ui-orange',
@@ -151,7 +152,7 @@ const tooltipArrowVariants = cva(
         skyblue: 'bg-ui-skyblue',
         purple: 'bg-ui-purple',
         pink: 'bg-ui-pink',
-        white: 'bg-white',
+        white: 'bg-bg-card',
         'gradient-blue': 'bg-primary-blue-1'
       },
       theme: {
