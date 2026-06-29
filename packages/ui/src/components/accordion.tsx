@@ -36,6 +36,7 @@ const ACCORDION_COLOR_TOKEN: Record<string, string> = {
   skyblue: 'var(--color-ui-skyblue)',
   purple: 'var(--color-ui-purple)',
   pink: 'var(--color-ui-pink)',
+  amber: 'var(--color-ui-amber)',
   white: 'var(--color-cool-grey-09)',
   'gradient-blue': 'var(--color-primary-blue-1)'
 }
@@ -70,6 +71,7 @@ const accordionRootClassVariants = cva('group/accordion flex flex-col', {
       skyblue: '',
       purple: '',
       pink: '',
+      amber: '',
       white: '',
       'gradient-blue': ''
     }

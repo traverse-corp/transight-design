@@ -37,7 +37,26 @@ const SEMANTIC = [
 
 const MONO = ['typo-mono-r10', 'typo-mono-r11', 'typo-mono-m12', 'typo-mono-m14', 'typo-mono-b14'] as const
 
-const VARIANTS = ['typo-sb16-tight', 'typo-sb10-wider', 'typo-r12-relaxed', 'typo-m14-relaxed'] as const
+const FAMILIES = [
+  {
+    label: 'Sans',
+    token: '--font-sans',
+    description: '본문 / UI 기본. SUIT Variable.',
+    fontClass: 'font-sans'
+  },
+  {
+    label: 'Pretendard',
+    token: '--font-pretendard',
+    description: 'SUIT 자매 family. 디스플레이 / 약관 / 광고 톤 차별용.',
+    fontClass: 'font-pretendard'
+  },
+  {
+    label: 'Mono',
+    token: '--font-mono',
+    description: '코드 / 표값 / hex. typo-mono-{w}{s}로 합성.',
+    fontClass: 'font-mono'
+  }
+] as const
 
 export const TypoView = () => {
   const [size, setSize] = useState<Size>(32)
@@ -123,11 +142,10 @@ export const TypoView = () => {
         </div>
       </section>
 
-      {/* ── 시맨틱 / Variant / Mono — 단일 클릭 프리셋 ──────────────── */}
+      {/* ── 시맨틱 / Mono — 단일 클릭 프리셋 ──────────────── */}
       <section className='flex flex-col gap-5'>
         {[
           { label: 'Semantic', entries: SEMANTIC },
-          { label: 'Variant', entries: VARIANTS },
           { label: 'Monospace', entries: MONO }
         ].map((group) => (
           <div key={group.label}>
@@ -153,6 +171,28 @@ export const TypoView = () => {
             </div>
           </div>
         ))}
+      </section>
+
+      {/* ── Font Family ──────────────── */}
+      <section className='flex flex-col gap-3'>
+        <h3 className='typo-sb12 text-fg-default'>Font Family</h3>
+        <div className='grid grid-cols-1 gap-3 md:grid-cols-2'>
+          {FAMILIES.map((f) => (
+            <div
+              key={f.label}
+              className='border-border-default rounded-lg border bg-bg-card p-5 flex flex-col gap-3'
+            >
+              <div className='flex-between-center'>
+                <span className='typo-sb14 text-fg-strong'>{f.label}</span>
+                <code className='typo-mono-r11 text-fg-muted'>{f.token}</code>
+              </div>
+              <p className={`${f.fontClass} text-fg-strong typo-m24`}>
+                TranSight Design 0123 가나다라
+              </p>
+              <p className='typo-r12 text-fg-muted'>{f.description}</p>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   )

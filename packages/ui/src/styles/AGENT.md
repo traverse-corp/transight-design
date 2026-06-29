@@ -164,6 +164,6 @@
 | `border-cool-grey-04` | `border-border-default` |
 | `bg-cool-grey-02` | `bg-bg-muted` |
 | `text-red-500` | `text-ui-red` |
-| `bg-blue-50 text-blue-700` | `bg-primary-blue-opacity-10 text-primary-blue-1` |
+| `bg-blue-50 text-blue-700` | `bg-primary-blue-1/10 text-primary-blue-1` |
 | `flex items-center justify-center` | `flex-center` |
 | `style={{ color: '#131b2d' }}` | `className="text-fg-strong"` |

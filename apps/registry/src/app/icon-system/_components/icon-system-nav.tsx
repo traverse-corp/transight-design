@@ -44,7 +44,7 @@ export const IconSystemNav = ({ children }: IconSystemNavProps) => {
               href={tab.href}
               className={
                 active
-                  ? 'bg-primary-blue-opacity-10 text-primary-blue-1 typo-sb14 block rounded-md px-3 py-1.5'
+                  ? 'bg-primary-blue-1/10 text-primary-blue-1 typo-sb14 block rounded-md px-3 py-1.5'
                   : 'text-fg-default hover:bg-bg-muted hover:text-fg-strong typo-m14 block rounded-md px-3 py-1.5'
               }
             >

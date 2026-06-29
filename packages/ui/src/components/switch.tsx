@@ -16,6 +16,7 @@ const switchColorStyles = {
   skyblue: 'bg-ui-skyblue',
   purple: 'bg-ui-purple',
   pink: 'bg-ui-pink',
+  amber: 'bg-ui-amber',
   white: 'bg-bg-muted',
   'gradient-blue': 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2'
 } as const
@@ -44,6 +45,7 @@ const switchClassVariants = cva(
         skyblue: '',
         purple: '',
         pink: '',
+        amber: '',
         white: '',
         'gradient-blue': ''
       },

@@ -45,7 +45,7 @@ export const VariantsPanel = ({ name }: VariantsPanelProps) => {
                     key={value}
                     className={`rounded-md border px-2 py-0.5 typo-mono-m12 ${
                       isDefault
-                        ? 'border-primary-blue-1 bg-primary-blue-opacity-10 text-primary-blue-1'
+                        ? 'border-primary-blue-1 bg-primary-blue-1/10 text-primary-blue-1'
                         : 'border-border-default bg-bg-subtle'
                     }`}
                     title={isDefault ? '기본값' : undefined}

@@ -124,7 +124,7 @@ npm run dev
 | `theme.css` | shadcn 시맨틱 라이트/다크 (`:root`/`.dark` + `@theme inline`) |
 | `typography.css` | typo-* / text-* 프리셋 |
 | `flex.css` | flex-* 유틸 |
-| `font-suit.css` | SUIT Variable 폰트 페이스 (`@import url(...)`만) |
+| `fonts.css` | SUIT / Pretendard Variable 폰트 페이스 (`@import url(...)`만) |
 
 색상은 **hex 유지** (Phase 0 결정). oklch 변환 금지.
 

@@ -17,15 +17,15 @@
       ]
     },
     {
-      "name": "style-font-suit",
+      "name": "style-fonts",
       "type": "registry:style",
-      "title": "Style: font-suit",
-      "description": "font-suit.css — 디자인 시스템 font-suit 스타일",
+      "title": "Style: fonts",
+      "description": "fonts.css — SUIT / Pretendard Variable 폰트 페이스 (외부 CDN)",
       "files": [
         {
-          "path": "src/styles/font-suit.css",
+          "path": "src/styles/fonts.css",
           "type": "registry:style",
-          "target": "~/src/styles/font-suit.css"
+          "target": "~/src/styles/fonts.css"
         }
       ]
     },
@@ -36,7 +36,7 @@
       "description": "index.css — 디자인 시스템 진입점 스타일",
       "registryDependencies": [
         "traverse-corp/transight-design/style-flex",
-        "traverse-corp/transight-design/style-font-suit",
+        "traverse-corp/transight-design/style-fonts",
         "traverse-corp/transight-design/style-theme",
         "traverse-corp/transight-design/style-tokens",
         "traverse-corp/transight-design/style-typography"
@@ -1750,7 +1750,7 @@
         "traverse-corp/transight-design/sonner",
         "traverse-corp/transight-design/spinner",
         "traverse-corp/transight-design/style-flex",
-        "traverse-corp/transight-design/style-font-suit",
+        "traverse-corp/transight-design/style-fonts",
         "traverse-corp/transight-design/style-theme",
         "traverse-corp/transight-design/style-tokens",
         "traverse-corp/transight-design/style-typography",

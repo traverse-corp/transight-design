@@ -14,6 +14,7 @@ const spinnerColorStyles = {
   skyblue: 'text-ui-skyblue',
   purple: 'text-ui-purple',
   pink: 'text-ui-pink',
+  amber: 'text-ui-amber',
   white: 'text-on-dark',
   'gradient-blue': 'text-primary-blue-1'
 } as const
@@ -33,6 +34,7 @@ const spinnerClassVariants = cva(
         skyblue: spinnerColorStyles.skyblue,
         purple: spinnerColorStyles.purple,
         pink: spinnerColorStyles.pink,
+        amber: spinnerColorStyles.amber,
         white: spinnerColorStyles.white,
         'gradient-blue': spinnerColorStyles['gradient-blue']
       },

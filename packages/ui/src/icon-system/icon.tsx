@@ -34,7 +34,6 @@ export type IconColor =
   | 'primary-blue-deep'
   | 'primary-skyblue-1'
   | 'primary-skyblue-2'
-  | 'accent-amber'
   | 'ui-red'
   | 'ui-orange'
   | 'ui-yellow'
@@ -44,6 +43,7 @@ export type IconColor =
   | 'ui-blue'
   | 'ui-purple'
   | 'ui-pink'
+  | 'ui-amber'
   | 'ui-text-red'
   | 'ui-text-orange'
   | 'ui-text-yellow'
@@ -53,6 +53,9 @@ export type IconColor =
   | 'ui-text-blue'
   | 'ui-text-purple'
   | 'ui-text-pink'
+  | 'ui-text-amber'
+  /** @deprecated ui-amber 사용 권장. tokens.css에서 alias로 한 사이클 유지. */
+  | 'accent-amber'
 
 export interface IconProps {
   src: IconName

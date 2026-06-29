@@ -6,10 +6,10 @@ export const metadata = {
   title: 'Styles — Transight Design'
 }
 
-const CLI_INSTALL = `# 진입점 styles 한 방 설치 (tokens·typography·flex·theme·font-suit 자동 동반)
+const CLI_INSTALL = `# 진입점 styles 한 방 설치 (tokens·typography·flex·theme·fonts 자동 동반)
 npx @transight-design/cli add styles`
 
-const SHADCN_INSTALL = `# 진입점 styles 한 방 설치 (tokens·typography·flex·theme·font-suit 자동 동반)
+const SHADCN_INSTALL = `# 진입점 styles 한 방 설치 (tokens·typography·flex·theme·fonts 자동 동반)
 npx shadcn@latest add traverse-corp/transight-design/styles`
 
 const CSS_VITE = `/* src/index.css */
@@ -27,7 +27,7 @@ const StylesInstallPage = () => (
         <h1 className='typo-b24 text-fg-strong'>Install</h1>
         <p className='text-description mt-1'>
           진입점 <code className='typo-mono-m12 text-fg-default'>styles</code>를 설치하면 tokens ·
-          typography · flex · theme · font-suit 5종이 함께 깔립니다.
+          typography · flex · theme · fonts 5종이 함께 깔립니다.
         </p>
       </header>
 
@@ -44,7 +44,7 @@ const StylesInstallPage = () => (
       <section className='mb-10'>
         <h2 className='text-section-title mb-3'>2. 진입 CSS에 import</h2>
         <p className='text-description mb-3'>
-          SUIT 폰트 + Tailwind + 토큰 + 타이포 프리셋이 한 번에 들어옵니다.
+          SUIT / Pretendard 폰트 + Tailwind + 토큰 + 타이포 프리셋이 한 번에 들어옵니다.
         </p>
         <div className='grid grid-cols-1 gap-3 md:grid-cols-2'>
           <div>

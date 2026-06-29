@@ -56,7 +56,7 @@ export const SidebarNav = ({ groups }: SidebarNavProps) => {
                       href={href}
                       className={
                         active
-                          ? 'bg-primary-blue-opacity-10 typo-sb14 text-primary-blue-1 flex items-center justify-between gap-2 rounded-md px-3 py-1.5'
+                          ? 'bg-primary-blue-1/10 typo-sb14 text-primary-blue-1 flex items-center justify-between gap-2 rounded-md px-3 py-1.5'
                           : 'typo-m14 text-fg-default hover:bg-bg-muted hover:text-fg-strong flex items-center justify-between gap-2 rounded-md px-3 py-1.5'
                       }
                     >

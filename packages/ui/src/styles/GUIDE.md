@@ -10,7 +10,7 @@ Transight 디자인 시스템의 **기반 스타일 레이어**. SUIT 폰트 + T
 | 파일 | 역할 |
 |------|------|
 | `index.css` | 진입점. 아래 5종을 순서대로 `@import` |
-| `font-suit.css` | SUIT Variable 폰트 페이스 등록 (외부 CDN) |
+| `fonts.css` | SUIT / Pretendard Variable 폰트 페이스 등록 (외부 CDN) |
 | `tokens.css` | 원시 색상 토큰 (`--color-*`) — Tailwind v4 `@theme` |
 | `theme.css` | 시맨틱 매핑 / Base UI 변수 / 다크 모드 등 |
 | `typography.css` | `typo-*` 굵기 프리셋 + `text-*` 시맨틱 프리셋 |
@@ -51,12 +51,9 @@ npx shadcn@latest add traverse-corp/transight-design/styles
 | 그룹 | 토큰 | 용도 |
 |------|------|------|
 | **Cool Grey** | `cool-grey-white`, `cool-grey-01`~`11`, `cool-grey-black` | 기본 회색 13단. UI 베이스 |
-| **Primary Blue** | `primary-blue-1`, `primary-blue-2`, `primary-blue-deep` | 주 액션 / 강조 |
+| **Primary Blue** | `primary-blue-1`, `primary-blue-2`, `primary-blue-deep` | 주 액션 / 강조 (알파는 `/10`, `/20` 등 modifier로) |
 | **Primary Skyblue** | `primary-skyblue-1`, `primary-skyblue-2` | 보조 강조 / 배경 |
-| **Primary Blue Opacity** | `primary-blue-opacity-10`, `-20` | 호버 / 활성 배경 |
-| **Accent** | `accent-amber` | 강조 색 |
-| **UI** | `ui-{red\|orange\|yellow\|olive\|green\|skyblue\|blue\|purple\|pink}` | 상태/카테고리 (3단계: `text` / 기본 / `pale`) |
-| **Glass** | `glass-white`, `glass-border` | 글래스모피즘 |
+| **UI** | `ui-{red\|orange\|yellow\|olive\|green\|skyblue\|blue\|purple\|pink\|amber}` | 상태/카테고리 (3단계: `text` / 기본 / `pale`) |
 
 사용 예:
 ```tsx
@@ -67,11 +64,43 @@ npx shadcn@latest add traverse-corp/transight-design/styles
 <div style={{ background: 'var(--color-primary-blue-1)' }}>
 ```
 
+### 폰트 family (`typography.css`의 `@theme`)
+
+| 토큰 | Tailwind | 용도 |
+|---|---|---|
+| `--font-sans` | `font-sans` | 본문/UI 기본 — SUIT Variable (CDN) |
+| `--font-pretendard` | `font-pretendard` | SUIT 자매 family — 디스플레이/약관/광고 톤 차별 |
+| `--font-mono` | `font-mono` | 코드/표값/hex (`typo-mono-{w}{s}` 프리셋에 묶임) |
+
+전역 default는 `font-sans` (SUIT). 다른 family가 필요한 영역에서만 `font-pretendard` / `font-mono`를 명시.
+
 ### 시맨틱 매핑 (`theme.css`)
 
-`tokens.css`의 raw 값은 직접 의미를 갖지 않는다. `theme.css`가 Base UI / shadcn 호환
-시맨틱 변수(`--background`, `--foreground`, `--border` 등)로 매핑한다. 컴포넌트는
-가능한 한 시맨틱 변수를 통해 색을 받아야 라이트/다크 전환이 자동.
+`tokens.css`의 raw 값은 직접 의미를 갖지 않는다. `theme.css`가 다음 두 종류의
+시맨틱 변수를 정의한다. 컴포넌트/페이지 코드는 시맨틱을 통해 색을 받아야
+라이트/다크 전환이 자동.
+
+| 카테고리 | 토큰 |
+|---|---|
+| Foreground (텍스트 위계) | `fg-strong` / `fg-default` / `fg-muted` / `fg-disabled` / `fg-inverse` |
+| Surface (배경 위계) | `bg-page` / `bg-card` / `bg-subtle` / `bg-muted` / `bg-inverse` |
+| Border 3단 | `border-default` / `border-subtle` / `border-strong` |
+| 상태/상호작용 | `ring-focus` / `overlay-backdrop` / `hover-bg` / `active-bg` |
+| Shadow 3단 | `shadow-card` / `shadow-popover` / `shadow-dialog` |
+| Gradient | `gradient-cta` / `gradient-deep` / `gradient-fade-dark` / `gradient-glow` |
+| shadcn 호환 alias | `background` / `foreground` / `card` / `border` / `ring` 등 |
+
+알파가 필요하면 색 토큰에 modifier로 (`bg-primary-blue-1/10`, `text-fg-default/60`).
+
+### 추가 utility (`theme.css`)
+
+| 클래스 | 용도 |
+|---|---|
+| `hide-scrollbar` | 스크롤바 완전 숨김 (가로 캐러셀 등) |
+| `custom-scrollbar` | 얇고 은은한 커스텀 스크롤바 |
+
+`prefers-reduced-motion: reduce` 사용자에게는 transition/animation이 자동으로 0에
+가깝게 축소된다 (`@layer base`에서 글로벌 적용).
 
 ---
 

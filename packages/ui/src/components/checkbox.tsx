@@ -22,6 +22,7 @@ const checkboxColorStyles = {
   skyblue: 'bg-ui-skyblue border-ui-skyblue text-on-dark',
   purple: 'bg-ui-purple border-ui-purple text-on-dark',
   pink: 'bg-ui-pink border-ui-pink text-on-dark',
+  amber: 'bg-ui-amber border-ui-amber text-on-dark',
   white: 'bg-bg-card border-border-default text-fg-default',
   'gradient-blue':
     'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 border-primary-blue-1 text-on-dark'
@@ -50,6 +51,7 @@ const checkboxClassVariants = cva(
         skyblue: '',
         purple: '',
         pink: '',
+        amber: '',
         white: '',
         'gradient-blue': ''
       },

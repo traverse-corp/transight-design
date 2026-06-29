@@ -28,20 +28,22 @@ export const PRIMARY = {
   skyblue2: '#88adff'
 } as const
 
-export const ACCENT = {
-  amber: '#c9a45a'
-} as const
-
 export const UI_COLOR = {
   red: { text: '#cf443d', base: '#ff5148', pale: '#ffe7e5' },
-  orange: { text: '#ce8038', base: '#ff9d42', pale: '#fff1e4' },
-  yellow: { text: '#caa00c', base: '#f8c50a', pale: '#fef9e6' },
+  orange: { text: '#e8872e', base: '#ff9d42', pale: '#fff1e4' },
+  yellow: { text: '#dfb00b', base: '#f8c50a', pale: '#fef9e6' },
   olive: { text: '#8ead27', base: '#b3cf57', pale: '#f3f7e4' },
   green: { text: '#209d59', base: '#24c06d', pale: '#eafbf1' },
-  skyblue: { text: '#128e8d', base: '#42a1ff', pale: '#e3f6ff' },
+  skyblue: { text: '#129fe5', base: '#42a1ff', pale: '#e3f6ff' },
   blue: { text: '#396ad7', base: '#286bff', pale: '#e7efff' },
   purple: { text: '#8951d0', base: '#a761ff', pale: '#f2e5ff' },
-  pink: { text: '#bd5dbf', base: '#ea6feb', pale: '#faecfb' }
+  pink: { text: '#bd5dbf', base: '#ea6feb', pale: '#faecfb' },
+  amber: { text: '#8c6e2d', base: '#c9a45a', pale: '#faf2dd' }
+} as const
+
+/** @deprecated UI_COLOR.amber 사용 권장. 한 사이클 호환 alias. */
+export const ACCENT = {
+  amber: UI_COLOR.amber.base
 } as const
 
 export const GRADIENT = {
@@ -58,20 +60,6 @@ export const SHADOW = {
   hover: '0 6px 15px 0 rgba(50, 64, 119, 0.5)'
 } as const
 
-export const TEXT_SIZE = {
-  '4xs': '8px',
-  '3xs': '9px',
-  '2xs': '10px',
-  xs: '12px',
-  md: '13px',
-  sm: '14px',
-  base: '16px',
-  lg: '18px',
-  xl: '24px',
-  '2xl': '32px',
-  '3xl': '54px'
-} as const
-
 export const RADIUS = {
   base: '0.625rem' /* 10px */
 } as const
@@ -86,9 +74,16 @@ export const FONT_FAMILY = {
     "'SUIT Variable', SUIT, -apple-system, BlinkMacSystemFont, system-ui, Roboto, " +
     "'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', " +
     "'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif",
+  pretendard:
+    "'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, " +
+    "'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', " +
+    "'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif",
   mono:
     "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
 } as const
 
-export const FONT_FACE_URL =
-  'https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css'
+export const FONT_FACE_URL = {
+  suit: 'https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css',
+  pretendard:
+    'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css'
+} as const

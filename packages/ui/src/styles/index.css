@@ -3,8 +3,8 @@
  * 사용자 앱에서 `@import '@transight-design/ui/styles/index.css'`
  * ================================================================ */
 
-/* font-suit.css는 항상 entry 최상단 (CSS @import 순서 규칙) */
-@import './font-suit.css';
+/* 폰트 @import는 항상 entry 최상단 (CSS @import 순서 규칙) */
+@import './fonts.css';
 @import 'tailwindcss';
 @import './tokens.css';
 @import './theme.css';

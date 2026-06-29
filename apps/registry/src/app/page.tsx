@@ -88,7 +88,7 @@ const Home = () => (
         href="/components"
         className="border-border-default hover:border-primary-blue-1 hover:shadow-primary group flex flex-col gap-3 rounded-xl border bg-bg-card p-6 transition-all"
       >
-        <div className="bg-primary-blue-opacity-10 flex h-11 w-11 items-center justify-center rounded-lg">
+        <div className="bg-primary-blue-1/10 flex h-11 w-11 items-center justify-center rounded-lg">
           <Boxes className="text-primary-blue-1 h-5 w-5" />
         </div>
         <div>

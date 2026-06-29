@@ -6,8 +6,8 @@
  * 그대로 사용한다 (dogfood).
  * ================================================================ */
 
-/* SUIT 폰트는 반드시 최상단 (CSS @import 순서 규칙) */
-@import '../../../../packages/ui/src/styles/font-suit.css';
+/* 폰트는 반드시 최상단 (CSS @import 순서 규칙) */
+@import '../../../../packages/ui/src/styles/fonts.css';
 @import 'tailwindcss';
 
 /* 디자인 시스템 (packages/ui) 스타일 — 토큰 + 시맨틱 + 타이포 + flex 유틸 */
@@ -25,20 +25,15 @@
  * ──────────────────────────────────────────────────────────────── */
 @source inline("bg-cool-grey-{white,01,02,03,04,05,06,07,08,09,10,11,black}");
 @source inline("bg-primary-blue-{1,2,deep}");
-@source inline("bg-primary-blue-opacity-{10,20}");
 @source inline("bg-primary-skyblue-{1,2}");
-@source inline("bg-primary-blue2-opacity-20");
 @source inline("bg-accent-amber");
-@source inline("bg-glass-{white,border}");
-@source inline("bg-sidebar-button-bg");
-@source inline("bg-ui-{red,orange,yellow,olive,green,skyblue,blue,purple,pink}");
-@source inline("bg-ui-text-{red,orange,yellow,olive,green,skyblue,blue,purple,pink}");
-@source inline("bg-ui-pale-{red,orange,yellow,olive,green,skyblue,blue,purple,pink}");
+@source inline("bg-ui-{red,orange,yellow,olive,green,skyblue,blue,purple,pink,amber}");
+@source inline("bg-ui-text-{red,orange,yellow,olive,green,skyblue,blue,purple,pink,amber}");
+@source inline("bg-ui-pale-{red,orange,yellow,olive,green,skyblue,blue,purple,pink,amber}");
 @source inline("bg-primary-blue-gradient-{1,2}");
 @source inline("bg-primary-skyblue-gradient-1");
 @source inline("bg-ui-sidebar-gradient");
 @source inline("shadow-{primary,search-bar,input,hover}");
-@source inline("text-{4xs,3xs,2xs,xs,md,sm,base,lg,xl,2xl,3xl}");
 
 /* 타이포 — 동적 typo-{w}{s} 조합용 safelist (9 weight × 15 size) */
 @source inline("typo-{t,el,l,r,m,sb,b,eb,bk}{8,9,10,11,12,13,14,15,16,18,24,32,40,48,56}");

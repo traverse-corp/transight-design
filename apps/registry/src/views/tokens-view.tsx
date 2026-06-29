@@ -2,8 +2,7 @@ import { ColorSwatch } from './color-swatch'
 import {
   COLOR_GROUPS,
   GRADIENT_SWATCHES,
-  SHADOW_SWATCHES,
-  TEXT_SIZE_SWATCHES
+  SHADOW_SWATCHES
 } from '@/lib/token-data'
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
@@ -71,23 +70,5 @@ export const TokensView = () => (
       </div>
     </section>
 
-    {/* ── Typography Size ──────────────── */}
-    <section>
-      <SectionTitle>Typography Size</SectionTitle>
-      <p className='text-description mb-6'>
-        각 사이즈 토큰의 실제 크기는 아래와 같습니다.
-      </p>
-      <div className='border-border-default divide-border-default flex flex-col divide-y rounded-lg border bg-bg-card'>
-        {TEXT_SIZE_SWATCHES.map((t) => (
-          <div key={t.name} className='flex items-baseline gap-4 px-5 py-3'>
-            <span className='typo-mono-m12 text-fg-muted w-32 shrink-0'>{t.name}</span>
-            <span className='typo-mono-r10 text-fg-muted w-14 shrink-0'>{t.value}</span>
-            <span className={`${t.sizeClass} text-fg-strong truncate`}>
-              TranSight Design
-            </span>
-          </div>
-        ))}
-      </div>
-    </section>
   </div>
 )

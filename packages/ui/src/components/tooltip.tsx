@@ -31,7 +31,7 @@ const tooltipColorStyles = {
   blue: {
     solid: 'bg-primary-blue-1 text-on-dark border-primary-blue-1',
     outline: 'bg-bg-card text-primary-blue-1 border-primary-blue-1',
-    soft: 'bg-primary-blue-opacity-10 text-primary-blue-1 border-primary-blue-opacity-10'
+    soft: 'bg-primary-blue-1/10 text-primary-blue-1 border-primary-blue-1/10'
   },
   red: {
     solid: 'bg-ui-red text-on-dark border-ui-red',
@@ -81,7 +81,7 @@ const tooltipColorStyles = {
   'gradient-blue': {
     solid: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-on-dark border-primary-blue-1',
     outline: 'bg-bg-card text-primary-blue-1 border-primary-blue-1',
-    soft: 'bg-primary-blue-opacity-10 text-primary-blue-1 border-primary-blue-opacity-10'
+    soft: 'bg-primary-blue-1/10 text-primary-blue-1 border-primary-blue-1/10'
   }
 } as const
 

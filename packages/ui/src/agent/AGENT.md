@@ -33,10 +33,10 @@
 |---|---|
 | `index.css` | 진입점 — 아래 5종을 모두 import |
 | `tokens.css` | 색상 토큰 (cool-grey, primary-blue, ui-*) — Tailwind v4 @theme |
-| `typography.css` | `typo-*` 굵기 프리셋 + `text-*` 시맨틱 프리셋 |
+| `typography.css` | `typo-*` 굵기 프리셋 + `text-*` 시맨틱 프리셋 + `--font-{sans,pretendard,mono}` |
 | `flex.css` | `flex-{justify}-{align}` 단축 유틸 |
 | `theme.css` | 시맨틱 매핑 (라이트/다크) / Base UI 변수 |
-| `font-suit.css` | SUIT Variable 폰트 페이스 |
+| `fonts.css` | SUIT / Pretendard Variable 폰트 페이스 (외부 CDN, entry 최상단 로드) |
 
 상세 규칙은 동일 위치에 함께 설치된 `~/src/styles/AGENT.md` (스타일 시스템 강제 규칙) 참고.
 
@@ -256,6 +256,8 @@ Tailwind의 `text-sm`, `font-bold`, `text-[14px]`, `leading-*`, `font-semibold` 
 
 모노스페이스: `typo-mono-{w}{s}` — 예: `typo-mono-m12`, `typo-mono-b14`.
 
+폰트 family: 전역 default는 `font-sans` (SUIT). 톤 차별이 필요한 영역에선 `font-pretendard`(자매 family) / `font-mono`(코드)를 명시. 단, 같은 페이지 안에 family를 섞으면 톤이 흐려지니 디자인 의도가 명확할 때만 사용.
+
 ### 시맨틱 우선
 
 의미가 명확하면 시맨틱 프리셋을 우선 사용한다. (내부적으로 `typo-*` 매핑)
@@ -397,7 +399,7 @@ import { IconSprite } from '@/icons/sprite.gen' // 앱 루트에 1회 마운트
 
 | prop | 의미 | 값 |
 |---|---|---|
-| `color` | 색상 | `gray` / `blue` / `red` / `orange` / `yellow` / `olive` / `green` / `skyblue` / `purple` / `pink` / `white` / `gradient-blue` |
+| `color` | 색상 | `gray` / `blue` / `red` / `orange` / `yellow` / `olive` / `green` / `skyblue` / `purple` / `pink` / `amber` / `white` / `gradient-blue` / `gradient-blue-deep` |
 | `theme` | 배색 (solid/outline/soft) | `solid` / `outline` / `soft` |
 | `shape` | 모서리 형태 | `default` / `pill` / `square` (일부) / `circle` (일부) |
 | `size` | 크기 단계 | `xs` / `sm` / `md` / `lg` / `xl` |

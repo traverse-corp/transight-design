@@ -27,31 +27,21 @@
   --color-primary-blue-1: #155dfc;
   --color-primary-blue-2: #3545d6;
   --color-primary-blue-deep: #0d3796;
-  --color-primary-blue-opacity-10: rgb(21 109 252 / 0.1);
-  --color-primary-blue-opacity-20: rgb(21 109 252 / 0.2);
 
   /* ── Primary Skyblue ── */
   --color-primary-skyblue-1: #d4e1ff;
   --color-primary-skyblue-2: #88adff;
-  --color-primary-blue2-opacity-20: rgb(136 173 255 / 0.2);
 
-  /* ── Glass ── */
-  --color-glass-white: rgba(255, 255, 255, 0.1);
-  --color-glass-border: rgba(255, 255, 255, 0.05);
-
-  /* ── Accent ── */
-  --color-accent-amber: #c9a45a;
-
-  /* ── UI Color: 9색 × 3단계 (text / base / pale) ── */
+  /* ── UI Color: 10색 × 3단계 (text / base / pale) ── */
   --color-ui-text-red: #cf443d;
   --color-ui-red: #ff5148;
   --color-ui-pale-red: #ffe7e5;
 
-  --color-ui-text-orange: #ce8038;
+  --color-ui-text-orange: #e8872e;
   --color-ui-orange: #ff9d42;
   --color-ui-pale-orange: #fff1e4;
 
-  --color-ui-text-yellow: #caa00c;
+  --color-ui-text-yellow: #dfb00b;
   --color-ui-yellow: #f8c50a;
   --color-ui-pale-yellow: #fef9e6;
 
@@ -63,7 +53,7 @@
   --color-ui-green: #24c06d;
   --color-ui-pale-green: #eafbf1;
 
-  --color-ui-text-skyblue: #128e8d;
+  --color-ui-text-skyblue: #129fe5;
   --color-ui-skyblue: #42a1ff;
   --color-ui-pale-skyblue: #e3f6ff;
 
@@ -79,33 +69,40 @@
   --color-ui-pink: #ea6feb;
   --color-ui-pale-pink: #faecfb;
 
-  /* ── Sidebar ── */
-  --color-sidebar-button-bg: #88adff;
+  --color-ui-text-amber: #8c6e2d;
+  --color-ui-amber: #c9a45a;
+  --color-ui-pale-amber: #faf2dd;
 
-  /* ── 그래디언트 (원시 값) ── */
-  --image-primary-blue-gradient-1: linear-gradient(to right, #155dfc, #3545d6);
-  --image-primary-blue-gradient-2: linear-gradient(to right, #155dfc, #0d3796);
-  --image-primary-skyblue-gradient-1: linear-gradient(to right, #d4e1ff, #88adff);
-  --image-ui-sidebar-gradient: linear-gradient(to right, #d4e1ff, #88adff);
+  /* ── Accent (deprecated: --color-ui-amber 사용 권장. 한 사이클 호환 alias) ── */
+  --color-accent-amber: var(--color-ui-amber);
+
+  /* ── 그래디언트 (원시 값 — primary-blue/skyblue 토큰 참조로 SoT 일관) ── */
+  --image-primary-blue-gradient-1: linear-gradient(
+    to right,
+    var(--color-primary-blue-1),
+    var(--color-primary-blue-2)
+  );
+  --image-primary-blue-gradient-2: linear-gradient(
+    to right,
+    var(--color-primary-blue-1),
+    var(--color-primary-blue-deep)
+  );
+  --image-primary-skyblue-gradient-1: linear-gradient(
+    to right,
+    var(--color-primary-skyblue-1),
+    var(--color-primary-skyblue-2)
+  );
+  --image-ui-sidebar-gradient: linear-gradient(
+    to right,
+    var(--color-primary-skyblue-1),
+    var(--color-primary-skyblue-2)
+  );
 
   /* ── 그림자 (--shadow-* → shadow-* 유틸 자동 생성) ── */
   --shadow-primary: 0 4px 15px 0 #e8ecf4;
   --shadow-search-bar: 0 0 6px 2px rgba(122, 137, 196, 0.2);
   --shadow-input: 0 2px 6px 2px rgba(122, 137, 196, 0.1);
   --shadow-hover: 0 6px 15px 0 rgba(50, 64, 119, 0.5);
-
-  /* ── 타이포그래피 크기 (11단) ── */
-  --text-4xs: 8px;
-  --text-3xs: 9px;
-  --text-2xs: 10px;
-  --text-xs: 12px;
-  --text-md: 13px;
-  --text-sm: 14px;
-  --text-base: 16px;
-  --text-lg: 18px;
-  --text-xl: 24px;
-  --text-2xl: 32px;
-  --text-3xl: 54px;
 
   /* ── 브레이크포인트 (Tailwind 기본 오버라이드) ── */
   --breakpoint-md: 1550px;

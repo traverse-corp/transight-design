@@ -68,7 +68,7 @@ const selectTriggerColorStyles = {
   blue: {
     solid: 'bg-primary-blue-1 border-primary-blue-1 text-on-dark focus-within:border-primary-blue-2',
     outline: 'border-primary-blue-1 text-primary-blue-1 focus-within:border-primary-blue-2',
-    soft: 'bg-primary-blue-opacity-10 border-primary-blue-opacity-10 text-primary-blue-1 focus-within:border-primary-blue-1'
+    soft: 'bg-primary-blue-1/10 border-primary-blue-1/10 text-primary-blue-1 focus-within:border-primary-blue-1'
   },
   red: {
     solid: 'bg-ui-red border-ui-red text-on-dark focus-within:border-ui-red',
@@ -119,7 +119,7 @@ const selectTriggerColorStyles = {
     solid:
       'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 border-primary-blue-1 text-on-dark focus-within:border-primary-blue-deep',
     outline: 'border-primary-blue-1 text-primary-blue-1 focus-within:border-primary-blue-deep',
-    soft: 'bg-primary-blue-opacity-10 border-primary-blue-opacity-10 text-primary-blue-1 focus-within:border-primary-blue-1'
+    soft: 'bg-primary-blue-1/10 border-primary-blue-1/10 text-primary-blue-1 focus-within:border-primary-blue-1'
   }
 } as const
 
@@ -237,7 +237,7 @@ const selectItemColorStyles: Record<SelectTriggerColor, { focus: string; check: 
     check: 'text-fg-default'
   },
   blue: {
-    focus: 'focus:bg-primary-blue-opacity-10 focus:text-primary-blue-1',
+    focus: 'focus:bg-primary-blue-1/10 focus:text-primary-blue-1',
     check: 'text-primary-blue-1'
   },
   red: { focus: 'focus:bg-ui-pale-red focus:text-ui-red', check: 'text-ui-red' },
@@ -253,7 +253,7 @@ const selectItemColorStyles: Record<SelectTriggerColor, { focus: string; check: 
     check: 'text-fg-default'
   },
   'gradient-blue': {
-    focus: 'focus:bg-primary-blue-opacity-10 focus:text-primary-blue-1',
+    focus: 'focus:bg-primary-blue-1/10 focus:text-primary-blue-1',
     check: 'text-primary-blue-1'
   }
 }

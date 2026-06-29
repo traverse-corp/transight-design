@@ -47,7 +47,6 @@ const COLOR_GROUPS: { label: string; colors: IconColor[] }[] = [
       'primary-skyblue-2'
     ]
   },
-  { label: 'accent', colors: ['accent-amber'] },
   {
     label: 'ui',
     colors: [
@@ -59,7 +58,8 @@ const COLOR_GROUPS: { label: string; colors: IconColor[] }[] = [
       'ui-skyblue',
       'ui-blue',
       'ui-purple',
-      'ui-pink'
+      'ui-pink',
+      'ui-amber'
     ]
   },
   {
@@ -73,7 +73,8 @@ const COLOR_GROUPS: { label: string; colors: IconColor[] }[] = [
       'ui-text-skyblue',
       'ui-text-blue',
       'ui-text-purple',
-      'ui-text-pink'
+      'ui-text-pink',
+      'ui-text-amber'
     ]
   }
 ]
@@ -122,7 +123,7 @@ export const PreviewShell = () => {
                   onClick={() => setSize(s.value)}
                   className={
                     active
-                      ? 'bg-primary-blue-opacity-10 text-primary-blue-1 typo-sb14 flex items-center justify-between rounded-md px-3 py-1.5'
+                      ? 'bg-primary-blue-1/10 text-primary-blue-1 typo-sb14 flex items-center justify-between rounded-md px-3 py-1.5'
                       : 'text-fg-default hover:bg-bg-muted hover:text-fg-strong typo-m14 flex items-center justify-between rounded-md px-3 py-1.5'
                   }
                 >
@@ -152,7 +153,7 @@ export const PreviewShell = () => {
                         title={c}
                         className={
                           active
-                            ? 'bg-primary-blue-opacity-10 text-primary-blue-1 typo-sb12 flex items-center gap-2 rounded-md px-3 py-1.5'
+                            ? 'bg-primary-blue-1/10 text-primary-blue-1 typo-sb12 flex items-center gap-2 rounded-md px-3 py-1.5'
                             : 'text-fg-default hover:bg-bg-muted hover:text-fg-strong typo-m12 flex items-center gap-2 rounded-md px-3 py-1.5'
                         }
                       >

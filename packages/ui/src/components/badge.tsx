@@ -15,7 +15,7 @@ const badgeColorStyles = {
     solid: 'bg-primary-blue-1 text-on-dark',
     outline:
       'border border-primary-blue-1 bg-transparent text-primary-blue-1',
-    soft: 'bg-primary-blue-opacity-10 text-primary-blue-1'
+    soft: 'bg-primary-blue-1/10 text-primary-blue-1'
   },
   red: {
     solid: 'bg-ui-red text-on-dark',
@@ -58,6 +58,11 @@ const badgeColorStyles = {
     outline: 'border border-ui-pink bg-transparent text-ui-pink',
     soft: 'bg-ui-pale-pink text-ui-pink'
   },
+  amber: {
+    solid: 'bg-ui-amber text-on-dark',
+    outline: 'border border-ui-amber bg-transparent text-ui-text-amber',
+    soft: 'bg-ui-pale-amber text-ui-text-amber'
+  },
   white: {
     solid: 'bg-bg-card text-fg-muted',
     outline:
@@ -68,7 +73,7 @@ const badgeColorStyles = {
     solid: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-on-dark',
     outline:
       'border border-primary-blue-1 bg-transparent text-primary-blue-1',
-    soft: 'bg-primary-blue-opacity-10 text-primary-blue-1'
+    soft: 'bg-primary-blue-1/10 text-primary-blue-1'
   }
 } as const
 
@@ -99,6 +104,7 @@ const badgeClassVariants = cva(
         skyblue: '',
         purple: '',
         pink: '',
+        amber: '',
         white: '',
         'gradient-blue': ''
       },

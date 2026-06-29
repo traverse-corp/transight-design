@@ -90,7 +90,7 @@
   --sidebar-foreground: var(--fg-inverse);
   --sidebar-primary: var(--color-primary-blue-1);
   --sidebar-primary-foreground: var(--fg-inverse);
-  --sidebar-accent: var(--color-sidebar-button-bg);
+  --sidebar-accent: var(--color-primary-skyblue-2);
   --sidebar-accent-foreground: var(--fg-inverse);
   --sidebar-border: rgb(255 255 255 / 0.1);
   --sidebar-ring: var(--color-cool-grey-08);
@@ -166,7 +166,7 @@
   --sidebar-foreground: var(--fg-strong);
   --sidebar-primary: var(--color-primary-blue-1);
   --sidebar-primary-foreground: var(--fg-inverse);
-  --sidebar-accent: var(--color-sidebar-button-bg);
+  --sidebar-accent: var(--color-primary-skyblue-2);
   --sidebar-accent-foreground: var(--fg-inverse);
   --sidebar-border: rgb(255 255 255 / 0.1);
   --sidebar-ring: var(--color-cool-grey-06);
@@ -261,5 +261,48 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* a11y baseline — 모션 최소화 선호 사용자 대응 */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+ * Scrollbar utilities
+ *  - hide-scrollbar: 스크롤바 완전 숨김 (가로 캐러셀 등)
+ *  - custom-scrollbar: 얇고 은은한 커스텀 스크롤바
+ * ────────────────────────────────────────────────────────────────── */
+@utility hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(0 0 0 / 0.18) transparent;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgb(0 0 0 / 0.18);
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(0 0 0 / 0.32);
   }
 }

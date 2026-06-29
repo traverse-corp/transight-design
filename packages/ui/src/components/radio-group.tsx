@@ -19,6 +19,7 @@ const radioColorStyles = {
   skyblue: { ring: 'border-ui-skyblue', dot: 'bg-ui-skyblue' },
   purple: { ring: 'border-ui-purple', dot: 'bg-ui-purple' },
   pink: { ring: 'border-ui-pink', dot: 'bg-ui-pink' },
+  amber: { ring: 'border-ui-amber', dot: 'bg-ui-amber' },
   white: { ring: 'border-border-default', dot: 'bg-fg-strong' },
   'gradient-blue': {
     ring: 'border-primary-blue-1',
@@ -49,6 +50,7 @@ const radioClassVariants = cva(
         skyblue: '',
         purple: '',
         pink: '',
+        amber: '',
         white: '',
         'gradient-blue': ''
       },

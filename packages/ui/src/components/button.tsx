@@ -18,7 +18,7 @@ const buttonColorStyles = {
     solid: 'bg-primary-blue-1 text-on-dark hover:bg-primary-blue-1/90 shadow-card',
     outline:
       'border border-primary-blue-1 bg-transparent text-primary-blue-1 hover:bg-hover-bg',
-    soft: 'bg-primary-blue-opacity-10 text-primary-blue-1 shadow-none hover:bg-primary-blue-opacity-20'
+    soft: 'bg-primary-blue-1/10 text-primary-blue-1 shadow-none hover:bg-primary-blue-1/20'
   },
   red: {
     solid: 'bg-ui-red text-on-dark hover:bg-ui-red/90 shadow-card',
@@ -68,6 +68,12 @@ const buttonColorStyles = {
       'border border-ui-pink bg-transparent text-ui-pink hover:bg-hover-bg',
     soft: 'bg-ui-pale-pink text-ui-pink shadow-none hover:bg-ui-pale-pink/80'
   },
+  amber: {
+    solid: 'bg-ui-amber text-on-dark hover:bg-ui-amber/90 shadow-card',
+    outline:
+      'border border-ui-amber bg-transparent text-ui-text-amber hover:bg-hover-bg',
+    soft: 'bg-ui-pale-amber text-ui-text-amber shadow-none hover:bg-ui-pale-amber/80'
+  },
   white: {
     solid: 'bg-bg-card text-fg-muted shadow-none hover:bg-hover-bg',
     outline:
@@ -76,10 +82,17 @@ const buttonColorStyles = {
   },
   'gradient-blue': {
     solid:
-      'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-on-dark hover:bg-primary-blue-1/90 shadow-card',
+      'bg-primary-blue-gradient-1 text-on-dark hover:opacity-90 shadow-card',
     outline:
       'border border-primary-blue-1 bg-transparent text-primary-blue-1 hover:bg-hover-bg',
-    soft: 'bg-primary-blue-opacity-10 text-primary-blue-1 shadow-none hover:bg-primary-blue-opacity-20'
+    soft: 'bg-primary-blue-1/10 text-primary-blue-1 shadow-none hover:bg-primary-blue-1/20'
+  },
+  'gradient-blue-deep': {
+    solid:
+      'bg-primary-blue-gradient-2 text-on-dark hover:opacity-90 shadow-card',
+    outline:
+      'border border-primary-blue-deep bg-transparent text-primary-blue-deep hover:bg-hover-bg',
+    soft: 'bg-primary-blue-1/10 text-primary-blue-1 shadow-none hover:bg-primary-blue-1/20'
   }
 } as const
 
@@ -110,8 +123,10 @@ const buttonClassVariants = cva(
         skyblue: '',
         purple: '',
         pink: '',
+        amber: '',
         white: '',
-        'gradient-blue': ''
+        'gradient-blue': '',
+        'gradient-blue-deep': ''
       },
       theme: {
         solid: '',

@@ -98,17 +98,18 @@ interface IconProps {
 
 ### `IconColor`
 
-cool-grey 13단 + primary-blue 5 + accent-amber + ui 9 + ui-text 9 = 총 37색.
+cool-grey 13단 + primary-blue 5 + ui 10 + ui-text 10 = 총 38색.
 `white` / `black`은 `cool-grey-white` / `cool-grey-black`의 짧은 별칭.
+`accent-amber`는 `ui-amber`로 이전됨 (한 사이클 호환 alias로 유지, `@deprecated`).
 
 ```ts
 type IconColor =
   | 'white' | 'cool-grey-01' | ... | 'cool-grey-11' | 'black'
   | 'primary-blue-1' | 'primary-blue-2' | 'primary-blue-deep'
   | 'primary-skyblue-1' | 'primary-skyblue-2'
-  | 'accent-amber'
-  | 'ui-red' | 'ui-orange' | ... | 'ui-pink'
-  | 'ui-text-red' | ... | 'ui-text-pink'
+  | 'ui-red' | 'ui-orange' | ... | 'ui-pink' | 'ui-amber'
+  | 'ui-text-red' | ... | 'ui-text-pink' | 'ui-text-amber'
+  | 'accent-amber'   // @deprecated — ui-amber 사용
 ```
 
 ### `IconSize`

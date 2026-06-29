@@ -77,7 +77,7 @@ transight-design/
 
 `packages/ui/src/styles/index.css`가 스타일 진입점입니다. 다음 레이어가 포함됩니다.
 
-- `font-suit.css`: SUIT Variable 폰트 로드
+- `fonts.css`: SUIT / Pretendard Variable 폰트 로드
 - `tokens.css`: Tailwind v4 `@theme` 기반 원시 토큰
 - `theme.css`: shadcn/Base UI 호환 시맨틱 토큰과 다크 모드
 - `typography.css`: `typo-*`, `text-*` 타이포 프리셋

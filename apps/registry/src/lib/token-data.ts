@@ -7,11 +7,9 @@
 import {
   COOL_GREY,
   PRIMARY,
-  ACCENT,
   UI_COLOR,
   GRADIENT,
-  SHADOW,
-  TEXT_SIZE
+  SHADOW
 } from '@transight-design/ui/tokens'
 
 export interface Swatch {
@@ -73,35 +71,16 @@ const coolGreySwatches: Swatch[] = COOL_GREY_ORDER.map((key) => {
 const primaryBlueSwatches: Swatch[] = [
   { name: 'primary-blue-1', value: PRIMARY.blue1, bgClass: 'bg-primary-blue-1', textClass: textFor(PRIMARY.blue1) },
   { name: 'primary-blue-2', value: PRIMARY.blue2, bgClass: 'bg-primary-blue-2', textClass: textFor(PRIMARY.blue2) },
-  { name: 'primary-blue-deep', value: PRIMARY.blueDeep, bgClass: 'bg-primary-blue-deep', textClass: textFor(PRIMARY.blueDeep) },
-  { name: 'primary-blue-opacity-10', value: 'rgb(21 109 252 / 0.1)', bgClass: 'bg-primary-blue-opacity-10', textClass: 'text-fg-strong' },
-  { name: 'primary-blue-opacity-20', value: 'rgb(21 109 252 / 0.2)', bgClass: 'bg-primary-blue-opacity-20', textClass: 'text-fg-strong' }
+  { name: 'primary-blue-deep', value: PRIMARY.blueDeep, bgClass: 'bg-primary-blue-deep', textClass: textFor(PRIMARY.blueDeep) }
 ]
 
 // ── Primary Skyblue ─────────────────────────────
 const primarySkyblueSwatches: Swatch[] = [
   { name: 'primary-skyblue-1', value: PRIMARY.skyblue1, bgClass: 'bg-primary-skyblue-1', textClass: textFor(PRIMARY.skyblue1) },
-  { name: 'primary-skyblue-2', value: PRIMARY.skyblue2, bgClass: 'bg-primary-skyblue-2', textClass: textFor(PRIMARY.skyblue2) },
-  { name: 'primary-blue2-opacity-20', value: 'rgb(136 173 255 / 0.2)', bgClass: 'bg-primary-blue2-opacity-20', textClass: 'text-fg-strong' }
+  { name: 'primary-skyblue-2', value: PRIMARY.skyblue2, bgClass: 'bg-primary-skyblue-2', textClass: textFor(PRIMARY.skyblue2) }
 ]
 
-// ── Accent ──────────────────────────────────────
-const accentSwatches: Swatch[] = [
-  { name: 'accent-amber', value: ACCENT.amber, bgClass: 'bg-accent-amber', textClass: textFor(ACCENT.amber) }
-]
-
-// ── Glass ────────────────────────────────────────
-const glassSwatches: Swatch[] = [
-  { name: 'glass-white', value: 'rgba(255,255,255,0.1)', bgClass: 'bg-glass-white', textClass: 'text-fg-strong' },
-  { name: 'glass-border', value: 'rgba(255,255,255,0.05)', bgClass: 'bg-glass-border', textClass: 'text-fg-strong' }
-]
-
-// ── Sidebar ──────────────────────────────────────
-const sidebarSwatches: Swatch[] = [
-  { name: 'sidebar-button-bg', value: '#88adff', bgClass: 'bg-sidebar-button-bg', textClass: textFor('#88adff') }
-]
-
-// ── UI 9색 × 3단계 ───────────────────────────────
+// ── UI 10색 × 3단계 ──────────────────────────────
 const UI_KEYS: (keyof typeof UI_COLOR)[] = [
   'red',
   'orange',
@@ -111,7 +90,8 @@ const UI_KEYS: (keyof typeof UI_COLOR)[] = [
   'skyblue',
   'blue',
   'purple',
-  'pink'
+  'pink',
+  'amber'
 ]
 
 const buildUiSwatches = (key: keyof typeof UI_COLOR): Swatch[] => {
@@ -143,9 +123,6 @@ export const COLOR_GROUPS: ColorGroup[] = [
   { label: 'Cool Grey', swatches: coolGreySwatches },
   { label: 'Primary Blue', swatches: primaryBlueSwatches },
   { label: 'Primary Skyblue', swatches: primarySkyblueSwatches },
-  { label: 'Accent', swatches: accentSwatches },
-  { label: 'Glass', swatches: glassSwatches },
-  { label: 'Sidebar', swatches: sidebarSwatches },
   ...UI_KEYS.map((key) => ({
     label: `UI ${key.charAt(0).toUpperCase() + key.slice(1)}`,
     swatches: buildUiSwatches(key)
@@ -195,18 +172,3 @@ export const SHADOW_SWATCHES: ShadowSwatch[] = [
   { name: 'shadow-input', value: SHADOW.input, utilityClass: 'shadow-input' },
   { name: 'shadow-hover', value: SHADOW.hover, utilityClass: 'shadow-hover' }
 ]
-
-// ── 타이포그래피 크기 (text-*) ────────────────────
-export interface TextSizeSwatch {
-  name: string
-  value: string
-  sizeClass: string
-}
-
-export const TEXT_SIZE_SWATCHES: TextSizeSwatch[] = (
-  Object.entries(TEXT_SIZE) as [keyof typeof TEXT_SIZE, string][]
-).map(([key, value]) => ({
-  name: `text-${key}`,
-  value,
-  sizeClass: `text-${key}`
-}))

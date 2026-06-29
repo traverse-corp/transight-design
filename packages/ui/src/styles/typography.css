@@ -16,7 +16,7 @@
  *
  * 시맨틱 프리셋 (text-*): 크기+굵기+색까지 완결. 의미 명확하면 우선.
  *
- * SUIT Variable 폰트는 font-suit.css에서 @import (entry CSS 최상단).
+ * SUIT / Pretendard 등 폰트 페이스는 fonts.css에서 @import (entry CSS 최상단).
  * ================================================================ */
 
 @theme {
@@ -24,6 +24,12 @@
     'SUIT Variable', SUIT, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
     'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+
+  /* SUIT 자매 family — 디스플레이/약관/광고 등 톤 차별이 필요할 때 사용 */
+  --font-pretendard:
+    'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 
   --font-mono:
     ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
@@ -227,14 +233,6 @@
 @utility typo-bk40 { @apply typo-size-40; font-weight: 900; }
 @utility typo-bk48 { @apply typo-size-48; font-weight: 900; }
 @utility typo-bk56 { @apply typo-size-56; font-weight: 900; }
-
-/* ──────────────────────────────────────────────────────────────────
- * Variant — tracking/leading 변형
- * ────────────────────────────────────────────────────────────────── */
-@utility typo-sb16-tight { @apply typo-sb16; letter-spacing: -0.025em; }
-@utility typo-sb10-wider { @apply typo-sb10; letter-spacing: 0.05em; }
-@utility typo-r12-relaxed { @apply typo-r12; line-height: 1.625; }
-@utility typo-m14-relaxed { @apply typo-m14; line-height: 1.625; }
 
 /* ──────────────────────────────────────────────────────────────────
  * Monospace
