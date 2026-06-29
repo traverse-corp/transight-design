@@ -15,7 +15,7 @@ const rows = [
 ]
 
 export const Preview = () => (
-  <Table className='border-cool-grey-04 max-w-md rounded-md border'>
+  <Table className='border-border-default max-w-md rounded-md border'>
     <TableCaption>최근 트랜잭션</TableCaption>
     <TableHeader>
       <TableRow>

@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ThemeToggle } from './theme-toggle'
 
 export interface NavItem {
   /** 라우트 segment ('/components/<name>'의 name 부분) */
@@ -29,8 +28,8 @@ export const SidebarNav = ({ groups }: SidebarNavProps) => {
 
   return (
     <aside className='w-full'>
-      {/* Go Main + 테마 토글 */}
-      <div className='mb-6 flex-between-center gap-2'>
+      {/* Go Main */}
+      <div className='mb-6'>
         <Link
           href='/'
           className='flex-start-center typo-sb14 text-fg-default hover:text-primary-blue-1 gap-1.5 rounded-md px-2 py-1.5'
@@ -38,7 +37,6 @@ export const SidebarNav = ({ groups }: SidebarNavProps) => {
           <span aria-hidden>←</span>
           <span>Go Main</span>
         </Link>
-        <ThemeToggle />
       </div>
 
       <nav className='flex flex-col gap-7'>

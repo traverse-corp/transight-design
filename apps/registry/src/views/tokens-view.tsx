@@ -82,7 +82,7 @@ export const TokensView = () => (
           <div key={t.name} className='flex items-baseline gap-4 px-5 py-3'>
             <span className='typo-mono-m12 text-fg-muted w-32 shrink-0'>{t.name}</span>
             <span className='typo-mono-r10 text-fg-muted w-14 shrink-0'>{t.value}</span>
-            <span className={`${t.sizeClass} text-fg-strong truncate font-bold`}>
+            <span className={`${t.sizeClass} text-fg-strong truncate`}>
               TranSight Design
             </span>
           </div>

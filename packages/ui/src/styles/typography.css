@@ -248,16 +248,16 @@
 /* ──────────────────────────────────────────────────────────────────
  * 시맨틱 (크기 + 굵기 + 색까지 완결)
  * ────────────────────────────────────────────────────────────────── */
-@utility text-page-title { @apply typo-eb32 text-cool-grey-11; }
-@utility text-section-title { @apply typo-b24 text-cool-grey-11; }
-@utility text-modal-title { @apply typo-b18 text-cool-grey-10; }
-@utility text-label { @apply typo-sb14 text-cool-grey-11; }
-@utility text-body { @apply typo-m13 text-cool-grey-09; }
-@utility text-subtitle { @apply typo-m14 text-cool-grey-09; }
-@utility text-caption { @apply typo-r12 text-cool-grey-09; }
-@utility text-description { @apply typo-r12 text-cool-grey-07; }
-@utility text-overline { @apply typo-sb9 text-cool-grey-07; }
-@utility text-disabled { @apply typo-r12 text-cool-grey-04; }
+@utility text-page-title { @apply typo-eb32 text-fg-strong; }
+@utility text-section-title { @apply typo-b24 text-fg-strong; }
+@utility text-modal-title { @apply typo-b18 text-fg-strong; }
+@utility text-label { @apply typo-sb14 text-fg-strong; }
+@utility text-body { @apply typo-m13 text-fg-default; }
+@utility text-subtitle { @apply typo-m14 text-fg-default; }
+@utility text-caption { @apply typo-r12 text-fg-default; }
+@utility text-description { @apply typo-r12 text-fg-muted; }
+@utility text-overline { @apply typo-sb9 text-fg-muted; }
+@utility text-disabled { @apply typo-r12 text-fg-disabled; }
 @utility text-error { @apply typo-sb14 text-ui-red; }
 @utility text-link { @apply typo-m14 text-primary-blue-1; }
 

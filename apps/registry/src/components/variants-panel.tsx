@@ -32,10 +32,10 @@ export const VariantsPanel = ({ name }: VariantsPanelProps) => {
         return (
           <div key={groupName}>
             <div className="mb-2 flex items-baseline gap-2">
-              <h3 className="text-fg-muted text-xs font-semibold tracking-wide uppercase">
+              <h3 className="text-fg-muted typo-sb12 tracking-wide uppercase">
                 {GROUP_LABELS[groupName] ?? groupName}
               </h3>
-              <span className="text-fg-muted text-xs">{values.length}개</span>
+              <span className="text-fg-muted typo-r12">{values.length}개</span>
             </div>
             <ul className="flex flex-wrap gap-1.5">
               {values.map((value) => {
@@ -43,7 +43,7 @@ export const VariantsPanel = ({ name }: VariantsPanelProps) => {
                 return (
                   <li
                     key={value}
-                    className={`rounded-md border px-2 py-0.5 font-mono text-xs ${
+                    className={`rounded-md border px-2 py-0.5 typo-mono-m12 ${
                       isDefault
                         ? 'border-primary-blue-1 bg-primary-blue-opacity-10 text-primary-blue-1'
                         : 'border-border-default bg-bg-subtle'

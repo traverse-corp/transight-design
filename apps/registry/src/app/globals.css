@@ -53,7 +53,7 @@ body {
  * ──────────────────────────────────────────────────────────────── */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-cool-grey-04) transparent;
+  scrollbar-color: var(--border-default) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -66,10 +66,10 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--color-cool-grey-04);
+  background-color: var(--border-default);
   border-radius: 9999px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-cool-grey-06);
+  background-color: var(--border-strong);
 }

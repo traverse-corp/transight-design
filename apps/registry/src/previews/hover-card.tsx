@@ -28,8 +28,8 @@ export const Preview = ({ selections = {} }: PreviewProps) => (
       shape={(selections.shape as Shape) ?? undefined}
       size={(selections.size as Size) ?? undefined}
     >
-      <p className='typo-sb14 text-cool-grey-11'>Traverse Corp</p>
-      <p className='typo-m12 text-cool-grey-09'>블록체인 트랜잭션 분석 도구를 만듭니다.</p>
+      <p className='typo-sb14 text-fg-strong'>Traverse Corp</p>
+      <p className='typo-m12 text-fg-default'>블록체인 트랜잭션 분석 도구를 만듭니다.</p>
     </HoverCardContent>
   </HoverCard>
 )

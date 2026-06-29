@@ -31,7 +31,7 @@ export const Preview = ({ selections = {} }: PreviewProps) => (
         <SheetDescription>계정 정보를 확인하고 수정합니다.</SheetDescription>
       </SheetHeader>
       <div className='px-4 py-2'>
-        <p className='typo-m13 text-cool-grey-09'>시트 본문 영역입니다.</p>
+        <p className='typo-m13 text-fg-default'>시트 본문 영역입니다.</p>
       </div>
       <SheetFooter>
         <SheetClose render={<Button>저장</Button>} />

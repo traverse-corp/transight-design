@@ -10,13 +10,13 @@ interface CodeBlockProps {
 export const CodeBlock = ({ code, language, filename, maxHeight = '36rem' }: CodeBlockProps) => (
   <div className='overflow-hidden rounded-lg border border-border-default'>
     <div className='flex items-center justify-between border-b border-border-default bg-bg-subtle px-4 py-2'>
-      <span className='font-mono text-xs text-fg-muted'>
+      <span className='typo-mono-m12 text-fg-muted'>
         {filename ?? language ?? 'code'}
       </span>
       <CopyButton text={code} />
     </div>
     <pre
-      className='overflow-auto bg-bg-inverse p-4 text-xs leading-relaxed text-cool-grey-03'
+      className='overflow-auto bg-bg-inverse p-4 typo-mono-m12 leading-relaxed text-fg-inverse'
       style={{ maxHeight }}
     >
       <code>{code}</code>

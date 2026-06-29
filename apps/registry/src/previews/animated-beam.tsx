@@ -11,7 +11,7 @@ export const Preview = () => {
   return (
     <div
       ref={containerRef}
-      className='border-cool-grey-04 relative flex h-32 w-80 items-center justify-between rounded-lg border bg-white px-8'
+      className='border-border-default relative flex h-32 w-80 items-center justify-between rounded-lg border bg-bg-card px-8'
     >
       <div
         ref={fromRef}

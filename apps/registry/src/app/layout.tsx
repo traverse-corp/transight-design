@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { IconSprite } from '@/icons/sprite.gen'
 import { I18nProvider } from '@/components/i18n-provider'
 import { ThemeProvider } from '@/components/theme-provider'
+import { ThemeToggle } from '@/components/theme-toggle'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -36,6 +37,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
       <IconSprite />
       <ThemeProvider>
         <I18nProvider>{children}</I18nProvider>
+        <div className='fixed top-4 right-4 z-50'>
+          <ThemeToggle />
+        </div>
       </ThemeProvider>
     </body>
   </html>

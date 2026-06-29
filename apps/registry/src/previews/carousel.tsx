@@ -11,8 +11,8 @@ export const Preview = () => (
     <CarouselContent>
       {[1, 2, 3, 4, 5].map((n) => (
         <CarouselItem key={n}>
-          <div className='bg-cool-grey-02 border-cool-grey-04 flex h-32 items-center justify-center rounded-md border'>
-            <span className='typo-eb32 text-cool-grey-09'>{n}</span>
+          <div className='bg-bg-muted border-border-default flex h-32 items-center justify-center rounded-md border'>
+            <span className='typo-eb32 text-fg-default'>{n}</span>
           </div>
         </CarouselItem>
       ))}

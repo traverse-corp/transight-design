@@ -51,7 +51,7 @@ export const TypoView = () => {
     <div className='flex flex-col gap-6'>
       {/* ── Preview / Code 토글 ──────────────── */}
       <section>
-        <h2 className='typo-12 font-semibold text-fg-muted mb-3 uppercase tracking-wide'>Preview</h2>
+        <h2 className='typo-sb12 text-fg-muted mb-3 uppercase tracking-wide'>Preview</h2>
         <PreviewModePanel
           preview={
             <div className='flex flex-col gap-2'>
@@ -70,7 +70,7 @@ export const TypoView = () => {
       {/* ── Size × Weight 그리드 ──────────────── */}
       <section className='flex flex-col gap-5'>
         <div>
-          <h3 className='typo-12 font-semibold text-fg-default mb-2'>Size (px)</h3>
+          <h3 className='typo-sb12 text-fg-default mb-2'>Size (px)</h3>
           <div className='flex flex-wrap gap-1.5'>
             {SIZES.map((s) => {
               const active = !extra && s === size
@@ -96,7 +96,7 @@ export const TypoView = () => {
         </div>
 
         <div>
-          <h3 className='typo-12 font-semibold text-fg-default mb-2'>Weight</h3>
+          <h3 className='typo-sb12 text-fg-default mb-2'>Weight</h3>
           <div className='flex flex-wrap gap-1.5'>
             {WEIGHTS.map((w) => {
               const active = !extra && w.value === weight
@@ -131,7 +131,7 @@ export const TypoView = () => {
           { label: 'Monospace', entries: MONO }
         ].map((group) => (
           <div key={group.label}>
-            <h3 className='typo-12 font-semibold text-fg-default mb-2'>{group.label}</h3>
+            <h3 className='typo-sb12 text-fg-default mb-2'>{group.label}</h3>
             <div className='flex flex-wrap gap-1.5'>
               {group.entries.map((cls) => {
                 const active = extra === cls

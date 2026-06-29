@@ -11,7 +11,7 @@ type DecoDir = NonNullable<Parameters<typeof Input>[0]['decoDir']>
 
 export const Preview = ({ selections = {} }: PreviewProps) => {
   const decoratorOn = selections.decorator === 'on'
-  const decorator = decoratorOn ? <Mail className='text-cool-grey-07 h-4 w-4' /> : undefined
+  const decorator = decoratorOn ? <Mail className='text-fg-muted h-4 w-4' /> : undefined
 
   return (
     <Input
