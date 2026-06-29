@@ -110,6 +110,141 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ---
 
+## 1.6 타이포 — `typo-{w}{s}` 강제 (HARD RULE)
+
+**모든 텍스트는 `typo-{weight}{size}` 합성 클래스 하나로만 표현한다.**
+Tailwind의 `text-sm`, `font-bold`, `text-[14px]`, `leading-*`, `font-semibold` 같은
+원시 클래스로 굵기/크기/line-height를 따로 지정하는 것은 **전면 금지**.
+
+### 형식
+
+`typo-{weight}{size}` — 9 weight × 15 size 전 조합.
+
+| 굵기 약자 | 값 |
+|---|---|
+| `t` | 100 thin |
+| `el` | 200 extralight |
+| `l` | 300 light |
+| `r` | 400 regular |
+| `m` | 500 medium |
+| `sb` | 600 semibold |
+| `b` | 700 bold |
+| `eb` | 800 extrabold |
+| `bk` | 900 black |
+
+크기 그리드: `8 / 9 / 10 / 11 / 12 / 13 / 14 / 15 / 16` (1px 간격), `18`, `24 / 32 / 40 / 48 / 56` (8px 간격).
+**그리드 밖 임의 숫자 금지** (`typo-m17`, `typo-r25` 같은 건 클래스가 존재하지 않음).
+
+모노스페이스: `typo-mono-{w}{s}` — 예: `typo-mono-m12`, `typo-mono-b14`.
+
+### 시맨틱 우선
+
+의미가 명확하면 시맨틱 프리셋을 우선 사용한다. (내부적으로 `typo-*` 매핑)
+
+| 용도 | 클래스 |
+|---|---|
+| 페이지 제목 | `text-page-title` |
+| 섹션 제목 | `text-section-title` |
+| 서브타이틀 | `text-subtitle` |
+| 본문 | `text-body` |
+| 폼 라벨 | `text-label` |
+| 보조 설명 / 캡션 | `text-description` |
+| 오버라인 | `text-overline` |
+
+시맨틱이 안 맞으면 그제서야 `typo-{w}{s}`.
+
+### ❌ 금지 예시
+
+```tsx
+<p className="text-sm font-semibold">…</p>          // ❌ Tailwind 원시
+<p className="text-[14px] leading-5">…</p>          // ❌ 임의 픽셀
+<p className="typo-14 font-semibold">…</p>          // ❌ 분리 표기
+<p className="typo-m17">…</p>                       // ❌ 그리드 밖
+<p style={{ fontSize: '14px', fontWeight: 600 }}>   // ❌ inline 고정
+```
+
+### ✅ 올바른 예시
+
+```tsx
+<h2 className="text-section-title">섹션 제목</h2>
+<p className="text-body">본문 문장.</p>
+<span className="typo-sb14 text-fg-default">강조 14 semibold</span>
+<code className="typo-mono-m12 text-fg-default">code</code>
+```
+
+---
+
+## 1.7 레이아웃 — flex + gap 강제 (HARD RULE)
+
+**모든 정렬은 flexbox로**, **요소 간 간격은 `margin`이 아니라 `gap`으로** 제어한다.
+이는 다음 두 가지를 동시에 강제한다:
+
+1. 정렬에 `block` + `margin: auto`, `display: inline-block`, `float`, `position: absolute(트릭용)` 같은 우회 금지
+2. 자식 사이 간격에 `space-x-*`, `space-y-*`, `mt-*`, `ml-*` 같은 margin 누적 금지 — **무조건 부모의 `gap-*`**
+
+### 정렬은 flex 단축 유틸 우선
+
+`flex.css`에 미리 정의된 `flex-{justify}-{align}` 단축 클래스를 사용한다.
+
+| 자주 쓰는 조합 | 클래스 |
+|---|---|
+| 좌우 split, 세로 중앙 | `flex-between-center` |
+| 가로/세로 모두 중앙 | `flex-center` |
+| 왼쪽 정렬, 세로 중앙 | `flex-start-center` |
+| 오른쪽 정렬, 세로 중앙 | `flex-end-center` |
+| 세로 방향, 가로 중앙 | `flex-col-center` |
+| 세로 방향, 왼쪽 정렬 | `flex-col-start` |
+
+`flex.css`에 없는 조합만 `flex items-* justify-*`로 풀어쓴다.
+
+### 간격은 항상 `gap-*`
+
+```tsx
+// ✅ 올바름 — 부모의 gap 한 줄
+<div className="flex-start-center gap-2">
+  <Icon src="ic-info" />
+  <span className="text-body">설명</span>
+</div>
+
+<div className="flex flex-col gap-4">
+  <Card />
+  <Card />
+  <Card />
+</div>
+```
+
+### ❌ 금지 예시
+
+```tsx
+// ❌ space-x / space-y — gap으로
+<div className="flex space-x-2">…</div>
+
+// ❌ 자식마다 mt/ml/mr — 부모의 gap으로
+<div className="flex flex-col">
+  <Card />
+  <Card className="mt-4" />
+  <Card className="mt-4" />
+</div>
+
+// ❌ block + margin auto — flex-center로
+<div className="block">
+  <div className="mx-auto w-fit">…</div>
+</div>
+
+// ❌ inline-block 정렬 트릭 — flex로
+<span className="inline-block align-middle">…</span>
+```
+
+### `margin` 허용 케이스 (예외)
+
+다음에만 `margin`을 쓴다. 그 외엔 전부 `gap`.
+
+- **컴포넌트 외부와의 간격** (섹션 사이 간격 등 — 부모 컨테이너의 gap으로 표현 불가능할 때)
+- **auto margin으로 의미상 한 쪽 끝으로 밀어야 할 때** — 예: flex 자식 중 하나에 `ml-auto`로 right-align
+- 그 외 자식 간 누적 간격은 절대 margin 금지
+
+---
+
 ## 2. 컴포넌트 사용 — 임포트 경로
 
 설치된 컴포넌트는 카테고리별로 분리되어 떨어진다.
@@ -275,12 +410,14 @@ import { ChevronDown, X, Check, Search } from 'lucide-react'
 - [ ] 색 변경에 raw hex / Tailwind 기본 팔레트(`text-blue-500`)를 쓰지 않았는가?
 - [ ] 회색/배경/테두리에 raw 스케일(`bg-cool-grey-*`, `bg-white`, `text-white`)이 아닌 시맨틱 토큰(`bg-bg-card`, `text-fg-default`, `border-border-default` …)을 썼는가? (다크모드 호환)
 - [ ] 다크모드를 쓰는 앱이면 `ThemeProvider`(`attribute="class"`)가 마운트돼 있는가?
+- [ ] **모든 텍스트가 `typo-{w}{s}` 또는 `text-*` 시맨틱 프리셋인가?** (`text-sm`, `font-bold`, `text-[14px]`, `leading-*` 같은 Tailwind 원시 금지)
+- [ ] **모든 정렬이 flex(`flex-*-*` 단축 우선)이고, 자식 간 간격이 `gap-*`인가?** (`space-x-*`, `space-y-*`, 자식의 `mt-*`/`ml-*` 누적 금지)
 - [ ] Style prop이 컴포넌트가 실제로 지원하는 축인가?
 - [ ] 새 variant가 필요하면 `<component>VariantPresets` 객체에 한 줄 추가했는가?
 - [ ] Icon이 도메인 시그니처면 `<Icon>`, 범용 UI면 `lucide-react`를 썼는가?
 - [ ] `<IconSprite />`를 중복 마운트하지 않았는가?
 
-위 9개 중 하나라도 실패하면 출력을 수정한 뒤 다시 self-check.
+위 11개 중 하나라도 실패하면 출력을 수정한 뒤 다시 self-check.
 
 ---
 
