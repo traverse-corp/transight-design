@@ -115,15 +115,21 @@
 | 작은 보조 설명 | `<p className="text-description">` |
 | 섹션 헤더 | `<h2 className="text-section-title">` |
 | 폼 라벨 | `<label className="text-label">` |
-| 코드 스니펫 | `<code className="typo-mono-m12 text-cool-grey-09">` |
+| 코드 스니펫 | `<code className="typo-mono-m12 text-fg-default">` |
 | 임의 크기·굵기 조합 | `<span className="typo-l15">` |
-| 카드 배경 (밝음) | `bg-cool-grey-white` 또는 `bg-white` |
-| 카드 배경 (옅은 회색) | `bg-cool-grey-02` |
-| 카드 테두리 | `border border-cool-grey-04` |
-| hover 배경 | `hover:bg-cool-grey-01` 또는 `hover:bg-primary-blue-opacity-10` |
+| 페이지 배경 | `bg-bg-page` |
+| 카드/팝업/dialog 배경 | `bg-bg-card` |
+| 더 옅은 면 (stripe 등) | `bg-bg-subtle` |
+| hover/소프트 강조 배경 | `bg-bg-muted` 또는 `hover:bg-hover-bg` |
+| 어두운 표면 (sidebar, tooltip) | `bg-bg-inverse text-fg-inverse` |
+| 카드 테두리 (기본) | `border border-border-default` |
+| 옅은 테두리 (구분선) | `border border-border-subtle` |
+| 강조 테두리 | `border border-border-strong` |
 | 위험 액션 | `text-ui-red`, `bg-ui-red`, `border-ui-red` |
 | 성공 액션 | `text-ui-green`, `bg-ui-pale-green` |
-| 주 액션 (CTA) | `bg-primary-blue-1 text-cool-grey-white` |
+| 주 액션 (CTA) | `bg-primary-blue-1 text-fg-inverse` |
+| 포커스 링 | `ring-2 ring-ring-focus` |
+| 그림자 (카드/팝업/dialog) | `shadow-card` / `shadow-popover` / `shadow-dialog` |
 | 좌우 split 정렬 | `flex-between-center` |
 | 가운데 정렬 | `flex-center` |
 | 세로 중앙 | `flex-col-center` |
@@ -134,10 +140,10 @@
 
 코드 생성 직전 다음을 확인한다:
 
-- [ ] 모든 색이 토큰 이름으로 표현됐는가? (`bg-cool-grey-*`, `text-ui-*`, `border-primary-*`)
+- [ ] 회색/배경/테두리에 raw 스케일(`bg-cool-grey-*`, `bg-white`, `text-white`)이 아닌 시맨틱 토큰(`bg-bg-card`, `text-fg-default`, `border-border-default` …)을 썼는가?
+- [ ] 브랜드/스테이터스 토큰(`text-primary-blue-1`, `bg-ui-red` …)으로만 색을 표현했는가? (Tailwind 기본 팔레트·raw hex 없음)
 - [ ] 모든 텍스트에 `typo-*` 또는 `text-*` 프리셋이 적용됐는가?
 - [ ] inline `style` 사용처가 동적 값으로 정당화되는가?
-- [ ] Tailwind 원시 클래스(`text-blue-500`, `font-bold` 등) 누락 없는가?
 - [ ] `flex items-center justify-between` 같이 풀어쓴 게 `flex-between-center`로 대체 가능한가?
 
 위 5개 중 하나라도 실패하면 출력을 수정한 뒤 다시 self-check.
@@ -148,11 +154,16 @@
 
 | Anti-pattern | Fix |
 |--------------|-----|
-| `text-sm text-gray-600` | `text-description` 또는 `typo-m13 text-cool-grey-07` |
+| `text-sm text-gray-600` | `text-description` 또는 `typo-m13 text-fg-muted` |
 | `text-xs font-semibold uppercase` | `text-overline` |
 | `text-2xl font-bold` | `typo-b24` 또는 `text-section-title` |
-| `bg-white border border-gray-200` | `bg-white border border-cool-grey-04` |
+| `bg-white border border-gray-200` | `bg-bg-card border border-border-default` |
+| `text-cool-grey-09` | `text-fg-default` |
+| `text-cool-grey-11` | `text-fg-strong` |
+| `text-cool-grey-07` | `text-fg-muted` |
+| `border-cool-grey-04` | `border-border-default` |
+| `bg-cool-grey-02` | `bg-bg-muted` |
 | `text-red-500` | `text-ui-red` |
 | `bg-blue-50 text-blue-700` | `bg-primary-blue-opacity-10 text-primary-blue-1` |
 | `flex items-center justify-center` | `flex-center` |
-| `style={{ color: '#131b2d' }}` | `className="text-cool-grey-11"` |
+| `style={{ color: '#131b2d' }}` | `className="text-fg-strong"` |

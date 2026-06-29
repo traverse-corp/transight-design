@@ -46,6 +46,7 @@ svg/                          아이콘 시스템 원본 SVG
 
 - 색상은 Transight 토큰만 사용합니다.
 - raw hex, rgb, Tailwind 기본 팔레트(`gray-*`, `blue-*` 등)를 새 코드에 넣지 않습니다.
+- 회색·배경·테두리는 **시맨틱 토큰**(`text-fg-*`, `bg-bg-*`, `border-border-*`)을 사용합니다. raw 회색 스케일(`bg-cool-grey-*`, `bg-white`, `text-white`)은 다크모드에서 깨지므로 금지합니다. 브랜드/스테이터스 토큰(`primary-blue-*`, `ui-*`)은 그대로 사용 OK.
 - 타이포는 `typo-*` 또는 `text-*` 프리셋을 사용합니다.
 - 정렬은 가능하면 `flex-between-center`, `flex-center` 같은 flex 유틸을 사용합니다.
 - inline style은 런타임 동적 값처럼 Tailwind로 표현하기 어려운 경우에만 사용합니다.
