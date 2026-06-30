@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 
 // 에러 표시는 textarea의 aria-invalid="true"로 자동 적용 (input과 동일 a11y 패턴).
 const textareaClassVariants = cva(
-  'placeholder:text-fg-muted field-sizing-content flex w-full border bg-bg-card shadow-sm transition-colors outline-none border-border-subtle focus:border-primary-blue-1 aria-invalid:border-ui-red aria-invalid:focus:border-ui-red aria-invalid:shadow-[0_0_0_1px_rgba(239,68,68,0.1)] disabled:cursor-not-allowed disabled:opacity-50',
+  'placeholder:text-fg-muted field-sizing-content flex w-full border bg-bg-card dark:bg-bg-muted shadow-sm transition-colors outline-none border-border-subtle focus:border-primary-blue-1 aria-invalid:border-ui-red aria-invalid:focus:border-ui-red aria-invalid:shadow-[0_0_0_1px_rgba(239,68,68,0.1)] disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       shape: {
