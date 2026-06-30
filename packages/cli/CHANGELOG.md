@@ -1,5 +1,19 @@
 # @transight-design/cli
 
+## 0.3.0
+
+### Minor Changes
+
+- `add` 명령에 `--overwrite` 옵션 추가. shadcn의 동일 옵션을 pass-through하여 기존 설치 파일을 prompt 없이 덮어쓴다. 이미 설치된 컴포넌트를 최신 디자인 시스템 SoT로 업데이트할 때 사용:
+
+  ```bash
+  # 전체 번들 재설치 + 덮어쓰기 (디자인 시스템 변경 사항 일괄 반영)
+  npx @transight-design/cli add transight-design --overwrite
+
+  # 특정 컴포넌트만 업데이트
+  npx @transight-design/cli add button card --overwrite
+  ```
+
 ## 0.2.1
 
 ### Patch Changes
