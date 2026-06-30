@@ -3,23 +3,34 @@ import { Boxes, LayoutGrid, Palette } from 'lucide-react'
 import { CodeBlock } from '@/components/code-block'
 import { InstallCommands } from '@/components/install-commands'
 
-const CLI_INSTALL = `# Essential Pack만 먼저 설치
-npx @transight-design/cli add essential
+// 1. 번들 한 방 설치
+const CLI_BUNDLE = `# 디자인 시스템 전체 번들 한 방 설치
+# (토큰 · 폰트 · lib · hook · agent · icon + 정리 완료된 컴포넌트 일괄)
+npx @transight-design/cli init`
 
-# 전체 번들 한 방 설치
-npx @transight-design/cli init
+const SHADCN_BUNDLE = `# 디자인 시스템 전체 번들 한 방 설치
+npx shadcn@latest add traverse-corp/transight-design/transight-design`
 
-# 또는 개별 컴포넌트
+// 2. 업데이트 (이미 설치된 코드를 최신 SoT로 덮어쓰기)
+const CLI_UPDATE = `# 전체 번들 재설치 + 덮어쓰기 (디자인 시스템 변경 사항 반영)
+npx @transight-design/cli add transight-design --overwrite
+
+# 특정 컴포넌트만 업데이트
+npx @transight-design/cli add button card --overwrite`
+
+const SHADCN_UPDATE = `# 전체 번들 재설치 + 덮어쓰기
+npx shadcn@latest add traverse-corp/transight-design/transight-design --overwrite
+
+# 특정 컴포넌트만 업데이트
+npx shadcn@latest add traverse-corp/transight-design/button --overwrite`
+
+// 3. 개별 컴포넌트 설치
+const CLI_PICK = `# 필요한 컴포넌트만 골라 설치
 npx @transight-design/cli add button card dialog`
 
-const SHADCN_INSTALL = `# Essential Pack만 먼저 설치
-npx shadcn@latest add traverse-corp/transight-design/essential
-
-# 전체 번들
-npx shadcn@latest add traverse-corp/transight-design/transight-design
-
-# 또는 개별 컴포넌트
-npx shadcn@latest add traverse-corp/transight-design/button`
+const SHADCN_PICK = `# 필요한 컴포넌트만 골라 설치
+npx shadcn@latest add traverse-corp/transight-design/button
+npx shadcn@latest add traverse-corp/transight-design/card`
 
 const CSS_VITE = `/* src/index.css */
 @import "./styles/index.css";`
@@ -42,10 +53,6 @@ export default function App() {
     </Card>
   )
 }`
-
-const ESSENTIAL_GUIDE = `# Essential Pack
-button, badge, input, label, textarea, checkbox, radio-group, select, switch,
-dialog, tooltip, separator, skeleton, spinner`
 
 const Home = () => (
   <main className="mx-auto max-w-4xl px-6 py-20">
@@ -124,19 +131,45 @@ const Home = () => (
     {/* 설치 */}
     <section className="mb-12">
       <h2 className="typo-b24 text-fg-strong mb-4">설치</h2>
+
+      {/* 1. 번들 한 방 설치 */}
+      <h3 className="typo-sb14 text-fg-strong mt-4 mb-2">1. 번들 한 방 설치</h3>
       <p className="typo-r12 text-fg-muted mb-3">
-        처음 시작할 때는 Essential Pack을 먼저 설치하세요. 버튼, 입력, 선택 컨트롤, 피드백
-        컴포넌트처럼 서비스 화면에 거의 항상 필요한 기본 컴포넌트만 들어갑니다.
+        디자인 시스템 전체(토큰 · 폰트 · lib · hook · agent · icon + 정리 완료된 컴포넌트)를
+        한 번에 깝니다. 처음 시작할 때 권장.
       </p>
       <InstallCommands
         options={[
-          { label: 'Transight CLI', code: CLI_INSTALL },
-          { label: 'shadcn', code: SHADCN_INSTALL }
+          { label: 'Transight CLI', code: CLI_BUNDLE },
+          { label: 'shadcn', code: SHADCN_BUNDLE }
         ]}
       />
-      <div className="mt-3">
-        <CodeBlock code={ESSENTIAL_GUIDE} language="txt" maxHeight="auto" />
-      </div>
+
+      {/* 2. 업데이트 */}
+      <h3 className="typo-sb14 text-fg-strong mt-8 mb-2">2. 업데이트</h3>
+      <p className="typo-r12 text-fg-muted mb-3">
+        디자인 시스템 SoT(토큰/컴포넌트)에 변경이 있을 때 기존 설치 파일을 최신으로 덮어씁니다.
+        <code className="typo-m12-mono text-fg-default mx-1">--overwrite</code>로 prompt 없이 일괄 처리.
+      </p>
+      <InstallCommands
+        options={[
+          { label: 'Transight CLI', code: CLI_UPDATE },
+          { label: 'shadcn', code: SHADCN_UPDATE }
+        ]}
+      />
+
+      {/* 3. 개별 컴포넌트 설치 */}
+      <h3 className="typo-sb14 text-fg-strong mt-8 mb-2">3. 개별 컴포넌트 설치</h3>
+      <p className="typo-r12 text-fg-muted mb-3">
+        번들에 빠진 컴포넌트(정리 중인 항목)나 특정 컴포넌트만 골라 깔 때 사용.
+        여러 개를 공백으로 나열해 한 번에 설치할 수 있습니다.
+      </p>
+      <InstallCommands
+        options={[
+          { label: 'Transight CLI', code: CLI_PICK },
+          { label: 'shadcn', code: SHADCN_PICK }
+        ]}
+      />
     </section>
 
     {/* 사용법 */}

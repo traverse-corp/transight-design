@@ -55,6 +55,44 @@ const ESSENTIAL_COMPONENTS = [
 ]
 
 /**
+ * 정리 완료된 컴포넌트 화이트리스트 — 번들(essential/base/transight-design)에
+ * 포함되는 컴포넌트만 등록한다. 각 컴포넌트 item 자체는 그대로 registry에
+ * 등록되어 `npx ... add <name>`로 직접 설치 가능하지만, "번들 한 방 설치"에는
+ * 정리 끝난 것만 들어가 미정리 컴포넌트(Calendar / CopyButton / Dropzone 등)가
+ * 자동으로 깔리지 않는다.
+ *
+ * apps/registry/src/lib/registry.ts의 VISIBLE_COMPONENTS와 동기화 유지.
+ * 새 컴포넌트 정리가 끝나면 양쪽 set에 한 줄씩 추가.
+ */
+const READY_COMPONENTS = new Set([
+  'accordion',
+  'alert',
+  'avatar',
+  'badge',
+  'button',
+  'card',
+  'checkbox',
+  'dialog',
+  'dropdown-menu',
+  'hover-card',
+  'input',
+  'label',
+  'password-input',
+  'popover',
+  'radio-group',
+  'search-input',
+  'select',
+  'separator',
+  'sheet',
+  'skeleton',
+  'spinner',
+  'switch',
+  'tabs',
+  'textarea',
+  'tooltip'
+])
+
+/**
  * shadcn 표준 base 컴포넌트 화이트리스트 (PHASE_0_INVENTORY.md §3.1).
  * apps/registry/src/lib/registry.ts의 BASE_COMPONENTS와 동일하게 유지할 것.
  * 이 목록에 속하면 'base' 폴더, 그 외 registry:ui 아이템은 'custom' 폴더로 설치된다.
@@ -403,28 +441,35 @@ const main = () => {
   })
 
   // ── 6b. Base 번들 (registry:item) ───────────────
-  // shadcn 표준 base 컴포넌트(BASE_COMPONENTS) + AI Agent 가이드. 실제 등록된 아이템만 포함.
+  // shadcn 표준 base 컴포넌트 ∩ READY_COMPONENTS(정리 완료) + AI Agent 가이드.
+  // 미정리 컴포넌트는 번들에서 제외 (직접 add 호출은 여전히 가능).
   const existingNames = new Set(items.map((i) => i.name))
   items.push({
     name: 'base',
     type: 'registry:item',
     title: 'Base Components',
-    description: 'shadcn 표준 base 컴포넌트 묶음 + AI Agent 가이드',
+    description: 'shadcn 표준 base 컴포넌트(정리 완료분) + AI Agent 가이드',
     registryDependencies: [
       ...[...BASE_COMPONENTS]
-        .filter((n) => existingNames.has(n))
+        .filter((n) => existingNames.has(n) && READY_COMPONENTS.has(n))
         .map((name) => `${REGISTRY_DEP_PREFIX}/${name}`),
       `${REGISTRY_DEP_PREFIX}/agent`
     ].sort()
   })
 
   // ── 7. 전체 번들 (registry:item) ───────────────
-  const allRegistryDeps = items.map((i) => `${REGISTRY_DEP_PREFIX}/${i.name}`).sort()
+  // registry:ui 중 READY_COMPONENTS만 포함. styles/lib/hook/agent/icon은 인프라라 전체 포함.
+  // 미정리 컴포넌트(Calendar/CopyButton/Dropzone 등)는 자동으로 안 깔림.
+  const allRegistryDeps = items
+    .filter((i) => i.type !== 'registry:ui' || i.name === 'icon' || READY_COMPONENTS.has(i.name))
+    .map((i) => `${REGISTRY_DEP_PREFIX}/${i.name}`)
+    .sort()
   items.push({
     name: REGISTRY_NAME,
     type: 'registry:item',
-    title: 'Transight Design System (전체)',
-    description: '디자인 시스템 전체 번들 — 토큰, 폰트, lib, hook, 컴포넌트 전체 설치',
+    title: 'Transight Design System (전체 번들)',
+    description:
+      '토큰 · 폰트 · lib · hook · agent · icon + 정리 완료된 컴포넌트 일괄 설치. 미정리 컴포넌트는 직접 add로 깔 것',
     registryDependencies: allRegistryDeps
   })
 
