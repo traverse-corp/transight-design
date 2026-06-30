@@ -35,7 +35,8 @@ npm run build                # 전 패키지 빌드
 npm run registry:generate    # src/ → registry.json
 npm run registry:validate    # shadcn 스키마 검증
 npm run registry:build       # registry.json → public/r/*.json
-npm run build                # generate + build
+npm run registry:transform   # public/r/*.json 내부 import 경로 후처리
+npm run build                # generate + build + transform
 
 # apps/registry
 npm run dev                  # 문서 사이트 localhost:3000
@@ -55,21 +56,30 @@ npm run dev                  # tsx로 직접 실행
 - `cn` 유틸 사용 (`@/lib/utils`)
 - variant는 `cva` 사용 (`class-variance-authority`)
 - Base UI 프리미티브 사용 (`@base-ui/react/*`)
-- 색상은 토큰 (`bg-primary`, `text-cool-grey-09`, `text-ui-red` 등) — 임의 hex 금지
+- 색상은 시맨틱/브랜드 토큰 (`bg-bg-card`, `text-fg-default`, `text-ui-red` 등) — 임의 hex 금지
 - 'use client'는 hook·이벤트 핸들러·브라우저 API 사용 시만
 
-분류:
-- shadcn 표준 컴포넌트 → kebab-case (`my-component.tsx`)
-- 자체 제작 → PascalCase (`MyComponent.tsx`)
+분류와 노출 상태는 `packages/ui/src/registry/component-manifest.json`에 등록한다.
 
-자체 제작인 경우 PHASE_0_INVENTORY.md §3.2 / `apps/registry/src/lib/registry.ts`의 `BASE_COMPONENTS`는 **수정 안 함** — kebab-case라도 base 목록에 없으면 자동으로 Custom 분류됨.
+```json
+"password-input": { "category": "custom", "ready": true, "essential": false }
+```
+
+- `category`: 설치 위치 (`base` 또는 `custom`)
+- `ready`: 문서 사이드바와 번들 포함 여부
+- `essential`: Essential Pack 포함 여부
+
+컴포넌트 파일명은 기존 관례를 따른다.
+- shadcn 표준 컴포넌트 → kebab-case (`my-component.tsx`)
+- 자체 제작 → PascalCase 또는 기존 custom 관례
 
 ### 2. 레지스트리 재생성
 
 ```bash
-cd packages/ui
-npm run build   # registry:generate + registry:build
+npm run build --workspace=@transight-design/ui
 ```
+
+이 명령은 `registry:generate`, `registry:build`, `registry:transform`을 순서대로 실행한다.
 
 `scripts/build-registry.mjs`가 import를 자동 파싱하여:
 - 외부 npm 패키지 → `dependencies`

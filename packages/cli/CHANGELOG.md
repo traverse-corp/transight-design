@@ -1,5 +1,11 @@
 # @transight-design/cli
 
+## 0.4.0
+
+### Minor Changes
+
+- Adds `transight-design update <component...>` to update installed component files without overwriting registry dependencies such as styles, libs, or hooks.
+
 ## 0.3.0
 
 ### Minor Changes
@@ -10,7 +16,7 @@
   # 전체 번들 재설치 + 덮어쓰기 (디자인 시스템 변경 사항 일괄 반영)
   npx @transight-design/cli add transight-design --overwrite
 
-  # 특정 컴포넌트만 업데이트
+  # 컴포넌트와 그 registryDependencies까지 shadcn 기준으로 덮어쓰기
   npx @transight-design/cli add button card --overwrite
   ```
 

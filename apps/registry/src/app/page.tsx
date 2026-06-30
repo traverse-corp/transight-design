@@ -11,17 +11,19 @@ npx @transight-design/cli init`
 const SHADCN_BUNDLE = `# 디자인 시스템 전체 번들 한 방 설치
 npx shadcn@latest add traverse-corp/transight-design/transight-design`
 
-// 2. 업데이트 (이미 설치된 코드를 최신 SoT로 덮어쓰기)
-const CLI_UPDATE = `# 전체 번들 재설치 + 덮어쓰기 (디자인 시스템 변경 사항 반영)
-npx @transight-design/cli add transight-design --overwrite
+// 2. 업데이트
+const CLI_UPDATE = `# 이미 설치된 컴포넌트 파일만 업데이트
+# styles/lib/hook 같은 dependencies는 덮어쓰지 않음
+npx @transight-design/cli update button
 
-# 특정 컴포넌트만 업데이트
-npx @transight-design/cli add button card --overwrite`
+# 여러 컴포넌트 파일만 업데이트
+npx @transight-design/cli update button card`
 
 const SHADCN_UPDATE = `# 전체 번들 재설치 + 덮어쓰기
+# registryDependencies(styles/lib/hook 등)까지 덮어쓸 수 있음
 npx shadcn@latest add traverse-corp/transight-design/transight-design --overwrite
 
-# 특정 컴포넌트만 업데이트
+# 컴포넌트와 registryDependencies까지 shadcn 기준으로 덮어쓰기
 npx shadcn@latest add traverse-corp/transight-design/button --overwrite`
 
 // 3. 개별 컴포넌트 설치
@@ -148,8 +150,9 @@ const Home = () => (
       {/* 2. 업데이트 */}
       <h3 className="typo-sb14 text-fg-strong mt-8 mb-2">2. 업데이트</h3>
       <p className="typo-r12 text-fg-muted mb-3">
-        디자인 시스템 SoT(토큰/컴포넌트)에 변경이 있을 때 기존 설치 파일을 최신으로 덮어씁니다.
-        <code className="typo-m12-mono text-fg-default mx-1">--overwrite</code>로 prompt 없이 일괄 처리.
+        이미 설치된 컴포넌트만 최신 SoT로 맞출 때는 Transight CLI의{' '}
+        <code className="typo-m12-mono text-fg-default">update</code>를 사용합니다. 이 명령은
+        대상 컴포넌트 파일만 덮어쓰고 styles/lib/hook 같은 의존 파일은 건드리지 않습니다.
       </p>
       <InstallCommands
         options={[

@@ -37,109 +37,24 @@ const REGISTRY_HOMEPAGE = 'https://github.com/traverse-corp/transight-design'
  * 같은 레지스트리 안에서도 'owner/repo/item' 형태로 풀 명시가 필요.
  */
 const REGISTRY_DEP_PREFIX = 'traverse-corp/transight-design'
-const ESSENTIAL_COMPONENTS = [
-  'button',
-  'badge',
-  'input',
-  'label',
-  'textarea',
-  'checkbox',
-  'radio-group',
-  'select',
-  'switch',
-  'dialog',
-  'tooltip',
-  'separator',
-  'skeleton',
-  'spinner'
-]
+const COMPONENT_MANIFEST = JSON.parse(
+  readFileSync(join(SRC, 'registry', 'component-manifest.json'), 'utf-8')
+)
 
-/**
- * 정리 완료된 컴포넌트 화이트리스트 — 번들(essential/base/transight-design)에
- * 포함되는 컴포넌트만 등록한다. 각 컴포넌트 item 자체는 그대로 registry에
- * 등록되어 `npx ... add <name>`로 직접 설치 가능하지만, "번들 한 방 설치"에는
- * 정리 끝난 것만 들어가 미정리 컴포넌트(Calendar / CopyButton / Dropzone 등)가
- * 자동으로 깔리지 않는다.
- *
- * apps/registry/src/lib/registry.ts의 VISIBLE_COMPONENTS와 동기화 유지.
- * 새 컴포넌트 정리가 끝나면 양쪽 set에 한 줄씩 추가.
- */
-const READY_COMPONENTS = new Set([
-  'accordion',
-  'alert',
-  'avatar',
-  'badge',
-  'button',
-  'card',
-  'checkbox',
-  'dialog',
-  'dropdown-menu',
-  'hover-card',
-  'input',
-  'label',
-  'password-input',
-  'popover',
-  'radio-group',
-  'search-input',
-  'select',
-  'separator',
-  'sheet',
-  'skeleton',
-  'spinner',
-  'switch',
-  'tabs',
-  'textarea',
-  'tooltip'
-])
-
-/**
- * shadcn 표준 base 컴포넌트 화이트리스트 (PHASE_0_INVENTORY.md §3.1).
- * apps/registry/src/lib/registry.ts의 BASE_COMPONENTS와 동일하게 유지할 것.
- * 이 목록에 속하면 'base' 폴더, 그 외 registry:ui 아이템은 'custom' 폴더로 설치된다.
- */
-export const BASE_COMPONENTS = new Set([
-  'accordion',
-  'alert',
-  'avatar',
-  'badge',
-  'button',
-  'calendar',
-  'card',
-  'carousel',
-  'checkbox',
-  'dialog',
-  'dropdown-menu',
-  'empty',
-  'field',
-  'hover-card',
-  'input',
-  'input-group',
-  'input-otp',
-  'label',
-  'pagination',
-  'popover',
-  'preview-card',
-  'radio-group',
-  'resizable',
-  'scroll-area',
-  'select',
-  'separator',
-  'sheet',
-  'sidebar',
-  'skeleton',
-  'sonner',
-  'spinner',
-  'switch',
-  'table',
-  'tabs',
-  'textarea',
-  'toggle',
-  'toggle-group',
-  'tooltip'
-])
+const manifestEntries = Object.entries(COMPONENT_MANIFEST)
+const ESSENTIAL_COMPONENTS = manifestEntries
+  .filter(([, meta]) => meta.essential)
+  .map(([name]) => name)
+const READY_COMPONENTS = new Set(
+  manifestEntries.filter(([, meta]) => meta.ready).map(([name]) => name)
+)
+export const BASE_COMPONENTS = new Set(
+  manifestEntries.filter(([, meta]) => meta.category === 'base').map(([name]) => name)
+)
 
 /** 컴포넌트 이름 → 'base' | 'custom' */
-export const categoryFor = (name) => (BASE_COMPONENTS.has(name) ? 'base' : 'custom')
+export const categoryFor = (name) =>
+  COMPONENT_MANIFEST[name]?.category === 'base' ? 'base' : 'custom'
 
 // 외부 의존성 화이트리스트 — package.json의 runtime + optional peer
 const EXTERNAL_DEPS = new Set([
@@ -441,7 +356,7 @@ const main = () => {
   })
 
   // ── 6b. Base 번들 (registry:item) ───────────────
-  // shadcn 표준 base 컴포넌트 ∩ READY_COMPONENTS(정리 완료) + AI Agent 가이드.
+  // component-manifest.json의 category=base ∩ ready=true + AI Agent 가이드.
   // 미정리 컴포넌트는 번들에서 제외 (직접 add 호출은 여전히 가능).
   const existingNames = new Set(items.map((i) => i.name))
   items.push({
@@ -458,7 +373,7 @@ const main = () => {
   })
 
   // ── 7. 전체 번들 (registry:item) ───────────────
-  // registry:ui 중 READY_COMPONENTS만 포함. styles/lib/hook/agent/icon은 인프라라 전체 포함.
+  // registry:ui 중 ready=true만 포함. styles/lib/hook/agent/icon은 인프라라 전체 포함.
   // 미정리 컴포넌트(Calendar/CopyButton/Dropzone 등)는 자동으로 안 깔림.
   const allRegistryDeps = items
     .filter((i) => i.type !== 'registry:ui' || i.name === 'icon' || READY_COMPONENTS.has(i.name))

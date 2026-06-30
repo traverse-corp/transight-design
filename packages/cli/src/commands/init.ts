@@ -70,7 +70,8 @@ export const initCommand: Command = new Command('init')
     })
 
     if (code === 0 && !options.dryRun) {
-      const agentInstruction = 'transight-design.AGENT.md에 따라 디자인 시스템 초기 설정을 적용해줘'
+      const agentInstruction =
+        '루트 에이전트 지시 파일(AGENTS.md/AGENT.md/CLAUDE.md/.cursor/rules)에 "UI 작업 전 transight-design.AGENT.md를 반드시 읽고 따른다"를 추가해줘'
       console.log('')
       console.log(pc.green('✓ 설치 완료'))
       console.log('')
@@ -78,7 +79,7 @@ export const initCommand: Command = new Command('init')
       console.log('')
       console.log('  ' + pc.cyan(pc.bold(agentInstruction)))
       console.log('')
-      console.log(pc.dim('(위 문구를 그대로 복사해 터미널에 붙여넣으세요)'))
+      console.log(pc.dim('(에이전트가 항상 읽는 프로젝트 규칙 파일에 디자인 시스템 참조를 고정합니다)'))
       console.log('')
     }
 

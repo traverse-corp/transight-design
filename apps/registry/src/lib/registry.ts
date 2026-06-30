@@ -24,6 +24,28 @@ export interface Registry {
 }
 
 const REGISTRY_ROOT: string = join(process.cwd(), '..', '..', 'packages', 'ui')
+const COMPONENT_MANIFEST_PATH: string = join(
+  REGISTRY_ROOT,
+  'src',
+  'registry',
+  'component-manifest.json'
+)
+
+interface ComponentManifestEntry {
+  category: 'base' | 'custom'
+  ready: boolean
+  essential: boolean
+}
+
+type ComponentManifest = Record<string, ComponentManifestEntry>
+
+const loadComponentManifest = (): ComponentManifest => {
+  const raw: string = readFileSync(COMPONENT_MANIFEST_PATH, 'utf-8')
+  return JSON.parse(raw) as ComponentManifest
+}
+
+const COMPONENT_MANIFEST: ComponentManifest = loadComponentManifest()
+const manifestEntries: Array<[string, ComponentManifestEntry]> = Object.entries(COMPONENT_MANIFEST)
 
 /** packages/ui/registry.json — 메타 (files.content 없음) */
 export const loadRegistry = (): Registry => {
@@ -44,50 +66,9 @@ export const loadBuiltItem = (name: string): RegistryItem | null => {
   }
 }
 
-/**
- * shadcn 표준 base 컴포넌트 화이트리스트 (PHASE_0_INVENTORY.md §3.1).
- * 이 목록에 속하면 'base', 나머지 registry:ui 아이템은 'custom'.
- */
-export const BASE_COMPONENTS: ReadonlySet<string> = new Set([
-  'accordion',
-  'alert',
-  'avatar',
-  'badge',
-  'button',
-  'calendar',
-  'card',
-  'carousel',
-  'checkbox',
-  'dialog',
-  'dropdown-menu',
-  'empty',
-  'field',
-  'hover-card',
-  'input',
-  'input-group',
-  'input-otp',
-  'label',
-  'pagination',
-  'popover',
-  'preview-card',
-  'radio-group',
-  'resizable',
-  'scroll-area',
-  'select',
-  'separator',
-  'sheet',
-  'sidebar',
-  'skeleton',
-  'sonner',
-  'spinner',
-  'switch',
-  'table',
-  'tabs',
-  'textarea',
-  'toggle',
-  'toggle-group',
-  'tooltip'
-])
+export const BASE_COMPONENTS: ReadonlySet<string> = new Set(
+  manifestEntries.filter(([, meta]) => meta.category === 'base').map(([name]) => name)
+)
 
 /** 화면 표시용 가상 그룹 키 — base/custom 분류용 */
 type GroupKey = 'registry:item' | 'registry:style' | 'registry:lib' | 'registry:hook' | 'ui-base' | 'ui-custom'
@@ -152,64 +133,18 @@ export interface NavGroup {
   items: NavItem[]
 }
 
-/**
- * 사이드바 노출 화이트리스트 — 디자인 시스템 정리가 끝난 컴포넌트만.
- * 정리 진행 따라 항목 추가. 라우트(/components/<name>) 자체는 등록되어 있으므로
- * URL로 직접 접근하면 다른 컴포넌트들도 볼 수 있다 (사이드바에서만 가림).
- */
-const VISIBLE_COMPONENTS: ReadonlySet<string> = new Set([
-  'accordion',
-  'alert',
-  'avatar',
-  'badge',
-  'button',
-  'card',
-  'checkbox',
-  'dialog',
-  'dropdown-menu',
-  'hover-card',
-  'input',
-  'label',
-  'password-input',
-  'popover',
-  'radio-group',
-  'search-input',
-  'select',
-  'separator',
-  'sheet',
-  'skeleton',
-  'spinner',
-  'switch',
-  'tabs',
-  'textarea',
-  'tooltip'
-])
-
-/**
- * Essential Pack 구성 — packages/ui/scripts/build-registry.mjs의 ESSENTIAL_COMPONENTS와
- * 동기화 유지. 사이드바에서 별표(★)로 표시되어 우선 학습할 컴포넌트임을 알린다.
- */
-const ESSENTIAL_COMPONENTS: ReadonlySet<string> = new Set([
-  'button',
-  'badge',
-  'input',
-  'label',
-  'textarea',
-  'checkbox',
-  'radio-group',
-  'select',
-  'switch',
-  'dialog',
-  'tooltip',
-  'separator',
-  'skeleton',
-  'spinner'
-])
+const VISIBLE_COMPONENTS: ReadonlySet<string> = new Set(
+  manifestEntries.filter(([, meta]) => meta.ready).map(([name]) => name)
+)
+const ESSENTIAL_COMPONENTS: ReadonlySet<string> = new Set(
+  manifestEntries.filter(([, meta]) => meta.essential).map(([name]) => name)
+)
 
 /** /components/* 사이드바 — Base Components · Custom Components */
 export const buildComponentsSidebarGroups = (items: RegistryItem[]): NavGroup[] => {
   // icon은 별도 시스템, style-*은 /styles 별도 페이지 — registry에 있지만 사이드바에선 제외.
-  // 정리 안 된 컴포넌트는 VISIBLE_COMPONENTS로 추가 필터링 (URL 직접 접근은 여전히 가능).
+  // 정리 안 된 컴포넌트는 component-manifest.json의 ready 값으로 필터링한다.
+  // URL 직접 접근은 여전히 가능하고, 사이드바에서만 가린다.
   const ui = items.filter(
     (i) => i.type === 'registry:ui' && i.name !== 'icon' && VISIBLE_COMPONENTS.has(i.name)
   )
@@ -232,8 +167,8 @@ export const buildComponentsSidebarGroups = (items: RegistryItem[]): NavGroup[] 
     { label: 'Custom Components', items: custom }
   ]
 
-  // 정리 완료 후 모든 컴포넌트를 다시 노출하려면 위의 ui 필터에서
-  // VISIBLE_COMPONENTS 조건만 제거하면 됨.
+  // 정리 완료 후 모든 컴포넌트를 다시 노출하려면 component-manifest.json에서
+  // 각 컴포넌트의 ready 값을 true로 바꾸면 됨.
   //
   // 아래는 모든 컴포넌트를 노출하던 옛 구현:
   // const ui = items.filter((i) => i.type === 'registry:ui' && i.name !== 'icon')

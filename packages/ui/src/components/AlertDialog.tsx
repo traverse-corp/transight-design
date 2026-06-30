@@ -44,7 +44,7 @@ const AlertDialog = ({
         <AlertDialogFooter>
           {children}
           {confirmText && onConfirm && (
-            <AlertDialogAction className='bg-ts-primary-blue-1' onClick={onConfirm}>
+            <AlertDialogAction className='bg-primary-blue-1' onClick={onConfirm}>
               {t(confirmText)}
             </AlertDialogAction>
           )}

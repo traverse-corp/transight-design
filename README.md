@@ -52,7 +52,7 @@ npm run dev
 npm run dev              # registry 문서 사이트 실행
 npm run typecheck        # 모든 workspace 타입 체크
 npm run build            # ui registry + registry app + cli 빌드
-npm run registry:build   # packages/ui registry 산출물 재생성
+npm run registry:build   # 생성된 registry.json 기준 public/r/*.json 재생성
 npm run changeset        # 배포 변경 기록 작성
 ```
 
@@ -102,12 +102,15 @@ transight-design/
 - Base: shadcn 표준 컴포넌트 계열
 - Custom: Transight 도메인과 제품 요구에 맞춘 자체 컴포넌트
 - Preview: `apps/registry/src/previews/`에서 문서 사이트 미리보기 제공
+- Manifest: `packages/ui/src/registry/component-manifest.json`에서 설치 위치, 문서 노출, 번들 포함 여부 관리
 
 컴포넌트 추가/수정 절차: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## 사용자 프로젝트에 설치
 
 React + TypeScript + Tailwind v4 + shadcn이 초기화된 프로젝트를 기준으로 합니다.
+`@transight-design/cli init`은 Transight registry 설정과 설치 흐름을 돕지만,
+앱 생성이나 Tailwind/shadcn 기본 초기화를 대신하지 않습니다.
 
 ```bash
 # 전체 번들
@@ -115,6 +118,9 @@ npx @transight-design/cli init
 
 # 개별 컴포넌트
 npx @transight-design/cli add button card dialog
+
+# 이미 설치된 컴포넌트 파일만 업데이트
+npx @transight-design/cli update button
 
 # 목록 확인
 npx @transight-design/cli list

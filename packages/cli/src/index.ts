@@ -11,6 +11,7 @@ import { Command } from 'commander'
 import { initCommand } from '@/commands/init'
 import { addCommand } from '@/commands/add'
 import { listCommand } from '@/commands/list'
+import { updateCommand } from '@/commands/update'
 import { viewCommand } from '@/commands/view'
 import { variantCommand } from '@/commands/variant'
 
@@ -23,6 +24,7 @@ program
 
 program.addCommand(initCommand)
 program.addCommand(addCommand)
+program.addCommand(updateCommand)
 program.addCommand(listCommand)
 program.addCommand(viewCommand)
 program.addCommand(variantCommand)

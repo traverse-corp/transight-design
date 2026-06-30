@@ -22,6 +22,7 @@
         "skyblue",
         "purple",
         "pink",
+        "amber",
         "white",
         "gradient-blue"
       ]
@@ -51,6 +52,7 @@
         "skyblue",
         "purple",
         "pink",
+        "amber",
         "white",
         "gradient-blue"
       ],
@@ -133,6 +135,7 @@
         "skyblue",
         "purple",
         "pink",
+        "amber",
         "white",
         "gradient-blue"
       ],
@@ -179,8 +182,10 @@
         "skyblue",
         "purple",
         "pink",
+        "amber",
         "white",
-        "gradient-blue"
+        "gradient-blue",
+        "gradient-blue-deep"
       ],
       "theme": [
         "solid",
@@ -259,6 +264,7 @@
         "skyblue",
         "purple",
         "pink",
+        "amber",
         "white",
         "gradient-blue"
       ],
@@ -451,6 +457,7 @@
         "skyblue",
         "purple",
         "pink",
+        "amber",
         "white",
         "gradient-blue"
       ],
@@ -602,6 +609,7 @@
         "skyblue",
         "purple",
         "pink",
+        "amber",
         "white",
         "gradient-blue"
       ],
@@ -631,6 +639,7 @@
         "skyblue",
         "purple",
         "pink",
+        "amber",
         "white",
         "gradient-blue"
       ],
@@ -690,6 +699,7 @@
         "skyblue",
         "purple",
         "pink",
+        "amber",
         "white",
         "gradient-blue"
       ]

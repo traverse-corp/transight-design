@@ -5,6 +5,31 @@
 
 ---
 
+## 0. 호스트 Agent 지시 파일에 등록 (설치 직후 필수)
+
+이 파일은 `transight-design.AGENT.md`로 설치된다. 하지만 Codex, Claude, Cursor 같은 도구가
+항상 이 파일을 자동으로 읽는 것은 아니다. 프로젝트 루트의 에이전트 지시 파일에 아래 문구를
+반드시 추가한다.
+
+대상 예:
+
+- Codex: `AGENTS.md` 또는 팀에서 쓰는 `AGENT.md`
+- Claude: `CLAUDE.md`
+- Cursor: `.cursor/rules/*`
+- 기타 에이전트: 해당 도구가 항상 읽는 프로젝트 규칙 파일
+
+추가할 문구:
+
+```md
+UI를 작성하거나 수정하기 전에는 반드시 `transight-design.AGENT.md`를 먼저 읽고 따른다.
+색상, 타이포, 레이아웃, 컴포넌트, 아이콘은 Transight Design System 규칙을 우선한다.
+```
+
+이 연결이 없으면 에이전트가 일반 Tailwind/shadcn 관성대로 코드를 생성해 디자인 시스템을
+우회할 수 있다.
+
+---
+
 ## ROLE
 
 당신은 Transight 디자인 시스템(`@transight-design/*`)이 깔린 프로젝트에서 UI 코드를
