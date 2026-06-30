@@ -4,7 +4,7 @@ export const Preview = () => (
   <ScrollArea className='border-border-default h-48 w-64 rounded-md border p-3'>
     <div className='flex flex-col gap-2'>
       {Array.from({ length: 30 }, (_, i) => (
-        <div key={i} className='text-body'>
+        <div key={i} className='typo-m13 text-fg-default'>
           항목 #{i + 1}
         </div>
       ))}

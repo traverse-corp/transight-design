@@ -33,7 +33,7 @@ export const MetadataPanel = ({ item }: MetadataPanelProps) => {
         <h3 className='mb-2 typo-sb12 uppercase tracking-wide text-fg-muted'>
           Type
         </h3>
-        <code className='typo-mono-m14'>{item.type}</code>
+        <code className='typo-r14-mono'>{item.type}</code>
       </div>
       {hasDeps && <Section title='NPM 의존성' items={item.dependencies ?? []} />}
       {hasRegDeps && (

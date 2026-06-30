@@ -245,7 +245,7 @@ type DialogDescriptionProps = React.ComponentProps<typeof DialogPrimitive.Descri
 const DialogDescription = ({ className, ...props }: DialogDescriptionProps) => (
   <DialogPrimitive.Description
     data-slot='dialog-description'
-    className={cn('text-description', className)}
+    className={cn('typo-r12 text-fg-muted', className)}
     {...props}
   />
 )

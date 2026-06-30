@@ -177,7 +177,7 @@ export const PreviewShell = () => {
         <header className='mb-6 flex items-end justify-between'>
           <div>
             <h1 className='typo-b24 text-fg-strong'>Icons</h1>
-            <p className='text-description mt-1'>
+            <p className='typo-r12 text-fg-muted mt-1'>
               {ICON_NAMES.length}개 아이콘 · 카드 클릭 시 코드 스니펫 복사
             </p>
           </div>

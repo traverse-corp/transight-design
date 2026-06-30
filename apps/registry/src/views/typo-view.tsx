@@ -20,51 +20,43 @@ const WEIGHTS = [
 
 type WeightValue = (typeof WEIGHTS)[number]['value']
 
-const SEMANTIC = [
-  'text-page-title',
-  'text-section-title',
-  'text-modal-title',
-  'text-label',
-  'text-body',
-  'text-subtitle',
-  'text-caption',
-  'text-description',
-  'text-overline',
-  'text-disabled',
-  'text-error',
-  'text-link'
+const FAMILY_OPTIONS = [
+  { value: 'sans', label: 'Sans (SUIT)', suffix: '' },
+  { value: 'pretendard', label: 'Pretendard', suffix: '-pretendard' },
+  { value: 'mono', label: 'Mono', suffix: '-mono' }
 ] as const
 
-const MONO = ['typo-mono-r10', 'typo-mono-r11', 'typo-mono-m12', 'typo-mono-m14', 'typo-mono-b14'] as const
+type FamilyOption = (typeof FAMILY_OPTIONS)[number]['value']
+
+// 시스템 모노 폰트가 실효 지원하는 weight (Regular / Bold)
+const MONO_WEIGHTS = new Set<WeightValue>([400, 700])
 
 const FAMILIES = [
   {
     label: 'Sans',
     token: '--font-sans',
-    description: '본문 / UI 기본. SUIT Variable.',
-    fontClass: 'font-sans'
+    description: '본문 / UI 기본. SUIT Variable.'
   },
   {
     label: 'Pretendard',
     token: '--font-pretendard',
-    description: 'SUIT 자매 family. 디스플레이 / 약관 / 광고 톤 차별용.',
-    fontClass: 'font-pretendard'
+    description: 'SUIT 자매 family. 디스플레이 / 약관 / 광고 톤 차별용.'
   },
   {
     label: 'Mono',
     token: '--font-mono',
-    description: '코드 / 표값 / hex. typo-mono-{w}{s}로 합성.',
-    fontClass: 'font-mono'
+    description: '코드 / 표값 / hex. typo-{w}{s}-mono로 합성.'
   }
 ] as const
 
 export const TypoView = () => {
   const [size, setSize] = useState<Size>(32)
   const [weight, setWeight] = useState<WeightValue>(800)
-  const [extra, setExtra] = useState<string | null>(null)
+  const [family, setFamily] = useState<FamilyOption>('sans')
 
   const weightEntry = WEIGHTS.find((w) => w.value === weight) ?? WEIGHTS[3]
-  const composedClass = extra ?? `typo-${weightEntry.abbrev}${size}`
+  const familyEntry = FAMILY_OPTIONS.find((f) => f.value === family) ?? FAMILY_OPTIONS[0]
+  const composedClass = `typo-${weightEntry.abbrev}${size}${familyEntry.suffix}`
 
   return (
     <div className='flex flex-col gap-6'>
@@ -92,15 +84,12 @@ export const TypoView = () => {
           <h3 className='typo-sb12 text-fg-default mb-2'>Size (px)</h3>
           <div className='flex flex-wrap gap-1.5'>
             {SIZES.map((s) => {
-              const active = !extra && s === size
+              const active = s === size
               return (
                 <button
                   key={s}
                   type='button'
-                  onClick={() => {
-                    setSize(s)
-                    setExtra(null)
-                  }}
+                  onClick={() => setSize(s)}
                   className={
                     active
                       ? 'bg-primary-blue-1 typo-mono-m12 rounded-md px-2.5 py-1 text-fg-inverse'
@@ -115,20 +104,28 @@ export const TypoView = () => {
         </div>
 
         <div>
-          <h3 className='typo-sb12 text-fg-default mb-2'>Weight</h3>
+          <h3 className='typo-sb12 text-fg-default mb-2 flex items-center gap-2'>
+            Weight
+            {family === 'mono' && (
+              <span className='typo-r12 text-fg-muted'>
+                — Mono는 r/b만 실효 (시스템 폰트 weight 제한)
+              </span>
+            )}
+          </h3>
           <div className='flex flex-wrap gap-1.5'>
             {WEIGHTS.map((w) => {
-              const active = !extra && w.value === weight
+              const active = w.value === weight
+              const disabled = family === 'mono' && !MONO_WEIGHTS.has(w.value)
               return (
                 <button
                   key={w.value}
                   type='button'
-                  onClick={() => {
-                    setWeight(w.value)
-                    setExtra(null)
-                  }}
+                  disabled={disabled}
+                  onClick={() => setWeight(w.value)}
                   className={
-                    active
+                    disabled
+                      ? 'border-border-default typo-mono-m12 text-fg-disabled flex-center gap-1.5 cursor-not-allowed rounded-md border bg-bg-card px-2.5 py-1 opacity-40'
+                      : active
                       ? 'bg-primary-blue-1 typo-mono-m12 flex-center gap-1.5 rounded-md px-2.5 py-1 text-fg-inverse'
                       : 'border-border-default hover:border-primary-blue-1 hover:text-primary-blue-1 typo-mono-m12 text-fg-default flex-center gap-1.5 rounded-md border bg-bg-card px-2.5 py-1'
                   }
@@ -140,37 +137,35 @@ export const TypoView = () => {
             })}
           </div>
         </div>
-      </section>
 
-      {/* ── 시맨틱 / Mono — 단일 클릭 프리셋 ──────────────── */}
-      <section className='flex flex-col gap-5'>
-        {[
-          { label: 'Semantic', entries: SEMANTIC },
-          { label: 'Monospace', entries: MONO }
-        ].map((group) => (
-          <div key={group.label}>
-            <h3 className='typo-sb12 text-fg-default mb-2'>{group.label}</h3>
-            <div className='flex flex-wrap gap-1.5'>
-              {group.entries.map((cls) => {
-                const active = extra === cls
-                return (
-                  <button
-                    key={cls}
-                    type='button'
-                    onClick={() => setExtra(cls)}
-                    className={
-                      active
-                        ? 'bg-primary-blue-1 typo-mono-m12 rounded-md px-2.5 py-1 text-fg-inverse'
-                        : 'border-border-default hover:border-primary-blue-1 hover:text-primary-blue-1 typo-mono-m12 text-fg-default rounded-md border bg-bg-card px-2.5 py-1'
+        <div>
+          <h3 className='typo-sb12 text-fg-default mb-2'>Family</h3>
+          <div className='flex flex-wrap gap-1.5'>
+            {FAMILY_OPTIONS.map((f) => {
+              const active = f.value === family
+              return (
+                <button
+                  key={f.value}
+                  type='button'
+                  onClick={() => {
+                    setFamily(f.value)
+                    // Mono로 전환 시 현재 weight가 r/b 아니면 r로 fallback
+                    if (f.value === 'mono' && !MONO_WEIGHTS.has(weight)) {
+                      setWeight(400)
                     }
-                  >
-                    {cls}
-                  </button>
-                )
-              })}
-            </div>
+                  }}
+                  className={
+                    active
+                      ? 'bg-primary-blue-1 typo-mono-m12 rounded-md px-2.5 py-1 text-fg-inverse'
+                      : 'border-border-default hover:border-primary-blue-1 hover:text-primary-blue-1 typo-mono-m12 text-fg-default rounded-md border bg-bg-card px-2.5 py-1'
+                  }
+                >
+                  {f.label}
+                </button>
+              )
+            })}
           </div>
-        ))}
+        </div>
       </section>
 
       {/* ── Font Family ──────────────── */}
@@ -186,7 +181,10 @@ export const TypoView = () => {
                 <span className='typo-sb14 text-fg-strong'>{f.label}</span>
                 <code className='typo-mono-r11 text-fg-muted'>{f.token}</code>
               </div>
-              <p className={`${f.fontClass} text-fg-strong typo-m24`}>
+              <p
+                className='text-fg-strong typo-m24'
+                style={{ fontFamily: `var(${f.token})` }}
+              >
                 TranSight Design 0123 가나다라
               </p>
               <p className='typo-r12 text-fg-muted'>{f.description}</p>

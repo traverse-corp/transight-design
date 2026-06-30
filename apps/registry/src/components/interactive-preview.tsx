@@ -134,7 +134,7 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
 
   if (!Preview) {
     return (
-      <div className="text-description py-12 text-center">
+      <div className="typo-r12 text-fg-muted py-12 text-center">
         Preview는 추후 점진적으로 추가됩니다.
       </div>
     )

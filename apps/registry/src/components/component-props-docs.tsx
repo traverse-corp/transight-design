@@ -452,7 +452,7 @@ const PropsTable = ({ props }: { props: PropDoc[] }) => (
                 <span className="text-fg-muted typo-mono-m12">-</span>
               )}
             </td>
-            <td className="text-description px-3 py-2">{prop.description}</td>
+            <td className="typo-r12 text-fg-muted px-3 py-2">{prop.description}</td>
           </tr>
         ))}
       </tbody>
@@ -502,7 +502,7 @@ export const ComponentPropsDocs = ({ name }: { name: string }) => {
                 <span className="bg-primary-blue-1 inline-block h-3.5 w-1 rounded-sm" />
                 <h4 className="typo-b16 text-fg-strong">{group.title}</h4>
               </div>
-              {group.description && <p className="text-description -mt-1">{group.description}</p>}
+              {group.description && <p className="typo-r12 text-fg-muted -mt-1">{group.description}</p>}
               <PropsTable props={group.props} />
             </div>
           ))}

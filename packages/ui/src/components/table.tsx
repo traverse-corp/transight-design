@@ -48,7 +48,7 @@ function TableHeader({ className, ...props }: React.ComponentProps<'thead'>) {
   return (
     <thead
       data-slot='table-header'
-      className={cn('text-body [&_tr]:border-b', className)}
+      className={cn('typo-m13 text-fg-default [&_tr]:border-b', className)}
       {...props}
     />
   )
@@ -154,7 +154,7 @@ function TableCell({ className, ...props }: React.ComponentProps<'td'>) {
     <td
       data-slot='table-cell'
       className={cn(
-        'text-body p-1.5 text-center align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0',
+        'typo-m13 text-fg-default p-1.5 text-center align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0',
         className
       )}
       {...props}

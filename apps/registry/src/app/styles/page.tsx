@@ -25,14 +25,14 @@ const StylesInstallPage = () => (
     <div className='h-screen min-w-0 flex-1 overflow-y-auto py-10'>
       <header className='mb-8'>
         <h1 className='typo-b24 text-fg-strong'>Install</h1>
-        <p className='text-description mt-1'>
+        <p className='typo-r12 text-fg-muted mt-1'>
           진입점 <code className='typo-mono-m12 text-fg-default'>styles</code>를 설치하면 tokens ·
           typography · flex · theme · fonts 5종이 함께 깔립니다.
         </p>
       </header>
 
       <section className='mb-10'>
-        <h2 className='text-section-title mb-3'>1. 설치 명령</h2>
+        <h2 className='typo-b24 text-fg-strong mb-3'>1. 설치 명령</h2>
         <InstallCommands
           options={[
             { label: 'Transight CLI', code: CLI_INSTALL },
@@ -42,17 +42,17 @@ const StylesInstallPage = () => (
       </section>
 
       <section className='mb-10'>
-        <h2 className='text-section-title mb-3'>2. 진입 CSS에 import</h2>
-        <p className='text-description mb-3'>
+        <h2 className='typo-b24 text-fg-strong mb-3'>2. 진입 CSS에 import</h2>
+        <p className='typo-r12 text-fg-muted mb-3'>
           SUIT / Pretendard 폰트 + Tailwind + 토큰 + 타이포 프리셋이 한 번에 들어옵니다.
         </p>
         <div className='grid grid-cols-1 gap-3 md:grid-cols-2'>
           <div>
-            <p className='text-overline mb-1.5'>Vite</p>
+            <p className='typo-sb9 text-fg-muted mb-1.5'>Vite</p>
             <CodeBlock code={CSS_VITE} language='css' maxHeight='auto' />
           </div>
           <div>
-            <p className='text-overline mb-1.5'>Next.js (App Router)</p>
+            <p className='typo-sb9 text-fg-muted mb-1.5'>Next.js (App Router)</p>
             <CodeBlock code={CSS_NEXTJS} language='css' maxHeight='auto' />
           </div>
         </div>

@@ -229,15 +229,15 @@ SSR이라면 서버 측에서 쿠키/세션의 테마를 읽어 `<html className
 
 ---
 
-## 1.6 타이포 — `typo-{w}{s}` 강제 (HARD RULE)
+## 1.6 타이포 — `typo-{w}{s}[-{family}]` 강제 (HARD RULE)
 
-**모든 텍스트는 `typo-{weight}{size}` 합성 클래스 하나로만 표현한다.**
+**모든 텍스트는 `typo-{weight}{size}[-{family}]` 합성 클래스 하나로만 표현한다.**
 Tailwind의 `text-sm`, `font-bold`, `text-[14px]`, `leading-*`, `font-semibold` 같은
 원시 클래스로 굵기/크기/line-height를 따로 지정하는 것은 **전면 금지**.
 
 ### 형식
 
-`typo-{weight}{size}` — 9 weight × 15 size 전 조합.
+`typo-{weight}{size}[-{family}]` — 9 weight × 15 size × 3 family.
 
 | 굵기 약자 | 값 |
 |---|---|
@@ -254,25 +254,40 @@ Tailwind의 `text-sm`, `font-bold`, `text-[14px]`, `leading-*`, `font-semibold` 
 크기 그리드: `8 / 9 / 10 / 11 / 12 / 13 / 14 / 15 / 16` (1px 간격), `18`, `24 / 32 / 40 / 48 / 56` (8px 간격).
 **그리드 밖 임의 숫자 금지** (`typo-m17`, `typo-r25` 같은 건 클래스가 존재하지 않음).
 
-모노스페이스: `typo-mono-{w}{s}` — 예: `typo-mono-m12`, `typo-mono-b14`.
+Family suffix: family 생략 시 default **Sans (SUIT)**. 톤 차별이 필요한 영역에선 suffix로 전환.
 
-폰트 family: 전역 default는 `font-sans` (SUIT). 톤 차별이 필요한 영역에선 `font-pretendard`(자매 family) / `font-mono`(코드)를 명시. 단, 같은 페이지 안에 family를 섞으면 톤이 흐려지니 디자인 의도가 명확할 때만 사용.
-
-### 시맨틱 우선
-
-의미가 명확하면 시맨틱 프리셋을 우선 사용한다. (내부적으로 `typo-*` 매핑)
-
-| 용도 | 클래스 |
+| 클래스 | family |
 |---|---|
-| 페이지 제목 | `text-page-title` |
-| 섹션 제목 | `text-section-title` |
-| 서브타이틀 | `text-subtitle` |
-| 본문 | `text-body` |
-| 폼 라벨 | `text-label` |
-| 보조 설명 / 캡션 | `text-description` |
-| 오버라인 | `text-overline` |
+| `typo-m14` | Sans (SUIT) — default |
+| `typo-m14-pretendard` | Pretendard (자매 family — 약관/디스플레이) |
+| `typo-r12-mono` | Mono Regular (코드/표값) |
+| `typo-b14-mono` | Mono Bold (letter-spacing -0.005em 자동) |
+| `typo-m12-mono` | **특수** — Mono Medium 12px + line-height 150% (가독성 보정) |
 
-시맨틱이 안 맞으면 그제서야 `typo-{w}{s}`.
+**Mono weight 제한** — 시스템 모노 폰트(SF Mono / Menlo / Consolas / ui-monospace)는 실효 weight가 Regular(400)와 Bold(700) 두 개뿐. 풀이 `r/b` 2 weight × 15 size로 한정됨 (+ 특수 `typo-m12-mono` 1개). Mono에 `typo-sb14-mono`, `typo-eb24-mono` 같은 클래스 박지 말 것 — 시스템 폰트가 fake-bold 합성하거나 무시해서 디자인 의도가 안 살아남.
+
+레거시 `typo-mono-{w}{s}` (prefix 형태)는 한 사이클 alias로 유지되지만 신규 코드는 `typo-{w}{s}-mono` (suffix)로.
+
+같은 페이지 안에 family를 섞으면 톤이 흐려지니 디자인 의도가 명확할 때만 사용.
+
+### 색·톤은 별도 클래스로
+
+typo와 색은 항상 두 클래스로 명시한다. (구 `text-page-title` / `text-body` /
+`text-label` 등 시맨틱 12종은 제거됨 — typo + 시맨틱 색 두 클래스로 풀어쓸 것.)
+
+| 용도 | 클래스 조합 |
+|---|---|
+| 페이지 제목 | `typo-eb32 text-fg-strong` |
+| 섹션 제목 | `typo-b24 text-fg-strong` |
+| 서브타이틀 | `typo-m14 text-fg-default` |
+| 본문 | `typo-m13 text-fg-default` |
+| 폼 라벨 | `typo-sb14 text-fg-strong` |
+| 보조 설명 / 캡션 | `typo-r12 text-fg-muted` |
+| 오버라인 | `typo-sb9 text-fg-muted` + 필요 시 `uppercase tracking-wide` |
+| 에러 | `typo-sb14 text-ui-red` |
+| 링크 | `typo-m14 text-primary-blue-1` |
+
+`text-on-dark`(라이트/다크 무관 영구 흰)만 별도 utility로 남음 — brand-exception 용도.
 
 ### ❌ 금지 예시
 
@@ -287,10 +302,11 @@ Tailwind의 `text-sm`, `font-bold`, `text-[14px]`, `leading-*`, `font-semibold` 
 ### ✅ 올바른 예시
 
 ```tsx
-<h2 className="text-section-title">섹션 제목</h2>
-<p className="text-body">본문 문장.</p>
+<h2 className="typo-b24 text-fg-strong">섹션 제목</h2>
+<p className="typo-m13 text-fg-default">본문 문장.</p>
 <span className="typo-sb14 text-fg-default">강조 14 semibold</span>
-<code className="typo-mono-m12 text-fg-default">code</code>
+<code className="typo-m12-mono text-fg-default">code</code>
+<p className="typo-m14-pretendard text-fg-default">약관/디스플레이 본문.</p>
 ```
 
 ---

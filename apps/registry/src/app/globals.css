@@ -35,8 +35,14 @@
 @source inline("bg-ui-sidebar-gradient");
 @source inline("shadow-{primary,search-bar,input,hover}");
 
-/* 타이포 — 동적 typo-{w}{s} 조합용 safelist (9 weight × 15 size) */
+/* 타이포 동적 조합용 safelist
+ * - sans / pretendard: 9 weight × 15 size 풀
+ * - mono: 시스템 모노 폰트가 실효 지원하는 r/b 2 weight × 15 size 풀 + m12-mono(가독성 보정)
+ */
 @source inline("typo-{t,el,l,r,m,sb,b,eb,bk}{8,9,10,11,12,13,14,15,16,18,24,32,40,48,56}");
+@source inline("typo-{t,el,l,r,m,sb,b,eb,bk}{8,9,10,11,12,13,14,15,16,18,24,32,40,48,56}-pretendard");
+@source inline("typo-{r,b}{8,9,10,11,12,13,14,15,16,18,24,32,40,48,56}-mono");
+@source inline("typo-m12-mono");
 
 body {
   @apply bg-background text-foreground;

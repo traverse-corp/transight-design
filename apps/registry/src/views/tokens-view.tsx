@@ -18,7 +18,7 @@ export const TokensView = () => (
     {/* ── Color ──────────────── */}
     <section>
       <SectionTitle>Color</SectionTitle>
-      <p className='text-description mb-6'>
+      <p className='typo-r12 text-fg-muted mb-6'>
         스와치 hover 시 HEX 표시, 클릭하면 클립보드에 복사됩니다.
       </p>
       <div className='flex flex-col gap-8'>

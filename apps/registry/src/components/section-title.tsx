@@ -10,7 +10,7 @@ interface SectionTitleProps {
 export const SectionTitle = ({ children, description }: SectionTitleProps) => (
   <header className='mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1'>
     <h2 className='typo-sb12 text-fg-muted uppercase tracking-wide'>{children}</h2>
-    {description && <p className='text-description typo-m12'>{description}</p>}
+    {description && <p className='typo-r12 text-fg-muted typo-m12'>{description}</p>}
   </header>
 )
 

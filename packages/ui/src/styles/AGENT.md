@@ -55,22 +55,23 @@
 | `border-cool-grey-03` | `border-border-subtle` |
 | `border-cool-grey-06+` | `border-border-strong` |
 
-### R2. 타이포는 typo-{w}{s} 단일 클래스만 사용한다
+### R2. 타이포는 typo-{w}{s}[-{family}] 단일 클래스만 사용한다
 
 ✅ **허용**
-- 합성 유틸: `typo-{w}{s}` 형태로만. 9 weight × 15 size 전 조합 지원.
+- 합성 유틸: `typo-{w}{s}[-{family}]` 형태로만. 9 weight × 15 size × 3 family 전 조합 지원.
   - 굵기 약자: `t`(100) / `el`(200) / `l`(300) / `r`(400) / `m`(500) / `sb`(600) / `b`(700) / `eb`(800) / `bk`(900)
   - 크기 그리드: 8/9/10/11/12/13/14/15/16 (1px), 18, 24/32/40/48/56 (8px)
-  - 예: `typo-sb14`, `typo-eb32`, `typo-l24`, `typo-bk48`
-- 모노스페이스: `typo-mono-m12`, `typo-mono-b14`
-- 시맨틱: `text-page-title`, `text-section-title`, `text-body`, `text-label`, `text-description`, `text-overline`, `text-subtitle`
+  - family: 생략 시 **Sans (SUIT)** default. `-pretendard` / `-mono` suffix로 family 전환.
+  - 예: `typo-sb14`, `typo-eb32`, `typo-m14-pretendard`, `typo-r12-mono`, `typo-m12-mono`(특수 보정), `typo-b14-mono`
+- **Mono는 weight가 r/b만 실효** (시스템 모노 폰트 제한). `typo-sb14-mono` / `typo-eb24-mono` 같은 조합은 fake-bold 합성되거나 무시되니 박지 말 것. 가독성 보정이 들어간 `typo-m12-mono`(line-height 150%) 한 개만 예외.
+- 색은 별도 시맨틱 색 클래스로 (`text-fg-strong` / `text-fg-default` / `text-fg-muted` / `text-ui-red` 등). typo와 색은 두 클래스로 명시.
 
 ❌ **금지**
 - 굵기/크기 분리: `typo-14 font-semibold` (단일 합성 클래스 사용)
 - Tailwind 원시 클래스: `text-sm`, `text-base`, `font-bold`, `text-[14px]`
 - 그리드 밖 임의 크기 (예: `typo-m17`, `typo-r25`)
-
-**우선순위**: 의미가 명확하면 `text-*` 시맨틱 → 그 외 `typo-{w}{s}` 합성.
+- 옛 시맨틱 프리셋(`text-page-title` / `text-body` / `text-label` 등 12종) — 제거됨. typo + 색 두 클래스로 풀어쓸 것.
+- 옛 mono prefix(`typo-mono-{w}{s}`) — 한 사이클 alias로 동작은 하지만 신규 코드는 suffix(`typo-{w}{s}-mono`) 사용.
 
 ### R3. 정렬은 flex-* 단축형 우선
 
@@ -111,12 +112,14 @@
 
 | 상황 | 코드 |
 |------|------|
-| 메인 본문 텍스트 | `<p className="text-body">` |
-| 작은 보조 설명 | `<p className="text-description">` |
-| 섹션 헤더 | `<h2 className="text-section-title">` |
-| 폼 라벨 | `<label className="text-label">` |
-| 코드 스니펫 | `<code className="typo-mono-m12 text-fg-default">` |
-| 임의 크기·굵기 조합 | `<span className="typo-l15">` |
+| 메인 본문 텍스트 | `<p className="typo-m13 text-fg-default">` |
+| 작은 보조 설명 | `<p className="typo-r12 text-fg-muted">` |
+| 섹션 헤더 | `<h2 className="typo-b24 text-fg-strong">` |
+| 페이지 제목 | `<h1 className="typo-eb32 text-fg-strong">` |
+| 폼 라벨 | `<label className="typo-sb14 text-fg-strong">` |
+| 코드 스니펫 | `<code className="typo-m12-mono text-fg-default">` |
+| 약관/디스플레이 본문 | `<p className="typo-m14-pretendard text-fg-default">` |
+| 임의 크기·굵기 조합 | `<span className="typo-l15 text-fg-default">` |
 | 페이지 배경 | `bg-bg-page` |
 | 카드/팝업/dialog 배경 | `bg-bg-card` |
 | 더 옅은 면 (stripe 등) | `bg-bg-subtle` |
@@ -154,9 +157,9 @@
 
 | Anti-pattern | Fix |
 |--------------|-----|
-| `text-sm text-gray-600` | `text-description` 또는 `typo-m13 text-fg-muted` |
-| `text-xs font-semibold uppercase` | `text-overline` |
-| `text-2xl font-bold` | `typo-b24` 또는 `text-section-title` |
+| `text-sm text-gray-600` | `typo-m13 text-fg-muted` |
+| `text-xs font-semibold uppercase` | `typo-sb9 text-fg-muted uppercase tracking-wide` |
+| `text-2xl font-bold` | `typo-b24 text-fg-strong` |
 | `bg-white border border-gray-200` | `bg-bg-card border border-border-default` |
 | `text-cool-grey-09` | `text-fg-default` |
 | `text-cool-grey-11` | `text-fg-strong` |

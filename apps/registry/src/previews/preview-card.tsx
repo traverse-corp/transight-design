@@ -25,7 +25,7 @@ export const Preview = () => (
       <PreviewCardPositioner sideOffset={4}>
         <PreviewCardPopup className="bg-popover text-popover-foreground w-64 rounded-md border p-4 shadow-md">
           <p className="typo-sb14 text-fg-strong">미리보기 카드</p>
-          <p className="text-description mt-1">지연 후 표시되는 미리보기 콘텐츠입니다.</p>
+          <p className="typo-r12 text-fg-muted mt-1">지연 후 표시되는 미리보기 콘텐츠입니다.</p>
         </PreviewCardPopup>
       </PreviewCardPositioner>
     </PreviewCardPortal>

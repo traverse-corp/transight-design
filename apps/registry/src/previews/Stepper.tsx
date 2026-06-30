@@ -9,13 +9,13 @@ export const Preview = () => {
   return (
     <Stepper curStep={current} onStepChange={setCurrent}>
       <Step label='시작'>
-        <p className='text-body py-3'>첫 번째 단계입니다.</p>
+        <p className='typo-m13 text-fg-default py-3'>첫 번째 단계입니다.</p>
       </Step>
       <Step label='확인'>
-        <p className='text-body py-3'>두 번째 단계입니다.</p>
+        <p className='typo-m13 text-fg-default py-3'>두 번째 단계입니다.</p>
       </Step>
       <Step label='완료'>
-        <p className='text-body py-3'>마지막 단계입니다.</p>
+        <p className='typo-m13 text-fg-default py-3'>마지막 단계입니다.</p>
       </Step>
     </Stepper>
   )

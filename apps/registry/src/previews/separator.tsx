@@ -15,26 +15,26 @@ export const Preview = ({ selections = {} }: PreviewProps) => {
   if (orientation === 'vertical') {
     return (
       <div className='flex h-20 items-center gap-4'>
-        <div className='text-body'>왼쪽</div>
+        <div className='typo-m13 text-fg-default'>왼쪽</div>
         <Separator
           orientation='vertical'
           tone={(selections.tone as Tone) ?? undefined}
           thickness={(selections.thickness as Thickness) ?? undefined}
         />
-        <div className='text-body'>오른쪽</div>
+        <div className='typo-m13 text-fg-default'>오른쪽</div>
       </div>
     )
   }
 
   return (
     <div className='w-72'>
-      <div className='text-body'>위 영역</div>
+      <div className='typo-m13 text-fg-default'>위 영역</div>
       <Separator
         className='my-3'
         tone={(selections.tone as Tone) ?? undefined}
         thickness={(selections.thickness as Thickness) ?? undefined}
       />
-      <div className='text-body'>아래 영역</div>
+      <div className='typo-m13 text-fg-default'>아래 영역</div>
     </div>
   )
 }

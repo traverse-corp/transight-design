@@ -85,7 +85,7 @@ export const VariantBuilderModal = ({
         <div className='flex flex-col gap-2'>
           <span className='typo-sb12 text-fg-muted'>CLI 명령</span>
           <CodeBlock code={command} language='bash' maxHeight='auto' />
-          <p className='text-description'>
+          <p className='typo-r12 text-fg-muted'>
             CLI가 사용자 repo의 컴포넌트 파일을 찾아 <code className='typo-mono-m12'>VariantPresets</code>{' '}
             객체에 한 줄을 자동 삽입합니다. Style 4축(color/theme/shape/size)만 받으며, 미명시 축은 cva
             default로 자동 매핑됩니다.

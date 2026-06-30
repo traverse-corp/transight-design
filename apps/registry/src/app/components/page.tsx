@@ -11,9 +11,9 @@ const StatCard = ({
   sub: string
 }) => (
   <div className='border-border-default rounded-lg border bg-bg-card p-4'>
-    <p className='text-overline'>{label}</p>
+    <p className='typo-sb9 text-fg-muted'>{label}</p>
     <p className='typo-b24 text-fg-strong mt-1'>{count}</p>
-    <p className='text-description mt-1'>{sub}</p>
+    <p className='typo-r12 text-fg-muted mt-1'>{sub}</p>
   </div>
 )
 
@@ -32,8 +32,8 @@ const ComponentsHome = () => {
   return (
     <main>
       <header className='mb-10'>
-        <h1 className='text-page-title'>Components</h1>
-        <p className='text-subtitle mt-2'>
+        <h1 className='typo-eb32 text-fg-strong'>Components</h1>
+        <p className='typo-m14 text-fg-default mt-2'>
           왼쪽 사이드바에서 원하는 항목을 선택하세요. 각 페이지에서 라이브 프리뷰, variant 목록,
           소스 코드, 설치 명령을 확인할 수 있습니다.
         </p>

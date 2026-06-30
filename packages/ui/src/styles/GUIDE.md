@@ -106,37 +106,51 @@ npx shadcn@latest add traverse-corp/transight-design/styles
 
 ## 타이포그래피 (`typography.css`)
 
-### 굵기 × 사이즈 프리셋
+### 굵기 × 사이즈 × Family 프리셋
 
-네이밍: `typo-{weight}{size}`
-- weight: `r`(400) / `m`(500) / `sb`(600) / `b`(700) / `eb`(800)
-- size: 폰트 크기 (px)
+네이밍: `typo-{weight}{size}[-{family}]`
+- weight: `t`(100) / `el`(200) / `l`(300) / `r`(400) / `m`(500) / `sb`(600) / `b`(700) / `eb`(800) / `bk`(900)
+- size: `8` `9` `10` `11` `12` `13` `14` `15` `16` (1px), `18`, `24` `32` `40` `48` `56` (8px)
+- family: 생략 시 **Sans (SUIT)** default. `-pretendard` / `-mono` suffix로 family 전환
 
 | 클래스 | 의미 |
 |--------|------|
-| `typo-r12` | Regular 12px |
-| `typo-m14` | Medium 14px (본문 기본) |
-| `typo-sb14` | Semibold 14px (라벨/버튼) |
-| `typo-b16` | Bold 16px |
-| `typo-eb32` | ExtraBold 32px (헤딩) |
-| `typo-eb54` | ExtraBold 54px (히어로) |
-| `typo-mono-m12` | 모노스페이스 Medium 12px |
+| `typo-r12` | Sans Regular 12px |
+| `typo-m14` | Sans Medium 14px (본문 기본) |
+| `typo-sb14` | Sans Semibold 14px (라벨/버튼) |
+| `typo-eb32` | Sans ExtraBold 32px (헤딩) |
+| `typo-m14-pretendard` | Pretendard Medium 14px (약관/디스플레이) |
+| `typo-r12-mono` | Mono Regular 12px (코드/표값) |
+| `typo-b14-mono` | Mono Bold 14px (letter-spacing -0.005em) |
+| `typo-m12-mono` | **특수** — Mono Medium 12px, line-height 150% (가독성 보정. code/표값 광범위 사용) |
 
-49개 utility를 제공. 자세한 목록은 `typography.css`의 `@utility` 정의 참고.
+**Family별 weight 풀 차이**
+- **Sans / Pretendard**: 9 weight 전부 (`t/el/l/r/m/sb/b/eb/bk`) × 15 size = 135 utility / family
+- **Mono**: 시스템 모노 폰트(SF Mono / Menlo / Consolas / ui-monospace)는 실효 weight가 Regular / Bold 두 개. 풀을 `r/b` × 15 size = 30 utility로 제한 + `typo-m12-mono` 특수 1개. Mono에 `typo-m14-mono`/`typo-sb14-mono` 등을 박아도 시스템 폰트가 fake-bold 합성하거나 무시해서 디자인 의도가 안 살아남.
 
-### 시맨틱 프리셋
+총 **301 utility** (sans 135 + pretendard 135 + mono 30 + m12-mono 1). Tailwind v4가 demand-driven으로 실제 사용된 것만 final CSS에 포함.
 
-| 클래스 | 용도 |
-|--------|------|
-| `text-page-title` | 페이지 최상단 H1 |
-| `text-section-title` | 섹션 헤더 H2 |
-| `text-label` | 폼 라벨, 작은 헤딩 |
-| `text-body` | 본문 |
-| `text-subtitle` | 부제 |
-| `text-description` | 보조 설명 (cool-grey-07 톤) |
-| `text-overline` | 상단 카테고리 라벨 (uppercase, 작은 글씨) |
+레거시 `typo-mono-{w}{s}` 5종(prefix 형태)은 `typo-{w}{s}-mono`의 한 사이클 alias로 유지 후 제거 예정. `typo-mono-m14`는 신규 풀에 m weight가 없으므로 `typo-r14-mono`로 fallback. 신규 코드는 suffix 형태로.
 
-시맨틱 프리셋은 적절한 색상 톤까지 포함한다. 가능하면 `typo-*` 대신 `text-*` 우선.
+### 색·톤은 별도 클래스로
+
+시맨틱 프리셋(`text-page-title` / `text-body` 등) 12종은 제거됨. typo + 시맨틱 색을
+두 클래스로 명시한다 — 풀어쓴 게 길어 보여도 의도가 명시적이고 family suffix
+조합과 일관됨.
+
+| 용도 | 클래스 조합 |
+|---|---|
+| 페이지 제목 | `typo-eb32 text-fg-strong` |
+| 섹션 헤더 | `typo-b24 text-fg-strong` |
+| 모달 타이틀 | `typo-b18 text-fg-strong` |
+| 폼 라벨 | `typo-sb14 text-fg-strong` |
+| 본문 | `typo-m13 text-fg-default` 또는 `typo-m14 text-fg-default` |
+| 보조 설명 | `typo-r12 text-fg-muted` |
+| 오버라인 | `typo-sb9 text-fg-muted` (필요 시 `uppercase tracking-wide` 추가) |
+| 에러 메시지 | `typo-sb14 text-ui-red` |
+| 링크 | `typo-m14 text-primary-blue-1` |
+
+`text-on-dark`(라이트/다크 무관 영구 흰)만 별도 utility로 남음 — brand-exception 용.
 
 ---
 

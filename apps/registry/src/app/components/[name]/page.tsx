@@ -42,7 +42,7 @@ const ComponentPage = async ({ params }: PageProps) => {
     <main>
       <header className='mb-8'>
         <h1 className='typo-eb32 text-fg-strong'>{title}</h1>
-        {description && <p className='text-subtitle mt-2'>{description}</p>}
+        {description && <p className='typo-m14 text-fg-default mt-2'>{description}</p>}
       </header>
 
       {/* 설치 — 항상 맨 위 */}

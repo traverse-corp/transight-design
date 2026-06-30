@@ -75,7 +75,7 @@ const Home = () => (
         </div>
         <div>
           <div className="typo-sb16 text-fg-strong">Styles</div>
-          <div className="text-description mt-1">
+          <div className="typo-r12 text-fg-muted mt-1">
             Tokens · Typography · Flex — 디자인 시스템의 기반 스타일 레이어.
           </div>
         </div>
@@ -93,7 +93,7 @@ const Home = () => (
         </div>
         <div>
           <div className="typo-sb16 text-fg-strong">Components</div>
-          <div className="text-description mt-1">
+          <div className="typo-r12 text-fg-muted mt-1">
             Base UI 기반 컴포넌트 카탈로그. variant·color·size·shape로 조립.
           </div>
         </div>
@@ -111,7 +111,7 @@ const Home = () => (
         </div>
         <div>
           <div className="typo-sb16 text-fg-strong">Icon System</div>
-          <div className="text-description mt-1">
+          <div className="typo-r12 text-fg-muted mt-1">
             58개 SVG sprite + 팔레트 토큰 색상 × 5단계 크기로 강제된 Icon 컴포넌트.
           </div>
         </div>
@@ -123,8 +123,8 @@ const Home = () => (
 
     {/* 설치 */}
     <section className="mb-12">
-      <h2 className="text-section-title mb-4">설치</h2>
-      <p className="text-description mb-3">
+      <h2 className="typo-b24 text-fg-strong mb-4">설치</h2>
+      <p className="typo-r12 text-fg-muted mb-3">
         처음 시작할 때는 Essential Pack을 먼저 설치하세요. 버튼, 입력, 선택 컨트롤, 피드백
         컴포넌트처럼 서비스 화면에 거의 항상 필요한 기본 컴포넌트만 들어갑니다.
       </p>
@@ -141,26 +141,26 @@ const Home = () => (
 
     {/* 사용법 */}
     <section className="mb-12">
-      <h2 className="text-section-title mb-4">사용</h2>
+      <h2 className="typo-b24 text-fg-strong mb-4">사용</h2>
 
       {/* 진입 CSS — Vite/Next.js 별도 표시 */}
-      <h3 className="text-label mt-4 mb-2">1. 진입 CSS에 디자인 시스템 import</h3>
-      <p className="text-description mb-3">
+      <h3 className="typo-sb14 text-fg-strong mt-4 mb-2">1. 진입 CSS에 디자인 시스템 import</h3>
+      <p className="typo-r12 text-fg-muted mb-3">
         SUIT 폰트 + Tailwind + 토큰 + 타이포 프리셋이 한 번에 들어옵니다.
       </p>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         <div>
-          <p className="text-overline mb-1.5">Vite</p>
+          <p className="typo-sb9 text-fg-muted mb-1.5">Vite</p>
           <CodeBlock code={CSS_VITE} language="css" maxHeight="auto" />
         </div>
         <div>
-          <p className="text-overline mb-1.5">Next.js (App Router)</p>
+          <p className="typo-sb9 text-fg-muted mb-1.5">Next.js (App Router)</p>
           <CodeBlock code={CSS_NEXTJS} language="css" maxHeight="auto" />
         </div>
       </div>
 
-      <h3 className="text-label mt-6 mb-2">2. 컴포넌트 사용</h3>
-      <p className="text-description mb-3">
+      <h3 className="typo-sb14 text-fg-strong mt-6 mb-2">2. 컴포넌트 사용</h3>
+      <p className="typo-r12 text-fg-muted mb-3">
         설치된 컴포넌트는 카테고리별로{' '}
         <code className="typo-mono-m12 text-fg-default">components/base/</code> 또는{' '}
         <code className="typo-mono-m12 text-fg-default">components/custom/</code>에 떨어집니다.
@@ -169,7 +169,7 @@ const Home = () => (
     </section>
 
     {/* 푸터 */}
-    <footer className="text-description border-border-default mt-16 border-t pt-6">
+    <footer className="typo-r12 text-fg-muted border-border-default mt-16 border-t pt-6">
       <p>
         MIT License ·{' '}
         <Link

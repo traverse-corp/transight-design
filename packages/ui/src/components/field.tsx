@@ -197,7 +197,7 @@ function FieldError({
   }
 
   return (
-    <div role='alert' data-slot='field-error' className={cn('text-error', className)} {...props}>
+    <div role='alert' data-slot='field-error' className={cn('typo-sb14 text-ui-red', className)} {...props}>
       {content}
     </div>
   )
