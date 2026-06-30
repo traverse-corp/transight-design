@@ -1,5 +1,11 @@
 # @transight-design/cli
 
+## 0.5.0
+
+### Minor Changes
+
+- Update init guidance for agent rule setup
+
 ## 0.4.0
 
 ### Minor Changes
