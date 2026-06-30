@@ -437,8 +437,28 @@
 @utility typo-mono-m14 { @apply typo-r14-mono; }
 @utility typo-mono-b14 { @apply typo-b14-mono; }
 
-/* 어두운 배경 위 텍스트 — text-white 대신 사용 (라이트/다크 무관 영구 흰) */
-@utility text-on-dark { color: #ffffff; }
+/* ──────────────────────────────────────────────────────────────────
+ * 어두운 배경 위 텍스트 — text-white/N 대신 시맨틱 이름으로
+ * (라이트/다크 무관 영구 흰. always-dark surface 위에서만 사용)
+ *
+ * fg-* 4단 위계와 동일한 의미축:
+ *   on-dark          (= strong)   white 100% — 헤더/강조
+ *   on-dark-default               white 72%  — 본문
+ *   on-dark-muted                 white 45%  — 보조/캡션
+ *   on-dark-disabled              white 20%  — 비활성/배지 위 텍스트
+ *
+ * Hero / A4 mockup / 비디오 letterbox 처럼 라이트 모드에서도
+ * 표면이 어둡게 유지되는 컴포넌트에서만 사용. 일반 텍스트는 fg-* 시맨틱.
+ * ────────────────────────────────────────────────────────────────── */
+@utility text-on-dark { color: rgb(255 255 255 / 1); }
+@utility text-on-dark-default { color: rgb(255 255 255 / 0.72); }
+@utility text-on-dark-muted { color: rgb(255 255 255 / 0.45); }
+@utility text-on-dark-disabled { color: rgb(255 255 255 / 0.2); }
+
+/* 어두운 표면 위 hairline border — border-white/N 대신 */
+@utility border-on-dark { border-color: rgb(255 255 255 / 0.2); }
+@utility border-on-dark-subtle { border-color: rgb(255 255 255 / 0.1); }
+@utility border-on-dark-faint { border-color: rgb(255 255 255 / 0.05); }
 
 /* ── pre / 토스트 폰트 고정 ── */
 pre,

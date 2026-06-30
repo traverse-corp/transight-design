@@ -287,7 +287,16 @@ typo와 색은 항상 두 클래스로 명시한다. (구 `text-page-title` / `t
 | 에러 | `typo-sb14 text-ui-red` |
 | 링크 | `typo-m14 text-primary-blue-1` |
 
-`text-on-dark`(라이트/다크 무관 영구 흰)만 별도 utility로 남음 — brand-exception 용도.
+always-dark surface(Hero / A4 mockup / 비디오 letterbox 등 양 모드에서 어두운 표면) 위 텍스트는 `text-on-dark` 시맨틱 4단을 쓴다. `text-white/N` raw 금지.
+
+| 클래스 | 알파 | 의미 |
+|---|---|---|
+| `text-on-dark` | 100% | strong |
+| `text-on-dark-default` | 72% | 본문 |
+| `text-on-dark-muted` | 45% | 보조/캡션 |
+| `text-on-dark-disabled` | 20% | 비활성 |
+
+대응 border 3단: `border-on-dark`(20%) / `border-on-dark-subtle`(10%) / `border-on-dark-faint`(5%).
 
 ### ❌ 금지 예시
 

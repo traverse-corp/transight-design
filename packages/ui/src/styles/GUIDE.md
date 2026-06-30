@@ -150,7 +150,26 @@ npx shadcn@latest add traverse-corp/transight-design/styles
 | 에러 메시지 | `typo-sb14 text-ui-red` |
 | 링크 | `typo-m14 text-primary-blue-1` |
 
-`text-on-dark`(라이트/다크 무관 영구 흰)만 별도 utility로 남음 — brand-exception 용.
+### `text-on-dark-*` — always-dark surface 위 텍스트
+
+라이트/다크 무관 영구 흰. Hero / A4 mockup / 비디오 letterbox 처럼 양 모드에서 표면이 어두운 컴포넌트에서만 사용. `text-white/N` raw 사용 대신 시맨틱.
+
+| 클래스 | 알파 | 의미 (fg-* 4단과 동일 축) |
+|---|---|---|
+| `text-on-dark` | 100% | strong — 헤더/강조 |
+| `text-on-dark-default` | 72% | 본문 |
+| `text-on-dark-muted` | 45% | 보조/캡션 |
+| `text-on-dark-disabled` | 20% | 비활성 |
+
+대응 border:
+
+| 클래스 | 알파 | 용도 |
+|---|---|---|
+| `border-on-dark` | 20% | 기본 hairline |
+| `border-on-dark-subtle` | 10% | 더 옅은 분리선 |
+| `border-on-dark-faint` | 5% | 거의 안 보이는 grouping |
+
+> 일반 텍스트(라이트 모드에서 표면이 밝아지는 곳)는 `fg-*` 시맨틱을 쓴다. on-dark는 *brand-exception* 영역에만.
 
 ---
 
