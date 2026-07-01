@@ -29,6 +29,13 @@ const rewriteImports = (content) => {
   )
 }
 
+const normalizeTarget = (target) => {
+  if (typeof target !== 'string') return target
+  if (target.startsWith('@lib/')) return `~/src/lib/${target.slice('@lib/'.length)}`
+  if (target.startsWith('@hooks/')) return `~/src/lib/hooks/${target.slice('@hooks/'.length)}`
+  return target
+}
+
 const main = () => {
   const files = readdirSync(PUBLIC_R).filter((f) => f.endsWith('.json'))
   let transformedFiles = 0
@@ -43,12 +50,19 @@ const main = () => {
 
     let touched = false
     for (const f of item.files) {
-      if (typeof f.content !== 'string') continue
-      const rewritten = rewriteImports(f.content)
-      if (rewritten !== f.content) {
-        f.content = rewritten
+      const normalizedTarget = normalizeTarget(f.target)
+      if (normalizedTarget !== f.target) {
+        f.target = normalizedTarget
         touched = true
         transformedItems += 1
+      }
+      if (typeof f.content === 'string') {
+        const rewritten = rewriteImports(f.content)
+        if (rewritten !== f.content) {
+          f.content = rewritten
+          touched = true
+          transformedItems += 1
+        }
       }
     }
 

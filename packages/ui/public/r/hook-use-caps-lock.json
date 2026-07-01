@@ -8,7 +8,7 @@
       "path": "src/lib/hooks/use-caps-lock.ts",
       "content": "import { useState, useEffect } from 'react'\n\n/**\n * Caps Lock 상태를 감지하는 훅\n * document 레벨의 keydown/keyup 이벤트를 통해 Caps Lock 여부를 추적한다.\n * 사용자가 아무 키나 누르면 즉시 상태가 갱신된다.\n *\n * @returns isCapsLockOn - Caps Lock이 켜져 있으면 true\n */\nexport const useCapsLock = () => {\n  const [isCapsLockOn, setIsCapsLockOn] = useState(false)\n\n  useEffect(() => {\n    const handleKey = (e: KeyboardEvent) => {\n      if (typeof e.getModifierState === 'function') {\n        setIsCapsLockOn(e.getModifierState('CapsLock'))\n      }\n    }\n\n    document.addEventListener('keydown', handleKey)\n    document.addEventListener('keyup', handleKey)\n\n    return () => {\n      document.removeEventListener('keydown', handleKey)\n      document.removeEventListener('keyup', handleKey)\n    }\n  }, [])\n\n  return isCapsLockOn\n}\n",
       "type": "registry:hook",
-      "target": "@hooks/use-caps-lock.ts"
+      "target": "~/src/lib/hooks/use-caps-lock.ts"
     }
   ],
   "type": "registry:hook"

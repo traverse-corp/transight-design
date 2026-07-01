@@ -8,7 +8,7 @@
       "path": "src/lib/pagination-types.ts",
       "content": "export interface Pagenations {\n  page: number\n  totalPage: number\n  size: number\n  className?: string\n  onPageChange: (page: number, inq: number) => void\n}\n",
       "type": "registry:lib",
-      "target": "@lib/pagination-types.ts"
+      "target": "~/src/lib/pagination-types.ts"
     }
   ],
   "type": "registry:lib"

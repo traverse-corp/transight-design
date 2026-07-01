@@ -229,7 +229,7 @@ const main = () => {
         {
           path: relativeFrom(OUT, full),
           type: 'registry:lib',
-          target: `@lib/${targetFileName}`
+          target: `~/src/lib/${targetFileName}`
         }
       ]
     })
@@ -255,7 +255,7 @@ const main = () => {
           {
             path: relativeFrom(OUT, full),
             type: 'registry:hook',
-            target: `@hooks/${f}`
+            target: `~/src/lib/hooks/${f}`
           }
         ]
       })

@@ -8,7 +8,7 @@
       "path": "src/lib/format.ts",
       "content": "/** 문자열 앞/뒤만 남기고 중간을 .. 으로 축약 (예: 0x3d2a..93e4ab) */\nexport const ellipsis = (str: string, len: number = 6): string => {\n  if (str.length <= len * 2 + 2) return str\n  return `${str.slice(0, len)}..${str.slice(-len)}`\n}\n",
       "type": "registry:lib",
-      "target": "@lib/format.ts"
+      "target": "~/src/lib/format.ts"
     }
   ],
   "type": "registry:lib"
