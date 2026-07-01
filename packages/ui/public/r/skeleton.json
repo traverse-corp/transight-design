@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "skeleton",
+  "description": "skeleton 컴포넌트",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "traverse-corp/transight-design/lib-utils",
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/skeleton.tsx",
+      "content": "import * as React from 'react'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\n\nconst skeletonClassVariants = cva('bg-bg-muted', {\n  variants: {\n    // rect: 카드/패널 — h/w를 className으로 지정\n    // text: 한 줄 텍스트 — h-4 자동, w만 className으로\n    // circle: 아바타/아이콘 — aspect 1:1 강제, w만 className으로\n    variant: {\n      rect: 'rounded-md',\n      text: 'h-4 rounded-sm',\n      circle: 'aspect-square rounded-full'\n    },\n    animation: {\n      pulse: 'animate-pulse',\n      none: ''\n    }\n  },\n  defaultVariants: {\n    variant: 'rect',\n    animation: 'pulse'\n  }\n})\n\nexport interface SkeletonProps\n  extends React.ComponentProps<'div'>,\n    VariantProps<typeof skeletonClassVariants> {}\n\nconst Skeleton = ({ className, variant, animation, ...props }: SkeletonProps) => (\n  <div\n    data-slot='skeleton'\n    className={cn(skeletonClassVariants({ variant, animation, className }))}\n    {...props}\n  />\n)\n\nexport { Skeleton, skeletonClassVariants }\n",
+      "type": "registry:ui",
+      "target": "~/src/components/base/skeleton.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

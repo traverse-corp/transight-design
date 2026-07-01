@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hash-text",
+  "title": "hash-text",
+  "description": "hash-text 컴포넌트",
+  "dependencies": [
+    "lucide-react",
+    "react-i18next",
+    "sonner"
+  ],
+  "registryDependencies": [
+    "traverse-corp/transight-design/lib-format",
+    "traverse-corp/transight-design/lib-utils",
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/hash-text.tsx",
+      "content": "import React, { useState } from 'react'\nimport { Copy, Check } from 'lucide-react'\nimport { toast } from 'sonner'\nimport { cn } from '@/lib/utils'\nimport { ellipsis } from '@/lib/format'\nimport { useTranslation } from 'react-i18next'\n\n/**\n * 주소/트랜잭션 해시 표시 컴포넌트\n * - hover 시 밑줄 + 복사 아이콘 표시\n * - alwaysCopy: 복사 아이콘 상시 노출 (메인 주소/TX용)\n */\nexport const HashText: React.FC<{\n  text: string\n  chars?: number\n  full?: boolean\n  alwaysCopy?: boolean\n  mono?: boolean\n  className?: string\n}> = ({ text, chars = 6, full = false, alwaysCopy = false, mono = false, className }) => {\n  const [copied, setCopied] = useState(false)\n  const { t } = useTranslation()\n\n  const handleCopy = (e: React.MouseEvent) => {\n    e.stopPropagation()\n    navigator.clipboard.writeText(text)\n    setCopied(true)\n    toast.success(t('CM_086'))\n    setTimeout(() => setCopied(false), 1500)\n  }\n\n  const display = full ? text : ellipsis(text, chars)\n\n  return (\n    <span\n      className={cn(\n        'group/hash relative inline-flex max-w-full items-center overflow-visible',\n        className\n      )}\n    >\n      <span\n        className={cn(\n          'truncate transition-all',\n          mono && 'font-mono',\n          'group-hover/hash:decoration-cool-grey-06 group-hover/hash:underline group-hover/hash:underline-offset-2'\n        )}\n      >\n        {display}\n      </span>\n      <span\n        role='button'\n        tabIndex={0}\n        onClick={handleCopy}\n        onKeyDown={(e) => {\n          if (e.key === 'Enter' || e.key === ' ') handleCopy(e as any)\n        }}\n        className={cn(\n          'cursor-pointer items-center justify-center rounded-md p-0.5',\n          'text-fg-muted hover:text-fg-strong hover:bg-bg-muted/60',\n          alwaysCopy\n            ? 'ml-1 inline-flex shrink-0'\n            : 'pointer-events-none absolute top-1/2 right-0 z-10 inline-flex -translate-y-1/2 opacity-0 transition-opacity group-hover/hash:pointer-events-auto group-hover/hash:opacity-100'\n        )}\n      >\n        {copied ? <Check className='size-3' /> : <Copy className='size-3' />}\n      </span>\n    </span>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "~/src/components/custom/hash-text.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

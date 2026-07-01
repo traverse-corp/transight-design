@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "NoItem",
+  "title": "NoItem",
+  "description": "NoItem 컴포넌트",
+  "dependencies": [
+    "react-i18next"
+  ],
+  "registryDependencies": [
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/NoItem.tsx",
+      "content": "import React from 'react'\nimport { useTranslation } from 'react-i18next'\n\ninterface NoItemProps {\n  colSpan?: number\n}\n\nconst NoItem = ({ colSpan }: NoItemProps) => {\n  const { t } = useTranslation()\n\n  return (\n    <tr>\n      <td colSpan={colSpan}>{t('CM_027')}</td>\n    </tr>\n  )\n}\n\nexport default NoItem\n",
+      "type": "registry:ui",
+      "target": "~/src/components/custom/NoItem.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

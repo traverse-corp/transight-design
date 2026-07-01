@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "spinner",
+  "description": "spinner 컴포넌트",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "traverse-corp/transight-design/lib-utils",
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/spinner.tsx",
+      "content": "import * as React from 'react'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\n\n// border-current로 색을 currentColor에서 받으므로 text-* 토큰으로 제어.\nconst spinnerColorStyles = {\n  gray: 'text-fg-default',\n  blue: 'text-primary-blue-1',\n  red: 'text-ui-red',\n  orange: 'text-ui-orange',\n  yellow: 'text-ui-yellow',\n  olive: 'text-ui-olive',\n  green: 'text-ui-green',\n  skyblue: 'text-ui-skyblue',\n  purple: 'text-ui-purple',\n  pink: 'text-ui-pink',\n  amber: 'text-ui-amber',\n  white: 'text-on-dark',\n  'gradient-blue': 'text-primary-blue-1'\n} as const\n\nconst spinnerClassVariants = cva(\n  'animate-spin rounded-full border-current border-t-transparent inline-block',\n  {\n    variants: {\n      color: {\n        gray: spinnerColorStyles.gray,\n        blue: spinnerColorStyles.blue,\n        red: spinnerColorStyles.red,\n        orange: spinnerColorStyles.orange,\n        yellow: spinnerColorStyles.yellow,\n        olive: spinnerColorStyles.olive,\n        green: spinnerColorStyles.green,\n        skyblue: spinnerColorStyles.skyblue,\n        purple: spinnerColorStyles.purple,\n        pink: spinnerColorStyles.pink,\n        amber: spinnerColorStyles.amber,\n        white: spinnerColorStyles.white,\n        'gradient-blue': spinnerColorStyles['gradient-blue']\n      },\n      size: {\n        xs: 'h-3 w-3 border-[1.5px]',\n        sm: 'h-4 w-4 border-2',\n        md: 'h-6 w-6 border-2',\n        lg: 'h-8 w-8 border-[3px]',\n        xl: 'h-12 w-12 border-4'\n      }\n    },\n    defaultVariants: {\n      color: 'blue',\n      size: 'md'\n    }\n  }\n)\n\ntype SpinnerVariantProps = VariantProps<typeof spinnerClassVariants>\nexport type SpinnerColor = NonNullable<SpinnerVariantProps['color']>\nexport type SpinnerSize = NonNullable<SpinnerVariantProps['size']>\n\nexport interface SpinnerProps\n  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>,\n    SpinnerVariantProps {}\n\nconst Spinner = ({ color, size, className, ...props }: SpinnerProps) => (\n  <div\n    role='status'\n    aria-label='Loading'\n    className={cn(spinnerClassVariants({ color, size, className }))}\n    {...props}\n  />\n)\n\nexport { Spinner, spinnerClassVariants, spinnerColorStyles }\n",
+      "type": "registry:ui",
+      "target": "~/src/components/base/spinner.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

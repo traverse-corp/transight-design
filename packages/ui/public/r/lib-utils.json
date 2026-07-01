@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "lib-utils",
+  "title": "Lib: utils",
+  "description": "utils — 디자인 시스템 lib",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "src/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\n/** shadcn 표준 cn — Tailwind 클래스 충돌 머지 */\nexport const cn = (...inputs: ClassValue[]): string => twMerge(clsx(inputs))\n",
+      "type": "registry:lib",
+      "target": "@lib/utils.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

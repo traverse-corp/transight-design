@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "title": "avatar",
+  "description": "avatar 컴포넌트",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "traverse-corp/transight-design/lib-utils",
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/avatar.tsx",
+      "content": "import * as React from 'react'\nimport { Avatar as AvatarPrimitive } from '@base-ui/react/avatar'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\n\n// 자식(Image / Fallback / Badge)이 부모 size/shape를 group selector로 읽도록 root에 data-* 부여.\nconst avatarRootClassVariants = cva(\n  'group/avatar relative flex shrink-0 select-none overflow-hidden',\n  {\n    variants: {\n      size: {\n        xs: 'size-5',\n        sm: 'size-6',\n        md: 'size-8',\n        lg: 'size-10',\n        xl: 'size-12'\n      },\n      shape: {\n        circle: 'rounded-full',\n        square: 'rounded-md'\n      }\n    },\n    defaultVariants: {\n      size: 'md',\n      shape: 'circle'\n    }\n  }\n)\n\ntype AvatarRootVariantProps = VariantProps<typeof avatarRootClassVariants>\nexport type AvatarSize = NonNullable<AvatarRootVariantProps['size']>\nexport type AvatarShape = NonNullable<AvatarRootVariantProps['shape']>\n\nexport type AvatarProps = AvatarPrimitive.Root.Props & AvatarRootVariantProps\n\nconst Avatar = ({ className, size, shape, ...props }: AvatarProps) => (\n  <AvatarPrimitive.Root\n    data-slot='avatar'\n    data-size={size ?? 'md'}\n    data-shape={shape ?? 'circle'}\n    className={cn(avatarRootClassVariants({ size, shape, className }))}\n    {...props}\n  />\n)\n\n// 자식 element는 부모 shape를 group-data attribute로 따라간다.\nconst childShape =\n  'group-data-[shape=circle]/avatar:rounded-full group-data-[shape=square]/avatar:rounded-md'\n\nconst AvatarImage = ({ className, ...props }: AvatarPrimitive.Image.Props) => (\n  <AvatarPrimitive.Image\n    data-slot='avatar-image'\n    className={cn('aspect-square size-full object-cover', childShape, className)}\n    {...props}\n  />\n)\n\nconst AvatarFallback = ({ className, ...props }: AvatarPrimitive.Fallback.Props) => (\n  <AvatarPrimitive.Fallback\n    data-slot='avatar-fallback'\n    className={cn(\n      'bg-bg-muted text-fg-default flex size-full items-center justify-center',\n      // size별 font 자동 스케일\n      'group-data-[size=xs]/avatar:typo-sb10',\n      'group-data-[size=sm]/avatar:typo-sb11',\n      'group-data-[size=md]/avatar:typo-sb13',\n      'group-data-[size=lg]/avatar:typo-sb14',\n      'group-data-[size=xl]/avatar:typo-sb16',\n      childShape,\n      className\n    )}\n    {...props}\n  />\n)\n\nconst AvatarBadge = ({ className, ...props }: React.ComponentProps<'span'>) => (\n  <span\n    data-slot='avatar-badge'\n    className={cn(\n      'bg-ui-green ring-white absolute right-0 bottom-0 z-10 inline-flex items-center justify-center rounded-full ring-2 select-none',\n      'group-data-[size=xs]/avatar:size-1.5',\n      'group-data-[size=sm]/avatar:size-2',\n      'group-data-[size=md]/avatar:size-2.5',\n      'group-data-[size=lg]/avatar:size-3',\n      'group-data-[size=xl]/avatar:size-3.5',\n      className\n    )}\n    {...props}\n  />\n)\n\nconst AvatarGroup = ({ className, ...props }: React.ComponentProps<'div'>) => (\n  <div\n    data-slot='avatar-group'\n    className={cn(\n      'group/avatar-group flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-white',\n      className\n    )}\n    {...props}\n  />\n)\n\n// AvatarGroup 내부 +N 카운터. 부모 group/avatar의 data-size를 못 읽으므로 자체 size prop.\nexport interface AvatarGroupCountProps\n  extends React.ComponentProps<'div'>,\n    Pick<AvatarRootVariantProps, 'size' | 'shape'> {}\n\nconst AvatarGroupCount = ({\n  className,\n  size = 'md',\n  shape = 'circle',\n  ...props\n}: AvatarGroupCountProps) => (\n  <div\n    data-slot='avatar-group-count'\n    className={cn(\n      'bg-bg-muted text-fg-default ring-white relative flex shrink-0 items-center justify-center ring-2',\n      avatarRootClassVariants({ size, shape }).replace('group/avatar', '').trim(),\n      shape === 'square' ? 'rounded-md' : 'rounded-full',\n      className\n    )}\n    {...props}\n  />\n)\n\nexport {\n  Avatar,\n  AvatarImage,\n  AvatarFallback,\n  AvatarGroup,\n  AvatarGroupCount,\n  AvatarBadge,\n  avatarRootClassVariants\n}\n",
+      "type": "registry:ui",
+      "target": "~/src/components/base/avatar.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

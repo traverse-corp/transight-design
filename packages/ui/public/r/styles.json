@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "styles",
+  "title": "Style: index",
+  "description": "index.css — 디자인 시스템 진입점 스타일",
+  "registryDependencies": [
+    "traverse-corp/transight-design/style-flex",
+    "traverse-corp/transight-design/style-fonts",
+    "traverse-corp/transight-design/style-theme",
+    "traverse-corp/transight-design/style-tokens",
+    "traverse-corp/transight-design/style-typography"
+  ],
+  "files": [
+    {
+      "path": "src/styles/index.css",
+      "content": "/* ================================================================\n * Transight Design System — 진입점\n * 사용자 앱에서 `@import '@transight-design/ui/styles/index.css'`\n * ================================================================ */\n\n/* 폰트 @import는 항상 entry 최상단 (CSS @import 순서 규칙) */\n@import './fonts.css';\n@import 'tailwindcss';\n@import './tokens.css';\n@import './theme.css';\n@import './typography.css';\n@import './flex.css';\n",
+      "type": "registry:style",
+      "target": "~/src/styles/index.css"
+    }
+  ],
+  "type": "registry:style"
+}

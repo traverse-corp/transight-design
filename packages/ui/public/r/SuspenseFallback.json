@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "SuspenseFallback",
+  "title": "SuspenseFallback",
+  "description": "SuspenseFallback 컴포넌트",
+  "dependencies": [
+    "react-spinners"
+  ],
+  "registryDependencies": [
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/SuspenseFallback.tsx",
+      "content": "import { SyncLoader } from 'react-spinners'\n\n/**\n * Suspense fallback 전용 컴포넌트\n * Loading 컴포넌트와 달리 어두운 오버레이 없이 중앙에 스피너만 표시\n * (Loading은 isFetching > 0일 때 전체화면 bg-black/30 오버레이를 표시하므로 Suspense fallback으로 부적합)\n */\nconst SuspenseFallback = () => {\n  return (\n    <div className='flex-center min-h-dvh w-full'>\n      <SyncLoader\n        color={'#627eea'}\n        aria-label='Loading Spinner'\n        data-testid='suspense-loader'\n        margin={15}\n      />\n    </div>\n  )\n}\n\nexport default SuspenseFallback\n",
+      "type": "registry:ui",
+      "target": "~/src/components/custom/SuspenseFallback.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

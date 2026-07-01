@@ -1,0 +1,1713 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "transight-design",
+  "homepage": "https://github.com/traverse-corp/transight-design",
+  "items": [
+    {
+      "name": "style-flex",
+      "type": "registry:style",
+      "title": "Style: flex",
+      "description": "flex.css — 디자인 시스템 flex 스타일",
+      "files": [
+        {
+          "path": "src/styles/flex.css",
+          "type": "registry:style",
+          "target": "~/src/styles/flex.css"
+        }
+      ]
+    },
+    {
+      "name": "style-fonts",
+      "type": "registry:style",
+      "title": "Style: fonts",
+      "description": "fonts.css — 디자인 시스템 fonts 스타일",
+      "files": [
+        {
+          "path": "src/styles/fonts.css",
+          "type": "registry:style",
+          "target": "~/src/styles/fonts.css"
+        }
+      ]
+    },
+    {
+      "name": "styles",
+      "type": "registry:style",
+      "title": "Style: index",
+      "description": "index.css — 디자인 시스템 진입점 스타일",
+      "registryDependencies": [
+        "traverse-corp/transight-design/style-flex",
+        "traverse-corp/transight-design/style-fonts",
+        "traverse-corp/transight-design/style-theme",
+        "traverse-corp/transight-design/style-tokens",
+        "traverse-corp/transight-design/style-typography"
+      ],
+      "files": [
+        {
+          "path": "src/styles/index.css",
+          "type": "registry:style",
+          "target": "~/src/styles/index.css"
+        }
+      ]
+    },
+    {
+      "name": "style-theme",
+      "type": "registry:style",
+      "title": "Style: theme",
+      "description": "theme.css — 디자인 시스템 theme 스타일",
+      "files": [
+        {
+          "path": "src/styles/theme.css",
+          "type": "registry:style",
+          "target": "~/src/styles/theme.css"
+        }
+      ]
+    },
+    {
+      "name": "style-tokens",
+      "type": "registry:style",
+      "title": "Style: tokens",
+      "description": "tokens.css — 디자인 시스템 tokens 스타일",
+      "files": [
+        {
+          "path": "src/styles/tokens.css",
+          "type": "registry:style",
+          "target": "~/src/styles/tokens.css"
+        }
+      ]
+    },
+    {
+      "name": "style-typography",
+      "type": "registry:style",
+      "title": "Style: typography",
+      "description": "typography.css — 디자인 시스템 typography 스타일",
+      "files": [
+        {
+          "path": "src/styles/typography.css",
+          "type": "registry:style",
+          "target": "~/src/styles/typography.css"
+        }
+      ]
+    },
+    {
+      "name": "lib-format",
+      "type": "registry:lib",
+      "title": "Lib: format",
+      "description": "format — 디자인 시스템 lib",
+      "files": [
+        {
+          "path": "src/lib/format.ts",
+          "type": "registry:lib",
+          "target": "@lib/format.ts"
+        }
+      ]
+    },
+    {
+      "name": "lib-get-strict-context",
+      "type": "registry:lib",
+      "title": "Lib: get-strict-context",
+      "description": "get-strict-context — 디자인 시스템 lib",
+      "files": [
+        {
+          "path": "src/lib/get-strict-context.tsx",
+          "type": "registry:lib",
+          "target": "@lib/get-strict-context.tsx"
+        }
+      ]
+    },
+    {
+      "name": "lib-pagination-types",
+      "type": "registry:lib",
+      "title": "Lib: pagination-types",
+      "description": "pagination-types — 디자인 시스템 lib",
+      "files": [
+        {
+          "path": "src/lib/pagination-types.ts",
+          "type": "registry:lib",
+          "target": "@lib/pagination-types.ts"
+        }
+      ]
+    },
+    {
+      "name": "lib-utils",
+      "type": "registry:lib",
+      "title": "Lib: utils",
+      "description": "utils — 디자인 시스템 lib",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "@lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "lib-tokens",
+      "type": "registry:lib",
+      "title": "Lib: index",
+      "description": "index — 디자인 시스템 lib",
+      "files": [
+        {
+          "path": "src/tokens/index.ts",
+          "type": "registry:lib",
+          "target": "@lib/tokens.ts"
+        }
+      ]
+    },
+    {
+      "name": "hook-use-adaptive-chars",
+      "type": "registry:hook",
+      "title": "Hook: use-adaptive-chars",
+      "description": "use-adaptive-chars — React 커스텀 훅",
+      "files": [
+        {
+          "path": "src/lib/hooks/use-adaptive-chars.ts",
+          "type": "registry:hook",
+          "target": "@hooks/use-adaptive-chars.ts"
+        }
+      ]
+    },
+    {
+      "name": "hook-use-caps-lock",
+      "type": "registry:hook",
+      "title": "Hook: use-caps-lock",
+      "description": "use-caps-lock — React 커스텀 훅",
+      "files": [
+        {
+          "path": "src/lib/hooks/use-caps-lock.ts",
+          "type": "registry:hook",
+          "target": "@hooks/use-caps-lock.ts"
+        }
+      ]
+    },
+    {
+      "name": "hook-use-controlled-state",
+      "type": "registry:hook",
+      "title": "Hook: use-controlled-state",
+      "description": "use-controlled-state — React 커스텀 훅",
+      "files": [
+        {
+          "path": "src/lib/hooks/use-controlled-state.tsx",
+          "type": "registry:hook",
+          "target": "@hooks/use-controlled-state.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hook-use-mobile",
+      "type": "registry:hook",
+      "title": "Hook: use-mobile",
+      "description": "use-mobile — React 커스텀 훅",
+      "files": [
+        {
+          "path": "src/lib/hooks/use-mobile.ts",
+          "type": "registry:hook",
+          "target": "@hooks/use-mobile.ts"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "accordion",
+      "description": "accordion 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/hook-use-controlled-state",
+        "traverse-corp/transight-design/lib-get-strict-context",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/accordion.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/accordion.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "alert",
+      "description": "alert 컴포넌트",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/alert.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/alert.tsx"
+        }
+      ]
+    },
+    {
+      "name": "AlertDialog",
+      "type": "registry:ui",
+      "title": "AlertDialog",
+      "description": "AlertDialog 컴포넌트",
+      "dependencies": [
+        "react-i18next"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/AlertDialog.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/AlertDialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-beam",
+      "type": "registry:ui",
+      "title": "animated-beam",
+      "description": "animated-beam 컴포넌트",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/animated-beam.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/animated-beam.tsx"
+        }
+      ]
+    },
+    {
+      "name": "AnimatedAccordion",
+      "type": "registry:ui",
+      "title": "AnimatedAccordion",
+      "description": "AnimatedAccordion 컴포넌트",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/accordion",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/AnimatedAccordion.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/AnimatedAccordion.tsx"
+        }
+      ]
+    },
+    {
+      "name": "AnimatedAlertDialog",
+      "type": "registry:ui",
+      "title": "AnimatedAlertDialog",
+      "description": "AnimatedAlertDialog 컴포넌트",
+      "registryDependencies": [
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/dialog",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/AnimatedAlertDialog.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/AnimatedAlertDialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "AnimatedCheckbox",
+      "type": "registry:ui",
+      "title": "AnimatedCheckbox",
+      "description": "AnimatedCheckbox 컴포넌트",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/checkbox",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/AnimatedCheckbox.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/AnimatedCheckbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "AnimatedPreviewCard",
+      "type": "registry:ui",
+      "title": "AnimatedPreviewCard",
+      "description": "AnimatedPreviewCard 컴포넌트",
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/preview-card",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/AnimatedPreviewCard.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/AnimatedPreviewCard.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "avatar",
+      "description": "avatar 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/avatar.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "back-button",
+      "type": "registry:ui",
+      "title": "back-button",
+      "description": "back-button 컴포넌트",
+      "dependencies": [
+        "lucide-react",
+        "react-i18next",
+        "react-router-dom"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/back-button.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/back-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "badge",
+      "description": "badge 컴포넌트",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/badge.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "button",
+      "description": "button 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/button.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "calendar",
+      "description": "calendar 컴포넌트",
+      "dependencies": [
+        "lucide-react",
+        "react-day-picker"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/calendar.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/calendar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "card",
+      "description": "card 컴포넌트",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/card.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "carousel",
+      "description": "carousel 컴포넌트",
+      "dependencies": [
+        "embla-carousel-react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/carousel.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/carousel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "checkbox",
+      "description": "checkbox 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "motion"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/hook-use-controlled-state",
+        "traverse-corp/transight-design/lib-get-strict-context",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "clickable-addr",
+      "type": "registry:ui",
+      "title": "clickable-addr",
+      "description": "clickable-addr 컴포넌트",
+      "dependencies": [
+        "lucide-react",
+        "react-i18next",
+        "sonner"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles",
+        "traverse-corp/transight-design/tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/components/clickable-addr.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/clickable-addr.tsx"
+        }
+      ]
+    },
+    {
+      "name": "clickable-tx",
+      "type": "registry:ui",
+      "title": "clickable-tx",
+      "description": "clickable-tx 컴포넌트",
+      "dependencies": [
+        "lucide-react",
+        "react-i18next",
+        "sonner"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles",
+        "traverse-corp/transight-design/tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/components/clickable-tx.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/clickable-tx.tsx"
+        }
+      ]
+    },
+    {
+      "name": "CoinIcon",
+      "type": "registry:ui",
+      "title": "CoinIcon",
+      "description": "CoinIcon 컴포넌트",
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/CoinIcon.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/CoinIcon.tsx"
+        }
+      ]
+    },
+    {
+      "name": "CopyButton",
+      "type": "registry:ui",
+      "title": "CopyButton",
+      "description": "CopyButton 컴포넌트",
+      "dependencies": [
+        "lucide-react",
+        "react-i18next",
+        "sonner"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/CopyButton.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/CopyButton.tsx"
+        }
+      ]
+    },
+    {
+      "name": "CopyWrapper",
+      "type": "registry:ui",
+      "title": "CopyWrapper",
+      "description": "CopyWrapper 컴포넌트",
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/CopyWrapper.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/CopyWrapper.tsx"
+        }
+      ]
+    },
+    {
+      "name": "date-time-input",
+      "type": "registry:ui",
+      "title": "date-time-input",
+      "description": "date-time-input 컴포넌트",
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/date-time-input.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/date-time-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "DatePicker",
+      "type": "registry:ui",
+      "title": "DatePicker",
+      "description": "DatePicker 컴포넌트",
+      "dependencies": [
+        "date-fns",
+        "lucide-react",
+        "react-day-picker",
+        "react-i18next",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/calendar",
+        "traverse-corp/transight-design/popover",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/DatePicker.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/DatePicker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "dialog",
+      "description": "dialog 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/hook-use-controlled-state",
+        "traverse-corp/transight-design/lib-get-strict-context",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/dialog.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "dropdown-menu",
+      "description": "dropdown-menu 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/dropdown-menu.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/dropdown-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "Dropzone",
+      "type": "registry:ui",
+      "title": "Dropzone",
+      "description": "Dropzone 컴포넌트",
+      "dependencies": [
+        "lucide-react",
+        "react-dropzone"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/Dropzone.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/Dropzone.tsx"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "empty",
+      "description": "empty 컴포넌트",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/empty.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/empty.tsx"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "field",
+      "description": "field 컴포넌트",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/label",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/separator",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/field.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hash-text",
+      "type": "registry:ui",
+      "title": "hash-text",
+      "description": "hash-text 컴포넌트",
+      "dependencies": [
+        "lucide-react",
+        "react-i18next",
+        "sonner"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-format",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/hash-text.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/hash-text.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "hover-card",
+      "description": "hover-card 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/hover-card.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/hover-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "input-group",
+      "description": "input-group 컴포넌트",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/input",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles",
+        "traverse-corp/transight-design/textarea"
+      ],
+      "files": [
+        {
+          "path": "src/components/input-group.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/input-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "input-otp",
+      "description": "input-otp 컴포넌트",
+      "dependencies": [
+        "class-variance-authority",
+        "input-otp",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/input-otp.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/input-otp.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "input",
+      "description": "input 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/input.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "Inputbar",
+      "type": "registry:ui",
+      "title": "Inputbar",
+      "description": "Inputbar 컴포넌트",
+      "registryDependencies": [
+        "traverse-corp/transight-design/input",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/Inputbar.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/Inputbar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "label",
+      "description": "label 컴포넌트",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/label.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/label.tsx"
+        }
+      ]
+    },
+    {
+      "name": "NoItem",
+      "type": "registry:ui",
+      "title": "NoItem",
+      "description": "NoItem 컴포넌트",
+      "dependencies": [
+        "react-i18next"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/NoItem.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/NoItem.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "pagination",
+      "description": "pagination 컴포넌트",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/pagination.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/pagination.tsx"
+        }
+      ]
+    },
+    {
+      "name": "Paginations",
+      "type": "registry:ui",
+      "title": "Paginations",
+      "description": "Paginations 컴포넌트",
+      "dependencies": [
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-pagination-types",
+        "traverse-corp/transight-design/pagination",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/Paginations.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/Paginations.tsx"
+        }
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:ui",
+      "title": "password-input",
+      "description": "password-input 컴포넌트",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/hook-use-caps-lock",
+        "traverse-corp/transight-design/input",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/password-input.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/password-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "popover",
+      "description": "popover 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/popover.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "preview-card",
+      "type": "registry:ui",
+      "title": "preview-card",
+      "description": "preview-card 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/hook-use-controlled-state",
+        "traverse-corp/transight-design/lib-get-strict-context",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/preview-card.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/preview-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "radio-group",
+      "description": "radio-group 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/radio-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "RadioButton",
+      "type": "registry:ui",
+      "title": "RadioButton",
+      "description": "RadioButton 컴포넌트",
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/RadioButton.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/RadioButton.tsx"
+        }
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "resizable",
+      "description": "resizable 컴포넌트",
+      "dependencies": [
+        "react-resizable-panels"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/resizable.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/resizable.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "scroll-area",
+      "description": "scroll-area 컴포넌트",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/scroll-area.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/scroll-area.tsx"
+        }
+      ]
+    },
+    {
+      "name": "search-input",
+      "type": "registry:ui",
+      "title": "search-input",
+      "description": "search-input 컴포넌트",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/input",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/search-input.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/search-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "SearchBar",
+      "type": "registry:ui",
+      "title": "SearchBar",
+      "description": "SearchBar 컴포넌트",
+      "dependencies": [
+        "lucide-react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/SearchBar.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/SearchBar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "select",
+      "description": "select 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/select.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "separator",
+      "description": "separator 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/separator.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/separator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "sheet",
+      "description": "sheet 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/sheet.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/sheet.tsx"
+        }
+      ]
+    },
+    {
+      "name": "shine-border",
+      "type": "registry:ui",
+      "title": "shine-border",
+      "description": "shine-border 컴포넌트",
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/shine-border.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/shine-border.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "sidebar",
+      "description": "sidebar 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/hook-use-mobile",
+        "traverse-corp/transight-design/input",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/separator",
+        "traverse-corp/transight-design/skeleton",
+        "traverse-corp/transight-design/styles",
+        "traverse-corp/transight-design/tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/components/sidebar.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/sidebar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "skeleton",
+      "description": "skeleton 컴포넌트",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/skeleton.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/skeleton.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "sonner",
+      "description": "sonner 컴포넌트",
+      "dependencies": [
+        "lucide-react",
+        "next-themes",
+        "sonner"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/sonner.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/sonner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "spinner",
+      "description": "spinner 컴포넌트",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/spinner.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/spinner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "Stepper",
+      "type": "registry:ui",
+      "title": "Stepper",
+      "description": "Stepper 컴포넌트",
+      "dependencies": [
+        "lucide-react",
+        "motion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/Stepper.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/Stepper.tsx"
+        }
+      ]
+    },
+    {
+      "name": "SuspenseFallback",
+      "type": "registry:ui",
+      "title": "SuspenseFallback",
+      "description": "SuspenseFallback 컴포넌트",
+      "dependencies": [
+        "react-spinners"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/SuspenseFallback.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/SuspenseFallback.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "switch",
+      "description": "switch 컴포넌트",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/switch.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "table",
+      "description": "table 컴포넌트",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/table.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "tabs",
+      "description": "tabs 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/tabs.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "textarea",
+      "description": "textarea 컴포넌트",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/textarea.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/textarea.tsx"
+        }
+      ]
+    },
+    {
+      "name": "TimePicker",
+      "type": "registry:ui",
+      "title": "TimePicker",
+      "description": "TimePicker 컴포넌트",
+      "dependencies": [
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/TimePicker.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/TimePicker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "toggle-group",
+      "description": "toggle-group 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles",
+        "traverse-corp/transight-design/toggle"
+      ],
+      "files": [
+        {
+          "path": "src/components/toggle-group.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/toggle-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "toggle",
+      "description": "toggle 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/toggle.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/toggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "tooltip",
+      "description": "tooltip 컴포넌트",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/base/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:ui",
+      "title": "Icon System",
+      "description": "SVG sprite 기반 아이콘 시스템 — palette 토큰 색상 × 5단계 크기",
+      "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/icon-system/icon.tsx",
+          "type": "registry:ui",
+          "target": "~/src/icons/icon.tsx"
+        },
+        {
+          "path": "src/icon-system/icons.gen.ts",
+          "type": "registry:ui",
+          "target": "~/src/icons/icons.gen.ts"
+        },
+        {
+          "path": "src/icon-system/sprite.gen.tsx",
+          "type": "registry:ui",
+          "target": "~/src/icons/sprite.gen.tsx"
+        }
+      ]
+    },
+    {
+      "name": "agent",
+      "type": "registry:item",
+      "title": "AI Agent 가이드",
+      "description": "디자인 시스템 사용 규칙 (Style/Variant/Props · 아이콘 · 임포트 경로) — AI 에이전트가 가장 먼저 읽고 따를 지시서",
+      "files": [
+        {
+          "path": "src/agent/AGENT.md",
+          "type": "registry:file",
+          "target": "~/transight-design.AGENT.md"
+        }
+      ]
+    },
+    {
+      "name": "essential",
+      "type": "registry:item",
+      "title": "Essential Pack",
+      "description": "서비스 초기 구성에 필요한 핵심 UI 컴포넌트 묶음 + AI Agent 가이드",
+      "registryDependencies": [
+        "traverse-corp/transight-design/agent",
+        "traverse-corp/transight-design/badge",
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/checkbox",
+        "traverse-corp/transight-design/dialog",
+        "traverse-corp/transight-design/input",
+        "traverse-corp/transight-design/label",
+        "traverse-corp/transight-design/radio-group",
+        "traverse-corp/transight-design/select",
+        "traverse-corp/transight-design/separator",
+        "traverse-corp/transight-design/skeleton",
+        "traverse-corp/transight-design/spinner",
+        "traverse-corp/transight-design/switch",
+        "traverse-corp/transight-design/textarea",
+        "traverse-corp/transight-design/tooltip"
+      ]
+    },
+    {
+      "name": "base",
+      "type": "registry:item",
+      "title": "Base Components",
+      "description": "shadcn 표준 base 컴포넌트(정리 완료분) + AI Agent 가이드",
+      "registryDependencies": [
+        "traverse-corp/transight-design/accordion",
+        "traverse-corp/transight-design/agent",
+        "traverse-corp/transight-design/alert",
+        "traverse-corp/transight-design/avatar",
+        "traverse-corp/transight-design/badge",
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/card",
+        "traverse-corp/transight-design/checkbox",
+        "traverse-corp/transight-design/dialog",
+        "traverse-corp/transight-design/dropdown-menu",
+        "traverse-corp/transight-design/hover-card",
+        "traverse-corp/transight-design/input",
+        "traverse-corp/transight-design/label",
+        "traverse-corp/transight-design/popover",
+        "traverse-corp/transight-design/radio-group",
+        "traverse-corp/transight-design/select",
+        "traverse-corp/transight-design/separator",
+        "traverse-corp/transight-design/sheet",
+        "traverse-corp/transight-design/skeleton",
+        "traverse-corp/transight-design/spinner",
+        "traverse-corp/transight-design/switch",
+        "traverse-corp/transight-design/tabs",
+        "traverse-corp/transight-design/textarea",
+        "traverse-corp/transight-design/tooltip"
+      ]
+    },
+    {
+      "name": "transight-design",
+      "type": "registry:item",
+      "title": "Transight Design System (전체 번들)",
+      "description": "토큰 · 폰트 · lib · hook · agent · icon + 정리 완료된 컴포넌트 일괄 설치. 미정리 컴포넌트는 직접 add로 깔 것",
+      "registryDependencies": [
+        "traverse-corp/transight-design/accordion",
+        "traverse-corp/transight-design/agent",
+        "traverse-corp/transight-design/alert",
+        "traverse-corp/transight-design/avatar",
+        "traverse-corp/transight-design/badge",
+        "traverse-corp/transight-design/base",
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/card",
+        "traverse-corp/transight-design/checkbox",
+        "traverse-corp/transight-design/dialog",
+        "traverse-corp/transight-design/dropdown-menu",
+        "traverse-corp/transight-design/essential",
+        "traverse-corp/transight-design/hook-use-adaptive-chars",
+        "traverse-corp/transight-design/hook-use-caps-lock",
+        "traverse-corp/transight-design/hook-use-controlled-state",
+        "traverse-corp/transight-design/hook-use-mobile",
+        "traverse-corp/transight-design/hover-card",
+        "traverse-corp/transight-design/icon",
+        "traverse-corp/transight-design/input",
+        "traverse-corp/transight-design/label",
+        "traverse-corp/transight-design/lib-format",
+        "traverse-corp/transight-design/lib-get-strict-context",
+        "traverse-corp/transight-design/lib-pagination-types",
+        "traverse-corp/transight-design/lib-tokens",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/password-input",
+        "traverse-corp/transight-design/popover",
+        "traverse-corp/transight-design/radio-group",
+        "traverse-corp/transight-design/search-input",
+        "traverse-corp/transight-design/select",
+        "traverse-corp/transight-design/separator",
+        "traverse-corp/transight-design/sheet",
+        "traverse-corp/transight-design/skeleton",
+        "traverse-corp/transight-design/spinner",
+        "traverse-corp/transight-design/style-flex",
+        "traverse-corp/transight-design/style-fonts",
+        "traverse-corp/transight-design/style-theme",
+        "traverse-corp/transight-design/style-tokens",
+        "traverse-corp/transight-design/style-typography",
+        "traverse-corp/transight-design/styles",
+        "traverse-corp/transight-design/switch",
+        "traverse-corp/transight-design/tabs",
+        "traverse-corp/transight-design/textarea",
+        "traverse-corp/transight-design/tooltip"
+      ]
+    }
+  ]
+}

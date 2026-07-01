@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "CoinIcon",
+  "title": "CoinIcon",
+  "description": "CoinIcon 컴포넌트",
+  "registryDependencies": [
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/CoinIcon.tsx",
+      "content": "import React from 'react'\nimport tokenIcon from '@/assets/token.svg'\n\ninterface CoinIconProps extends React.ImgHTMLAttributes<HTMLImageElement> {\n  coinType?: string\n  size?: number\n}\n\nexport default function CoinIcon({ coinType, size = 24, className = '', ...props }: CoinIconProps) {\n  const getImage = (type?: string) => {\n    const filename = `${type?.toLowerCase() || 'icons/token'}.svg`\n    return `/images/${filename}`\n  }\n  const src = getImage(coinType)\n\n  return (\n    <img\n      src={src || tokenIcon}\n      alt={coinType || 'icon'}\n      width={size}\n      height={size}\n      className={className}\n      onError={(e) => {\n        // 없으면 default.svg 로 대체\n        e.currentTarget.src = new URL(`/images/icons/token.svg`, import.meta.url).href\n      }}\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "~/src/components/custom/CoinIcon.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

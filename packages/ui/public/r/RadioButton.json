@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "RadioButton",
+  "title": "RadioButton",
+  "description": "RadioButton 컴포넌트",
+  "registryDependencies": [
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/RadioButton.tsx",
+      "content": "import React, { forwardRef } from 'react'\n\ninterface RadioButtonProps extends React.ComponentProps<'input'> {\n  children?: React.ReactNode\n}\n\n/**\n * 동결 프로토콜 공통 라디오 버튼 컴포넌트\n */\nconst RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(\n  ({ children, ...props }, ref) => {\n    return (\n      <label className='flex items-center gap-2'>\n        <input\n          ref={ref}\n          type='radio'\n          className='accent-primary-blue-1 border-border-default h-5 w-5 disabled:opacity-40'\n          {...props}\n        />\n        {children && <span className='typo-m13'>{children}</span>}\n      </label>\n    )\n  }\n)\n\nRadioButton.displayName = 'RadioButton'\n\nexport default RadioButton\n",
+      "type": "registry:ui",
+      "target": "~/src/components/custom/RadioButton.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

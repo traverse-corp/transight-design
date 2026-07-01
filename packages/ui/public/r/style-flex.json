@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "style-flex",
+  "title": "Style: flex",
+  "description": "flex.css — 디자인 시스템 flex 스타일",
+  "files": [
+    {
+      "path": "src/styles/flex.css",
+      "content": "/* ================================================================\n * Transight Design System — Flex 유틸리티\n * 네이밍: flex-(direction)-(justify)-(align)\n * ================================================================ */\n\n@layer utilities {\n  /* 단순 정렬 */\n  .flex-start {\n    @apply flex items-start justify-start;\n  }\n  .flex-center {\n    @apply flex items-center justify-center;\n  }\n  .flex-end {\n    @apply flex items-end justify-end;\n  }\n  .flex-col-start {\n    @apply flex flex-col items-start justify-start;\n  }\n  .flex-col-center {\n    @apply flex flex-col items-center justify-center;\n  }\n  .flex-col-end {\n    @apply flex flex-col items-end justify-end;\n  }\n\n  /* ── flex-row: justify-{kind}-align-{kind} ── */\n  .flex-start-center {\n    @apply flex items-center justify-start;\n  }\n  .flex-start-end {\n    @apply flex items-end justify-start;\n  }\n  .flex-center-start {\n    @apply flex items-start justify-center;\n  }\n  .flex-center-end {\n    @apply flex items-end justify-center;\n  }\n  .flex-end-start {\n    @apply flex items-start justify-end;\n  }\n  .flex-end-center {\n    @apply flex items-center justify-end;\n  }\n  .flex-around-start {\n    @apply flex items-start justify-around;\n  }\n  .flex-around-center {\n    @apply flex items-center justify-around;\n  }\n  .flex-around-end {\n    @apply flex items-end justify-around;\n  }\n  .flex-between-start {\n    @apply flex items-start justify-between;\n  }\n  .flex-between-center {\n    @apply flex items-center justify-between;\n  }\n  .flex-between-end {\n    @apply flex items-end justify-between;\n  }\n\n  /* ── flex-col ── */\n  .flex-col-start-center {\n    @apply flex flex-col items-center justify-start;\n  }\n  .flex-col-start-end {\n    @apply flex flex-col items-end justify-start;\n  }\n  .flex-col-center-start {\n    @apply flex flex-col items-start justify-center;\n  }\n  .flex-col-center-end {\n    @apply flex flex-col items-end justify-center;\n  }\n  .flex-col-end-start {\n    @apply flex flex-col items-start justify-end;\n  }\n  .flex-col-end-center {\n    @apply flex flex-col items-center justify-end;\n  }\n  .flex-col-around-start {\n    @apply flex flex-col items-start justify-around;\n  }\n  .flex-col-around-center {\n    @apply flex flex-col items-center justify-around;\n  }\n  .flex-col-around-end {\n    @apply flex flex-col items-end justify-around;\n  }\n  .flex-col-between-start {\n    @apply flex flex-col items-start justify-between;\n  }\n  .flex-col-between-center {\n    @apply flex flex-col items-center justify-between;\n  }\n  .flex-col-between-end {\n    @apply flex flex-col items-end justify-between;\n  }\n}\n",
+      "type": "registry:style",
+      "target": "~/src/styles/flex.css"
+    }
+  ],
+  "type": "registry:style"
+}

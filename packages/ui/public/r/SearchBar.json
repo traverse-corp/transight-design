@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "SearchBar",
+  "title": "SearchBar",
+  "description": "SearchBar 컴포넌트",
+  "dependencies": [
+    "lucide-react",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/SearchBar.tsx",
+      "content": "import React, { forwardRef } from 'react'\nimport { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from './input-group'\nimport { Search } from 'lucide-react'\nimport { twMerge } from 'tailwind-merge'\n\ninterface SearchBarProps extends React.ComponentProps<typeof InputGroupInput> {\n  className?: string\n  onSearch: (value: string) => void\n}\n\nconst SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(\n  ({ onSearch, className, ...props }, ref) => {\n    const handleEnterSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {\n      if (e.key === 'Enter') {\n        onSearch(String(props.value || ''))\n      }\n    }\n\n    return (\n      <InputGroup className={twMerge('h-10 w-150 bg-bg-card', className)}>\n        <InputGroupInput ref={ref} {...props} onKeyDown={handleEnterSearch} />\n        <InputGroupAddon align='inline-end'>\n          <InputGroupButton onClick={() => onSearch(String(props.value || ''))}>\n            <Search className='text-fg-default' />\n          </InputGroupButton>\n        </InputGroupAddon>\n      </InputGroup>\n    )\n  }\n)\n\nexport default SearchBar\n",
+      "type": "registry:ui",
+      "target": "~/src/components/custom/SearchBar.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

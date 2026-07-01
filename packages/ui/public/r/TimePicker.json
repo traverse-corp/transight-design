@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "TimePicker",
+  "title": "TimePicker",
+  "description": "TimePicker 컴포넌트",
+  "dependencies": [
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/TimePicker.tsx",
+      "content": "import React, { useState } from 'react'\nimport { twMerge } from 'tailwind-merge'\ninterface TimePickerProps {\n  value: string // \"HH:mm\" 형식의 시간 문자열 (예: \"14:30\")\n  onChangeTime: (value: string) => void // 시간 변경 시 호출될 콜백 함수\n  label?: string // 컴포넌트 상단에 표시될 라벨\n  className?: string // 추가적인 커스텀 스타일 클래스\n}\n\nexport const TimePicker: React.FC<TimePickerProps> = ({ className = '' }) => {\n  const [hours, setHour] = useState(0)\n  const [minutes, setMinutes] = useState(0)\n  return (\n    <div className={twMerge('flex h-full w-[120px] gap-2', className)}>\n      <div className='scrollbar-hide max-h-85 w-1/2 overflow-y-scroll'>\n        {Array.from({ length: 24 }).map((_, index) => (\n          <button\n            key={index}\n            className={twMerge(\n              'flex-center hover:bg-primary-blue-1 w-full cursor-pointer p-2 hover:text-on-dark',\n              hours === index ? 'bg-primary-blue-1 text-on-dark' : 'bg-bg-card'\n            )}\n            onClick={() => setHour(index)}\n          >\n            {index.toLocaleString()}\n          </button>\n        ))}\n      </div>\n      <div className='scrollbar-hide max-h-85 w-1/2 overflow-y-scroll'>\n        {Array.from({ length: 12 }).map((_, index) => (\n          <button\n            key={index}\n            className={twMerge(\n              'flex-center hover:bg-primary-blue-1 w-full cursor-pointer p-2 hover:text-on-dark',\n              minutes === index * 5 ? 'bg-primary-blue-1 text-on-dark' : 'bg-bg-card'\n            )}\n            onClick={() => setMinutes(index * 5)}\n          >\n            {index * 5}\n          </button>\n        ))}\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "~/src/components/custom/TimePicker.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hook-use-controlled-state",
+  "title": "Hook: use-controlled-state",
+  "description": "use-controlled-state — React 커스텀 훅",
+  "files": [
+    {
+      "path": "src/lib/hooks/use-controlled-state.tsx",
+      "content": "import * as React from 'react'\n\ninterface CommonControlledStateProps<T> {\n  value?: T\n  defaultValue?: T\n}\n\nexport function useControlledState<T, Rest extends any[] = []>(\n  props: CommonControlledStateProps<T> & {\n    onChange?: (value: T, ...args: Rest) => void\n  }\n): readonly [T, (next: T, ...args: Rest) => void] {\n  const { value, defaultValue, onChange } = props\n\n  const [state, setInternalState] = React.useState<T>(\n    value !== undefined ? value : (defaultValue as T)\n  )\n\n  React.useEffect(() => {\n    if (value !== undefined) setInternalState(value)\n  }, [value])\n\n  const isControlled = value !== undefined\n  const setState = React.useCallback(\n    (next: T, ...args: Rest) => {\n      // controlled 모드에서는 내부 state를 직접 변경하지 않음 (value prop이 변경되어야 반영)\n      if (!isControlled) setInternalState(next)\n      onChange?.(next, ...args)\n    },\n    [onChange, isControlled]\n  )\n\n  return [state, setState] as const\n}\n",
+      "type": "registry:hook",
+      "target": "@hooks/use-controlled-state.tsx"
+    }
+  ],
+  "type": "registry:hook"
+}

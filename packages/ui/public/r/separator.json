@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "title": "separator",
+  "description": "separator 컴포넌트",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "traverse-corp/transight-design/lib-utils",
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/separator.tsx",
+      "content": "'use client'\n\nimport * as React from 'react'\nimport { Separator as SeparatorPrimitive } from '@base-ui/react/separator'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\n\nconst separatorClassVariants = cva('shrink-0', {\n  variants: {\n    orientation: {\n      horizontal: 'w-full',\n      vertical: 'self-stretch'\n    },\n    tone: {\n      muted: 'bg-bg-muted',\n      strong: 'bg-bg-muted',\n      accent: 'bg-primary-blue-1'\n    },\n    thickness: {\n      thin: '',\n      medium: '',\n      thick: ''\n    }\n  },\n  compoundVariants: [\n    { orientation: 'horizontal', thickness: 'thin', className: 'h-px' },\n    { orientation: 'horizontal', thickness: 'medium', className: 'h-0.5' },\n    { orientation: 'horizontal', thickness: 'thick', className: 'h-1' },\n    { orientation: 'vertical', thickness: 'thin', className: 'w-px' },\n    { orientation: 'vertical', thickness: 'medium', className: 'w-0.5' },\n    { orientation: 'vertical', thickness: 'thick', className: 'w-1' }\n  ],\n  defaultVariants: {\n    orientation: 'horizontal',\n    tone: 'muted',\n    thickness: 'thin'\n  }\n})\n\ntype SeparatorVariantProps = VariantProps<typeof separatorClassVariants>\n\nexport type SeparatorProps = Omit<SeparatorPrimitive.Props, 'orientation'> &\n  SeparatorVariantProps\n\nconst Separator = ({\n  className,\n  orientation,\n  tone,\n  thickness,\n  ...props\n}: SeparatorProps) => (\n  <SeparatorPrimitive\n    data-slot='separator'\n    orientation={orientation ?? 'horizontal'}\n    className={cn(separatorClassVariants({ orientation, tone, thickness, className }))}\n    {...props}\n  />\n)\n\nexport { Separator, separatorClassVariants }\n",
+      "type": "registry:ui",
+      "target": "~/src/components/base/separator.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

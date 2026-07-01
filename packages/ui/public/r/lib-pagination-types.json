@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "lib-pagination-types",
+  "title": "Lib: pagination-types",
+  "description": "pagination-types — 디자인 시스템 lib",
+  "files": [
+    {
+      "path": "src/lib/pagination-types.ts",
+      "content": "export interface Pagenations {\n  page: number\n  totalPage: number\n  size: number\n  className?: string\n  onPageChange: (page: number, inq: number) => void\n}\n",
+      "type": "registry:lib",
+      "target": "@lib/pagination-types.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

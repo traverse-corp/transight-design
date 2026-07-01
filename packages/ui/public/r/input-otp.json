@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-otp",
+  "title": "input-otp",
+  "description": "input-otp 컴포넌트",
+  "dependencies": [
+    "class-variance-authority",
+    "input-otp",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "traverse-corp/transight-design/lib-utils",
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/input-otp.tsx",
+      "content": "import * as React from 'react'\nimport { OTPInput, OTPInputContext } from 'input-otp'\n\nimport { cn } from '@/lib/utils'\nimport { MinusIcon } from 'lucide-react'\n\nfunction InputOTP({\n  className,\n  containerClassName,\n  ...props\n}: React.ComponentProps<typeof OTPInput> & {\n  containerClassName?: string\n}) {\n  return (\n    <OTPInput\n      data-slot='input-otp'\n      containerClassName={cn(\n        'cn-input-otp flex items-center has-disabled:opacity-50',\n        containerClassName\n      )}\n      spellCheck={false}\n      className={cn('disabled:cursor-not-allowed', className)}\n      {...props}\n    />\n  )\n}\n\nfunction InputOTPGroup({ className, ...props }: React.ComponentProps<'div'>) {\n  return (\n    <div\n      data-slot='input-otp-group'\n      className={cn(\n        'has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 has-aria-invalid:border-destructive flex items-center rounded-md has-aria-invalid:ring-3',\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nimport { cva, type VariantProps } from 'class-variance-authority'\n\nconst inputOTPSlotVariants = cva(\n  'relative flex items-center justify-center transition-all outline-none',\n  {\n    variants: {\n      variant: {\n        default:\n          'border-input data-[active=true]:border-ring data-[active=true]:ring-ring/50 size-9 border-y border-r text-sm shadow-xs first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:ring-3 data-[active=true]:z-10',\n        auth: 'border-border-default focus:border-primary-blue-1 focus:bg-primary-blue-1/10 text-fg-strong disabled:text-fg-disabled h-12 w-12 rounded-lg border-2 bg-bg-card text-lg font-semibold disabled:bg-bg-card data-[active=true]:border-ring data-[active=true]:ring-ring/50 '\n      }\n    },\n    defaultVariants: {\n      variant: 'default'\n    }\n  }\n)\n\nfunction InputOTPSlot({\n  index,\n  className,\n  variant,\n  ...props\n}: React.ComponentProps<'div'> & {\n  index: number\n} & VariantProps<typeof inputOTPSlotVariants>) {\n  const inputOTPContext = React.useContext(OTPInputContext)\n  const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {}\n\n  return (\n    <div\n      data-slot='input-otp-slot'\n      data-active={isActive}\n      className={cn(inputOTPSlotVariants({ variant, className }))}\n      {...props}\n    >\n      {char}\n      {hasFakeCaret && (\n        <div className='pointer-events-none absolute inset-0 flex items-center justify-center'>\n          <div className='animate-caret-blink bg-foreground h-4 w-px duration-1000' />\n        </div>\n      )}\n    </div>\n  )\n}\n\nfunction InputOTPSeparator({ ...props }: React.ComponentProps<'div'>) {\n  return (\n    <div\n      data-slot='input-otp-separator'\n      className=\"flex items-center [&_svg:not([class*='size-'])]:size-4\"\n      role='separator'\n      {...props}\n    >\n      <MinusIcon />\n    </div>\n  )\n}\n\nexport { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator }\n",
+      "type": "registry:ui",
+      "target": "~/src/components/base/input-otp.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

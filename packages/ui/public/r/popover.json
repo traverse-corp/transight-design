@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover",
+  "title": "popover",
+  "description": "popover 컴포넌트",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "traverse-corp/transight-design/lib-utils",
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/popover.tsx",
+      "content": "'use client'\n\nimport * as React from 'react'\nimport { Popover as PopoverPrimitive } from '@base-ui/react/popover'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\n\nconst Popover = ({ ...props }: PopoverPrimitive.Root.Props) => (\n  <PopoverPrimitive.Root data-slot='popover' {...props} />\n)\n\nconst PopoverTrigger = ({ ...props }: PopoverPrimitive.Trigger.Props) => (\n  <PopoverPrimitive.Trigger data-slot='popover-trigger' {...props} />\n)\n\nconst popoverContentClassVariants = cva(\n  'z-50 flex origin-(--transform-origin) flex-col gap-4 border-border-default typo-m13 text-fg-strong border bg-bg-card shadow-popover outline-hidden duration-100 data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',\n  {\n    variants: {\n      shape: {\n        default: 'rounded-md',\n        square: 'rounded-none'\n      },\n      size: {\n        sm: 'w-56 p-3 gap-2',\n        md: 'w-72 p-4 gap-4',\n        lg: 'w-96 p-5 gap-5'\n      }\n    },\n    defaultVariants: {\n      shape: 'default',\n      size: 'md'\n    }\n  }\n)\n\ntype PopoverContentVariantProps = VariantProps<typeof popoverContentClassVariants>\n\ntype PopoverContentProps = PopoverPrimitive.Popup.Props &\n  Pick<PopoverPrimitive.Positioner.Props, 'align' | 'alignOffset' | 'side' | 'sideOffset'> &\n  PopoverContentVariantProps\n\nconst PopoverContent = ({\n  className,\n  align = 'center',\n  alignOffset = 0,\n  side = 'bottom',\n  sideOffset = 4,\n  shape,\n  size,\n  ...props\n}: PopoverContentProps) => (\n  <PopoverPrimitive.Portal>\n    <PopoverPrimitive.Positioner\n      align={align}\n      alignOffset={alignOffset}\n      side={side}\n      sideOffset={sideOffset}\n      className='isolate z-50'\n    >\n      <PopoverPrimitive.Popup\n        data-slot='popover-content'\n        className={cn(popoverContentClassVariants({ shape, size }), className)}\n        {...props}\n      />\n    </PopoverPrimitive.Positioner>\n  </PopoverPrimitive.Portal>\n)\n\nconst PopoverHeader = ({ className, ...props }: React.ComponentProps<'div'>) => (\n  <div data-slot='popover-header' className={cn('flex flex-col gap-1', className)} {...props} />\n)\n\nconst PopoverTitle = ({ className, ...props }: PopoverPrimitive.Title.Props) => (\n  <PopoverPrimitive.Title\n    data-slot='popover-title'\n    className={cn('typo-sb14 text-fg-strong', className)}\n    {...props}\n  />\n)\n\nconst PopoverDescription = ({ className, ...props }: PopoverPrimitive.Description.Props) => (\n  <PopoverPrimitive.Description\n    data-slot='popover-description'\n    className={cn('typo-m12 text-fg-default', className)}\n    {...props}\n  />\n)\n\nconst PopoverClose = ({ className, ...props }: PopoverPrimitive.Close.Props) => (\n  <PopoverPrimitive.Close data-slot='popover-close' className={cn(className)} {...props} />\n)\n\nexport {\n  Popover,\n  PopoverClose,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n  popoverContentClassVariants\n}\n",
+      "type": "registry:ui",
+      "target": "~/src/components/base/popover.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

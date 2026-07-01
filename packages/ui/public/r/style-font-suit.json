@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "style-font-suit",
+  "title": "Style: font-suit",
+  "description": "font-suit.css — 디자인 시스템 font-suit 스타일",
+  "files": [
+    {
+      "path": "src/styles/font-suit.css",
+      "content": "/* ================================================================\n * SUIT Variable 폰트 — CDN @import\n *\n * 별도 파일로 분리한 이유:\n * CSS 스펙상 @import는 다른 모든 rule보다 앞에 와야 한다.\n * typography.css 안에 두면 typography.css가 다른 파일 다음에 import될 때\n * @import가 중간에 끼어 파서가 오류로 처리한다.\n *\n * 따라서 이 파일은 사용자 앱의 entry CSS 최상단에 가장 먼저 import한다:\n *   @import '@transight-design/ui/styles/font-suit.css';\n *   @import 'tailwindcss';\n *   ...\n * ================================================================ */\n\n@import url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css');\n",
+      "type": "registry:style",
+      "target": "~/src/styles/font-suit.css"
+    }
+  ],
+  "type": "registry:style"
+}

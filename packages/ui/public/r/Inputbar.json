@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "Inputbar",
+  "title": "Inputbar",
+  "description": "Inputbar 컴포넌트",
+  "registryDependencies": [
+    "traverse-corp/transight-design/input",
+    "traverse-corp/transight-design/styles"
+  ],
+  "files": [
+    {
+      "path": "src/components/Inputbar.tsx",
+      "content": "import * as React from 'react'\nimport { Input, type InputProps } from '@/components/input'\n\ninterface InputbarProps extends InputProps {\n  isAlphanumericOnly?: boolean\n}\n\nconst Inputbar = React.forwardRef<HTMLInputElement, InputbarProps>(\n  ({ isAlphanumericOnly: _isAlphanumericOnly, className, ...props }, ref) => {\n    return <Input ref={ref} className={className} {...props} />\n  }\n)\n\nInputbar.displayName = 'Inputbar'\n\nexport default Inputbar\n",
+      "type": "registry:ui",
+      "target": "~/src/components/custom/Inputbar.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
