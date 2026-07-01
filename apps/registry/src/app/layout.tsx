@@ -9,7 +9,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Transight Design System',
   description: 'shadcn 방식 배포형 디자인 시스템 — Base UI + Tailwind v4',
-  metadataBase: new URL('https://transight-design.app')
+  metadataBase: new URL('https://transight-design.netlify.app')
 }
 
 /**

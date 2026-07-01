@@ -89,7 +89,7 @@ npx shadcn@latest add /path/to/transight-design/packages/ui/public/r/transight-d
 
 ```bash
 # 정적 호스팅 (apps/registry에 Next.js 배포 후)
-npx shadcn@latest add https://transight-design.app/r/button.json
+npx shadcn@latest add https://transight-design.netlify.app/r/button.json
 
 # 또는 GitHub 직접 (브리프 §Phase 4: "공개 GitHub 레지스트리로 빌드 생략 검토")
 npx shadcn@latest add traverse-corp/transight-design/button
