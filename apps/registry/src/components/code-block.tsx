@@ -29,7 +29,7 @@ export const CodeBlock = ({ code, language, filename, maxHeight = '36rem' }: Cod
       <CopyButton text={buildCopyText(code, language)} />
     </div>
     <pre
-      className='overflow-auto bg-bg-inverse p-4 typo-mono-m12 leading-relaxed text-fg-inverse'
+      className='scrollbar-on-dark overflow-auto bg-bg-inverse p-4 typo-mono-m12 leading-relaxed text-fg-inverse'
       style={{ maxHeight }}
     >
       <code>{code}</code>

@@ -481,16 +481,20 @@ import { IconSprite } from '@/icons/sprite.gen' // 앱 루트에 1회 마운트
 ```tsx
 <Button variant="destructive">삭제</Button>    // color=red
 <Button variant="success">완료</Button>        // color=green + theme=soft
+<Button variant="icon" aria-label="검색"><Search /></Button> // icon-only layout preset
 <Badge variant="vasp">VASP</Badge>             // 도메인 특화 preset
 ```
 
 **정책**:
-- variant 구성 요소는 Style 4축(color / theme / shape / size)만. **4축 외 임의
-  className / 다른 props 추가 금지**.
+- 사용자가 직접 추가하는 variant 구성 요소는 Style 4축(color / theme / shape / size)만.
+  **4축 외 임의 className / 다른 props 추가 금지**.
+- DS가 제공하는 정식 layout preset은 예외적으로 variant에 포함될 수 있다.
+  예: `Button variant="icon"`은 아이콘 전용 정사각 레이아웃이며, `size`는 스케일만 담당한다.
 - 미명시한 축은 cva default로 자동 매핑. 굳이 4개를 다 적을 필요 없음.
 - 명시한 Style prop이 **항상 variant preset을 덮어쓴다**.
   ```tsx
   <Button variant="destructive" theme="outline">  // color=red(preset) + theme=outline(명시)
+  <Button variant="icon" size="sm" color="blue">  // icon layout + sm scale + blue color
   ```
 - 새 variant 추가는 **CLI 명령**으로 (AI 종류 무관, 자동 등록):
   ```bash
@@ -563,7 +567,7 @@ react-hook-form 등에서 받은 `register()` 객체를 그대로 펴면 onChang
 </Dialog>
 ```
 
-폭은 `size="sm|md|lg|xl|full"` preset만 지원한다. 디자인이 임의 px을 요구할 때만
+폭은 `size="sm|md|lg|xl|2xl|3xl|wide|full"` preset을 우선 사용한다. 디자인이 임의 px을 요구할 때만
 `className="sm:max-w-[Xpx]"` (Tailwind responsive prefix 필요 — base가 default size에
 풀려있어서 prefix 없이 덮으면 작은 화면에서 깨질 수 있음)로 override:
 

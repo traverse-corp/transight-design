@@ -27,7 +27,7 @@ export const StylesNav = () => {
   const browseActive = pathname.startsWith('/styles/browse')
 
   return (
-    <aside className='h-screen w-60 shrink-0 overflow-y-auto py-10'>
+    <aside className='scrollbar-subtle h-screen w-60 shrink-0 overflow-y-auto py-10'>
       <Link
         href='/'
         className='flex-start-center typo-sb14 text-fg-default hover:text-primary-blue-1 mb-6 gap-1.5 rounded-md px-2 py-1.5'

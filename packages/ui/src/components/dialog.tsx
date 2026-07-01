@@ -89,6 +89,9 @@ const dialogPopupVariants = cva(
         md: 'sm:max-w-md',
         lg: 'sm:max-w-lg',
         xl: 'sm:max-w-xl',
+        '2xl': 'sm:max-w-2xl',
+        '3xl': 'sm:max-w-3xl',
+        wide: 'sm:max-w-[72rem]',
         full: 'sm:max-w-[calc(100%-4rem)]'
       },
       shape: {

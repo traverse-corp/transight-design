@@ -55,7 +55,7 @@ const TRIGGER_CONTROLS: ControlDef[] = [
 ]
 
 const CONTENT_CONTROLS: ControlDef[] = [
-  { stateKey: 'size', label: 'size', values: ['sm', 'md', 'lg', 'xl', 'full'] },
+  { stateKey: 'size', label: 'size', values: ['sm', 'md', 'lg', 'xl', '2xl', '3xl', 'wide', 'full'] },
   { stateKey: 'shape', label: 'shape', values: ['default', 'square'] }
 ]
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Search } from 'lucide-react'
 import { Button } from '@transight-design/ui/components/button'
 import { PreviewModePanel } from './preview-mode-panel'
 
@@ -8,11 +9,13 @@ const BUTTON_VARIANT_LABELS: Record<string, string> = {
   default: 'Default',
   destructive: 'Destructive',
   success: 'Success',
-  dark: 'Dark'
+  icon: 'Icon'
 }
 
 const codeForVariant = (variant: string) =>
-  `<Button variant="${variant}">${BUTTON_VARIANT_LABELS[variant] ?? variant}</Button>`
+  variant === 'icon'
+    ? '<Button variant="icon" aria-label="Search"><Search /></Button>'
+    : `<Button variant="${variant}">${BUTTON_VARIANT_LABELS[variant] ?? variant}</Button>`
 
 export const ButtonVariantPresets = ({ variants }: { variants: string[] }) => {
   const [selectedVariant, setSelectedVariant] = useState(variants[0] ?? 'default')
@@ -23,11 +26,17 @@ export const ButtonVariantPresets = ({ variants }: { variants: string[] }) => {
         code={codeForVariant(selectedVariant)}
         preview={
           <div className="flex min-h-24 items-center justify-center">
-            <Button
-              variant={selectedVariant as NonNullable<Parameters<typeof Button>[0]['variant']>}
-            >
-              {BUTTON_VARIANT_LABELS[selectedVariant] ?? selectedVariant}
-            </Button>
+            {selectedVariant === 'icon' ? (
+              <Button variant="icon" aria-label="Search">
+                <Search />
+              </Button>
+            ) : (
+              <Button
+                variant={selectedVariant as NonNullable<Parameters<typeof Button>[0]['variant']>}
+              >
+                {BUTTON_VARIANT_LABELS[selectedVariant] ?? selectedVariant}
+              </Button>
+            )}
           </div>
         }
       />

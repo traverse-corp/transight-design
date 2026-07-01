@@ -96,8 +96,12 @@ npx shadcn@latest add traverse-corp/transight-design/styles
 
 | 클래스 | 용도 |
 |---|---|
-| `hide-scrollbar` | 스크롤바 완전 숨김 (가로 캐러셀 등) |
-| `custom-scrollbar` | 얇고 은은한 커스텀 스크롤바 |
+| `scrollbar-none` | 스크롤바 완전 숨김 (가로 캐러셀 등) |
+| `scrollbar-subtle` | 얇고 은은한 기본 커스텀 스크롤바 |
+| `scrollbar-on-dark` | 어두운 표면 위 얇은 커스텀 스크롤바 |
+
+Legacy alias로 `hide-scrollbar`, `scrollbar-hide`, `custom-scrollbar`,
+`scrollbar-custom`도 유지된다. 신규 코드는 `scrollbar-*` 네이밍을 우선한다.
 
 `prefers-reduced-motion: reduce` 사용자에게는 transition/animation이 자동으로 0에
 가깝게 축소된다 (`@layer base`에서 글로벌 적용).

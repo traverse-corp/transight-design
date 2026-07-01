@@ -47,30 +47,3 @@
 body {
   @apply bg-background text-foreground;
 }
-
-/* ────────────────────────────────────────────────────────────────
- * 얇고 깔끔한 스크롤바 (사이드바/컨텐츠 독립 스크롤 영역용).
- * Firefox: scrollbar-width / WebKit: ::-webkit-scrollbar
- * ──────────────────────────────────────────────────────────────── */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-default) transparent;
-}
-
-*::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: var(--border-default);
-  border-radius: 9999px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background-color: var(--border-strong);
-}

@@ -170,7 +170,8 @@ type ButtonPresetStyle = Partial<
 
 const buttonVariantPresets = {
   destructive: { color: 'red' },
-  success: { color: 'green', theme: 'soft' }
+  success: { color: 'green', theme: 'soft' },
+  icon: {}
 } satisfies Record<string, ButtonPresetStyle>
 
 type ButtonPresetVariant = keyof typeof buttonVariantPresets
@@ -212,6 +213,7 @@ function buttonVariants({
       shape: shape ?? preset?.shape,
       size: size ?? preset?.size
     }),
+    variant === 'icon' && 'aspect-square gap-0 px-0',
     className
   )
 }

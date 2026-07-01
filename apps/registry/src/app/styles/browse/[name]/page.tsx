@@ -39,7 +39,7 @@ const StyleBrowsePage = async ({ params }: PageProps) => {
     <div className='mx-auto flex h-screen max-w-7xl gap-10 px-6'>
       <StylesNav />
 
-      <div className='h-screen min-w-0 flex-1 overflow-y-auto py-10'>
+      <div className='scrollbar-subtle h-screen min-w-0 flex-1 overflow-y-auto py-10'>
         <header className='mb-8'>
           <h1 className='typo-b24 text-fg-strong'>{meta.displayName}</h1>
           <p className='typo-r12 text-fg-muted mt-1'>{meta.description}</p>

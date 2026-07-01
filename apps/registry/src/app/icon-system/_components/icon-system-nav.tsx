@@ -22,7 +22,7 @@ export const IconSystemNav = ({ children }: IconSystemNavProps) => {
   const pathname = usePathname()
 
   return (
-    <aside className='h-screen w-60 shrink-0 overflow-y-auto py-10'>
+    <aside className='scrollbar-subtle h-screen w-60 shrink-0 overflow-y-auto py-10'>
       {/* Go Main */}
       <Link
         href='/'

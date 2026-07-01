@@ -169,7 +169,8 @@
     "groups": {
       "variant": [
         "destructive",
-        "success"
+        "success",
+        "icon"
       ],
       "color": [
         "gray",
@@ -294,6 +295,9 @@
         "md",
         "lg",
         "xl",
+        "2xl",
+        "3xl",
+        "wide",
         "full"
       ],
       "shape": [

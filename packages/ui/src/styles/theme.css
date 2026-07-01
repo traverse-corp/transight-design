@@ -49,6 +49,12 @@
   --hover-bg: var(--color-cool-grey-01);
   --active-bg: var(--color-cool-grey-02);
 
+  /* ── Scrollbar ────────────────────────────────── */
+  --scrollbar-subtle-thumb: rgb(0 0 0 / 0.18);
+  --scrollbar-subtle-thumb-hover: rgb(0 0 0 / 0.32);
+  --scrollbar-on-dark-thumb: rgb(255 255 255 / 0.15);
+  --scrollbar-on-dark-thumb-hover: rgb(255 255 255 / 0.3);
+
   /* ── Shadow ────────────────────────────────────── */
   --shadow-card: 0 1px 3px rgb(0 0 0 / 0.08), 0 1px 2px rgb(0 0 0 / 0.04);
   --shadow-popover: 0 4px 12px rgb(0 0 0 / 0.12), 0 2px 4px rgb(0 0 0 / 0.06);
@@ -124,6 +130,12 @@
   --overlay-backdrop: rgb(0 0 0 / 0.7);
   --hover-bg: rgb(255 255 255 / 0.05);
   --active-bg: rgb(255 255 255 / 0.1);
+
+  /* ── Scrollbar ────────────────────────────────── */
+  --scrollbar-subtle-thumb: rgb(255 255 255 / 0.15);
+  --scrollbar-subtle-thumb-hover: rgb(255 255 255 / 0.3);
+  --scrollbar-on-dark-thumb: rgb(255 255 255 / 0.15);
+  --scrollbar-on-dark-thumb-hover: rgb(255 255 255 / 0.3);
 
   /* ── Shadow (다크에서 알파 ↑) ──────────────────── */
   --shadow-card: 0 4px 15px rgb(0 0 0 / 0.4);
@@ -278,9 +290,19 @@
 
 /* ──────────────────────────────────────────────────────────────────
  * Scrollbar utilities
- *  - hide-scrollbar: 스크롤바 완전 숨김 (가로 캐러셀 등)
- *  - custom-scrollbar: 얇고 은은한 커스텀 스크롤바
+ *  - scrollbar-none: 스크롤바 완전 숨김 (가로 캐러셀 등)
+ *  - scrollbar-subtle: 얇고 은은한 기본 커스텀 스크롤바
+ *  - scrollbar-on-dark: 어두운 표면 위 커스텀 스크롤바
+ *  - hide-scrollbar / custom-scrollbar / scrollbar-hide / scrollbar-custom: legacy alias
  * ────────────────────────────────────────────────────────────────── */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @utility hide-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -289,9 +311,17 @@
   }
 }
 
-@utility custom-scrollbar {
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility scrollbar-subtle {
   scrollbar-width: thin;
-  scrollbar-color: rgb(0 0 0 / 0.18) transparent;
+  scrollbar-color: var(--scrollbar-subtle-thumb) transparent;
   &::-webkit-scrollbar {
     width: 6px;
   }
@@ -299,10 +329,64 @@
     background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background: rgb(0 0 0 / 0.18);
+    background: var(--scrollbar-subtle-thumb);
     border-radius: 3px;
   }
   &::-webkit-scrollbar-thumb:hover {
-    background: rgb(0 0 0 / 0.32);
+    background: var(--scrollbar-subtle-thumb-hover);
+  }
+}
+
+@utility custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-subtle-thumb) transparent;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-subtle-thumb);
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-subtle-thumb-hover);
+  }
+}
+
+@utility scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-subtle-thumb) transparent;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-subtle-thumb);
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-subtle-thumb-hover);
+  }
+}
+
+@utility scrollbar-on-dark {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-on-dark-thumb) transparent;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-on-dark-thumb);
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-on-dark-thumb-hover);
   }
 }

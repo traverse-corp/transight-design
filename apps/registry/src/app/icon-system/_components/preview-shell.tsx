@@ -173,7 +173,7 @@ export const PreviewShell = () => {
       </IconSystemNav>
 
       {/* 우측 메인 — 아이콘 그리드 */}
-      <div className='h-screen min-w-0 flex-1 overflow-y-auto py-10'>
+      <div className='scrollbar-subtle h-screen min-w-0 flex-1 overflow-y-auto py-10'>
         <header className='mb-6 flex items-end justify-between'>
           <div>
             <h1 className='typo-b24 text-fg-strong'>Icons</h1>

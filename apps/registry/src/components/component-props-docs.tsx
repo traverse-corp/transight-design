@@ -26,9 +26,9 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
   button: [
     {
       name: 'variant',
-      type: "'default' | 'destructive' | 'success' | 'dark'",
+      type: "'destructive' | 'success' | 'icon'",
       defaultValue: "'default'",
-      description: '반복해서 쓰는 버튼 조합을 preset으로 호출합니다.'
+      description: '반복해서 쓰는 버튼 조합을 preset으로 호출합니다. icon은 아이콘 전용 정사각 버튼입니다.'
     },
     {
       name: 'color',
@@ -128,10 +128,10 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
   dialog: [
     {
       name: 'size',
-      type: "'sm' | 'md' | 'lg' | 'xl' | 'full'",
+      type: "'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'wide' | 'full'",
       defaultValue: "'md'",
       description:
-        'DialogPopup의 max-width. sm=384/md=448/lg=512/xl=576/full=거의 전체. 모바일은 항상 calc(100%-2rem).'
+        'DialogPopup의 max-width. sm=384/md=448/lg=512/xl=576/2xl=672/3xl=768/wide=72rem/full=거의 전체. 모바일은 항상 calc(100%-2rem).'
     },
     {
       name: 'shape',
