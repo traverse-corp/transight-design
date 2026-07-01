@@ -32,6 +32,9 @@ jobs:
       - name: Typecheck (전 패키지)
         run: npm run typecheck
 
+      - name: Design guideline lint
+        run: npm run lint
+
       - name: Registry — generate + validate + build
         working-directory: packages/ui
         run: |

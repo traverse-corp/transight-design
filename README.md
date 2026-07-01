@@ -50,6 +50,7 @@ npm run dev
 
 ```bash
 npm run dev              # registry 문서 사이트 실행
+npm run lint             # 디자인 가이드 위반 증가 여부 + workspace lint 확인
 npm run typecheck        # 모든 workspace 타입 체크
 npm run build            # ui registry + registry app + cli 빌드
 npm run registry:build   # 생성된 registry.json 기준 public/r/*.json 재생성
@@ -66,6 +67,7 @@ transight-design/
 ├── apps/
 │   └── registry/    Next.js 문서 사이트 및 registry 정적 호스팅
 ├── svg/             아이콘 시스템 원본 SVG
+├── scripts/         디자인 가이드 검증 등 루트 자동화 스크립트
 ├── patches/         변경 단위별 전달/적용 문서
 ├── registry.json    shadcn registry 루트 진입점
 └── .changeset/      패키지 버전/릴리즈 관리
@@ -168,7 +170,23 @@ npx shadcn@latest add traverse-corp/transight-design/button
 - 타이포는 `typo-*` 또는 `text-*` 프리셋을 우선합니다.
 - 도메인 아이콘은 자체 `Icon`, 범용 UI 아이콘은 `lucide-react`를 사용합니다.
 - 컴포넌트 변경 후 registry 산출물을 재생성합니다.
+- `npm run lint`는 디자인 가이드 위반 수가 baseline보다 증가하면 실패합니다. 레거시 위반은 점진 정리하고, 정리 후에는 baseline을 낮춥니다.
 - 패키지 배포 영향이 있는 변경은 changeset을 포함합니다.
+
+## 디자인 가이드 검증
+
+`scripts/check-design-guidelines.mjs`는 UI/문서 소스에서 다음 항목을 검사합니다.
+
+- raw hex/rgb 및 Tailwind 기본 팔레트 색상
+- `text-sm`, `font-medium`, `leading-*` 같은 원시 타이포 클래스
+- 고정 inline style
+- cva `variants` 안의 `variant` 시각 축
+
+기존 레거시 부채는 `scripts/design-guideline-baseline.json`에 기록되어 있습니다. 새 코드가 위반 수를 늘리면 CI의 `npm run lint` 단계에서 실패합니다. 레거시를 정리한 뒤에는 다음 명령으로 baseline을 낮춥니다.
+
+```bash
+node scripts/check-design-guidelines.mjs --update-baseline
+```
 
 ## 더 읽을 문서
 

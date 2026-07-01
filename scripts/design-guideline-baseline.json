@@ -1,0 +1,9 @@
+{
+  "description": "Existing design guideline debt. check-design-guidelines.mjs fails only when counts increase.",
+  "counts": {
+    "raw-color": 28,
+    "raw-typography": 55,
+    "inline-style": 10,
+    "cva-variant-axis": 9
+  }
+}

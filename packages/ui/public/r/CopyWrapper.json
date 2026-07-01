@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "src/components/CopyWrapper.tsx",
-      "content": "import React, { useState } from 'react'\n\ninterface CopyWrapperProps {\n  text: string\n  children: React.ReactNode\n}\n\nexport default function CopyWrapper({ text, children }: CopyWrapperProps) {\n  const [copied, setCopied] = useState(false)\n\n  const handleClick = async () => {\n    try {\n      await navigator.clipboard.writeText(text)\n      setCopied(true)\n      setTimeout(() => setCopied(false), 2000)\n    } catch {\n      // 복사 실패\n    }\n  }\n\n  return (\n    <div onClick={handleClick} style={{ display: 'inline-block', cursor: 'pointer' }}>\n      {children}\n      {copied && <span className='tooltip'>복사됨!</span>}\n    </div>\n  )\n}\n",
+      "content": "import React, { useState } from 'react'\n\ninterface CopyWrapperProps {\n  text: string\n  children: React.ReactNode\n}\n\nexport default function CopyWrapper({ text, children }: CopyWrapperProps) {\n  const [copied, setCopied] = useState(false)\n\n  const handleClick = async () => {\n    try {\n      await navigator.clipboard.writeText(text)\n      setCopied(true)\n      setTimeout(() => setCopied(false), 2000)\n    } catch {\n      // 복사 실패\n    }\n  }\n\n  return (\n    <button\n      type='button'\n      onClick={handleClick}\n      className='inline-flex cursor-pointer border-0 bg-transparent p-0 text-left'\n    >\n      {children}\n      {copied && <span className='tooltip'>복사됨!</span>}\n    </button>\n  )\n}\n",
       "type": "registry:ui",
       "target": "~/src/components/custom/CopyWrapper.tsx"
     }

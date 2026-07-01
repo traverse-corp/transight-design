@@ -19,9 +19,13 @@ export default function CopyWrapper({ text, children }: CopyWrapperProps) {
   }
 
   return (
-    <div onClick={handleClick} style={{ display: 'inline-block', cursor: 'pointer' }}>
+    <button
+      type='button'
+      onClick={handleClick}
+      className='inline-flex cursor-pointer border-0 bg-transparent p-0 text-left'
+    >
       {children}
       {copied && <span className='tooltip'>복사됨!</span>}
-    </div>
+    </button>
   )
 }

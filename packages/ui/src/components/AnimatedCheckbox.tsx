@@ -12,7 +12,7 @@ const checkboxVariants = cva(
   'peer shrink-0 flex items-center justify-center outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 disabled:cursor-not-allowed disabled:opacity-50 transition-colors duration-500 focus-visible:ring-offset-2 [&[data-checked],&[data-indeterminate]]:bg-primary [&[data-checked],&[data-indeterminate]]:text-primary-foreground',
   {
     variants: {
-      variant: {
+      theme: {
         default: 'bg-background border',
         accent: 'bg-input'
       },
@@ -23,7 +23,7 @@ const checkboxVariants = cva(
       }
     },
     defaultVariants: {
-      variant: 'default',
+      theme: 'default',
       size: 'default'
     }
   }
@@ -45,11 +45,18 @@ const checkboxIndicatorVariants = cva('', {
 type CheckboxProps = CheckboxPrimitiveProps &
   VariantProps<typeof checkboxVariants> & {
     children?: React.ReactNode
+    /** @deprecated use theme instead. */
+    variant?: NonNullable<VariantProps<typeof checkboxVariants>['theme']>
   }
 
-function Checkbox({ className, children, variant, size, ...props }: CheckboxProps) {
+function Checkbox({ className, children, theme, variant, size, ...props }: CheckboxProps) {
+  const resolvedTheme = theme ?? variant
+
   return (
-    <CheckboxPrimitive className={cn(checkboxVariants({ variant, size, className }))} {...props}>
+    <CheckboxPrimitive
+      className={cn(checkboxVariants({ theme: resolvedTheme, size, className }))}
+      {...props}
+    >
       {children}
       <CheckboxIndicatorPrimitive className={cn(checkboxIndicatorVariants({ size }))} />
     </CheckboxPrimitive>

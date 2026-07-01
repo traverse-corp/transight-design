@@ -90,7 +90,7 @@ const badgeCompoundVariants = Object.entries(badgeColorStyles).flatMap(([color, 
 
 // cva에는 Style 4축만 등록. variant는 별도 preset 객체에서 단일 진실로 관리.
 const badgeClassVariants = cva(
-  'inline-flex items-center font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+  'inline-flex items-center transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
   {
     variants: {
       color: {
@@ -119,11 +119,11 @@ const badgeClassVariants = cva(
         square: 'rounded-none'
       },
       size: {
-        xs: 'px-1.5 py-0.5 text-[11px] leading-none',
-        sm: 'px-2 py-0.5 text-xs',
-        md: 'px-3 py-1 text-[13px]',
-        lg: 'px-3.5 py-1.5 text-sm',
-        xl: 'px-4 py-2 text-base'
+        xs: 'px-1.5 py-0.5 typo-sb11',
+        sm: 'px-2 py-0.5 typo-sb12',
+        md: 'px-3 py-1 typo-sb13',
+        lg: 'px-3.5 py-1.5 typo-sb14',
+        xl: 'px-4 py-2 typo-sb16'
       }
     },
     compoundVariants: badgeCompoundVariants,

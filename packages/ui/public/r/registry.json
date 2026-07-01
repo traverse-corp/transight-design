@@ -1368,6 +1368,7 @@
         "tailwind-merge"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/styles"
       ],
       "files": [

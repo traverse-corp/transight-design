@@ -95,7 +95,7 @@ const buttonCompoundVariants = Object.entries(buttonColorStyles).flatMap(([color
 
 // cva에는 Style 4축만 등록. variant는 별도 preset 객체에서 단일 진실로 관리.
 const buttonClassVariants = cva(
-  "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all select-none active:scale-95 disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap transition-all select-none active:scale-95 disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       color: {
@@ -125,11 +125,11 @@ const buttonClassVariants = cva(
         square: 'rounded-none'
       },
       size: {
-        xs: 'h-7 px-2 text-xs',
-        sm: 'h-9 px-3 text-sm',
-        md: 'h-10 px-4 py-2',
-        lg: 'h-11 px-8 text-base',
-        xl: 'h-12 px-10 text-base'
+        xs: 'h-7 px-2 typo-sb12',
+        sm: 'h-9 px-3 typo-sb14',
+        md: 'h-10 px-4 py-2 typo-sb14',
+        lg: 'h-11 px-8 typo-sb16',
+        xl: 'h-12 px-10 typo-sb16'
       }
     },
     compoundVariants: buttonCompoundVariants,

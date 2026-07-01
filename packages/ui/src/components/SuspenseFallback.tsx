@@ -9,7 +9,7 @@ const SuspenseFallback = () => {
   return (
     <div className='flex-center min-h-dvh w-full'>
       <SyncLoader
-        color={'#627eea'}
+        color='var(--color-primary-blue-1)'
         aria-label='Loading Spinner'
         data-testid='suspense-loader'
         margin={15}

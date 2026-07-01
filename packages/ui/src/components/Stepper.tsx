@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { CheckIcon } from 'lucide-react'
 import { Button } from './button'
 import { twMerge } from 'tailwind-merge'
+import { cn } from '@/lib/utils'
 
 // ----------------------------------------------------------------------
 // Types
@@ -165,13 +166,13 @@ const StepIndicator = ({ stepsArray, curStep, setCurStep }: StepIndicatorProps) 
             <div className="relative z-10 flex flex-col items-center">
               <motion.div
                 onClick={() => handleClick(stepNumber)}
-                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full font-semibold"
-                animate={status}
-                variants={{
-                  inactive: { backgroundColor: '#E5E7EB', color: '#9CA3AF' },
-                  active: { backgroundColor: '#2563EB', color: '#ffffff', scale: 1.1 },
-                  complete: { backgroundColor: '#2563EB', color: '#ffffff' }
-                }}
+                className={cn(
+                  'flex h-8 w-8 cursor-pointer items-center justify-center rounded-full typo-sb14',
+                  status === 'inactive'
+                    ? 'bg-bg-muted text-fg-disabled'
+                    : 'bg-primary-blue-1 text-on-dark'
+                )}
+                animate={{ scale: status === 'active' ? 1.1 : 1 }}
                 transition={{ duration: 0.3 }}
               >
                 {status === 'complete' ? <CheckIcon className="h-4 w-4" /> : stepNumber}
@@ -181,7 +182,10 @@ const StepIndicator = ({ stepsArray, curStep, setCurStep }: StepIndicatorProps) 
               {label && (
                 <div className="absolute top-8 w-32 text-center">
                   <span
-                    className={`text-xs font-medium ${status === 'active' ? 'text-blue-600' : 'text-gray-500'}`}
+                    className={cn(
+                      'typo-m12',
+                      status === 'active' ? 'text-primary-blue-1' : 'text-fg-muted'
+                    )}
                   >
                     {label}
                   </span>
@@ -191,9 +195,9 @@ const StepIndicator = ({ stepsArray, curStep, setCurStep }: StepIndicatorProps) 
 
             {/* Connector Line */}
             {stepNumber < totalStep && (
-              <div className="relative mx-2 h-[2px] min-w-[30px] flex-1 bg-gray-200">
+              <div className="relative mx-2 h-[2px] min-w-[30px] flex-1 bg-bg-muted">
                 <motion.div
-                  className="absolute top-0 left-0 h-full bg-blue-600"
+                  className="absolute top-0 left-0 h-full bg-primary-blue-1"
                   initial={{ width: '0%' }}
                   animate={{ width: curStep > stepNumber ? '100%' : '0%' }}
                   transition={{ duration: 0.3 }}
