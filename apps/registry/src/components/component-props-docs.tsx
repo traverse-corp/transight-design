@@ -388,6 +388,57 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
         '지정 시 우측 하단에 자동 counter(현재길이/maxLength) 표시. 값이 controlled(value)일 때만 길이가 정확합니다.'
     }
   ],
+  'date-picker': [
+    {
+      name: 'type',
+      type: "'CALENDAR' | 'TYPE'",
+      defaultValue: "'CALENDAR'",
+      description:
+        "'CALENDAR'는 트리거 클릭 시 캘린더 팝오버로 선택, 'TYPE'은 세그먼트 입력(YYYY/MM/DD [hh:mm:ss])."
+    },
+    {
+      name: 'text',
+      type: 'string',
+      description:
+        '피커 안쪽(트리거 버튼 라벨 앞 / 세그먼트 앞)에 prefix로 붙는 설명 텍스트. 예: "시작일자".'
+    },
+    {
+      name: 'isSelectTime',
+      type: 'boolean',
+      defaultValue: 'false',
+      description:
+        'true면 시간 선택까지 지원. CALENDAR는 우측 시/분 컬럼(분은 5분 단위), TYPE은 hh/mm/ss 세그먼트를 노출.'
+    },
+    {
+      name: 'selectedDate',
+      type: 'Date | null',
+      description:
+        '현재 선택된 날짜 (controlled). CALENDAR + null 초기 상태면 마운트 시 오늘로 자동 세팅됨.'
+    },
+    {
+      name: 'onDateChange',
+      type: '(date: Date | null) => void',
+      description: '선택 변경 콜백. 필수.'
+    },
+    {
+      name: 'placeholder',
+      type: 'string',
+      defaultValue: "'날짜 선택'",
+      description: '트리거 미선택 상태의 라벨.'
+    },
+    {
+      name: 'startDate',
+      type: 'Date',
+      description:
+        '최소 선택 가능 일자. 이 날짜 이전은 disabled 처리 (CALENDAR 모드 한정, TYPE은 자유 입력).'
+    },
+    {
+      name: 'endDate',
+      type: 'Date',
+      description:
+        '최대 선택 가능 일자. 이 날짜 이후는 disabled 처리 (CALENDAR 모드 한정, TYPE은 자유 입력).'
+    }
+  ],
   label: [
     {
       name: 'variant',

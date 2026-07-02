@@ -13,6 +13,7 @@ import { DialogPreviewShell } from './dialog-preview-shell'
 import { DropdownMenuPreviewShell } from './dropdown-menu-preview-shell'
 import { PopoverPreviewShell } from './popover-preview-shell'
 import { SheetPreviewShell } from './sheet-preview-shell'
+import { DatePickerPreviewShell } from './date-picker-preview-shell'
 import { PreviewModePanel } from './preview-mode-panel'
 import { VariantBuilderModal } from './variant-builder-modal'
 import { SectionTitle, SectionCard } from './section-title'
@@ -187,6 +188,15 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
     return (
       <ThreeSectionLayout
         styleNode={<SheetPreviewShell />}
+        variantNode={variantNodeShared}
+        propsNode={hasVisiblePropsDocs(name) ? <ComponentPropsDocs name={name} /> : null}
+      />
+    )
+  }
+  if (name === 'date-picker') {
+    return (
+      <ThreeSectionLayout
+        styleNode={<DatePickerPreviewShell />}
         variantNode={variantNodeShared}
         propsNode={hasVisiblePropsDocs(name) ? <ComponentPropsDocs name={name} /> : null}
       />

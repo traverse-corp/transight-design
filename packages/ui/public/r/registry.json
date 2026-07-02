@@ -643,6 +643,33 @@
       ]
     },
     {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "date-picker",
+      "description": "date-picker 컴포넌트",
+      "dependencies": [
+        "date-fns",
+        "lucide-react",
+        "react-day-picker",
+        "react-i18next"
+      ],
+      "registryDependencies": [
+        "traverse-corp/transight-design/button",
+        "traverse-corp/transight-design/calendar",
+        "traverse-corp/transight-design/date-time-input",
+        "traverse-corp/transight-design/lib-utils",
+        "traverse-corp/transight-design/popover",
+        "traverse-corp/transight-design/styles"
+      ],
+      "files": [
+        {
+          "path": "src/components/date-picker.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/custom/date-picker.tsx"
+        }
+      ]
+    },
+    {
       "name": "date-time-input",
       "type": "registry:ui",
       "title": "date-time-input",
@@ -656,31 +683,6 @@
           "path": "src/components/date-time-input.tsx",
           "type": "registry:ui",
           "target": "~/src/components/custom/date-time-input.tsx"
-        }
-      ]
-    },
-    {
-      "name": "DatePicker",
-      "type": "registry:ui",
-      "title": "DatePicker",
-      "description": "DatePicker 컴포넌트",
-      "dependencies": [
-        "date-fns",
-        "lucide-react",
-        "react-day-picker",
-        "react-i18next",
-        "tailwind-merge"
-      ],
-      "registryDependencies": [
-        "traverse-corp/transight-design/calendar",
-        "traverse-corp/transight-design/popover",
-        "traverse-corp/transight-design/styles"
-      ],
-      "files": [
-        {
-          "path": "src/components/DatePicker.tsx",
-          "type": "registry:ui",
-          "target": "~/src/components/custom/DatePicker.tsx"
         }
       ]
     },
@@ -1673,6 +1675,7 @@
         "traverse-corp/transight-design/button",
         "traverse-corp/transight-design/card",
         "traverse-corp/transight-design/checkbox",
+        "traverse-corp/transight-design/date-picker",
         "traverse-corp/transight-design/dialog",
         "traverse-corp/transight-design/dropdown-menu",
         "traverse-corp/transight-design/essential",

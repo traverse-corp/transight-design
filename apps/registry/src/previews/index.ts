@@ -21,7 +21,7 @@ import { Preview as CoinIconPreview } from './CoinIcon'
 import { Preview as CopyButtonPreview } from './CopyButton'
 import { Preview as CopyWrapperPreview } from './CopyWrapper'
 import { Preview as DateTimeInputPreview } from './date-time-input'
-import { Preview as DatePickerPreview } from './DatePicker'
+import { Preview as DatePickerPreview } from './date-picker'
 import { Preview as DialogPreview } from './dialog'
 import { Preview as DropdownMenuPreview } from './dropdown-menu'
 import { Preview as DropzonePreview } from './Dropzone'
@@ -94,7 +94,7 @@ export const PREVIEWS: Record<string, PreviewComponent> = {
   CopyButton: CopyButtonPreview,
   CopyWrapper: CopyWrapperPreview,
   'date-time-input': DateTimeInputPreview,
-  DatePicker: DatePickerPreview,
+  'date-picker': DatePickerPreview,
   dialog: DialogPreview,
   'dropdown-menu': DropdownMenuPreview,
   Dropzone: DropzonePreview,

@@ -106,6 +106,10 @@ interface DateTimeInputProps {
   placeholder?: string
   className?: string
   onBlur?: (e: React.FocusEvent<HTMLElement>) => void
+  /** false면 hh/mm/ss 세그먼트를 숨긴다. 기본값 true. */
+  showTime?: boolean
+  /** 컨테이너 내부, 세그먼트 앞에 붙일 프리픽스 노드 (예: "시작일자"). */
+  prefix?: React.ReactNode
 }
 
 /* ── 컴포넌트 ── */
@@ -116,8 +120,11 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
   nextRef,
   inputRef,
   className,
-  onBlur
+  onBlur,
+  showTime = true,
+  prefix
 }) => {
+  const visibleSegs: SegKey[] = showTime ? SEGS : (['yyyy', 'mm', 'dd'] as SegKey[])
   const containerRef = useRef<HTMLDivElement>(null)
   const refs: Record<SegKey, React.RefObject<HTMLInputElement | null>> = {
     yyyy: useRef<HTMLInputElement>(null),
@@ -165,24 +172,22 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
   /** 세그먼트 값 변경 → 내부 state 업데이트 + 부모에게 onChange 전달 */
   const emitChange = useCallback(
     (seg: SegKey, segValue: string): void => {
-      setSegVals((prev: SegVals) => {
-        const next: SegVals = { ...prev, [seg]: segValue }
-        const assembled: string = assembleValue(next)
-        lastEmitted.current = assembled
-        onChange(assembled)
-        return next
-      })
+      const next: SegVals = { ...segVals, [seg]: segValue }
+      const assembled: string = assembleValue(next)
+      lastEmitted.current = assembled
+      setSegVals(next)
+      onChange(assembled)
     },
-    [onChange]
+    [segVals, onChange]
   )
 
-  /** 다음 세그먼트로 포커스 이동 */
+  /** 다음 세그먼트로 포커스 이동 — visibleSegs만 대상. */
   const moveNext = useCallback(
     (seg: SegKey): void => {
-      const idx: number = SEGS.indexOf(seg)
+      const idx: number = visibleSegs.indexOf(seg)
       advancing.current = true
-      const nextSeg: SegKey | undefined = SEGS[idx + 1]
-      if (idx < SEGS.length - 1 && nextSeg) {
+      const nextSeg: SegKey | undefined = visibleSegs[idx + 1]
+      if (idx >= 0 && idx < visibleSegs.length - 1 && nextSeg) {
         const el: HTMLInputElement | null = refs[nextSeg].current
         if (el) {
           el.focus()
@@ -195,13 +200,13 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
         advancing.current = false
       }, 50)
     },
-    [nextRef]
+    [nextRef, visibleSegs]
   )
 
   /** 이전 세그먼트로 포커스 이동 */
   const movePrev = useCallback((seg: SegKey): void => {
-    const idx: number = SEGS.indexOf(seg)
-    const prevSeg: SegKey | undefined = SEGS[idx - 1]
+    const idx: number = visibleSegs.indexOf(seg)
+    const prevSeg: SegKey | undefined = visibleSegs[idx - 1]
     if (idx > 0 && prevSeg) {
       advancing.current = true
       const el: HTMLInputElement | null = refs[prevSeg].current
@@ -213,7 +218,7 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
         advancing.current = false
       }, 50)
     }
-  }, [])
+  }, [visibleSegs])
 
   /** 세그먼트 포커스 핸들러 */
   const handleFocus = useCallback((seg: SegKey): void => {
@@ -227,24 +232,21 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
       if (advancing.current) return
 
       // 불완전 값 패딩 (yyyy 제외)
-      setSegVals((prev: SegVals) => {
-        const v: string = prev[seg]
-        if (v && seg !== 'yyyy') {
-          const n: number = parseInt(v, 10)
-          if (!isNaN(n)) {
-            const [lo, hi] = LIMITS[seg]
-            const clamped: string = pad(seg, Math.max(lo, Math.min(hi, n)))
-            if (clamped !== v) {
-              const next: SegVals = { ...prev, [seg]: clamped }
-              const assembled: string = assembleValue(next)
-              lastEmitted.current = assembled
-              onChange(assembled)
-              return next
-            }
+      const v: string = segVals[seg]
+      if (v && seg !== 'yyyy') {
+        const n: number = parseInt(v, 10)
+        if (!isNaN(n)) {
+          const [lo, hi] = LIMITS[seg]
+          const clamped: string = pad(seg, Math.max(lo, Math.min(hi, n)))
+          if (clamped !== v) {
+            const next: SegVals = { ...segVals, [seg]: clamped }
+            const assembled: string = assembleValue(next)
+            lastEmitted.current = assembled
+            setSegVals(next)
+            onChange(assembled)
           }
         }
-        return prev
-      })
+      }
 
       // 컨테이너 외부 포커스 이동 감지
       setTimeout(() => {
@@ -262,7 +264,7 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
         }
       }, 0)
     },
-    [onChange, onBlur]
+    [segVals, onChange, onBlur]
   )
 
   /** 키보드 이벤트 핸들러 */
@@ -348,7 +350,12 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
       )}
       onMouseDown={handleContainerMouseDown}
     >
-      {SEGS.map((seg: SegKey) => (
+      {prefix && (
+        <span className='typo-sb12 text-fg-muted mr-2 select-none whitespace-nowrap'>
+          {prefix}
+        </span>
+      )}
+      {visibleSegs.map((seg: SegKey) => (
         <span key={seg} className='inline-flex items-center'>
           {seg === 'hh' && <span className='w-1.5' />}
           <input
