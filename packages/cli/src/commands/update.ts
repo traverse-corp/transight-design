@@ -17,7 +17,18 @@ interface RegistryFile {
 
 interface RegistryItem {
   name: string
+  type?: string
   files?: RegistryFile[]
+  registryDependencies?: string[]
+}
+
+// registryDependencies는 `traverse-corp/transight-design/button` 형태.
+// 자기 레포 prefix만 컴포넌트 이름으로 풀고, 외부 참조는 무시.
+const localComponentName = (dep: string): string | null => {
+  const prefix = `${GITHUB_REPO}/`
+  if (!dep.startsWith(prefix)) return null
+  const name = dep.slice(prefix.length)
+  return name.length > 0 ? name : null
 }
 
 const DEFAULT_REF = 'main'
@@ -83,13 +94,37 @@ export const updateCommand: Command = new Command('update')
         ` — update ${pc.yellow(components.join(', '))}`
     )
 
+    // 번들(registry:item)은 자체 files 대신 registryDependencies만 갖고 있음 —
+    // 컴포넌트 이름으로 풀어서 큐에 넣고 반복. 중복 방문 방지.
+    const queue: string[] = [...components]
+    const visited = new Set<string>()
+
     try {
-      for (const component of components) {
+      while (queue.length > 0) {
+        const component = queue.shift() as string
+        if (visited.has(component)) continue
+        visited.add(component)
+
         const item = await fetchRegistryItem(component, options.ref)
         const files = item.files ?? []
 
         if (files.length === 0) {
-          throw new Error(`업데이트할 파일이 없습니다: ${component}`)
+          const deps = item.registryDependencies ?? []
+          const expanded = deps
+            .map(localComponentName)
+            .filter((name): name is string => name !== null)
+
+          if (expanded.length === 0) {
+            throw new Error(`업데이트할 파일이 없습니다: ${component}`)
+          }
+
+          console.log(
+            pc.dim('bundle ') +
+              pc.cyan(component) +
+              pc.dim(` → ${expanded.length}개 컴포넌트 확장`)
+          )
+          queue.push(...expanded)
+          continue
         }
 
         for (const file of files) {
