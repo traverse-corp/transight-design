@@ -111,9 +111,11 @@ const selectTriggerColorStyles = {
     soft: 'bg-ui-pale-pink border-ui-pale-pink text-ui-pink focus-within:border-ui-pink'
   },
   white: {
-    solid: 'bg-bg-card border-border-default text-fg-default focus-within:border-primary-blue-1',
-    outline: 'border-border-default text-fg-default focus-within:border-primary-blue-1',
-    soft: 'bg-bg-card/80 border-border-default text-fg-default focus-within:border-primary-blue-1'
+    solid:
+      'bg-[var(--color-cool-grey-white)] border-[var(--color-cool-grey-05)] text-[var(--color-cool-grey-09)] focus-within:border-primary-blue-1',
+    outline:
+      'bg-transparent border-white text-white focus-within:border-white',
+    soft: 'bg-[var(--color-cool-grey-01)] border-[var(--color-cool-grey-05)] text-[var(--color-cool-grey-09)] focus-within:border-primary-blue-1'
   },
   'gradient-blue': {
     solid:
@@ -249,8 +251,9 @@ const selectItemColorStyles: Record<SelectTriggerColor, { focus: string; check: 
   purple: { focus: 'focus:bg-ui-pale-purple focus:text-ui-purple', check: 'text-ui-purple' },
   pink: { focus: 'focus:bg-ui-pale-pink focus:text-ui-pink', check: 'text-ui-pink' },
   white: {
-    focus: 'focus:bg-bg-muted focus:text-fg-strong',
-    check: 'text-fg-default'
+    focus:
+      'focus:bg-[var(--color-cool-grey-white)]/10 focus:text-[var(--color-cool-grey-white)]',
+    check: 'text-[var(--color-cool-grey-white)]'
   },
   'gradient-blue': {
     focus: 'focus:bg-primary-blue-1/10 focus:text-primary-blue-1',

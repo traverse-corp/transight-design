@@ -64,10 +64,9 @@ const badgeColorStyles = {
     soft: 'bg-ui-pale-amber text-ui-text-amber'
   },
   white: {
-    solid: 'bg-bg-card text-fg-muted',
-    outline:
-      'border border-border-default bg-transparent text-fg-muted',
-    soft: 'bg-bg-card/80 text-fg-muted'
+    solid: 'bg-[var(--color-cool-grey-white)] text-[var(--color-cool-grey-07)]',
+    outline: 'border border-white bg-transparent text-white',
+    soft: 'bg-[var(--color-cool-grey-01)] text-[var(--color-cool-grey-07)]'
   },
   'gradient-blue': {
     solid: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-on-dark',

@@ -37,7 +37,7 @@ const ACCORDION_COLOR_TOKEN: Record<string, string> = {
   purple: 'var(--color-ui-purple)',
   pink: 'var(--color-ui-pink)',
   amber: 'var(--color-ui-amber)',
-  white: 'var(--color-cool-grey-09)',
+  white: 'var(--color-cool-grey-white)',
   'gradient-blue': 'var(--color-primary-blue-1)'
 }
 

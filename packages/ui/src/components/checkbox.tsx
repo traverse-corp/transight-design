@@ -23,7 +23,8 @@ const checkboxColorStyles = {
   purple: 'bg-ui-purple border-ui-purple text-on-dark',
   pink: 'bg-ui-pink border-ui-pink text-on-dark',
   amber: 'bg-ui-amber border-ui-amber text-on-dark',
-  white: 'bg-bg-card border-border-default text-fg-default',
+  white:
+    'bg-[var(--color-cool-grey-white)] border-[var(--color-cool-grey-05)] text-[var(--color-cool-grey-09)]',
   'gradient-blue':
     'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 border-primary-blue-1 text-on-dark'
 } as const

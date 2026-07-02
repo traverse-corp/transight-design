@@ -20,7 +20,10 @@ const radioColorStyles = {
   purple: { ring: 'border-ui-purple', dot: 'bg-ui-purple' },
   pink: { ring: 'border-ui-pink', dot: 'bg-ui-pink' },
   amber: { ring: 'border-ui-amber', dot: 'bg-ui-amber' },
-  white: { ring: 'border-border-default', dot: 'bg-fg-strong' },
+  white: {
+    ring: 'border-[var(--color-cool-grey-white)]',
+    dot: 'bg-[var(--color-cool-grey-white)]'
+  },
   'gradient-blue': {
     ring: 'border-primary-blue-1',
     dot: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2'

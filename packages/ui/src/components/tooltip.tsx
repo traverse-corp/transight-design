@@ -74,9 +74,10 @@ const tooltipColorStyles = {
     soft: 'bg-ui-pale-pink text-ui-pink border-ui-pale-pink'
   },
   white: {
-    solid: 'bg-bg-card text-fg-default border-border-default',
-    outline: 'bg-bg-card text-fg-default border-border-default',
-    soft: 'bg-bg-card/80 text-fg-default border-border-default'
+    solid:
+      'bg-[var(--color-cool-grey-white)] text-[var(--color-cool-grey-09)] border-[var(--color-cool-grey-05)]',
+    outline: 'bg-transparent text-white border-white',
+    soft: 'bg-[var(--color-cool-grey-01)] text-[var(--color-cool-grey-09)] border-[var(--color-cool-grey-05)]'
   },
   'gradient-blue': {
     solid: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-on-dark border-primary-blue-1',
@@ -152,7 +153,7 @@ const tooltipArrowVariants = cva(
         skyblue: 'bg-ui-skyblue',
         purple: 'bg-ui-purple',
         pink: 'bg-ui-pink',
-        white: 'bg-bg-card',
+        white: 'bg-[var(--color-cool-grey-white)]',
         'gradient-blue': 'bg-primary-blue-1'
       },
       theme: {

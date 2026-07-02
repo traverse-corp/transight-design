@@ -17,7 +17,7 @@ const switchColorStyles = {
   purple: 'bg-ui-purple',
   pink: 'bg-ui-pink',
   amber: 'bg-ui-amber',
-  white: 'bg-bg-muted',
+  white: 'bg-[var(--color-cool-grey-05)]',
   'gradient-blue': 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2'
 } as const
 

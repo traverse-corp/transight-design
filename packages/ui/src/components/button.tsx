@@ -64,9 +64,10 @@ const buttonColorStyles = {
     soft: 'bg-ui-pale-amber text-ui-text-amber shadow-none hover:bg-ui-pale-amber/80'
   },
   white: {
-    solid: 'bg-bg-card text-fg-muted shadow-none hover:bg-hover-bg',
-    outline: 'border border-border-default bg-transparent text-fg-muted',
-    soft: 'bg-bg-card/80 text-fg-muted shadow-none hover:bg-hover-bg'
+    solid:
+      'bg-[var(--color-cool-grey-white)] text-[var(--color-cool-grey-07)] shadow-none hover:bg-[var(--color-cool-grey-01)]',
+    outline: 'border border-white bg-transparent text-white',
+    soft: 'bg-[var(--color-cool-grey-01)] text-[var(--color-cool-grey-07)] shadow-none hover:bg-[var(--color-cool-grey-02)]'
   },
   'gradient-blue': {
     solid:

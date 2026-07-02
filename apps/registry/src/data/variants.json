@@ -81,7 +81,7 @@
   },
   "AnimatedCheckbox": {
     "groups": {
-      "variant": [
+      "theme": [
         "default",
         "accent"
       ],
@@ -92,7 +92,7 @@
       ]
     },
     "defaults": {
-      "variant": "default",
+      "theme": "default",
       "size": "default"
     }
   },
