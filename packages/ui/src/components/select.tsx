@@ -139,11 +139,11 @@ const selectTriggerVariants = cva(
         square: 'rounded-none'
       },
       size: {
-        xs: 'h-7 px-2 typo-m12',
-        sm: 'h-9 px-3 typo-m13',
-        md: 'h-10 px-3 typo-m14',
-        lg: 'h-12 px-4 typo-m16',
-        xl: 'h-14 px-5 typo-m18'
+        xs: 'h-7 px-2 typo-m10',
+        sm: 'h-9 px-3 typo-m12',
+        md: 'h-10 px-3 typo-m13',
+        lg: 'h-12 px-4 typo-m15',
+        xl: 'h-14 px-5 typo-m16'
       }
     },
     defaultVariants: {

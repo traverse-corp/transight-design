@@ -99,8 +99,8 @@ const alertClassVariants = cva(
       },
       size: {
         sm: 'px-3 py-2 typo-m12',
-        md: 'px-4 py-3 typo-m14',
-        lg: 'px-5 py-4 typo-m16'
+        md: 'px-4 py-3 typo-m13',
+        lg: 'px-5 py-4 typo-m15'
       }
     },
     compoundVariants: alertCompoundVariants,

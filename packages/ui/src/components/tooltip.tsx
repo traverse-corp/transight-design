@@ -107,9 +107,9 @@ const tooltipContentVariants = cva(
         soft: ''
       },
       size: {
-        sm: 'px-2 py-1 typo-m11',
-        md: 'px-3 py-1.5 typo-m12',
-        lg: 'px-4 py-2 typo-m14'
+        sm: 'px-2 py-1 typo-m12',
+        md: 'px-3 py-1.5 typo-m13',
+        lg: 'px-4 py-2 typo-m15'
       }
     },
     compoundVariants: tooltipCompoundVariants,

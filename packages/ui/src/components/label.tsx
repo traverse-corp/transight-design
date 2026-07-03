@@ -16,11 +16,11 @@ const labelClassVariants = cva(
         optional: ''
       },
       size: {
-        xs: 'typo-sb11',
+        xs: 'typo-sb10',
         sm: 'typo-sb12',
-        md: 'typo-sb14',
-        lg: 'typo-sb16',
-        xl: 'typo-sb18'
+        md: 'typo-sb13',
+        lg: 'typo-sb15',
+        xl: 'typo-sb16'
       }
     },
     defaultVariants: {

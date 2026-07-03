@@ -71,10 +71,10 @@ const badgeClassVariants = cva(
         square: 'rounded-none'
       },
       size: {
-        xs: 'px-1.5 py-0.5 typo-sb11',
+        xs: 'px-1.5 py-0.5 typo-sb10',
         sm: 'px-2 py-0.5 typo-sb12',
         md: 'px-3 py-1 typo-sb13',
-        lg: 'px-3.5 py-1.5 typo-sb14',
+        lg: 'px-3.5 py-1.5 typo-sb15',
         xl: 'px-4 py-2 typo-sb16'
       }
     },

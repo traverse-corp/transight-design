@@ -137,10 +137,10 @@ const buttonClassVariants = cva(
         square: 'rounded-none'
       },
       size: {
-        xs: 'h-7 px-2 typo-sb12',
-        sm: 'h-9 px-3 typo-sb14',
-        md: 'h-10 px-4 py-2 typo-sb14',
-        lg: 'h-11 px-8 typo-sb16',
+        xs: 'h-7 px-2 typo-sb10',
+        sm: 'h-9 px-3 typo-sb12',
+        md: 'h-10 px-4 py-2 typo-sb13',
+        lg: 'h-11 px-8 typo-sb15',
         xl: 'h-12 px-10 typo-sb16'
       }
     },
