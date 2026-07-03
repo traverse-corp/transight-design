@@ -25,6 +25,8 @@
  * brace expansion으로 그룹 단위 일괄 생성.
  * ──────────────────────────────────────────────────────────────── */
 @source inline("bg-cool-grey-{white,01,02,03,04,05,06,07,08,09,10,11,black}");
+@source inline("text-cool-grey-{white,01,02,03,04,05,06,07,08,09,10,11,black}");
+@source inline("border-cool-grey-{white,01,02,03,04,05,06,07,08,09,10,11,black}");
 @source inline("bg-primary-blue-{1,2,deep}");
 @source inline("bg-primary-skyblue-{1,2}");
 @source inline("bg-accent-amber");
