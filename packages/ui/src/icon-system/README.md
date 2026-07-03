@@ -31,7 +31,7 @@ import { Icon } from '@/icons/icon'
 <IconSprite />
 
 // 어디서든
-<Icon src='ic-com-search' color='primary-blue-1' size='sm' />
+<Icon src='ic-trace-bridge' color='primary-blue-1' size='sm' />
 ```
 
 `<IconSprite />`를 마운트하지 않으면 `<Icon>`은 빈 svg를 렌더한다.

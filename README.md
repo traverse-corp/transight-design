@@ -46,7 +46,7 @@ npm install
 npm run dev
 ```
 
-문서 사이트는 기본적으로 `http://localhost:3000`에서 실행됩니다. `npm run dev`는 아이콘 sprite 생성, registry 동기화, variant 추출을 사전 실행합니다.
+문서 사이트는 기본적으로 `http://localhost:3002`에서 실행됩니다. `npm run dev`는 아이콘 sprite 생성, registry 동기화, variant 추출을 사전 실행합니다.
 
 자주 쓰는 명령:
 

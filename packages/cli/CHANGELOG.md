@@ -1,5 +1,11 @@
 # @transight-design/cli
 
+## 0.5.2
+
+### Patch Changes
+
+- Strengthen init completion guidance so agents add an enforceable Transight Design System rule block to their project instructions.
+
 ## 0.5.1
 
 ### Patch Changes

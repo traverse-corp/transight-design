@@ -1,6 +1,6 @@
 # Icon System — 가이드
 
-자체 58개 SVG를 빌드 타임에 단일 sprite로 합치고, `src`/`color`/`size`/`className`
+자체 21개 SVG를 빌드 타임에 단일 sprite로 합치고, `src`/`color`/`size`/`className`
 4개 prop만 받는 순수 표출용 `<Icon>` 컴포넌트로 노출한다.
 
 ---
@@ -80,7 +80,7 @@ export default function RootLayout({ children }) {
 ```tsx
 import { Icon } from '@/icons/icon'
 
-<Icon src="ic-com-search" color="cool-grey-07" size="md" />
+<Icon src="ic-trace-bridge" color="cool-grey-07" size="md" />
 ```
 
 ---
@@ -89,7 +89,7 @@ import { Icon } from '@/icons/icon'
 
 ```ts
 interface IconProps {
-  src: IconName         // ICON_NAMES union — 58개 ID 중 하나
+  src: IconName         // ICON_NAMES union — 21개 ID 중 하나
   color?: IconColor     // 팔레트 토큰 union (기본 'cool-grey-06')
   size?: IconSize       // 'xs' | 'sm' | 'md' | 'lg' | 'xl' (기본 'md')
   className?: string    // Tailwind class — 추가 스타일 (위치/마진 등)
@@ -137,16 +137,14 @@ const cssVar = `var(--color-${resolveIconColorToken(color)})`
 
 ## 아이콘 카탈로그
 
-전체 58개 SVG. 인터랙티브 미리보기와 코드 스니펫 복사는 `/icon-system/browse`에서.
+전체 21개 SVG. 인터랙티브 미리보기와 코드 스니펫 복사는 `/icon-system/browse`에서.
 
 ID 그룹별 prefix:
-- `ic-com-*` — common (화살표, 닫기, 검색, 설정 등)
-- `ic-com-*-1` — `-1` 접미사는 stroke-only(linear) 버전, 접미사 없는 쪽은 fill-only(solid)
-- `ic-iaan-*` — IAAN(자체 액션) — check, edit, upload
+- `ic-iaan-*` — IAAN 요청/관리/범죄 유형 도메인 아이콘
 - `ic-map-*` — 지도 / 데이터 관련
 - `ic-menu-*` — 사이드바 / 네비 메뉴
-- `ic-report-*`, `ic-saved-*` — 도메인 특화
-- `bell`, `folder`, `share`, `mail-forward-1` — 단순 명사
+- `ic-search-*` — 검색 조건 도메인 아이콘
+- `ic-trace-*` — Trace 기능 도메인 아이콘
 
 ---
 
@@ -158,10 +156,10 @@ ID 그룹별 prefix:
 <button
   type="button"
   onClick={...}
-  className="hover:bg-cool-grey-02 rounded-md p-2 transition-colors"
+  className="hover:bg-bg-muted rounded-md p-2 transition-colors"
   aria-label="검색"
 >
-  <Icon src="ic-com-search" color="cool-grey-08" size="md" />
+  <Icon src="ic-trace-search-history" color="cool-grey-08" size="md" />
 </button>
 ```
 

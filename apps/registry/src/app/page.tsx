@@ -121,7 +121,7 @@ const Home = () => (
         <div>
           <div className="typo-sb16 text-fg-strong">Icon System</div>
           <div className="typo-r12 text-fg-muted mt-1">
-            58개 SVG sprite + 팔레트 토큰 색상 × 5단계 크기로 강제된 Icon 컴포넌트.
+            21개 SVG sprite + 팔레트 토큰 색상 × 5단계 크기로 강제된 Icon 컴포넌트.
           </div>
         </div>
         <div className="typo-sb14 text-primary-blue-deep mt-auto inline-flex items-center gap-1">

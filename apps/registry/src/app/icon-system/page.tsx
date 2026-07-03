@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
 
 const USAGE_CODE = `import { Icon } from '@/icons/icon'
 
-<Icon src="ic-com-search" color="primary-blue-1" size="sm" />`
+<Icon src="ic-trace-bridge" color="primary-blue-1" size="sm" />`
 
 const IconSystemInstallPage = () => (
   <div className='mx-auto flex h-screen max-w-7xl gap-10 px-6'>

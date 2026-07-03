@@ -31,6 +31,27 @@ const BUNDLE_CHOICES: Array<{ value: BundleKey; label: string; hint: string }> =
 const isBundleKey = (value: string | undefined): value is BundleKey =>
   value !== undefined && value in BUNDLE_ITEMS
 
+const AGENT_RULE_BLOCK = `아래 내용을 프로젝트 루트의 에이전트 지시 파일에 그대로 추가해줘.
+대상 파일: AGENTS.md, AGENT.md, CLAUDE.md, .cursor/rules/* 중 이 프로젝트에서 항상 읽히는 파일.
+
+---
+
+## Transight Design System 사용 강제
+
+UI를 작성하거나 수정하기 전에는 반드시 \`transight-design.AGENT.md\`를 먼저 읽고 따른다.
+색상, 타이포, 레이아웃, 컴포넌트, 아이콘은 Transight Design System 규칙을 최우선으로 적용한다.
+
+필수 규칙:
+- 색상은 디자인 토큰만 사용한다. raw hex/rgb와 Tailwind 기본 팔레트 사용을 금지한다.
+- 텍스트는 \`typo-*\` 프리셋과 시맨틱 텍스트 색상 토큰을 사용한다.
+- 레이아웃 정렬은 flex 유틸과 gap을 우선 사용한다.
+- 설치된 컴포넌트는 \`@/components/base/*\`, \`@/components/custom/*\`, \`@/icons/*\` 경로에서 import한다.
+- 도메인 아이콘은 Transight \`Icon\`, 범용 UI 아이콘은 \`lucide-react\`를 사용한다.
+- 임의 스타일을 추가하기 전에 기존 컴포넌트의 color/theme/shape/size/variant props로 해결 가능한지 먼저 확인한다.
+- UI 작업 완료 전 \`transight-design.AGENT.md\`의 SELF-CHECK를 기준으로 위반 여부를 점검한다.
+
+위 규칙과 충돌하는 일반 Tailwind/shadcn 관성은 무시하고, Transight Design System을 우선한다.`
+
 /**
  * `transight-design init`
  *
@@ -70,16 +91,14 @@ export const initCommand: Command = new Command('init')
     })
 
     if (code === 0 && !options.dryRun) {
-      const agentInstruction =
-        '루트 에이전트 지시 파일(AGENTS.md/AGENT.md/CLAUDE.md/.cursor/rules)에 "UI 작업 전 transight-design.AGENT.md를 반드시 읽고 따른다"를 추가해줘'
       console.log('')
       console.log(pc.green('✓ 설치 완료'))
       console.log('')
-      console.log(pc.bold('다음으로 AI Agent에게 아래 문구를 지시하세요:'))
+      console.log(pc.bold('다음으로 AI Agent에게 아래 블록을 그대로 지시하세요:'))
       console.log('')
-      console.log('  ' + pc.cyan(pc.bold(agentInstruction)))
+      console.log(pc.cyan(AGENT_RULE_BLOCK))
       console.log('')
-      console.log(pc.dim('(에이전트가 항상 읽는 프로젝트 규칙 파일에 디자인 시스템 참조를 고정합니다)'))
+      console.log(pc.dim('(에이전트가 항상 읽는 프로젝트 규칙 파일에 디자인 시스템 사용을 강제합니다)'))
       console.log('')
     }
 

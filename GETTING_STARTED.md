@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-기본 주소는 `http://localhost:3000`입니다.
+기본 주소는 `http://localhost:3002`입니다.
 
 `npm run dev`는 `apps/registry` workspace의 Next.js 앱을 실행합니다. 실행 전에 아이콘 sprite 생성, registry 동기화, variant 추출이 자동으로 수행됩니다.
 
