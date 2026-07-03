@@ -8,6 +8,8 @@
  * - **solid / soft**는 두 계열로 분화:
  *   - inline (Button, Badge, Select) — 채움이 은은한 UI 톤
  *   - surface (Card, Alert, Tooltip) — 카드 표면·다크 반전 등 컨테이너 톤
+ * - **다크모드 대응은 soft 테마만** — solid / outline은 라이트/다크와 무관하게 동일한 색상
+ *   (raw `--color-*` 토큰 사용). soft만 시맨틱 토큰(`bg-bg-*` 등)으로 자동 반전.
  * - hover / focus / shadow 등 인터랙션 레이어는 컴포넌트 파일에서 별도로 얹는다.
  *   여기 토큰은 색 identity (border / bg / text)만 담는다.
  */
@@ -37,7 +39,7 @@ export type ColorThemeStyles = Record<CommonColor, Record<ColorTheme, string>>
  * 예외 없음.
  */
 export const outlineColorStyles: Record<CommonColor, string> = {
-  gray: 'border border-border-strong bg-transparent text-fg-default',
+  gray: 'border border-[var(--color-cool-grey-11)] bg-transparent text-[var(--color-cool-grey-11)]',
   blue: 'border border-primary-blue-1 bg-transparent text-primary-blue-1',
   red: 'border border-ui-red bg-transparent text-ui-red',
   orange: 'border border-ui-orange bg-transparent text-ui-orange',
@@ -60,7 +62,7 @@ export const outlineColorStyles: Record<CommonColor, string> = {
  */
 export const inlineColorThemeStyles: ColorThemeStyles = {
   gray: {
-    solid: 'bg-fg-strong text-on-dark',
+    solid: 'bg-[var(--color-cool-grey-11)] text-on-dark',
     outline: outlineColorStyles.gray,
     soft: 'bg-bg-muted text-fg-default'
   },
@@ -139,7 +141,7 @@ export const inlineColorThemeStyles: ColorThemeStyles = {
 export const surfaceColorThemeStyles: ColorThemeStyles = {
   ...inlineColorThemeStyles,
   gray: {
-    solid: 'bg-bg-inverse text-fg-inverse',
+    solid: 'bg-[var(--color-cool-grey-11)] text-on-dark',
     outline: outlineColorStyles.gray,
     soft: 'bg-bg-muted text-fg-default border-transparent'
   }

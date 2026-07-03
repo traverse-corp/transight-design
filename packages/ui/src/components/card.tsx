@@ -11,7 +11,7 @@ import {
 // 색·테마 identity(bg/text)는 surfaceColorThemeStyles(정본)에서 상속.
 // outline은 전역 정본과 완전 동일 (transparent bg + 색 border) — Card라도 예외 없음.
 const cardBorderBySolidColor: Record<CommonColor, string> = {
-  gray: 'border-bg-inverse',
+  gray: 'border-[var(--color-cool-grey-11)]',
   blue: 'border-primary-blue-1',
   red: 'border-ui-red',
   orange: 'border-ui-orange',
