@@ -73,7 +73,20 @@ const inputClassVariants = cva(
   'flex w-full items-center border shadow-card transition-colors has-[input[aria-invalid="true"]]:border-ui-red has-[input[aria-invalid="true"]]:focus-within:border-ui-red has-[input[aria-invalid="true"]]:shadow-[0_0_0_1px_rgba(239,68,68,0.1)] has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-50',
   {
     variants: {
-      color: Object.fromEntries(INPUT_COLORS.map((c) => [c, ''])) as Record<InputColor, string>,
+      color: {
+        gray: '',
+        blue: '',
+        red: '',
+        orange: '',
+        yellow: '',
+        olive: '',
+        green: '',
+        skyblue: '',
+        purple: '',
+        pink: '',
+        white: '',
+        'gradient-blue': ''
+      },
       theme: {
         solid: '',
         outline: '',

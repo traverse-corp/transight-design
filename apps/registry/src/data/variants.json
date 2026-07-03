@@ -388,6 +388,25 @@
   },
   "input": {
     "groups": {
+      "color": [
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
+      ],
+      "theme": [
+        "solid",
+        "outline",
+        "soft"
+      ],
       "shape": [
         "default",
         "pill",
@@ -406,6 +425,8 @@
       ]
     },
     "defaults": {
+      "color": "gray",
+      "theme": "outline",
       "shape": "default",
       "size": "md",
       "decoDir": "start"
