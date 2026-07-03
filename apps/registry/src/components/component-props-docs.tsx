@@ -390,7 +390,7 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
   ],
   'date-picker': [
     {
-      name: 'type',
+      name: 'mode',
       type: "'CALENDAR' | 'TYPE'",
       defaultValue: "'CALENDAR'",
       description:

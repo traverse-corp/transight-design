@@ -367,11 +367,11 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
             autoComplete='off'
             className={cn(
               'typo-r12 border-none bg-transparent text-center outline-none',
+              'caret-transparent selection:bg-transparent selection:text-inherit',
               'placeholder:text-fg-disabled',
               seg === 'yyyy' ? 'w-9' : 'w-5',
               activeSeg === seg && 'bg-primary-blue-1/10 rounded-sm'
             )}
-            style={{ caretColor: 'transparent' }}
             onFocus={() => handleFocus(seg)}
             onBlur={() => handleBlur(seg)}
             onClick={() => {

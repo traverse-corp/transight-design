@@ -194,12 +194,17 @@ export const InteractivePreview = ({ name }: InteractivePreviewProps) => {
     )
   }
   if (name === 'date-picker') {
+    // date-picker는 STYLE 4축이 없는 custom 컴포넌트라 Style/Variant 섹션 없이 Props만.
     return (
-      <ThreeSectionLayout
-        styleNode={<DatePickerPreviewShell />}
-        variantNode={variantNodeShared}
-        propsNode={hasVisiblePropsDocs(name) ? <ComponentPropsDocs name={name} /> : null}
-      />
+      <section>
+        <SectionTitle>Props</SectionTitle>
+        <SectionCard>
+          <div className="flex flex-col gap-8">
+            <DatePickerPreviewShell />
+            {hasVisiblePropsDocs(name) && <ComponentPropsDocs name={name} />}
+          </div>
+        </SectionCard>
+      </section>
     )
   }
 

@@ -12,11 +12,11 @@ import { Button } from '@/components/button'
 import { DateTimeInput } from '@/components/date-time-input'
 import { cn } from '@/lib/utils'
 
-export type DatePickerType = 'CALENDAR' | 'TYPE'
+export type DatePickerMode = 'CALENDAR' | 'TYPE'
 
 export interface DatePickerProps {
   /** 'CALENDAR' — 트리거 클릭 시 캘린더 팝오버. 'TYPE' — 세그먼트 입력. 기본값 'CALENDAR'. */
-  type?: DatePickerType
+  mode?: DatePickerMode
   /** 피커 안쪽에 붙는 설명 텍스트 (예: '시작일자'). */
   text?: string
   /** true면 시간 선택까지 지원. CALENDAR는 우측 시/분 컬럼, TYPE은 hh/mm/ss 세그먼트를 노출. */
@@ -43,7 +43,7 @@ export interface DatePickerProps {
  * - CALENDAR 모드에서 초기 미선택(`selectedDate === null`) 상태면 마운트 시 오늘 날짜로 세팅한다.
  */
 export const DatePicker = ({
-  type = 'CALENDAR',
+  mode = 'CALENDAR',
   text,
   isSelectTime = false,
   selectedDate,
@@ -57,13 +57,13 @@ export const DatePicker = ({
 
   // CALENDAR 모드는 초기 미선택 시 오늘 날짜로 기본 세팅한다 (마운트 시 1회).
   useEffect(() => {
-    if (type === 'CALENDAR' && selectedDate === null) {
+    if (mode === 'CALENDAR' && selectedDate === null) {
       onDateChange(new Date())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  if (type === 'TYPE') {
+  if (mode === 'TYPE') {
     const displayFmt = isSelectTime ? 'yyyy/MM/dd HH:mm:ss' : 'yyyy/MM/dd'
     const value = selectedDate ? format(selectedDate, displayFmt) : ''
 
@@ -78,7 +78,10 @@ export const DatePicker = ({
         onChange={handleChange}
         showTime={isSelectTime}
         prefix={text}
-        className={cn('h-10 w-fit flex-none px-2', className)}
+        className={cn(
+          'h-10 w-fit flex-none border-border-strong bg-transparent px-2 text-fg-muted',
+          className
+        )}
       />
     )
   }
@@ -111,7 +114,7 @@ export const DatePicker = ({
             color='gray'
             theme='outline'
             size='md'
-            className={cn('p-2 active:scale-100', className)}
+            className={cn('gap-3 p-2 active:scale-100', className)}
           >
             {text && <span className='text-fg-muted'>{text}</span>}
             <span>{dateLabel}</span>
