@@ -18,6 +18,7 @@
 
 /* Tailwind v4 — packages/ui 컴포넌트의 className도 스캔 대상에 포함 */
 @source "../../../../packages/ui/src/components/**/*.{ts,tsx}";
+@source "../../../../packages/ui/src/lib/**/*.{ts,tsx}";
 
 /* ────────────────────────────────────────────────────────────────
  * 토큰 카탈로그용 safelist (Tokens 페이지의 동적 className).
