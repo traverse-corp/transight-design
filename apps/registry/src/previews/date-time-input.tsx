@@ -5,5 +5,5 @@ import { DateTimeInput } from '@transight-design/ui/components/date-time-input'
 
 export const Preview = () => {
   const [value, setValue] = useState('2026-06-18 14:30:00')
-  return <DateTimeInput value={value} onChange={setValue} />
+  return <DateTimeInput value={value} onChange={setValue} className='h-10 w-fit flex-none px-2' />
 }
