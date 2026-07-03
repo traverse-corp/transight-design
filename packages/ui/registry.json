@@ -89,6 +89,19 @@
       ]
     },
     {
+      "name": "lib-color-theme-styles",
+      "type": "registry:lib",
+      "title": "Lib: color-theme-styles",
+      "description": "color-theme-styles — 디자인 시스템 lib",
+      "files": [
+        {
+          "path": "src/lib/color-theme-styles.ts",
+          "type": "registry:lib",
+          "target": "~/src/lib/color-theme-styles.ts"
+        }
+      ]
+    },
+    {
       "name": "lib-format",
       "type": "registry:lib",
       "title": "Lib: format",
@@ -243,6 +256,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/lib-color-theme-styles",
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/styles"
       ],
@@ -424,6 +438,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/lib-color-theme-styles",
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/styles"
       ],
@@ -445,6 +460,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/lib-color-theme-styles",
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/styles"
       ],
@@ -487,6 +503,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/lib-color-theme-styles",
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/styles"
       ],
@@ -1196,6 +1213,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/lib-color-theme-styles",
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/styles"
       ],
@@ -1553,6 +1571,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/lib-color-theme-styles",
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/styles"
       ],
@@ -1687,6 +1706,7 @@
         "traverse-corp/transight-design/icon",
         "traverse-corp/transight-design/input",
         "traverse-corp/transight-design/label",
+        "traverse-corp/transight-design/lib-color-theme-styles",
         "traverse-corp/transight-design/lib-format",
         "traverse-corp/transight-design/lib-get-strict-context",
         "traverse-corp/transight-design/lib-pagination-types",

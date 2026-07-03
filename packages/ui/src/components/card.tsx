@@ -1,81 +1,63 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
+import {
+  surfaceColorThemeStyles,
+  type ColorTheme,
+  type CommonColor
+} from '@/lib/color-theme-styles'
 
-// ── 색상 시스템 — Button과 동일 color × theme 매트릭스 (12 × 3) ──
-// 카드는 큰 컨테이너라 outline / soft가 자연스러움. solid는 강조 카드(헤더, premium 등)에 한정.
-// 정책:
-//   - outline: bg-bg-card (콘텐츠 카드 — 표면 가시. button과 달리 transparent 안 함)
-//   - solid의 흰 글씨는 text-on-dark
-//   - yellow.solid 등 밝은 브랜드 색 위 dark 텍스트는 text-fg-strong (다크 모드에서 white로 자동)
-//   - soft 텍스트는 brand 색 (text-ui-X) — bg가 brand pale(다크모드 비스왑)이라 fg-default 쓰면 다크에서 안 보임
-const cardColorStyles = {
-  gray: {
-    solid: 'bg-bg-inverse text-fg-inverse border-bg-inverse',
-    outline: 'bg-bg-card text-fg-default border-border-default',
-    soft: 'bg-bg-muted text-fg-default border-transparent'
-  },
-  blue: {
-    solid: 'bg-primary-blue-1 text-on-dark border-primary-blue-1',
-    outline: 'bg-bg-card text-fg-default border-primary-blue-1',
-    soft: 'bg-primary-blue-1/10 text-primary-blue-1 border-transparent'
-  },
-  red: {
-    solid: 'bg-ui-red text-on-dark border-ui-red',
-    outline: 'bg-bg-card text-fg-default border-ui-red',
-    soft: 'bg-ui-pale-red text-ui-red border-transparent'
-  },
-  orange: {
-    solid: 'bg-ui-orange text-on-dark border-ui-orange',
-    outline: 'bg-bg-card text-fg-default border-ui-orange',
-    soft: 'bg-ui-pale-orange text-ui-orange border-transparent'
-  },
-  yellow: {
-    solid: 'bg-ui-yellow text-fg-strong border-ui-yellow',
-    outline: 'bg-bg-card text-fg-default border-ui-yellow',
-    soft: 'bg-ui-pale-yellow text-ui-yellow border-transparent'
-  },
-  olive: {
-    solid: 'bg-ui-olive text-on-dark border-ui-olive',
-    outline: 'bg-bg-card text-fg-default border-ui-olive',
-    soft: 'bg-ui-olive/10 text-ui-olive border-transparent'
-  },
-  green: {
-    solid: 'bg-ui-green text-on-dark border-ui-green',
-    outline: 'bg-bg-card text-fg-default border-ui-green',
-    soft: 'bg-ui-pale-green text-ui-green border-transparent'
-  },
-  skyblue: {
-    solid: 'bg-ui-skyblue text-on-dark border-ui-skyblue',
-    outline: 'bg-bg-card text-fg-default border-ui-skyblue',
-    soft: 'bg-ui-skyblue/10 text-ui-skyblue border-transparent'
-  },
-  purple: {
-    solid: 'bg-ui-purple text-on-dark border-ui-purple',
-    outline: 'bg-bg-card text-fg-default border-ui-purple',
-    soft: 'bg-ui-pale-purple text-ui-purple border-transparent'
-  },
-  pink: {
-    solid: 'bg-ui-pink text-on-dark border-ui-pink',
-    outline: 'bg-bg-card text-fg-default border-ui-pink',
-    soft: 'bg-ui-pale-pink text-ui-pink border-transparent'
-  },
-  white: {
-    solid:
-      'bg-[var(--color-cool-grey-white)] text-[var(--color-cool-grey-09)] border-[var(--color-cool-grey-05)]',
-    outline: 'bg-transparent text-white border-white',
-    soft: 'bg-[var(--color-cool-grey-01)] text-[var(--color-cool-grey-09)] border-[var(--color-cool-grey-05)]'
-  },
-  'gradient-blue': {
-    solid:
-      'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-on-dark border-primary-blue-1',
-    outline: 'bg-bg-card text-fg-default border-primary-blue-1',
-    soft: 'bg-primary-blue-1/10 text-primary-blue-1 border-transparent'
-  }
-} as const
+// Card 고유 레이어 — 모든 테마에 border 색상 필수 (컨테이너 프레임).
+// 색·테마 identity(bg/text)는 surfaceColorThemeStyles(정본)에서 상속.
+// outline은 전역 정본과 완전 동일 (transparent bg + 색 border) — Card라도 예외 없음.
+const cardBorderBySolidColor: Record<CommonColor, string> = {
+  gray: 'border-bg-inverse',
+  blue: 'border-primary-blue-1',
+  red: 'border-ui-red',
+  orange: 'border-ui-orange',
+  yellow: 'border-ui-yellow',
+  olive: 'border-ui-olive',
+  green: 'border-ui-green',
+  skyblue: 'border-ui-skyblue',
+  purple: 'border-ui-purple',
+  pink: 'border-ui-pink',
+  amber: 'border-ui-amber',
+  white: 'border-[var(--color-cool-grey-05)]',
+  'gradient-blue': 'border-primary-blue-1',
+  'gradient-blue-deep': 'border-primary-blue-deep'
+}
 
-type CardColor = keyof typeof cardColorStyles
-type CardTheme = keyof (typeof cardColorStyles)['gray']
+// Card에서 노출하는 색 — amber, gradient-blue-deep 제외 (기존 API 유지).
+type CardColor = Exclude<CommonColor, 'amber' | 'gradient-blue-deep'>
+type CardTheme = ColorTheme
+
+const CARD_COLORS: CardColor[] = [
+  'gray',
+  'blue',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'skyblue',
+  'purple',
+  'pink',
+  'white',
+  'gradient-blue'
+]
+
+const cardColorStyles = Object.fromEntries(
+  CARD_COLORS.map((c) => [
+    c,
+    {
+      solid: `${surfaceColorThemeStyles[c].solid} ${cardBorderBySolidColor[c]}`,
+      outline: surfaceColorThemeStyles[c].outline,
+      soft: surfaceColorThemeStyles[c].soft.includes('border-transparent')
+        ? surfaceColorThemeStyles[c].soft
+        : `${surfaceColorThemeStyles[c].soft} border-transparent`
+    }
+  ])
+) as Record<CardColor, Record<CardTheme, string>>
 
 const cardCompoundVariants = Object.entries(cardColorStyles).flatMap(([color, styles]) =>
   Object.entries(styles).map(([theme, className]) => ({

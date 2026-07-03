@@ -1,83 +1,36 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
+import {
+  inlineColorThemeStyles,
+  type ColorTheme,
+  type CommonColor
+} from '@/lib/color-theme-styles'
 
-// 시맨틱 토큰 사용 (button과 동일 정책):
-//   - outline 표면: bg-transparent (라이트/다크 둘 다)
-//   - solid의 흰 글씨는 text-on-dark
-const badgeColorStyles = {
-  gray: {
-    solid: 'bg-bg-muted text-fg-default',
-    outline: 'border border-border-strong bg-transparent text-fg-muted',
-    soft: 'bg-bg-muted text-fg-default'
-  },
-  blue: {
-    solid: 'bg-primary-blue-1 text-on-dark',
-    outline:
-      'border border-primary-blue-1 bg-transparent text-primary-blue-1',
-    soft: 'bg-primary-blue-1/10 text-primary-blue-1'
-  },
-  red: {
-    solid: 'bg-ui-red text-on-dark',
-    outline: 'border border-ui-red bg-transparent text-ui-red',
-    soft: 'bg-ui-pale-red text-ui-red'
-  },
-  orange: {
-    solid: 'bg-ui-orange text-on-dark',
-    outline: 'border border-ui-orange bg-transparent text-ui-orange',
-    soft: 'bg-ui-pale-orange text-ui-orange'
-  },
-  yellow: {
-    solid: 'bg-ui-yellow text-on-dark',
-    outline: 'border border-ui-yellow bg-transparent text-ui-yellow',
-    soft: 'bg-ui-pale-yellow text-ui-yellow'
-  },
-  olive: {
-    solid: 'bg-ui-olive text-on-dark',
-    outline: 'border border-ui-olive bg-transparent text-ui-olive',
-    soft: 'bg-ui-olive/10 text-ui-olive'
-  },
-  green: {
-    solid: 'bg-ui-green text-on-dark',
-    outline: 'border border-ui-green bg-transparent text-ui-green',
-    soft: 'bg-ui-pale-green text-ui-green'
-  },
-  skyblue: {
-    solid: 'bg-ui-skyblue text-on-dark',
-    outline:
-      'border border-ui-skyblue bg-transparent text-ui-skyblue',
-    soft: 'bg-ui-skyblue/10 text-ui-skyblue'
-  },
-  purple: {
-    solid: 'bg-ui-purple text-on-dark',
-    outline: 'border border-ui-purple bg-transparent text-ui-purple',
-    soft: 'bg-ui-pale-purple text-ui-purple'
-  },
-  pink: {
-    solid: 'bg-ui-pink text-on-dark',
-    outline: 'border border-ui-pink bg-transparent text-ui-pink',
-    soft: 'bg-ui-pale-pink text-ui-pink'
-  },
-  amber: {
-    solid: 'bg-ui-amber text-on-dark',
-    outline: 'border border-ui-amber bg-transparent text-ui-text-amber',
-    soft: 'bg-ui-pale-amber text-ui-text-amber'
-  },
-  white: {
-    solid: 'bg-[var(--color-cool-grey-white)] text-[var(--color-cool-grey-07)]',
-    outline: 'border border-white bg-transparent text-white',
-    soft: 'bg-[var(--color-cool-grey-01)] text-[var(--color-cool-grey-07)]'
-  },
-  'gradient-blue': {
-    solid: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-on-dark',
-    outline:
-      'border border-primary-blue-1 bg-transparent text-primary-blue-1',
-    soft: 'bg-primary-blue-1/10 text-primary-blue-1'
-  }
-} as const
+// Badge는 인터랙션 레이어가 없어 정본 tokens를 그대로 사용.
+// gradient-blue-deep은 Badge에서 노출하지 않으므로 제외.
+type BadgeColor = Exclude<CommonColor, 'gradient-blue-deep'>
+type BadgeTheme = ColorTheme
 
-type BadgeColor = keyof typeof badgeColorStyles
-type BadgeTheme = keyof (typeof badgeColorStyles)['gray']
+const BADGE_COLORS: BadgeColor[] = [
+  'gray',
+  'blue',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'skyblue',
+  'purple',
+  'pink',
+  'amber',
+  'white',
+  'gradient-blue'
+]
+
+const badgeColorStyles = Object.fromEntries(
+  BADGE_COLORS.map((c) => [c, inlineColorThemeStyles[c]])
+) as Record<BadgeColor, Record<BadgeTheme, string>>
 
 const badgeCompoundVariants = Object.entries(badgeColorStyles).flatMap(([color, styles]) =>
   Object.entries(styles).map(([theme, className]) => ({

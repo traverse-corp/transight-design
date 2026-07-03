@@ -1,79 +1,64 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
+import {
+  surfaceColorThemeStyles,
+  type ColorTheme,
+  type CommonColor
+} from '@/lib/color-theme-styles'
 
-// ── 색상 시스템 — Button과 동일한 color × theme 패턴 ──
-const alertColorStyles = {
-  gray: {
-    solid: 'bg-fg-strong text-on-dark border-border-strong',
-    outline: 'bg-bg-card text-fg-default border-border-default',
-    soft: 'bg-bg-muted text-fg-default border-border-subtle'
-  },
-  blue: {
-    solid: 'bg-primary-blue-1 text-on-dark border-primary-blue-1',
-    outline: 'bg-bg-card text-primary-blue-1 border-primary-blue-1',
-    soft: 'bg-primary-blue-1/10 text-primary-blue-1 border-primary-blue-1/10'
-  },
-  red: {
-    solid: 'bg-ui-red text-on-dark border-ui-red',
-    outline: 'bg-bg-card text-ui-red border-ui-red',
-    soft: 'bg-ui-pale-red text-ui-red border-ui-pale-red'
-  },
-  orange: {
-    solid: 'bg-ui-orange text-on-dark border-ui-orange',
-    outline: 'bg-bg-card text-ui-orange border-ui-orange',
-    soft: 'bg-ui-pale-orange text-ui-orange border-ui-pale-orange'
-  },
-  yellow: {
-    solid: 'bg-ui-yellow text-on-dark border-ui-yellow',
-    outline: 'bg-bg-card text-ui-yellow border-ui-yellow',
-    soft: 'bg-ui-pale-yellow text-ui-yellow border-ui-pale-yellow'
-  },
-  olive: {
-    solid: 'bg-ui-olive text-on-dark border-ui-olive',
-    outline: 'bg-bg-card text-ui-olive border-ui-olive',
-    soft: 'bg-ui-olive/10 text-ui-olive border-ui-olive/10'
-  },
-  green: {
-    solid: 'bg-ui-green text-on-dark border-ui-green',
-    outline: 'bg-bg-card text-ui-green border-ui-green',
-    soft: 'bg-ui-pale-green text-ui-green border-ui-pale-green'
-  },
-  skyblue: {
-    solid: 'bg-ui-skyblue text-on-dark border-ui-skyblue',
-    outline: 'bg-bg-card text-ui-skyblue border-ui-skyblue',
-    soft: 'bg-ui-skyblue/10 text-ui-skyblue border-ui-skyblue/10'
-  },
-  purple: {
-    solid: 'bg-ui-purple text-on-dark border-ui-purple',
-    outline: 'bg-bg-card text-ui-purple border-ui-purple',
-    soft: 'bg-ui-pale-purple text-ui-purple border-ui-pale-purple'
-  },
-  pink: {
-    solid: 'bg-ui-pink text-on-dark border-ui-pink',
-    outline: 'bg-bg-card text-ui-pink border-ui-pink',
-    soft: 'bg-ui-pale-pink text-ui-pink border-ui-pale-pink'
-  },
-  amber: {
-    solid: 'bg-ui-amber text-on-dark border-ui-amber',
-    outline: 'bg-bg-card text-ui-text-amber border-ui-amber',
-    soft: 'bg-ui-pale-amber text-ui-text-amber border-ui-pale-amber'
-  },
-  white: {
-    solid:
-      'bg-[var(--color-cool-grey-white)] text-[var(--color-cool-grey-09)] border-[var(--color-cool-grey-05)]',
-    outline: 'bg-transparent text-white border-white',
-    soft: 'bg-[var(--color-cool-grey-01)] text-[var(--color-cool-grey-09)] border-[var(--color-cool-grey-05)]'
-  },
-  'gradient-blue': {
-    solid: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 text-on-dark border-primary-blue-1',
-    outline: 'bg-bg-card text-primary-blue-1 border-primary-blue-1',
-    soft: 'bg-primary-blue-1/10 text-primary-blue-1 border-primary-blue-1/10'
-  }
-} as const
+// Alert 고유 레이어 — solid에 border 색상 명시 (bg와 동일 톤).
+// 색·테마 identity(bg/text)는 surfaceColorThemeStyles(정본)에서 상속.
+// outline은 전역 정본과 완전 동일 (transparent bg + 색 border) — Alert라도 예외 없음.
+// soft는 border-transparent로 통일 (Card와 동일).
+const alertBorderBySolidColor: Record<CommonColor, string> = {
+  gray: 'border-bg-inverse',
+  blue: 'border-primary-blue-1',
+  red: 'border-ui-red',
+  orange: 'border-ui-orange',
+  yellow: 'border-ui-yellow',
+  olive: 'border-ui-olive',
+  green: 'border-ui-green',
+  skyblue: 'border-ui-skyblue',
+  purple: 'border-ui-purple',
+  pink: 'border-ui-pink',
+  amber: 'border-ui-amber',
+  white: 'border-[var(--color-cool-grey-05)]',
+  'gradient-blue': 'border-primary-blue-1',
+  'gradient-blue-deep': 'border-primary-blue-deep'
+}
 
-type AlertColor = keyof typeof alertColorStyles
-type AlertTheme = keyof (typeof alertColorStyles)['gray']
+type AlertColor = Exclude<CommonColor, 'gradient-blue-deep'>
+type AlertTheme = ColorTheme
+
+const ALERT_COLORS: AlertColor[] = [
+  'gray',
+  'blue',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'skyblue',
+  'purple',
+  'pink',
+  'amber',
+  'white',
+  'gradient-blue'
+]
+
+const alertColorStyles = Object.fromEntries(
+  ALERT_COLORS.map((c) => [
+    c,
+    {
+      solid: `${surfaceColorThemeStyles[c].solid} ${alertBorderBySolidColor[c]}`,
+      outline: surfaceColorThemeStyles[c].outline,
+      soft: surfaceColorThemeStyles[c].soft.includes('border-transparent')
+        ? surfaceColorThemeStyles[c].soft
+        : `${surfaceColorThemeStyles[c].soft} border-transparent`
+    }
+  ])
+) as Record<AlertColor, Record<AlertTheme, string>>
 
 const alertCompoundVariants = Object.entries(alertColorStyles).flatMap(([color, styles]) =>
   Object.entries(styles).map(([theme, className]) => ({

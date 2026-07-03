@@ -55,75 +55,59 @@ const SelectValue = ({ className, ...props }: SelectPrimitive.Value.Props) => (
   />
 )
 
-// ── Trigger 자체 톤 — Button의 color × theme 패턴 미러링 ──
-// solid: 채움 (배경 + 흰 글씨)
-// outline: 흰 배경 + 색 border + 색 글씨 (기본)
-// soft: 옅은 색 배경 + 색 글씨
-const selectTriggerColorStyles = {
-  gray: {
-    solid: 'bg-fg-strong border-border-strong text-on-dark focus-within:border-border-strong',
-    outline: 'border-border-default text-fg-default focus-within:border-primary-blue-1',
-    soft: 'bg-bg-muted border-border-subtle text-fg-default focus-within:border-border-strong'
-  },
-  blue: {
-    solid: 'bg-primary-blue-1 border-primary-blue-1 text-on-dark focus-within:border-primary-blue-2',
-    outline: 'border-primary-blue-1 text-primary-blue-1 focus-within:border-primary-blue-2',
-    soft: 'bg-primary-blue-1/10 border-primary-blue-1/10 text-primary-blue-1 focus-within:border-primary-blue-1'
-  },
-  red: {
-    solid: 'bg-ui-red border-ui-red text-on-dark focus-within:border-ui-red',
-    outline: 'border-ui-red text-ui-red focus-within:border-ui-red',
-    soft: 'bg-ui-pale-red border-ui-pale-red text-ui-red focus-within:border-ui-red'
-  },
-  orange: {
-    solid: 'bg-ui-orange border-ui-orange text-on-dark focus-within:border-ui-orange',
-    outline: 'border-ui-orange text-ui-orange focus-within:border-ui-orange',
-    soft: 'bg-ui-pale-orange border-ui-pale-orange text-ui-orange focus-within:border-ui-orange'
-  },
-  yellow: {
-    solid: 'bg-ui-yellow border-ui-yellow text-on-dark focus-within:border-ui-yellow',
-    outline: 'border-ui-yellow text-ui-yellow focus-within:border-ui-yellow',
-    soft: 'bg-ui-pale-yellow border-ui-pale-yellow text-ui-yellow focus-within:border-ui-yellow'
-  },
-  olive: {
-    solid: 'bg-ui-olive border-ui-olive text-on-dark focus-within:border-ui-olive',
-    outline: 'border-ui-olive text-ui-olive focus-within:border-ui-olive',
-    soft: 'bg-ui-olive/10 border-ui-olive/10 text-ui-olive focus-within:border-ui-olive'
-  },
-  green: {
-    solid: 'bg-ui-green border-ui-green text-on-dark focus-within:border-ui-green',
-    outline: 'border-ui-green text-ui-green focus-within:border-ui-green',
-    soft: 'bg-ui-pale-green border-ui-pale-green text-ui-green focus-within:border-ui-green'
-  },
-  skyblue: {
-    solid: 'bg-ui-skyblue border-ui-skyblue text-on-dark focus-within:border-ui-skyblue',
-    outline: 'border-ui-skyblue text-ui-skyblue focus-within:border-ui-skyblue',
-    soft: 'bg-ui-skyblue/10 border-ui-skyblue/10 text-ui-skyblue focus-within:border-ui-skyblue'
-  },
-  purple: {
-    solid: 'bg-ui-purple border-ui-purple text-on-dark focus-within:border-ui-purple',
-    outline: 'border-ui-purple text-ui-purple focus-within:border-ui-purple',
-    soft: 'bg-ui-pale-purple border-ui-pale-purple text-ui-purple focus-within:border-ui-purple'
-  },
-  pink: {
-    solid: 'bg-ui-pink border-ui-pink text-on-dark focus-within:border-ui-pink',
-    outline: 'border-ui-pink text-ui-pink focus-within:border-ui-pink',
-    soft: 'bg-ui-pale-pink border-ui-pale-pink text-ui-pink focus-within:border-ui-pink'
-  },
-  white: {
-    solid:
-      'bg-[var(--color-cool-grey-white)] border-[var(--color-cool-grey-05)] text-[var(--color-cool-grey-09)] focus-within:border-primary-blue-1',
-    outline:
-      'bg-transparent border-white text-white focus-within:border-white',
-    soft: 'bg-[var(--color-cool-grey-01)] border-[var(--color-cool-grey-05)] text-[var(--color-cool-grey-09)] focus-within:border-primary-blue-1'
-  },
-  'gradient-blue': {
-    solid:
-      'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 border-primary-blue-1 text-on-dark focus-within:border-primary-blue-deep',
-    outline: 'border-primary-blue-1 text-primary-blue-1 focus-within:border-primary-blue-deep',
-    soft: 'bg-primary-blue-1/10 border-primary-blue-1/10 text-primary-blue-1 focus-within:border-primary-blue-1'
-  }
-} as const
+import {
+  inlineColorThemeStyles,
+  type ColorTheme,
+  type CommonColor
+} from '@/lib/color-theme-styles'
+
+// Select 고유 인터랙션 레이어 — focus-within (필드 활성 시 primary-blue-1 하이라이트).
+// 색·테마 identity는 inlineColorThemeStyles(정본)에서 상속.
+const selectFocusStyles: Record<CommonColor, string> = {
+  gray: 'focus-within:border-primary-blue-1',
+  blue: 'focus-within:border-primary-blue-2',
+  red: 'focus-within:border-ui-red',
+  orange: 'focus-within:border-ui-orange',
+  yellow: 'focus-within:border-ui-yellow',
+  olive: 'focus-within:border-ui-olive',
+  green: 'focus-within:border-ui-green',
+  skyblue: 'focus-within:border-ui-skyblue',
+  purple: 'focus-within:border-ui-purple',
+  pink: 'focus-within:border-ui-pink',
+  amber: 'focus-within:border-ui-amber',
+  white: 'focus-within:border-primary-blue-1',
+  'gradient-blue': 'focus-within:border-primary-blue-deep',
+  'gradient-blue-deep': 'focus-within:border-primary-blue-deep'
+}
+
+// Select에서 노출하는 색 — gradient-blue-deep, amber 제외 (기존 API 유지).
+type SelectColor = Exclude<CommonColor, 'gradient-blue-deep' | 'amber'>
+
+const SELECT_COLORS: SelectColor[] = [
+  'gray',
+  'blue',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'skyblue',
+  'purple',
+  'pink',
+  'white',
+  'gradient-blue'
+]
+
+const selectTriggerColorStyles = Object.fromEntries(
+  SELECT_COLORS.map((c) => [
+    c,
+    {
+      solid: `${inlineColorThemeStyles[c].solid} ${selectFocusStyles[c]}`,
+      outline: `${inlineColorThemeStyles[c].outline} ${selectFocusStyles[c]}`,
+      soft: `${inlineColorThemeStyles[c].soft} ${selectFocusStyles[c]}`
+    }
+  ])
+) as Record<SelectColor, Record<ColorTheme, string>>
 
 // data-[placeholder]:opacity-60 — placeholder는 trigger text 색을 그대로 따르되 옅게 표시.
 const selectTriggerVariants = cva(

@@ -26,6 +26,7 @@
     "traverse-corp/transight-design/icon",
     "traverse-corp/transight-design/input",
     "traverse-corp/transight-design/label",
+    "traverse-corp/transight-design/lib-color-theme-styles",
     "traverse-corp/transight-design/lib-format",
     "traverse-corp/transight-design/lib-get-strict-context",
     "traverse-corp/transight-design/lib-pagination-types",

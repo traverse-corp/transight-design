@@ -2,89 +2,100 @@ import { Button as ButtonPrimitive } from '@base-ui/react/button'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
+import {
+  inlineColorThemeStyles,
+  type ColorTheme,
+  type CommonColor
+} from '@/lib/color-theme-styles'
 
-// 시맨틱 토큰 사용:
-//   - outline 표면: bg-transparent (라이트/다크 둘 다) — border + text만 색
-//   - solid의 흰 글씨는 text-on-dark (브랜드 솔리드 색 위 영구 white)
-//   - gray.* / white.* 의 중성 톤은 bg-bg-{muted|subtle|card} + text-fg-{strong|default|muted}
-const buttonColorStyles = {
+// Button 고유 인터랙션 레이어 — hover / shadow.
+// 색·테마 identity는 inlineColorThemeStyles(정본)에서 상속. outline은 인터랙션 없음.
+const buttonInteractionStyles: Record<CommonColor, Record<ColorTheme, string>> = {
   gray: {
-    solid: 'bg-bg-muted text-fg-default hover:bg-bg-muted/90 shadow-card',
-    outline: 'border border-border-strong bg-transparent text-fg-muted',
-    soft: 'bg-bg-muted text-fg-default shadow-none hover:bg-bg-subtle'
+    solid: 'hover:bg-bg-muted/90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-bg-subtle'
   },
   blue: {
-    solid: 'bg-primary-blue-1 text-on-dark hover:bg-primary-blue-1/90 shadow-card',
-    outline: 'border border-primary-blue-1 bg-transparent text-primary-blue-1',
-    soft: 'bg-primary-blue-1/10 text-primary-blue-1 shadow-none hover:bg-primary-blue-1/20'
+    solid: 'hover:bg-primary-blue-1/90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-primary-blue-1/20'
   },
   red: {
-    solid: 'bg-ui-red text-on-dark hover:bg-ui-red/90 shadow-card',
-    outline: 'border border-ui-red bg-transparent text-ui-red',
-    soft: 'bg-ui-pale-red text-ui-red shadow-none hover:bg-ui-pale-red/80'
+    solid: 'hover:bg-ui-red/90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-ui-pale-red/80'
   },
   orange: {
-    solid: 'bg-ui-orange text-on-dark hover:bg-ui-orange/90 shadow-card',
-    outline: 'border border-ui-orange bg-transparent text-ui-orange',
-    soft: 'bg-ui-pale-orange text-ui-orange shadow-none hover:bg-ui-pale-orange/80'
+    solid: 'hover:bg-ui-orange/90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-ui-pale-orange/80'
   },
   yellow: {
-    solid: 'bg-ui-yellow text-on-dark hover:bg-ui-yellow/90 shadow-card',
-    outline: 'border border-ui-yellow bg-transparent text-ui-yellow',
-    soft: 'bg-ui-pale-yellow text-ui-yellow shadow-none hover:bg-ui-pale-yellow/80'
+    solid: 'hover:bg-ui-yellow/90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-ui-pale-yellow/80'
   },
   olive: {
-    solid: 'bg-ui-olive text-on-dark hover:bg-ui-olive/90 shadow-card',
-    outline: 'border border-ui-olive bg-transparent text-ui-olive',
-    soft: 'bg-ui-olive/10 text-ui-olive shadow-none hover:bg-ui-olive/20'
+    solid: 'hover:bg-ui-olive/90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-ui-olive/20'
   },
   green: {
-    solid: 'bg-ui-green text-on-dark hover:bg-ui-green/90 shadow-card',
-    outline: 'border border-ui-green bg-transparent text-ui-green',
-    soft: 'bg-ui-pale-green text-ui-green shadow-none hover:bg-ui-pale-green/80'
+    solid: 'hover:bg-ui-green/90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-ui-pale-green/80'
   },
   skyblue: {
-    solid: 'bg-ui-skyblue text-on-dark hover:bg-ui-skyblue/90 shadow-card',
-    outline: 'border border-ui-skyblue bg-transparent text-ui-skyblue',
-    soft: 'bg-ui-skyblue/10 text-ui-skyblue shadow-none hover:bg-ui-skyblue/20'
+    solid: 'hover:bg-ui-skyblue/90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-ui-skyblue/20'
   },
   purple: {
-    solid: 'bg-ui-purple text-on-dark hover:bg-ui-purple/90 shadow-card',
-    outline: 'border border-ui-purple bg-transparent text-ui-purple',
-    soft: 'bg-ui-pale-purple text-ui-purple shadow-none hover:bg-ui-pale-purple/80'
+    solid: 'hover:bg-ui-purple/90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-ui-pale-purple/80'
   },
   pink: {
-    solid: 'bg-ui-pink text-on-dark hover:bg-ui-pink/90 shadow-card',
-    outline: 'border border-ui-pink bg-transparent text-ui-pink',
-    soft: 'bg-ui-pale-pink text-ui-pink shadow-none hover:bg-ui-pale-pink/80'
+    solid: 'hover:bg-ui-pink/90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-ui-pale-pink/80'
   },
   amber: {
-    solid: 'bg-ui-amber text-on-dark hover:bg-ui-amber/90 shadow-card',
-    outline: 'border border-ui-amber bg-transparent text-ui-text-amber',
-    soft: 'bg-ui-pale-amber text-ui-text-amber shadow-none hover:bg-ui-pale-amber/80'
+    solid: 'hover:bg-ui-amber/90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-ui-pale-amber/80'
   },
   white: {
-    solid:
-      'bg-[var(--color-cool-grey-white)] text-[var(--color-cool-grey-07)] shadow-none hover:bg-[var(--color-cool-grey-01)]',
-    outline: 'border border-white bg-transparent text-white',
-    soft: 'bg-[var(--color-cool-grey-01)] text-[var(--color-cool-grey-07)] shadow-none hover:bg-[var(--color-cool-grey-02)]'
+    solid: 'shadow-none hover:bg-[var(--color-cool-grey-01)]',
+    outline: '',
+    soft: 'shadow-none hover:bg-[var(--color-cool-grey-02)]'
   },
   'gradient-blue': {
-    solid:
-      'bg-primary-blue-gradient-1 text-on-dark hover:opacity-90 shadow-card',
-    outline: 'border border-primary-blue-1 bg-transparent text-primary-blue-1',
-    soft: 'bg-primary-blue-1/10 text-primary-blue-1 shadow-none hover:bg-primary-blue-1/20'
+    solid: 'hover:opacity-90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-primary-blue-1/20'
   },
   'gradient-blue-deep': {
-    solid:
-      'bg-primary-blue-gradient-2 text-on-dark hover:opacity-90 shadow-card',
-    outline: 'border border-primary-blue-deep bg-transparent text-primary-blue-deep',
-    soft: 'bg-primary-blue-1/10 text-primary-blue-1 shadow-none hover:bg-primary-blue-1/20'
+    solid: 'hover:opacity-90 shadow-card',
+    outline: '',
+    soft: 'shadow-none hover:bg-primary-blue-1/20'
   }
-} as const
+}
 
-type ButtonColor = keyof typeof buttonColorStyles
-type ButtonTheme = keyof (typeof buttonColorStyles)['gray']
+const buttonColorStyles = Object.fromEntries(
+  (Object.keys(inlineColorThemeStyles) as CommonColor[]).map((color) => [
+    color,
+    {
+      solid: `${inlineColorThemeStyles[color].solid} ${buttonInteractionStyles[color].solid}`,
+      outline: inlineColorThemeStyles[color].outline,
+      soft: `${inlineColorThemeStyles[color].soft} ${buttonInteractionStyles[color].soft}`
+    }
+  ])
+) as Record<CommonColor, Record<ColorTheme, string>>
+
+type ButtonColor = CommonColor
+type ButtonTheme = ColorTheme
 
 const buttonCompoundVariants = Object.entries(buttonColorStyles).flatMap(([color, styles]) =>
   Object.entries(styles).map(([theme, className]) => ({
