@@ -7,5 +7,5 @@ import { DatePicker } from '@transight-design/ui/components/date-picker'
 // 이 컴포넌트는 PREVIEWS 맵 등록용 fallback.
 export const Preview = () => {
   const [date, setDate] = useState<Date | null>(new Date())
-  return <DatePicker mode='CALENDAR' selectedDate={date} onDateChange={setDate} />
+  return <DatePicker selectedDate={date} onDateChange={setDate} />
 }
