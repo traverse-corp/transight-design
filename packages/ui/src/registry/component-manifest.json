@@ -9,6 +9,7 @@
   "carousel": { "category": "base", "ready": false, "essential": false },
   "checkbox": { "category": "base", "ready": true, "essential": true },
   "date-picker": { "category": "custom", "ready": true, "essential": false },
+  "date-time-input": { "category": "custom", "ready": true, "essential": false },
   "dialog": { "category": "base", "ready": true, "essential": true },
   "dropdown-menu": { "category": "base", "ready": true, "essential": false },
   "empty": { "category": "base", "ready": false, "essential": false },

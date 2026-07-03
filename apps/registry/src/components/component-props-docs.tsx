@@ -388,6 +388,40 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
         '지정 시 우측 하단에 자동 counter(현재길이/maxLength) 표시. 값이 controlled(value)일 때만 길이가 정확합니다.'
     }
   ],
+  'date-time-input': [
+    {
+      name: 'value',
+      type: 'string',
+      description:
+        '포맷된 날짜시간 문자열(YYYY/MM/DD hh:mm:ss). 세그먼트 상태의 정본이며 controlled 사용.'
+    },
+    {
+      name: 'onChange',
+      type: '(formatted: string) => void',
+      description: '값 변경 콜백. 세그먼트 편집 시마다 포맷된 문자열로 호출.'
+    },
+    {
+      name: 'showTime',
+      type: 'boolean',
+      defaultValue: 'true',
+      description: 'false면 hh/mm/ss 세그먼트를 숨기고 YYYY/MM/DD 3개만 노출.'
+    },
+    {
+      name: 'prefix',
+      type: 'React.ReactNode',
+      description: '컨테이너 내부, 세그먼트 앞에 붙는 라벨 노드 (예: "시작일자").'
+    },
+    {
+      name: 'placeholder',
+      type: 'string',
+      description: '전체 placeholder — 세그먼트별 placeholder(YYYY/MM/DD 등)는 내부 고정.'
+    },
+    {
+      name: 'onBlur',
+      type: '(e: React.FocusEvent<HTMLElement>) => void',
+      description: '컨테이너 외부 포커스 이동 시 호출. 세그먼트 간 이동에는 트리거되지 않는다.'
+    }
+  ],
   'date-picker': [
     {
       name: 'text',
