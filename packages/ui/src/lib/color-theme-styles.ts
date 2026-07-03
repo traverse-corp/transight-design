@@ -62,7 +62,7 @@ export const outlineColorStyles: Record<CommonColor, string> = {
  */
 export const inlineColorThemeStyles: ColorThemeStyles = {
   gray: {
-    solid: 'bg-cool-grey-06 text-white',
+    solid: 'bg-cool-grey-06 text-on-dark',
     outline: outlineColorStyles.gray,
     soft: 'bg-bg-muted text-fg-default'
   },
@@ -141,7 +141,7 @@ export const inlineColorThemeStyles: ColorThemeStyles = {
 export const surfaceColorThemeStyles: ColorThemeStyles = {
   ...inlineColorThemeStyles,
   gray: {
-    solid: 'bg-cool-grey-06 text-white',
+    solid: 'bg-cool-grey-06 text-on-dark',
     outline: outlineColorStyles.gray,
     soft: 'bg-bg-muted text-fg-default border-transparent'
   }
