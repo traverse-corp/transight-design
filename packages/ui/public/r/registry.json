@@ -912,6 +912,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
+        "traverse-corp/transight-design/lib-color-theme-styles",
         "traverse-corp/transight-design/lib-utils",
         "traverse-corp/transight-design/styles"
       ],
