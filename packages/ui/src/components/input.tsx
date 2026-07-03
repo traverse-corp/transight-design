@@ -191,7 +191,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       >
         {hasStartDecorator && renderDecorator('start')}
         <BaseInput
-          className='placeholder:text-cool-grey-05 flex w-full bg-transparent text-cool-grey-08 focus-visible:outline-none disabled:cursor-not-allowed'
+          className='placeholder:text-cool-grey-06 flex w-full bg-transparent text-cool-grey-08 focus-visible:outline-none disabled:cursor-not-allowed'
           ref={ref}
           type={type}
           {...props}
