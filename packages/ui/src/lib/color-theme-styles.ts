@@ -39,7 +39,7 @@ export type ColorThemeStyles = Record<CommonColor, Record<ColorTheme, string>>
  * 예외 없음.
  */
 export const outlineColorStyles: Record<CommonColor, string> = {
-  gray: 'border border-[var(--color-cool-grey-06)] bg-transparent text-[var(--color-cool-grey-06)]',
+  gray: 'border border-cool-grey-06 bg-transparent text-cool-grey-06',
   blue: 'border border-primary-blue-1 bg-transparent text-primary-blue-1',
   red: 'border border-ui-red bg-transparent text-ui-red',
   orange: 'border border-ui-orange bg-transparent text-ui-orange',
@@ -62,7 +62,7 @@ export const outlineColorStyles: Record<CommonColor, string> = {
  */
 export const inlineColorThemeStyles: ColorThemeStyles = {
   gray: {
-    solid: 'bg-[var(--color-cool-grey-06)] text-on-dark',
+    solid: 'bg-cool-grey-06 text-white',
     outline: outlineColorStyles.gray,
     soft: 'bg-bg-muted text-fg-default'
   },
@@ -141,7 +141,7 @@ export const inlineColorThemeStyles: ColorThemeStyles = {
 export const surfaceColorThemeStyles: ColorThemeStyles = {
   ...inlineColorThemeStyles,
   gray: {
-    solid: 'bg-[var(--color-cool-grey-06)] text-on-dark',
+    solid: 'bg-cool-grey-06 text-white',
     outline: outlineColorStyles.gray,
     soft: 'bg-bg-muted text-fg-default border-transparent'
   }

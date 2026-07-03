@@ -12,7 +12,7 @@ import {
 // 색·테마 identity는 inlineColorThemeStyles(정본)에서 상속. outline은 인터랙션 없음.
 const buttonInteractionStyles: Record<CommonColor, Record<ColorTheme, string>> = {
   gray: {
-    solid: 'hover:bg-[var(--color-cool-grey-06)]/90 shadow-card',
+    solid: 'hover:bg-cool-grey-07 shadow-card',
     outline: '',
     soft: 'shadow-none hover:bg-bg-subtle'
   },

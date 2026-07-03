@@ -12,7 +12,7 @@ import {
 // outline은 전역 정본과 완전 동일 (transparent bg + 색 border) — Alert라도 예외 없음.
 // soft는 border-transparent로 통일 (Card와 동일).
 const alertBorderBySolidColor: Record<CommonColor, string> = {
-  gray: 'border-[var(--color-cool-grey-06)]',
+  gray: 'border-cool-grey-06',
   blue: 'border-primary-blue-1',
   red: 'border-ui-red',
   orange: 'border-ui-orange',
