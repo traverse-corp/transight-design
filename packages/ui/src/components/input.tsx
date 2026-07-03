@@ -10,6 +10,25 @@ import {
   type CommonColor
 } from '@/lib/color-theme-styles'
 
+// Input 고유 border 레이어 — solid/soft에도 border 색을 명시 (필드는 항상 border 가시).
+// solid는 bg와 같은 색으로 border, soft는 옅게.
+const inputBorderStyles: Record<CommonColor, Record<'solid' | 'soft', string>> = {
+  gray: { solid: 'border-cool-grey-06', soft: 'border-transparent' },
+  blue: { solid: 'border-primary-blue-1', soft: 'border-primary-blue-1/10' },
+  red: { solid: 'border-ui-red', soft: 'border-ui-pale-red' },
+  orange: { solid: 'border-ui-orange', soft: 'border-ui-pale-orange' },
+  yellow: { solid: 'border-ui-yellow', soft: 'border-ui-pale-yellow' },
+  olive: { solid: 'border-ui-olive', soft: 'border-ui-olive/10' },
+  green: { solid: 'border-ui-green', soft: 'border-ui-pale-green' },
+  skyblue: { solid: 'border-ui-skyblue', soft: 'border-ui-skyblue/10' },
+  purple: { solid: 'border-ui-purple', soft: 'border-ui-pale-purple' },
+  pink: { solid: 'border-ui-pink', soft: 'border-ui-pale-pink' },
+  amber: { solid: 'border-ui-amber', soft: 'border-ui-pale-amber' },
+  white: { solid: 'border-white', soft: 'border-cool-grey-05' },
+  'gradient-blue': { solid: 'border-primary-blue-1', soft: 'border-primary-blue-1/10' },
+  'gradient-blue-deep': { solid: 'border-primary-blue-deep', soft: 'border-primary-blue-1/10' }
+}
+
 // Input 고유 인터랙션 레이어 — focus-within (필드 활성 시 primary-blue-1 하이라이트).
 // Select와 동일 패턴. 색·테마 identity는 inlineColorThemeStyles(정본)에서 상속.
 const inputFocusStyles: Record<CommonColor, string> = {
@@ -51,9 +70,9 @@ const inputColorStyles = Object.fromEntries(
   INPUT_COLORS.map((c) => [
     c,
     {
-      solid: `${inlineColorThemeStyles[c].solid} ${inputFocusStyles[c]}`,
+      solid: `${inlineColorThemeStyles[c].solid} ${inputBorderStyles[c].solid} ${inputFocusStyles[c]}`,
       outline: `${inlineColorThemeStyles[c].outline} ${inputFocusStyles[c]}`,
-      soft: `${inlineColorThemeStyles[c].soft} ${inputFocusStyles[c]}`
+      soft: `${inlineColorThemeStyles[c].soft} ${inputBorderStyles[c].soft} ${inputFocusStyles[c]}`
     }
   ])
 ) as Record<InputColor, Record<ColorTheme, string>>
@@ -171,7 +190,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       >
         {hasStartDecorator && renderDecorator('start')}
         <BaseInput
-          className='placeholder:text-fg-muted text-fg-default flex w-full bg-transparent focus-visible:outline-none disabled:cursor-not-allowed'
+          className='placeholder:text-fg-muted flex w-full bg-transparent text-inherit focus-visible:outline-none disabled:cursor-not-allowed'
           ref={ref}
           type={type}
           {...props}
