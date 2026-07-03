@@ -6,19 +6,31 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { ChevronDownIcon, CheckIcon, ChevronUpIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-// shape와 color는 Select root에서 받아 Trigger와 Content/Item이 동일 값을 자동으로 따른다.
-// Trigger에 shape/color prop을 따로 줘서 override 가능.
+// shape / color / size는 Select root에서 받아 Trigger와 Content/Item이 동일 값을 자동으로 따른다.
+// Trigger에 shape/color/size prop을 따로 줘서 override 가능.
 export type SelectShape = 'default' | 'pill' | 'square'
+export type SelectSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 interface SelectContextValue {
   shape: SelectShape
   color: SelectTriggerColor
+  size: SelectSize
 }
 
 const SelectContext = React.createContext<SelectContextValue>({
   shape: 'default',
-  color: 'gray'
+  color: 'gray',
+  size: 'md'
 })
+
+// SelectItem 폰트 크기 매핑 — Trigger의 size와 동일 스케일.
+const itemTypoBySize: Record<SelectSize, string> = {
+  xs: 'typo-m10',
+  sm: 'typo-m12',
+  md: 'typo-m13',
+  lg: 'typo-m15',
+  xl: 'typo-m16'
+}
 
 // SelectPrimitive.Root는 generic (Root<T>)이라 React.ComponentProps로 받아 모든 prop 노출.
 export type SelectProps = React.ComponentProps<typeof SelectPrimitive.Root> & {
@@ -26,15 +38,18 @@ export type SelectProps = React.ComponentProps<typeof SelectPrimitive.Root> & {
   shape?: SelectShape
   /** Trigger 톤 + Content/Item 활성 색을 함께 결정. 기본 'gray'. */
   color?: SelectTriggerColor
+  /** Trigger 높이/폰트 + Content Item 폰트 크기를 함께 결정. 기본 'md'. */
+  size?: SelectSize
 }
 
 const Select = ({
   shape = 'default',
   color = 'gray',
+  size = 'md',
   children,
   ...props
 }: SelectProps) => (
-  <SelectContext.Provider value={{ shape, color }}>
+  <SelectContext.Provider value={{ shape, color, size }}>
     <SelectPrimitive.Root {...props}>{children}</SelectPrimitive.Root>
   </SelectContext.Provider>
 )
@@ -181,6 +196,7 @@ const SelectTrigger = ({
   const resolvedColor: SelectTriggerColor = color ?? ctx.color
   const resolvedTheme: SelectTriggerTheme = theme ?? 'outline'
   const resolvedShape: SelectShape = shape ?? ctx.shape
+  const resolvedSize: SelectSize = size ?? ctx.size
 
   return (
     <SelectPrimitive.Trigger
@@ -190,7 +206,7 @@ const SelectTrigger = ({
           color: resolvedColor,
           theme: resolvedTheme,
           shape: resolvedShape,
-          size
+          size: resolvedSize
         }),
         selectTriggerColorStyles[resolvedColor][resolvedTheme],
         className
@@ -300,14 +316,15 @@ const SelectLabel = ({ className, ...props }: SelectPrimitive.GroupLabel.Props) 
 )
 
 const SelectItem = ({ className, children, ...props }: SelectPrimitive.Item.Props) => {
-  const { color } = React.useContext(SelectContext)
+  const { color, size } = React.useContext(SelectContext)
   const colorClasses = selectItemColorStyles[color]
 
   return (
     <SelectPrimitive.Item
       data-slot='select-item'
       className={cn(
-        "typo-m14 text-fg-default data-disabled:opacity-50 relative flex w-full cursor-default items-center gap-2 rounded-md py-1.5 pr-8 pl-2 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "text-fg-default data-disabled:opacity-50 relative flex w-full cursor-default items-center gap-2 rounded-md py-1.5 pr-8 pl-2 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        itemTypoBySize[size],
         colorClasses.focus,
         className
       )}
