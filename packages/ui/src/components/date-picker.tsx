@@ -87,7 +87,14 @@ export const DatePicker = ({
             className={cn('gap-3 p-2 active:scale-100', className)}
           >
             {text && <span className='text-fg-muted'>{text}</span>}
-            <span className='tabular-nums'>{dateLabel}</span>
+            <span
+              className={cn(
+                'inline-block text-center tabular-nums',
+                isSelectTime ? 'min-w-[10.5em]' : 'min-w-[7em]'
+              )}
+            >
+              {dateLabel}
+            </span>
             <CalendarSearch className='size-4' />
           </Button>
         }
