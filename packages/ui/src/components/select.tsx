@@ -111,7 +111,7 @@ const selectTriggerColorStyles = Object.fromEntries(
 
 // data-[placeholder]:opacity-60 — placeholder는 trigger text 색을 그대로 따르되 옅게 표시.
 const selectTriggerVariants = cva(
-  'flex w-full items-center justify-between gap-1.5 border bg-bg-card shadow-sm transition-colors outline-none [&[data-placeholder]]:opacity-90 [&[data-placeholder]_[data-slot=select-value]]:opacity-60 aria-invalid:border-ui-red aria-invalid:focus-within:border-ui-red aria-invalid:shadow-[0_0_0_1px_rgba(239,68,68,0.1)] disabled:cursor-not-allowed disabled:opacity-50',
+  'flex w-full items-center justify-between gap-1.5 border bg-bg-card shadow-sm transition-colors outline-none [&_[data-slot=select-value]]:text-cool-grey-08 [&[data-placeholder]_[data-slot=select-value]]:!text-cool-grey-04 aria-invalid:border-ui-red aria-invalid:focus-within:border-ui-red aria-invalid:shadow-[0_0_0_1px_rgba(239,68,68,0.1)] disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       color: {

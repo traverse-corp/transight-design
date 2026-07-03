@@ -12,21 +12,22 @@ import {
 
 // Input 고유 border 레이어 — solid/soft에도 border 색을 명시 (필드는 항상 border 가시).
 // solid는 bg와 같은 색으로 border, soft는 옅게.
+// solid는 배경이 진해서 value 텍스트를 흰색으로 강제 (descendant selector로 BaseInput 덮어씀).
 const inputBorderStyles: Record<CommonColor, Record<'solid' | 'soft', string>> = {
-  gray: { solid: 'border-cool-grey-06', soft: 'border-transparent' },
-  blue: { solid: 'border-primary-blue-1', soft: 'border-primary-blue-1/10' },
-  red: { solid: 'border-ui-red', soft: 'border-ui-pale-red' },
-  orange: { solid: 'border-ui-orange', soft: 'border-ui-pale-orange' },
-  yellow: { solid: 'border-ui-yellow', soft: 'border-ui-pale-yellow' },
-  olive: { solid: 'border-ui-olive', soft: 'border-ui-olive/10' },
-  green: { solid: 'border-ui-green', soft: 'border-ui-pale-green' },
-  skyblue: { solid: 'border-ui-skyblue', soft: 'border-ui-skyblue/10' },
-  purple: { solid: 'border-ui-purple', soft: 'border-ui-pale-purple' },
-  pink: { solid: 'border-ui-pink', soft: 'border-ui-pale-pink' },
-  amber: { solid: 'border-ui-amber', soft: 'border-ui-pale-amber' },
-  white: { solid: 'border-white', soft: 'border-cool-grey-05' },
-  'gradient-blue': { solid: 'border-primary-blue-1', soft: 'border-primary-blue-1/10' },
-  'gradient-blue-deep': { solid: 'border-primary-blue-deep', soft: 'border-primary-blue-1/10' }
+  gray: { solid: 'border-cool-grey-06 [&_input]:!text-on-dark', soft: 'border-transparent' },
+  blue: { solid: 'border-primary-blue-1 [&_input]:!text-on-dark', soft: 'border-primary-blue-1/10' },
+  red: { solid: 'border-ui-red [&_input]:!text-on-dark', soft: 'border-ui-pale-red' },
+  orange: { solid: 'border-ui-orange [&_input]:!text-on-dark', soft: 'border-ui-pale-orange' },
+  yellow: { solid: 'border-ui-yellow [&_input]:!text-on-dark', soft: 'border-ui-pale-yellow' },
+  olive: { solid: 'border-ui-olive [&_input]:!text-on-dark', soft: 'border-ui-olive/10' },
+  green: { solid: 'border-ui-green [&_input]:!text-on-dark', soft: 'border-ui-pale-green' },
+  skyblue: { solid: 'border-ui-skyblue [&_input]:!text-on-dark', soft: 'border-ui-skyblue/10' },
+  purple: { solid: 'border-ui-purple [&_input]:!text-on-dark', soft: 'border-ui-pale-purple' },
+  pink: { solid: 'border-ui-pink [&_input]:!text-on-dark', soft: 'border-ui-pale-pink' },
+  amber: { solid: 'border-ui-amber [&_input]:!text-on-dark', soft: 'border-ui-pale-amber' },
+  white: { solid: 'border-white [&_input]:!text-cool-grey-08', soft: 'border-cool-grey-05' },
+  'gradient-blue': { solid: 'border-primary-blue-1 [&_input]:!text-on-dark', soft: 'border-primary-blue-1/10' },
+  'gradient-blue-deep': { solid: 'border-primary-blue-deep [&_input]:!text-on-dark', soft: 'border-primary-blue-1/10' }
 }
 
 // Input 고유 인터랙션 레이어 — focus-within (필드 활성 시 primary-blue-1 하이라이트).
@@ -190,7 +191,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       >
         {hasStartDecorator && renderDecorator('start')}
         <BaseInput
-          className='placeholder:text-fg-muted flex w-full bg-transparent text-inherit focus-visible:outline-none disabled:cursor-not-allowed'
+          className='placeholder:text-cool-grey-04 flex w-full bg-transparent text-cool-grey-08 focus-visible:outline-none disabled:cursor-not-allowed'
           ref={ref}
           type={type}
           {...props}
