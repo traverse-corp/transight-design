@@ -26,10 +26,10 @@ export const Preview = ({ selections = {} }: PreviewProps) => {
     <Select
       shape={(selections.shape as Shape) ?? undefined}
       color={(selections.color as Color) ?? undefined}
+      size={(selections.size as Size) ?? undefined}
     >
       <SelectTrigger
         theme={(selections.theme as Theme) ?? undefined}
-        size={(selections.size as Size) ?? undefined}
         decorator={decorator}
         className='w-60'
       >

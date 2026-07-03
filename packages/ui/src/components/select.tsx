@@ -155,7 +155,7 @@ const selectTriggerVariants = cva(
       },
       size: {
         xs: 'h-7 px-2 typo-m10',
-        sm: 'h-9 px-3 typo-m12',
+        sm: 'h-[37px] px-3 typo-m12',
         md: 'h-10 px-3 typo-m13',
         lg: 'h-12 px-4 typo-m15',
         xl: 'h-14 px-5 typo-m16'
