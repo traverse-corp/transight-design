@@ -10,6 +10,7 @@
   ],
   "registryDependencies": [
     "traverse-corp/transight-design/hook-use-controlled-state",
+    "traverse-corp/transight-design/lib-color-theme-styles",
     "traverse-corp/transight-design/lib-get-strict-context",
     "traverse-corp/transight-design/lib-utils",
     "traverse-corp/transight-design/styles"

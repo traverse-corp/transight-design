@@ -449,7 +449,7 @@ import { IconSprite } from '@/icons/sprite.gen' // 앱 루트에 1회 마운트
 
 | prop | 의미 | 값 |
 |---|---|---|
-| `color` | 색상 | `gray` / `blue` / `red` / `orange` / `yellow` / `olive` / `green` / `skyblue` / `purple` / `pink` / `amber` / `white` / `gradient-blue` / `gradient-blue-deep` |
+| `color` | 색상 | `gray01`~`gray11` / `blue` / `red` / `orange` / `yellow` / `olive` / `green` / `skyblue` / `purple` / `pink` / `amber` / `white` / `gradient-blue` / `gradient-blue-deep` |
 | `theme` | 배색 (solid/outline/soft) | `solid` / `outline` / `soft` |
 | `shape` | 모서리 형태 | `default` / `pill` / `square` (일부) / `circle` (일부) |
 | `size` | 크기 단계 | `xs` / `sm` / `md` / `lg` / `xl` |
@@ -463,7 +463,7 @@ import { IconSprite } from '@/icons/sprite.gen' // 앱 루트에 1회 마운트
 ✅ 좋은 예
 ```tsx
 <Button color="red" theme="soft" shape="pill" size="sm">취소</Button>
-<Input shape="pill" size="lg" />
+<Input color="gray06" theme="outline" shape="pill" size="lg" />
 <Checkbox color="green" size="md" />
 ```
 
@@ -585,7 +585,7 @@ react-hook-form 등에서 받은 `register()` 객체를 그대로 펴면 onChang
 |---|---|---|---|---|---|
 | Button | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Badge | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Input |  |  | ✓ | ✓ | ✓ |
+| Input | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Textarea |  |  | ✓ | ✓ |  |
 | Label |  |  |  | ✓ | ✓ |
 | Checkbox | ✓ |  | ✓ | ✓ |  |

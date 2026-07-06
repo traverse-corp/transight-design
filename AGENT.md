@@ -83,7 +83,7 @@ svg/                          아이콘 시스템 원본 SVG
 
 | 이름 | 역할 |
 |---|---|
-| `color` | 컬러 토큰 enum (UI 10색 + gray/white + gradient-blue/gradient-blue-deep). CSS 변수로 주입해 자식이 `var(--<comp>-active)` 등으로 참조하는 패턴을 권장합니다. |
+| `color` | 컬러 토큰 enum (UI 10색 + `gray01`~`gray11` + white + gradient-blue/gradient-blue-deep). CSS 변수로 주입해 자식이 `var(--<comp>-active)` 등으로 참조하는 패턴을 권장합니다. |
 | `theme` | 색을 어떻게 적용할지의 변형 (예: `solid` / `outline` / `soft`). 색 axis와 직교합니다. |
 | `shape` | 시각 구조/모양 (예: `default` / `square`, `pill` / `line`, `default` / `contained` / `separated`). |
 | `size` | 크기 enum (예: `sm` / `md` / `lg`). 자식이 root의 `data-size`를 `group-data-[size=...]/<comp>:` selector로 추적해 padding/typo를 자동 스케일하는 패턴을 권장합니다. |
@@ -91,7 +91,7 @@ svg/                          아이콘 시스템 원본 SVG
 규칙:
 
 - 4축을 모두 채울 필요는 없습니다. 의미 없는 axis는 정의하지 마세요 (예: avatar에 `theme` 없음, accordion에 `theme` 없음).
-- `color` 적용은 가급적 CSS 변수 + `color-mix()` 패턴으로 합니다. 12색 × N theme × M shape의 cva 매트릭스 폭발을 피합니다.
+- `color` 적용은 가급적 CSS 변수 + `color-mix()` 패턴으로 합니다. 다색 × N theme × M shape의 cva 매트릭스 폭발을 피합니다.
 - 자식 컴포넌트가 부모 STYLE을 따라야 하면 root에 `data-<axis>`를 부여하고 자식이 `group-data-[<axis>=<value>]/<comp>:` selector로 읽습니다 (`React.useContext` 대신).
 
 ### 5.2 VARIANT (preset alias)
@@ -101,7 +101,7 @@ svg/                          아이콘 시스템 원본 SVG
 ```ts
 export const ButtonVariantPresets = {
   primary:   { color: 'blue',  theme: 'solid'   },
-  secondary: { color: 'gray',  theme: 'outline' },
+  secondary: { color: 'gray06', theme: 'outline' },
   danger:    { color: 'red',   theme: 'solid'   }
 } satisfies Record<string, Partial<Pick<ButtonProps, 'color' | 'theme' | 'shape' | 'size'>>>
 ```

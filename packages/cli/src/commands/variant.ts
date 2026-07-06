@@ -122,7 +122,7 @@ variantCommand
   )
   .requiredOption('--component <name>', '컴포넌트 이름 (예: button)')
   .requiredOption('--name <name>', '추가할 variant 이름 (예: my-brand)')
-  .option('--color <value>', 'color (gray/blue/red/orange/yellow/olive/green/skyblue/purple/pink/white/gradient-blue)')
+  .option('--color <value>', 'color (gray01~gray11/blue/red/orange/yellow/olive/green/skyblue/purple/pink/white/gradient-blue)')
   .option('--theme <value>', 'theme (solid/outline/soft)')
   .option('--shape <value>', 'shape (default/pill/square)')
   .option('--size <value>', 'size (xs/sm/md/lg/xl)')
