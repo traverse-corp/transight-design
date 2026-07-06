@@ -32,8 +32,8 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
     },
     {
       name: 'color',
-      type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
-      defaultValue: "'gray'",
+      type: "'gray01' | 'gray02' | 'gray03' | 'gray04' | 'gray05' | 'gray06' | 'gray07' | 'gray08' | 'gray09' | 'gray10' | 'gray11' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
+      defaultValue: "'gray06'",
       description: '버튼의 색상 축입니다. 지정하면 variant preset의 color보다 우선합니다.'
     },
     {
@@ -63,8 +63,8 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
     },
     {
       name: 'color',
-      type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
-      defaultValue: "'gray'",
+      type: "'gray01' | 'gray02' | 'gray03' | 'gray04' | 'gray05' | 'gray06' | 'gray07' | 'gray08' | 'gray09' | 'gray10' | 'gray11' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
+      defaultValue: "'gray06'",
       description: '뱃지의 색상 축입니다. 지정하면 variant preset의 color보다 우선합니다.'
     },
     {
@@ -170,8 +170,8 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
       props: [
         {
           name: 'color',
-          type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
-          defaultValue: "'gray'",
+          type: "'gray01' | 'gray02' | 'gray03' | 'gray04' | 'gray05' | 'gray06' | 'gray07' | 'gray08' | 'gray09' | 'gray10' | 'gray11' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
+          defaultValue: "'gray06'",
           description: 'Button과 동일한 12색 시스템. solid 기본값은 dark 룩(cool-grey-11).'
         },
         {
@@ -228,8 +228,8 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
       props: [
         {
           name: 'color',
-          type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
-          defaultValue: "'gray'",
+          type: "'gray01' | 'gray02' | 'gray03' | 'gray04' | 'gray05' | 'gray06' | 'gray07' | 'gray08' | 'gray09' | 'gray10' | 'gray11' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
+          defaultValue: "'gray06'",
           description:
             'Trigger의 border/text/focus 톤을 결정. Button과 같은 12색.'
         },
@@ -305,7 +305,7 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
   spinner: [
     {
       name: 'color',
-      type: "'gray' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
+      type: "'gray01' | 'gray02' | 'gray03' | 'gray04' | 'gray05' | 'gray06' | 'gray07' | 'gray08' | 'gray09' | 'gray10' | 'gray11' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
       defaultValue: "'blue'",
       description:
         '회전하는 link border의 색을 결정합니다. Button의 12색과 동일 (gradient-blue는 단색 fallback).'

@@ -6,34 +6,19 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import {
   inlineColorThemeStyles,
+  GRAY_SCALE_COLORS,
   type ColorTheme,
-  type CommonColor
+  type CommonColor,
+  type GrayScaleColor
 } from '@/lib/color-theme-styles'
 
-// Input 고유 border 레이어 — solid/soft에도 border 색을 명시 (필드는 항상 border 가시).
-// solid는 bg와 같은 색으로 border, soft는 옅게.
-// solid는 배경이 진해서 value 텍스트를 흰색으로 강제 (descendant selector로 BaseInput 덮어씀).
-const inputBorderStyles: Record<CommonColor, Record<'solid' | 'soft', string>> = {
-  gray: { solid: 'border-cool-grey-06 [&_input]:!text-on-dark', soft: 'border-transparent' },
-  blue: { solid: 'border-primary-blue-1 [&_input]:!text-on-dark', soft: 'border-primary-blue-1/10' },
-  red: { solid: 'border-ui-red [&_input]:!text-on-dark', soft: 'border-ui-pale-red' },
-  orange: { solid: 'border-ui-orange [&_input]:!text-on-dark', soft: 'border-ui-pale-orange' },
-  yellow: { solid: 'border-ui-yellow [&_input]:!text-on-dark', soft: 'border-ui-pale-yellow' },
-  olive: { solid: 'border-ui-olive [&_input]:!text-on-dark', soft: 'border-ui-olive/10' },
-  green: { solid: 'border-ui-green [&_input]:!text-on-dark', soft: 'border-ui-pale-green' },
-  skyblue: { solid: 'border-ui-skyblue [&_input]:!text-on-dark', soft: 'border-ui-skyblue/10' },
-  purple: { solid: 'border-ui-purple [&_input]:!text-on-dark', soft: 'border-ui-pale-purple' },
-  pink: { solid: 'border-ui-pink [&_input]:!text-on-dark', soft: 'border-ui-pale-pink' },
-  amber: { solid: 'border-ui-amber [&_input]:!text-on-dark', soft: 'border-ui-pale-amber' },
-  white: { solid: 'border-white [&_input]:!text-cool-grey-08', soft: 'border-cool-grey-05' },
-  'gradient-blue': { solid: 'border-primary-blue-1 [&_input]:!text-on-dark', soft: 'border-primary-blue-1/10' },
-  'gradient-blue-deep': { solid: 'border-primary-blue-deep [&_input]:!text-on-dark', soft: 'border-primary-blue-1/10' }
-}
+const grayScaleInputFocusStyles = Object.fromEntries(
+  GRAY_SCALE_COLORS.map((c) => [c, 'focus-within:border-primary-blue-1'])
+) as Record<GrayScaleColor, string>
 
 // Input 고유 인터랙션 레이어 — focus-within (필드 활성 시 primary-blue-1 하이라이트).
 // Select와 동일 패턴. 색·테마 identity는 inlineColorThemeStyles(정본)에서 상속.
 const inputFocusStyles: Record<CommonColor, string> = {
-  gray: 'focus-within:border-primary-blue-1',
   blue: 'focus-within:border-primary-blue-2',
   red: 'focus-within:border-ui-red',
   orange: 'focus-within:border-ui-orange',
@@ -46,14 +31,15 @@ const inputFocusStyles: Record<CommonColor, string> = {
   amber: 'focus-within:border-ui-amber',
   white: 'focus-within:border-primary-blue-1',
   'gradient-blue': 'focus-within:border-primary-blue-deep',
-  'gradient-blue-deep': 'focus-within:border-primary-blue-deep'
+  'gradient-blue-deep': 'focus-within:border-primary-blue-deep',
+  ...grayScaleInputFocusStyles
 }
 
 // Input에서 노출하는 색 — gradient-blue-deep, amber 제외 (Select와 동일 API 유지).
 type InputColor = Exclude<CommonColor, 'gradient-blue-deep' | 'amber'>
 
 const INPUT_COLORS: InputColor[] = [
-  'gray',
+  ...GRAY_SCALE_COLORS,
   'blue',
   'red',
   'orange',
@@ -71,9 +57,9 @@ const inputColorStyles = Object.fromEntries(
   INPUT_COLORS.map((c) => [
     c,
     {
-      solid: `${inlineColorThemeStyles[c].solid} ${inputBorderStyles[c].solid} ${inputFocusStyles[c]}`,
+      solid: `${inlineColorThemeStyles[c].solid} border-transparent ${inputFocusStyles[c]}`,
       outline: `${inlineColorThemeStyles[c].outline} ${inputFocusStyles[c]}`,
-      soft: `${inlineColorThemeStyles[c].soft} ${inputBorderStyles[c].soft} ${inputFocusStyles[c]}`
+      soft: `${inlineColorThemeStyles[c].soft} border-transparent ${inputFocusStyles[c]}`
     }
   ])
 ) as Record<InputColor, Record<ColorTheme, string>>
@@ -94,7 +80,17 @@ const inputClassVariants = cva(
   {
     variants: {
       color: {
-        gray: '',
+        gray01: '',
+        gray02: '',
+        gray03: '',
+        gray04: '',
+        gray05: '',
+        gray06: '',
+        gray07: '',
+        gray08: '',
+        gray09: '',
+        gray10: '',
+        gray11: '',
         blue: '',
         red: '',
         orange: '',
@@ -131,7 +127,7 @@ const inputClassVariants = cva(
     },
     compoundVariants: inputCompoundVariants,
     defaultVariants: {
-      color: 'gray',
+      color: 'gray06',
       theme: 'outline',
       shape: 'default',
       size: 'md',
@@ -191,7 +187,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       >
         {hasStartDecorator && renderDecorator('start')}
         <BaseInput
-          className='placeholder:text-cool-grey-06 flex w-full bg-transparent text-cool-grey-08 focus-visible:outline-none disabled:cursor-not-allowed'
+          className='flex w-full bg-transparent text-current placeholder:text-current placeholder:opacity-60 focus-visible:outline-none disabled:cursor-not-allowed'
           ref={ref}
           type={type}
           {...props}

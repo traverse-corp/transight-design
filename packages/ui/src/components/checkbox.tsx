@@ -7,27 +7,36 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { getStrictContext } from '@/lib/get-strict-context'
 import { useControlledState } from '@/lib/hooks/use-controlled-state'
 import { cn } from '@/lib/utils'
+import {
+  inlineColorThemeStyles,
+  GRAY_SCALE_COLORS,
+  type CommonColor
+} from '@/lib/color-theme-styles'
 
-// ── 색상 시스템 — Button의 solid 패턴 미러링 (12색). active 시에만 발동 ──
+type CheckboxDesignColor = Exclude<CommonColor, 'gradient-blue-deep'>
+
+const CHECKBOX_COLORS: CheckboxDesignColor[] = [
+  ...GRAY_SCALE_COLORS,
+  'blue',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'skyblue',
+  'purple',
+  'pink',
+  'amber',
+  'white',
+  'gradient-blue'
+]
+
+// ── 색상 시스템 — Button/Badge의 solid 정본을 active 시에만 적용 ──
 // 클래스는 컴포넌트 안에서 isActive ? styles[color] : 미체크 클래스 로 동적 적용.
 // cva.variants에는 키만 노출해 extract-variants 가 카탈로그 컨트롤을 생성하게 한다.
-const checkboxColorStyles = {
-  gray: 'bg-bg-muted border-border-default text-fg-default',
-  blue: 'bg-primary-blue-1 border-primary-blue-1 text-on-dark',
-  red: 'bg-ui-red border-ui-red text-on-dark',
-  orange: 'bg-ui-orange border-ui-orange text-on-dark',
-  yellow: 'bg-ui-yellow border-ui-yellow text-on-dark',
-  olive: 'bg-ui-olive border-ui-olive text-on-dark',
-  green: 'bg-ui-green border-ui-green text-on-dark',
-  skyblue: 'bg-ui-skyblue border-ui-skyblue text-on-dark',
-  purple: 'bg-ui-purple border-ui-purple text-on-dark',
-  pink: 'bg-ui-pink border-ui-pink text-on-dark',
-  amber: 'bg-ui-amber border-ui-amber text-on-dark',
-  white:
-    'bg-[var(--color-cool-grey-white)] border-[var(--color-cool-grey-05)] text-[var(--color-cool-grey-09)]',
-  'gradient-blue':
-    'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2 border-primary-blue-1 text-on-dark'
-} as const
+const checkboxColorStyles = Object.fromEntries(
+  CHECKBOX_COLORS.map((c) => [c, `${inlineColorThemeStyles[c].solid} border-transparent`])
+) as Record<CheckboxDesignColor, string>
 
 const checkboxIndicatorSizeStyles = {
   xs: 'h-2 w-2',
@@ -42,7 +51,17 @@ const checkboxClassVariants = cva(
   {
     variants: {
       color: {
-        gray: '',
+        gray01: '',
+        gray02: '',
+        gray03: '',
+        gray04: '',
+        gray05: '',
+        gray06: '',
+        gray07: '',
+        gray08: '',
+        gray09: '',
+        gray10: '',
+        gray11: '',
         blue: '',
         red: '',
         orange: '',

@@ -2,37 +2,17 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import {
-  surfaceColorThemeStyles,
+  inlineColorThemeStyles,
+  GRAY_SCALE_COLORS,
   type ColorTheme,
   type CommonColor
 } from '@/lib/color-theme-styles'
-
-// Alert 고유 레이어 — solid에 border 색상 명시 (bg와 동일 톤).
-// 색·테마 identity(bg/text)는 surfaceColorThemeStyles(정본)에서 상속.
-// outline은 전역 정본과 완전 동일 (transparent bg + 색 border) — Alert라도 예외 없음.
-// soft는 border-transparent로 통일 (Card와 동일).
-const alertBorderBySolidColor: Record<CommonColor, string> = {
-  gray: 'border-cool-grey-06',
-  blue: 'border-primary-blue-1',
-  red: 'border-ui-red',
-  orange: 'border-ui-orange',
-  yellow: 'border-ui-yellow',
-  olive: 'border-ui-olive',
-  green: 'border-ui-green',
-  skyblue: 'border-ui-skyblue',
-  purple: 'border-ui-purple',
-  pink: 'border-ui-pink',
-  amber: 'border-ui-amber',
-  white: 'border-[var(--color-cool-grey-05)]',
-  'gradient-blue': 'border-primary-blue-1',
-  'gradient-blue-deep': 'border-primary-blue-deep'
-}
 
 type AlertColor = Exclude<CommonColor, 'gradient-blue-deep'>
 type AlertTheme = ColorTheme
 
 const ALERT_COLORS: AlertColor[] = [
-  'gray',
+  ...GRAY_SCALE_COLORS,
   'blue',
   'red',
   'orange',
@@ -51,11 +31,9 @@ const alertColorStyles = Object.fromEntries(
   ALERT_COLORS.map((c) => [
     c,
     {
-      solid: `${surfaceColorThemeStyles[c].solid} ${alertBorderBySolidColor[c]}`,
-      outline: surfaceColorThemeStyles[c].outline,
-      soft: surfaceColorThemeStyles[c].soft.includes('border-transparent')
-        ? surfaceColorThemeStyles[c].soft
-        : `${surfaceColorThemeStyles[c].soft} border-transparent`
+      solid: `${inlineColorThemeStyles[c].solid} border-transparent`,
+      outline: inlineColorThemeStyles[c].outline,
+      soft: `${inlineColorThemeStyles[c].soft} border-transparent`
     }
   ])
 ) as Record<AlertColor, Record<AlertTheme, string>>
@@ -74,7 +52,17 @@ const alertClassVariants = cva(
   {
     variants: {
       color: {
-        gray: '',
+        gray01: '',
+        gray02: '',
+        gray03: '',
+        gray04: '',
+        gray05: '',
+        gray06: '',
+        gray07: '',
+        gray08: '',
+        gray09: '',
+        gray10: '',
+        gray11: '',
         blue: '',
         red: '',
         orange: '',
@@ -105,7 +93,7 @@ const alertClassVariants = cva(
     },
     compoundVariants: alertCompoundVariants,
     defaultVariants: {
-      color: 'gray',
+      color: 'gray06',
       theme: 'soft',
       shape: 'default',
       size: 'md'

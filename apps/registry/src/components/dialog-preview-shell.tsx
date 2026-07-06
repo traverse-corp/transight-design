@@ -34,7 +34,7 @@ interface ControlDef {
 }
 
 const COLORS: readonly string[] = [
-  'gray',
+  'gray06',
   'blue',
   'red',
   'orange',
@@ -82,7 +82,7 @@ const codeFor = (s: State) =>
 
 export const DialogPreviewShell = () => {
   const [state, setState] = useState<State>({
-    triggerColor: 'gray',
+    triggerColor: 'gray06',
     triggerTheme: 'solid',
     triggerSize: 'md',
     size: 'md',

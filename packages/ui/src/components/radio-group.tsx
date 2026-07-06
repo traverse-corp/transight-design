@@ -5,30 +5,42 @@ import { Radio as RadioPrimitive } from '@base-ui/react/radio'
 import { RadioGroup as RadioGroupPrimitive } from '@base-ui/react/radio-group'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
+import {
+  inlineColorThemeStyles,
+  outlineColorStyles,
+  GRAY_SCALE_COLORS,
+  type CommonColor
+} from '@/lib/color-theme-styles'
 
-// ── 색상 시스템 — Button의 solid 패턴 미러링 (12색) ──────────────────
+type RadioDesignColor = Exclude<CommonColor, 'gradient-blue-deep'>
+
+const RADIO_COLORS: RadioDesignColor[] = [
+  ...GRAY_SCALE_COLORS,
+  'blue',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'skyblue',
+  'purple',
+  'pink',
+  'amber',
+  'white',
+  'gradient-blue'
+]
+
+// ── 색상 시스템 — Button/Badge의 solid + outline 정본을 선택 상태에 적용 ──
 // 선택 시 ring border + inner dot 색을 함께 결정.
-const radioColorStyles = {
-  gray: { ring: 'border-border-strong', dot: 'bg-fg-strong' },
-  blue: { ring: 'border-primary-blue-1', dot: 'bg-primary-blue-1' },
-  red: { ring: 'border-ui-red', dot: 'bg-ui-red' },
-  orange: { ring: 'border-ui-orange', dot: 'bg-ui-orange' },
-  yellow: { ring: 'border-ui-yellow', dot: 'bg-ui-yellow' },
-  olive: { ring: 'border-ui-olive', dot: 'bg-ui-olive' },
-  green: { ring: 'border-ui-green', dot: 'bg-ui-green' },
-  skyblue: { ring: 'border-ui-skyblue', dot: 'bg-ui-skyblue' },
-  purple: { ring: 'border-ui-purple', dot: 'bg-ui-purple' },
-  pink: { ring: 'border-ui-pink', dot: 'bg-ui-pink' },
-  amber: { ring: 'border-ui-amber', dot: 'bg-ui-amber' },
-  white: {
-    ring: 'border-[var(--color-cool-grey-white)]',
-    dot: 'bg-[var(--color-cool-grey-white)]'
-  },
-  'gradient-blue': {
-    ring: 'border-primary-blue-1',
-    dot: 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2'
-  }
-} as const
+const radioColorStyles = Object.fromEntries(
+  RADIO_COLORS.map((c) => [
+    c,
+    {
+      ring: outlineColorStyles[c],
+      dot: inlineColorThemeStyles[c].solid
+    }
+  ])
+) as Record<RadioDesignColor, { ring: string; dot: string }>
 
 const radioDotSizeStyles = {
   xs: 'h-1.5 w-1.5',
@@ -43,7 +55,17 @@ const radioClassVariants = cva(
   {
     variants: {
       color: {
-        gray: '',
+        gray01: '',
+        gray02: '',
+        gray03: '',
+        gray04: '',
+        gray05: '',
+        gray06: '',
+        gray07: '',
+        gray08: '',
+        gray09: '',
+        gray10: '',
+        gray11: '',
         blue: '',
         red: '',
         orange: '',

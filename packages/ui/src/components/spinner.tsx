@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
 
 // border-current로 색을 currentColor에서 받으므로 text-* 토큰으로 제어.
 const spinnerColorStyles = {
-  gray: 'text-fg-default',
   blue: 'text-primary-blue-1',
   red: 'text-ui-red',
   orange: 'text-ui-orange',
@@ -16,7 +15,18 @@ const spinnerColorStyles = {
   pink: 'text-ui-pink',
   amber: 'text-ui-amber',
   white: 'text-on-dark',
-  'gradient-blue': 'text-primary-blue-1'
+  'gradient-blue': 'text-primary-blue-1',
+  gray01: 'text-[var(--color-cool-grey-01)]',
+  gray02: 'text-[var(--color-cool-grey-02)]',
+  gray03: 'text-[var(--color-cool-grey-03)]',
+  gray04: 'text-[var(--color-cool-grey-04)]',
+  gray05: 'text-[var(--color-cool-grey-05)]',
+  gray06: 'text-[var(--color-cool-grey-06)]',
+  gray07: 'text-[var(--color-cool-grey-07)]',
+  gray08: 'text-[var(--color-cool-grey-08)]',
+  gray09: 'text-[var(--color-cool-grey-09)]',
+  gray10: 'text-[var(--color-cool-grey-10)]',
+  gray11: 'text-[var(--color-cool-grey-11)]'
 } as const
 
 const spinnerClassVariants = cva(
@@ -24,7 +34,17 @@ const spinnerClassVariants = cva(
   {
     variants: {
       color: {
-        gray: spinnerColorStyles.gray,
+        gray01: spinnerColorStyles.gray01,
+        gray02: spinnerColorStyles.gray02,
+        gray03: spinnerColorStyles.gray03,
+        gray04: spinnerColorStyles.gray04,
+        gray05: spinnerColorStyles.gray05,
+        gray06: spinnerColorStyles.gray06,
+        gray07: spinnerColorStyles.gray07,
+        gray08: spinnerColorStyles.gray08,
+        gray09: spinnerColorStyles.gray09,
+        gray10: spinnerColorStyles.gray10,
+        gray11: spinnerColorStyles.gray11,
         blue: spinnerColorStyles.blue,
         red: spinnerColorStyles.red,
         orange: spinnerColorStyles.orange,

@@ -11,7 +11,7 @@ type Size = NonNullable<Parameters<typeof Badge>[0]['size']>
 
 export const Preview = ({ selections = {} }: PreviewProps) => (
   <Badge
-    color={(selections.color as Color) ?? 'gray'}
+    color={(selections.color as Color) ?? 'gray06'}
     theme={(selections.theme as Theme) ?? 'solid'}
     shape={(selections.shape as Shape) ?? 'default'}
     size={(selections.size as Size) ?? 'md'}

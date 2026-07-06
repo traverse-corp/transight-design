@@ -3,6 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import {
   inlineColorThemeStyles,
+  GRAY_SCALE_COLORS,
   type ColorTheme,
   type CommonColor
 } from '@/lib/color-theme-styles'
@@ -13,7 +14,7 @@ type BadgeColor = Exclude<CommonColor, 'gradient-blue-deep'>
 type BadgeTheme = ColorTheme
 
 const BADGE_COLORS: BadgeColor[] = [
-  'gray',
+  ...GRAY_SCALE_COLORS,
   'blue',
   'red',
   'orange',
@@ -46,7 +47,17 @@ const badgeClassVariants = cva(
   {
     variants: {
       color: {
-        gray: '',
+        gray01: '',
+        gray02: '',
+        gray03: '',
+        gray04: '',
+        gray05: '',
+        gray06: '',
+        gray07: '',
+        gray08: '',
+        gray09: '',
+        gray10: '',
+        gray11: '',
         blue: '',
         red: '',
         orange: '',
@@ -80,7 +91,7 @@ const badgeClassVariants = cva(
     },
     compoundVariants: badgeCompoundVariants,
     defaultVariants: {
-      color: 'gray',
+      color: 'gray06',
       theme: 'solid',
       shape: 'default',
       size: 'md'

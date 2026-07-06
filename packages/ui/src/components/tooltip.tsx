@@ -18,37 +18,17 @@ const TooltipTrigger = (props: TooltipPrimitive.Trigger.Props) => (
 )
 
 import {
-  surfaceColorThemeStyles,
+  inlineColorThemeStyles,
+  GRAY_SCALE_COLORS,
   type ColorTheme,
   type CommonColor
 } from '@/lib/color-theme-styles'
-
-// Tooltip 고유 레이어 — solid에 border 색상 명시 (bg와 동일 톤).
-// 색·테마 identity(bg/text)는 surfaceColorThemeStyles(정본)에서 상속.
-// outline은 전역 정본과 완전 동일 (transparent bg + 색 border) — Tooltip이라도 예외 없음.
-// soft는 border-transparent로 통일 (Card, Alert와 동일).
-const tooltipBorderBySolidColor: Record<CommonColor, string> = {
-  gray: 'border-cool-grey-06',
-  blue: 'border-primary-blue-1',
-  red: 'border-ui-red',
-  orange: 'border-ui-orange',
-  yellow: 'border-ui-yellow',
-  olive: 'border-ui-olive',
-  green: 'border-ui-green',
-  skyblue: 'border-ui-skyblue',
-  purple: 'border-ui-purple',
-  pink: 'border-ui-pink',
-  amber: 'border-ui-amber',
-  white: 'border-[var(--color-cool-grey-05)]',
-  'gradient-blue': 'border-primary-blue-1',
-  'gradient-blue-deep': 'border-primary-blue-deep'
-}
 
 type TooltipColor = Exclude<CommonColor, 'amber' | 'gradient-blue-deep'>
 type TooltipTheme = ColorTheme
 
 const TOOLTIP_COLORS: TooltipColor[] = [
-  'gray',
+  ...GRAY_SCALE_COLORS,
   'blue',
   'red',
   'orange',
@@ -66,11 +46,9 @@ const tooltipColorStyles = Object.fromEntries(
   TOOLTIP_COLORS.map((c) => [
     c,
     {
-      solid: `${surfaceColorThemeStyles[c].solid} ${tooltipBorderBySolidColor[c]}`,
-      outline: surfaceColorThemeStyles[c].outline,
-      soft: surfaceColorThemeStyles[c].soft.includes('border-transparent')
-        ? surfaceColorThemeStyles[c].soft
-        : `${surfaceColorThemeStyles[c].soft} border-transparent`
+      solid: `${inlineColorThemeStyles[c].solid} border-transparent`,
+      outline: inlineColorThemeStyles[c].outline,
+      soft: `${inlineColorThemeStyles[c].soft} border-transparent`
     }
   ])
 ) as Record<TooltipColor, Record<TooltipTheme, string>>
@@ -88,7 +66,17 @@ const tooltipContentVariants = cva(
   {
     variants: {
       color: {
-        gray: '',
+        gray01: '',
+        gray02: '',
+        gray03: '',
+        gray04: '',
+        gray05: '',
+        gray06: '',
+        gray07: '',
+        gray08: '',
+        gray09: '',
+        gray10: '',
+        gray11: '',
         blue: '',
         red: '',
         orange: '',
@@ -114,7 +102,7 @@ const tooltipContentVariants = cva(
     },
     compoundVariants: tooltipCompoundVariants,
     defaultVariants: {
-      color: 'gray',
+      color: 'gray06',
       theme: 'solid',
       size: 'md'
     }
@@ -129,7 +117,17 @@ const tooltipArrowVariants = cva(
   {
     variants: {
       color: {
-        gray: 'bg-bg-inverse',
+        gray01: 'bg-[var(--color-cool-grey-01)]',
+        gray02: 'bg-[var(--color-cool-grey-02)]',
+        gray03: 'bg-[var(--color-cool-grey-03)]',
+        gray04: 'bg-[var(--color-cool-grey-04)]',
+        gray05: 'bg-[var(--color-cool-grey-05)]',
+        gray06: 'bg-[var(--color-cool-grey-06)]',
+        gray07: 'bg-[var(--color-cool-grey-07)]',
+        gray08: 'bg-[var(--color-cool-grey-08)]',
+        gray09: 'bg-[var(--color-cool-grey-09)]',
+        gray10: 'bg-[var(--color-cool-grey-10)]',
+        gray11: 'bg-[var(--color-cool-grey-11)]',
         blue: 'bg-primary-blue-1',
         red: 'bg-ui-red',
         orange: 'bg-ui-orange',
@@ -149,7 +147,7 @@ const tooltipArrowVariants = cva(
       }
     },
     defaultVariants: {
-      color: 'gray',
+      color: 'gray06',
       theme: 'solid'
     }
   }

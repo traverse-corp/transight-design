@@ -26,7 +26,7 @@ interface ControlDef {
 }
 
 const COLORS: readonly string[] = [
-  'gray',
+  'gray06',
   'blue',
   'red',
   'orange',
@@ -85,7 +85,7 @@ const codeFor = (s: State) =>
 
 export const DropdownMenuPreviewShell = () => {
   const [state, setState] = useState<State>({
-    triggerColor: 'gray',
+    triggerColor: 'gray06',
     triggerTheme: 'outline',
     triggerSize: 'md',
     size: 'md'

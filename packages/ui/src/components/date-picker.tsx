@@ -81,7 +81,7 @@ export const DatePicker = ({
       <PopoverTrigger
         render={
           <Button
-            color='gray'
+            color='gray06'
             theme='outline'
             size='md'
             className={cn('gap-3 p-2 active:scale-100', className)}

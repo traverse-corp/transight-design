@@ -5,17 +5,28 @@ import { cn } from '@/lib/utils'
 import {
   inlineColorThemeStyles,
   type ColorTheme,
-  type CommonColor
+  type CommonColor,
+  type GrayScaleColor
 } from '@/lib/color-theme-styles'
+
+// Tailwind scanner가 리터럴 클래스만 인식하므로 gray0X hover 조합은 리터럴 나열 필수.
+const grayScaleButtonInteraction: Record<GrayScaleColor, Record<ColorTheme, string>> = {
+  gray01: { solid: 'hover:opacity-90 shadow-card', outline: '', soft: 'shadow-none hover:bg-[var(--color-cool-grey-01)]/25' },
+  gray02: { solid: 'hover:opacity-90 shadow-card', outline: '', soft: 'shadow-none hover:bg-[var(--color-cool-grey-02)]/25' },
+  gray03: { solid: 'hover:opacity-90 shadow-card', outline: '', soft: 'shadow-none hover:bg-[var(--color-cool-grey-03)]/25' },
+  gray04: { solid: 'hover:opacity-90 shadow-card', outline: '', soft: 'shadow-none hover:bg-[var(--color-cool-grey-04)]/25' },
+  gray05: { solid: 'hover:opacity-90 shadow-card', outline: '', soft: 'shadow-none hover:bg-[var(--color-cool-grey-05)]/25' },
+  gray06: { solid: 'hover:opacity-90 shadow-card', outline: '', soft: 'shadow-none hover:bg-[var(--color-cool-grey-06)]/25' },
+  gray07: { solid: 'hover:opacity-90 shadow-card', outline: '', soft: 'shadow-none hover:bg-[var(--color-cool-grey-07)]/25' },
+  gray08: { solid: 'hover:opacity-90 shadow-card', outline: '', soft: 'shadow-none hover:bg-[var(--color-cool-grey-08)]/25' },
+  gray09: { solid: 'hover:opacity-90 shadow-card', outline: '', soft: 'shadow-none hover:bg-[var(--color-cool-grey-09)]/25' },
+  gray10: { solid: 'hover:opacity-90 shadow-card', outline: '', soft: 'shadow-none hover:bg-[var(--color-cool-grey-10)]/25' },
+  gray11: { solid: 'hover:opacity-90 shadow-card', outline: '', soft: 'shadow-none hover:bg-[var(--color-cool-grey-11)]/25' }
+}
 
 // Button 고유 인터랙션 레이어 — hover / shadow.
 // 색·테마 identity는 inlineColorThemeStyles(정본)에서 상속. outline은 인터랙션 없음.
 const buttonInteractionStyles: Record<CommonColor, Record<ColorTheme, string>> = {
-  gray: {
-    solid: 'hover:bg-cool-grey-07 shadow-card',
-    outline: '',
-    soft: 'shadow-none hover:bg-bg-subtle'
-  },
   blue: {
     solid: 'hover:bg-primary-blue-1/90 shadow-card',
     outline: '',
@@ -80,7 +91,8 @@ const buttonInteractionStyles: Record<CommonColor, Record<ColorTheme, string>> =
     solid: 'hover:opacity-90 shadow-card',
     outline: '',
     soft: 'shadow-none hover:bg-primary-blue-1/20'
-  }
+  },
+  ...grayScaleButtonInteraction
 }
 
 const buttonColorStyles = Object.fromEntries(
@@ -111,7 +123,17 @@ const buttonClassVariants = cva(
   {
     variants: {
       color: {
-        gray: '',
+        gray01: '',
+        gray02: '',
+        gray03: '',
+        gray04: '',
+        gray05: '',
+        gray06: '',
+        gray07: '',
+        gray08: '',
+        gray09: '',
+        gray10: '',
+        gray11: '',
         blue: '',
         red: '',
         orange: '',
@@ -146,7 +168,7 @@ const buttonClassVariants = cva(
     },
     compoundVariants: buttonCompoundVariants,
     defaultVariants: {
-      color: 'gray',
+      color: 'gray06',
       theme: 'solid',
       shape: 'default',
       size: 'md'

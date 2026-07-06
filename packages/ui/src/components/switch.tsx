@@ -3,23 +3,34 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
+import {
+  inlineColorThemeStyles,
+  GRAY_SCALE_COLORS,
+  type CommonColor
+} from '@/lib/color-theme-styles'
 
-// ── 색상 시스템 — Button의 solid 패턴 미러링 (12색). on 상태 track 색 ──
-const switchColorStyles = {
-  gray: 'bg-fg-strong',
-  blue: 'bg-primary-blue-1',
-  red: 'bg-ui-red',
-  orange: 'bg-ui-orange',
-  yellow: 'bg-ui-yellow',
-  olive: 'bg-ui-olive',
-  green: 'bg-ui-green',
-  skyblue: 'bg-ui-skyblue',
-  purple: 'bg-ui-purple',
-  pink: 'bg-ui-pink',
-  amber: 'bg-ui-amber',
-  white: 'bg-[var(--color-cool-grey-05)]',
-  'gradient-blue': 'bg-gradient-to-r from-primary-blue-1 to-primary-blue-2'
-} as const
+type SwitchDesignColor = Exclude<CommonColor, 'gradient-blue-deep'>
+
+const SWITCH_COLORS: SwitchDesignColor[] = [
+  ...GRAY_SCALE_COLORS,
+  'blue',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'skyblue',
+  'purple',
+  'pink',
+  'amber',
+  'white',
+  'gradient-blue'
+]
+
+// ── 색상 시스템 — Button/Badge의 solid 정본을 on 상태 track 색으로 적용 ──
+const switchColorStyles = Object.fromEntries(
+  SWITCH_COLORS.map((c) => [c, inlineColorThemeStyles[c].solid])
+) as Record<SwitchDesignColor, string>
 
 // track size + thumb size + translate(on/off) 한 묶음
 const switchSizeStyles = {
@@ -35,7 +46,17 @@ const switchClassVariants = cva(
   {
     variants: {
       color: {
-        gray: '',
+        gray01: '',
+        gray02: '',
+        gray03: '',
+        gray04: '',
+        gray05: '',
+        gray06: '',
+        gray07: '',
+        gray08: '',
+        gray09: '',
+        gray10: '',
+        gray11: '',
         blue: '',
         red: '',
         orange: '',

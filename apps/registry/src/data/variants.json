@@ -12,7 +12,17 @@
         "lg"
       ],
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -42,7 +52,17 @@
         "error"
       ],
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -72,7 +92,7 @@
       ]
     },
     "defaults": {
-      "color": "gray",
+      "color": "gray06",
       "theme": "soft",
       "shape": "default",
       "size": "md",
@@ -125,7 +145,17 @@
         "alert"
       ],
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -158,7 +188,7 @@
       ]
     },
     "defaults": {
-      "color": "gray",
+      "color": "gray06",
       "theme": "solid",
       "shape": "default",
       "size": "md",
@@ -173,7 +203,17 @@
         "icon"
       ],
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -207,7 +247,7 @@
       ]
     },
     "defaults": {
-      "color": "gray",
+      "color": "gray06",
       "theme": "solid",
       "shape": "default",
       "size": "md",
@@ -217,7 +257,17 @@
   "card": {
     "groups": {
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -255,7 +305,17 @@
   "checkbox": {
     "groups": {
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -389,7 +449,17 @@
   "input": {
     "groups": {
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -425,7 +495,7 @@
       ]
     },
     "defaults": {
-      "color": "gray",
+      "color": "gray06",
       "theme": "outline",
       "shape": "default",
       "size": "md",
@@ -472,7 +542,17 @@
   "radio-group": {
     "groups": {
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -507,7 +587,17 @@
   "select": {
     "groups": {
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -539,7 +629,7 @@
       ]
     },
     "defaults": {
-      "color": "gray",
+      "color": "gray06",
       "theme": "outline",
       "shape": "default",
       "size": "md"
@@ -624,7 +714,17 @@
   "spinner": {
     "groups": {
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -654,7 +754,17 @@
   "switch": {
     "groups": {
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -714,7 +824,17 @@
         "lg"
       ],
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -788,7 +908,17 @@
   "tooltip": {
     "groups": {
       "color": [
-        "gray",
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
         "blue",
         "red",
         "orange",
@@ -813,7 +943,7 @@
       ]
     },
     "defaults": {
-      "color": "gray",
+      "color": "gray06",
       "theme": "solid",
       "size": "md"
     }

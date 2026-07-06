@@ -17,7 +17,6 @@ const Tabs = ({ className, orientation = 'horizontal', ...props }: TabsPrimitive
 
 // 색은 12개 enum. 활성 색은 CSS 변수(--tab-active)에 토큰을 주입하고 trigger className이 var()로 참조.
 const TAB_COLOR_TOKEN: Record<string, string> = {
-  gray: 'var(--color-cool-grey-09)',
   blue: 'var(--color-primary-blue-1)',
   red: 'var(--color-ui-red)',
   orange: 'var(--color-ui-orange)',
@@ -29,7 +28,18 @@ const TAB_COLOR_TOKEN: Record<string, string> = {
   pink: 'var(--color-ui-pink)',
   amber: 'var(--color-ui-amber)',
   white: 'var(--color-cool-grey-white)',
-  'gradient-blue': 'var(--color-primary-blue-1)'
+  'gradient-blue': 'var(--color-primary-blue-1)',
+  gray01: 'var(--color-cool-grey-01)',
+  gray02: 'var(--color-cool-grey-02)',
+  gray03: 'var(--color-cool-grey-03)',
+  gray04: 'var(--color-cool-grey-04)',
+  gray05: 'var(--color-cool-grey-05)',
+  gray06: 'var(--color-cool-grey-06)',
+  gray07: 'var(--color-cool-grey-07)',
+  gray08: 'var(--color-cool-grey-08)',
+  gray09: 'var(--color-cool-grey-09)',
+  gray10: 'var(--color-cool-grey-10)',
+  gray11: 'var(--color-cool-grey-11)'
 }
 
 const tabsListClassVariants = cva(
@@ -51,7 +61,17 @@ const tabsListClassVariants = cva(
         lg: 'h-11'
       },
       color: {
-        gray: '',
+        gray01: '',
+        gray02: '',
+        gray03: '',
+        gray04: '',
+        gray05: '',
+        gray06: '',
+        gray07: '',
+        gray08: '',
+        gray09: '',
+        gray10: '',
+        gray11: '',
         blue: '',
         red: '',
         orange: '',

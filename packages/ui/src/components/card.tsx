@@ -2,37 +2,18 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import {
-  surfaceColorThemeStyles,
+  inlineColorThemeStyles,
+  GRAY_SCALE_COLORS,
   type ColorTheme,
   type CommonColor
 } from '@/lib/color-theme-styles'
-
-// Card 고유 레이어 — 모든 테마에 border 색상 필수 (컨테이너 프레임).
-// 색·테마 identity(bg/text)는 surfaceColorThemeStyles(정본)에서 상속.
-// outline은 전역 정본과 완전 동일 (transparent bg + 색 border) — Card라도 예외 없음.
-const cardBorderBySolidColor: Record<CommonColor, string> = {
-  gray: 'border-cool-grey-06',
-  blue: 'border-primary-blue-1',
-  red: 'border-ui-red',
-  orange: 'border-ui-orange',
-  yellow: 'border-ui-yellow',
-  olive: 'border-ui-olive',
-  green: 'border-ui-green',
-  skyblue: 'border-ui-skyblue',
-  purple: 'border-ui-purple',
-  pink: 'border-ui-pink',
-  amber: 'border-ui-amber',
-  white: 'border-[var(--color-cool-grey-05)]',
-  'gradient-blue': 'border-primary-blue-1',
-  'gradient-blue-deep': 'border-primary-blue-deep'
-}
 
 // Card에서 노출하는 색 — amber, gradient-blue-deep 제외 (기존 API 유지).
 type CardColor = Exclude<CommonColor, 'amber' | 'gradient-blue-deep'>
 type CardTheme = ColorTheme
 
 const CARD_COLORS: CardColor[] = [
-  'gray',
+  ...GRAY_SCALE_COLORS,
   'blue',
   'red',
   'orange',
@@ -50,11 +31,9 @@ const cardColorStyles = Object.fromEntries(
   CARD_COLORS.map((c) => [
     c,
     {
-      solid: `${surfaceColorThemeStyles[c].solid} ${cardBorderBySolidColor[c]}`,
-      outline: surfaceColorThemeStyles[c].outline,
-      soft: surfaceColorThemeStyles[c].soft.includes('border-transparent')
-        ? surfaceColorThemeStyles[c].soft
-        : `${surfaceColorThemeStyles[c].soft} border-transparent`
+      solid: `${inlineColorThemeStyles[c].solid} border-transparent`,
+      outline: inlineColorThemeStyles[c].outline,
+      soft: `${inlineColorThemeStyles[c].soft} border-transparent`
     }
   ])
 ) as Record<CardColor, Record<CardTheme, string>>
@@ -70,7 +49,17 @@ const cardCompoundVariants = Object.entries(cardColorStyles).flatMap(([color, st
 const cardClassVariants = cva('border shadow-card transition-colors', {
   variants: {
     color: {
-      gray: '',
+      gray01: '',
+      gray02: '',
+      gray03: '',
+      gray04: '',
+      gray05: '',
+      gray06: '',
+      gray07: '',
+      gray08: '',
+      gray09: '',
+      gray10: '',
+      gray11: '',
       blue: '',
       red: '',
       orange: '',

@@ -19,7 +19,7 @@ interface SelectContextValue {
 
 const SelectContext = React.createContext<SelectContextValue>({
   shape: 'default',
-  color: 'gray',
+  color: 'gray06',
   size: 'md'
 })
 
@@ -36,7 +36,7 @@ const itemTypoBySize: Record<SelectSize, string> = {
 export type SelectProps = React.ComponentProps<typeof SelectPrimitive.Root> & {
   /** Trigger와 Content의 모서리 형태를 함께 결정. 기본 'default'. */
   shape?: SelectShape
-  /** Trigger 톤 + Content/Item 활성 색을 함께 결정. 기본 'gray'. */
+  /** Trigger 톤 + Content/Item 활성 색을 함께 결정. 기본 'gray06'. */
   color?: SelectTriggerColor
   /** Trigger 높이/폰트 + Content Item 폰트 크기를 함께 결정. 기본 'md'. */
   size?: SelectSize
@@ -44,7 +44,7 @@ export type SelectProps = React.ComponentProps<typeof SelectPrimitive.Root> & {
 
 const Select = ({
   shape = 'default',
-  color = 'gray',
+  color = 'gray06',
   size = 'md',
   children,
   ...props
@@ -72,14 +72,34 @@ const SelectValue = ({ className, ...props }: SelectPrimitive.Value.Props) => (
 
 import {
   inlineColorThemeStyles,
+  GRAY_SCALE_COLORS,
   type ColorTheme,
-  type CommonColor
+  type CommonColor,
+  type GrayScaleColor
 } from '@/lib/color-theme-styles'
+
+const grayScaleSelectFocus = Object.fromEntries(
+  GRAY_SCALE_COLORS.map((c) => [c, 'focus-within:border-primary-blue-1'])
+) as Record<GrayScaleColor, string>
+
+// Tailwind scanner용 리터럴 나열 필수.
+const grayScaleSelectItem: Record<GrayScaleColor, { focus: string; check: string }> = {
+  gray01: { focus: 'focus:bg-[var(--color-cool-grey-01)]/15 focus:text-[var(--color-cool-grey-01)]', check: 'text-[var(--color-cool-grey-01)]' },
+  gray02: { focus: 'focus:bg-[var(--color-cool-grey-02)]/15 focus:text-[var(--color-cool-grey-02)]', check: 'text-[var(--color-cool-grey-02)]' },
+  gray03: { focus: 'focus:bg-[var(--color-cool-grey-03)]/15 focus:text-[var(--color-cool-grey-03)]', check: 'text-[var(--color-cool-grey-03)]' },
+  gray04: { focus: 'focus:bg-[var(--color-cool-grey-04)]/15 focus:text-[var(--color-cool-grey-04)]', check: 'text-[var(--color-cool-grey-04)]' },
+  gray05: { focus: 'focus:bg-[var(--color-cool-grey-05)]/15 focus:text-[var(--color-cool-grey-05)]', check: 'text-[var(--color-cool-grey-05)]' },
+  gray06: { focus: 'focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-06)]', check: 'text-[var(--color-cool-grey-06)]' },
+  gray07: { focus: 'focus:bg-[var(--color-cool-grey-07)]/15 focus:text-[var(--color-cool-grey-07)]', check: 'text-[var(--color-cool-grey-07)]' },
+  gray08: { focus: 'focus:bg-[var(--color-cool-grey-08)]/15 focus:text-[var(--color-cool-grey-08)]', check: 'text-[var(--color-cool-grey-08)]' },
+  gray09: { focus: 'focus:bg-[var(--color-cool-grey-09)]/15 focus:text-[var(--color-cool-grey-09)]', check: 'text-[var(--color-cool-grey-09)]' },
+  gray10: { focus: 'focus:bg-[var(--color-cool-grey-10)]/15 focus:text-[var(--color-cool-grey-10)]', check: 'text-[var(--color-cool-grey-10)]' },
+  gray11: { focus: 'focus:bg-[var(--color-cool-grey-11)]/15 focus:text-[var(--color-cool-grey-11)]', check: 'text-[var(--color-cool-grey-11)]' }
+}
 
 // Select 고유 인터랙션 레이어 — focus-within (필드 활성 시 primary-blue-1 하이라이트).
 // 색·테마 identity는 inlineColorThemeStyles(정본)에서 상속.
 const selectFocusStyles: Record<CommonColor, string> = {
-  gray: 'focus-within:border-primary-blue-1',
   blue: 'focus-within:border-primary-blue-2',
   red: 'focus-within:border-ui-red',
   orange: 'focus-within:border-ui-orange',
@@ -92,14 +112,15 @@ const selectFocusStyles: Record<CommonColor, string> = {
   amber: 'focus-within:border-ui-amber',
   white: 'focus-within:border-primary-blue-1',
   'gradient-blue': 'focus-within:border-primary-blue-deep',
-  'gradient-blue-deep': 'focus-within:border-primary-blue-deep'
+  'gradient-blue-deep': 'focus-within:border-primary-blue-deep',
+  ...grayScaleSelectFocus
 }
 
 // Select에서 노출하는 색 — gradient-blue-deep, amber 제외 (기존 API 유지).
 type SelectColor = Exclude<CommonColor, 'gradient-blue-deep' | 'amber'>
 
 const SELECT_COLORS: SelectColor[] = [
-  'gray',
+  ...GRAY_SCALE_COLORS,
   'blue',
   'red',
   'orange',
@@ -117,20 +138,29 @@ const selectTriggerColorStyles = Object.fromEntries(
   SELECT_COLORS.map((c) => [
     c,
     {
-      solid: `${inlineColorThemeStyles[c].solid} ${selectFocusStyles[c]}`,
+      solid: `${inlineColorThemeStyles[c].solid} border-transparent ${selectFocusStyles[c]}`,
       outline: `${inlineColorThemeStyles[c].outline} ${selectFocusStyles[c]}`,
-      soft: `${inlineColorThemeStyles[c].soft} ${selectFocusStyles[c]}`
+      soft: `${inlineColorThemeStyles[c].soft} border-transparent ${selectFocusStyles[c]}`
     }
   ])
 ) as Record<SelectColor, Record<ColorTheme, string>>
 
-// data-[placeholder]:opacity-60 — placeholder는 trigger text 색을 그대로 따르되 옅게 표시.
 const selectTriggerVariants = cva(
-  'flex w-full items-center justify-between gap-1.5 border bg-bg-card shadow-sm transition-colors outline-none [&_[data-slot=select-value]]:text-cool-grey-08 [&[data-placeholder]_[data-slot=select-value]]:!text-cool-grey-06 aria-invalid:border-ui-red aria-invalid:focus-within:border-ui-red aria-invalid:shadow-[0_0_0_1px_rgba(239,68,68,0.1)] disabled:cursor-not-allowed disabled:opacity-50',
+  'flex w-full items-center justify-between gap-1.5 border bg-bg-card shadow-sm transition-colors outline-none [&[data-placeholder]_[data-slot=select-value]]:opacity-60 aria-invalid:border-ui-red aria-invalid:focus-within:border-ui-red aria-invalid:shadow-[0_0_0_1px_rgba(239,68,68,0.1)] disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       color: {
-        gray: '',
+        gray01: '',
+        gray02: '',
+        gray03: '',
+        gray04: '',
+        gray05: '',
+        gray06: '',
+        gray07: '',
+        gray08: '',
+        gray09: '',
+        gray10: '',
+        gray11: '',
         blue: '',
         red: '',
         orange: '',
@@ -162,7 +192,7 @@ const selectTriggerVariants = cva(
       }
     },
     defaultVariants: {
-      color: 'gray',
+      color: 'gray06',
       theme: 'outline',
       shape: 'default',
       size: 'md'
@@ -234,10 +264,6 @@ const contentRadiusForShape: Record<SelectShape, string> = {
 
 // SelectItem의 hover/focus 배경 + 텍스트 색, ItemIndicator(체크) 색을 color별로 매핑.
 const selectItemColorStyles: Record<SelectTriggerColor, { focus: string; check: string }> = {
-  gray: {
-    focus: 'focus:bg-bg-muted focus:text-fg-strong',
-    check: 'text-fg-default'
-  },
   blue: {
     focus: 'focus:bg-primary-blue-1/10 focus:text-primary-blue-1',
     check: 'text-primary-blue-1'
@@ -258,7 +284,8 @@ const selectItemColorStyles: Record<SelectTriggerColor, { focus: string; check: 
   'gradient-blue': {
     focus: 'focus:bg-primary-blue-1/10 focus:text-primary-blue-1',
     check: 'text-primary-blue-1'
-  }
+  },
+  ...grayScaleSelectItem
 }
 
 const SelectContent = ({
