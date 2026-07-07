@@ -82,19 +82,116 @@ const grayScaleSelectFocus = Object.fromEntries(
   GRAY_SCALE_COLORS.map((c) => [c, 'focus-within:border-primary-blue-1'])
 ) as Record<GrayScaleColor, string>
 
+const grayScaleSelectTriggerText: Record<GrayScaleColor, string> = {
+  gray01: 'text-[var(--color-cool-grey-06)]',
+  gray02: 'text-[var(--color-cool-grey-06)]',
+  gray03: 'text-[var(--color-cool-grey-06)]',
+  gray04: 'text-[var(--color-cool-grey-06)]',
+  gray05: 'text-[var(--color-cool-grey-06)]',
+  gray06: 'text-[var(--color-cool-grey-08)]',
+  gray07: 'text-[var(--color-cool-grey-08)]',
+  gray08: 'text-[var(--color-cool-grey-08)]',
+  gray09: 'text-[var(--color-cool-grey-08)]',
+  gray10: 'text-[var(--color-cool-grey-08)]',
+  gray11: 'text-[var(--color-cool-grey-08)]'
+}
+
+const grayScaleSelectPlaceholderText: Record<GrayScaleColor, string> = {
+  gray01:
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-05)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+  gray02:
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-05)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+  gray03:
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-05)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+  gray04:
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-05)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+  gray05:
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-05)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+  gray06:
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+  gray07:
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+  gray08:
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+  gray09:
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+  gray10:
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+  gray11:
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100'
+}
+
+const isGrayScaleColor = (color: CommonColor): color is GrayScaleColor =>
+  GRAY_SCALE_COLORS.includes(color as GrayScaleColor)
+
 // Tailwind scanner용 리터럴 나열 필수.
-const grayScaleSelectItem: Record<GrayScaleColor, { focus: string; check: string }> = {
-  gray01: { focus: 'focus:bg-[var(--color-cool-grey-01)]/15 focus:text-[var(--color-cool-grey-01)]', check: 'text-[var(--color-cool-grey-01)]' },
-  gray02: { focus: 'focus:bg-[var(--color-cool-grey-02)]/15 focus:text-[var(--color-cool-grey-02)]', check: 'text-[var(--color-cool-grey-02)]' },
-  gray03: { focus: 'focus:bg-[var(--color-cool-grey-03)]/15 focus:text-[var(--color-cool-grey-03)]', check: 'text-[var(--color-cool-grey-03)]' },
-  gray04: { focus: 'focus:bg-[var(--color-cool-grey-04)]/15 focus:text-[var(--color-cool-grey-04)]', check: 'text-[var(--color-cool-grey-04)]' },
-  gray05: { focus: 'focus:bg-[var(--color-cool-grey-05)]/15 focus:text-[var(--color-cool-grey-05)]', check: 'text-[var(--color-cool-grey-05)]' },
-  gray06: { focus: 'focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-06)]', check: 'text-[var(--color-cool-grey-06)]' },
-  gray07: { focus: 'focus:bg-[var(--color-cool-grey-07)]/15 focus:text-[var(--color-cool-grey-07)]', check: 'text-[var(--color-cool-grey-07)]' },
-  gray08: { focus: 'focus:bg-[var(--color-cool-grey-08)]/15 focus:text-[var(--color-cool-grey-08)]', check: 'text-[var(--color-cool-grey-08)]' },
-  gray09: { focus: 'focus:bg-[var(--color-cool-grey-09)]/15 focus:text-[var(--color-cool-grey-09)]', check: 'text-[var(--color-cool-grey-09)]' },
-  gray10: { focus: 'focus:bg-[var(--color-cool-grey-10)]/15 focus:text-[var(--color-cool-grey-10)]', check: 'text-[var(--color-cool-grey-10)]' },
-  gray11: { focus: 'focus:bg-[var(--color-cool-grey-11)]/15 focus:text-[var(--color-cool-grey-11)]', check: 'text-[var(--color-cool-grey-11)]' }
+const grayScaleSelectItem: Record<GrayScaleColor, { text: string; focus: string; check: string }> = {
+  gray01: {
+    text: 'text-[var(--color-cool-grey-05)]',
+    focus:
+      'hover:bg-[var(--color-cool-grey-01)]/15 hover:text-[var(--color-cool-grey-06)] focus:bg-[var(--color-cool-grey-01)]/15 focus:text-[var(--color-cool-grey-06)] data-highlighted:bg-[var(--color-cool-grey-01)]/15 data-highlighted:text-[var(--color-cool-grey-06)]',
+    check: 'text-[var(--color-cool-grey-05)]'
+  },
+  gray02: {
+    text: 'text-[var(--color-cool-grey-05)]',
+    focus:
+      'hover:bg-[var(--color-cool-grey-02)]/15 hover:text-[var(--color-cool-grey-06)] focus:bg-[var(--color-cool-grey-02)]/15 focus:text-[var(--color-cool-grey-06)] data-highlighted:bg-[var(--color-cool-grey-02)]/15 data-highlighted:text-[var(--color-cool-grey-06)]',
+    check: 'text-[var(--color-cool-grey-05)]'
+  },
+  gray03: {
+    text: 'text-[var(--color-cool-grey-05)]',
+    focus:
+      'hover:bg-[var(--color-cool-grey-03)]/15 hover:text-[var(--color-cool-grey-06)] focus:bg-[var(--color-cool-grey-03)]/15 focus:text-[var(--color-cool-grey-06)] data-highlighted:bg-[var(--color-cool-grey-03)]/15 data-highlighted:text-[var(--color-cool-grey-06)]',
+    check: 'text-[var(--color-cool-grey-05)]'
+  },
+  gray04: {
+    text: 'text-[var(--color-cool-grey-05)]',
+    focus:
+      'hover:bg-[var(--color-cool-grey-04)]/15 hover:text-[var(--color-cool-grey-06)] focus:bg-[var(--color-cool-grey-04)]/15 focus:text-[var(--color-cool-grey-06)] data-highlighted:bg-[var(--color-cool-grey-04)]/15 data-highlighted:text-[var(--color-cool-grey-06)]',
+    check: 'text-[var(--color-cool-grey-05)]'
+  },
+  gray05: {
+    text: 'text-[var(--color-cool-grey-05)]',
+    focus:
+      'hover:bg-[var(--color-cool-grey-05)]/15 hover:text-[var(--color-cool-grey-06)] focus:bg-[var(--color-cool-grey-05)]/15 focus:text-[var(--color-cool-grey-06)] data-highlighted:bg-[var(--color-cool-grey-05)]/15 data-highlighted:text-[var(--color-cool-grey-06)]',
+    check: 'text-[var(--color-cool-grey-05)]'
+  },
+  gray06: {
+    text: 'text-[var(--color-cool-grey-07)]',
+    focus:
+      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+    check: 'text-[var(--color-cool-grey-07)]'
+  },
+  gray07: {
+    text: 'text-[var(--color-cool-grey-07)]',
+    focus:
+      'hover:bg-[var(--color-cool-grey-07)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-07)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-07)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+    check: 'text-[var(--color-cool-grey-07)]'
+  },
+  gray08: {
+    text: 'text-[var(--color-cool-grey-07)]',
+    focus:
+      'hover:bg-[var(--color-cool-grey-08)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-08)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-08)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+    check: 'text-[var(--color-cool-grey-07)]'
+  },
+  gray09: {
+    text: 'text-[var(--color-cool-grey-07)]',
+    focus:
+      'hover:bg-[var(--color-cool-grey-09)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-09)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-09)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+    check: 'text-[var(--color-cool-grey-07)]'
+  },
+  gray10: {
+    text: 'text-[var(--color-cool-grey-07)]',
+    focus:
+      'hover:bg-[var(--color-cool-grey-10)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-10)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-10)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+    check: 'text-[var(--color-cool-grey-07)]'
+  },
+  gray11: {
+    text: 'text-[var(--color-cool-grey-07)]',
+    focus:
+      'hover:bg-[var(--color-cool-grey-11)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-11)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-11)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+    check: 'text-[var(--color-cool-grey-07)]'
+  }
 }
 
 // Select 고유 인터랙션 레이어 — focus-within (필드 활성 시 primary-blue-1 하이라이트).
@@ -135,14 +232,20 @@ const SELECT_COLORS: SelectColor[] = [
 ]
 
 const selectTriggerColorStyles = Object.fromEntries(
-  SELECT_COLORS.map((c) => [
-    c,
-    {
-      solid: `${inlineColorThemeStyles[c].solid} border-transparent ${selectFocusStyles[c]}`,
-      outline: `${inlineColorThemeStyles[c].outline} ${selectFocusStyles[c]}`,
-      soft: `${inlineColorThemeStyles[c].soft} border-transparent ${selectFocusStyles[c]}`
-    }
-  ])
+  SELECT_COLORS.map((c) => {
+    const grayTextStyles = isGrayScaleColor(c)
+      ? `${grayScaleSelectTriggerText[c]} ${grayScaleSelectPlaceholderText[c]}`
+      : ''
+
+    return [
+      c,
+      {
+        solid: `${inlineColorThemeStyles[c].solid} border-transparent ${selectFocusStyles[c]} ${grayTextStyles}`,
+        outline: `${inlineColorThemeStyles[c].outline} ${selectFocusStyles[c]} ${grayTextStyles}`,
+        soft: `${inlineColorThemeStyles[c].soft} border-transparent ${selectFocusStyles[c]} ${grayTextStyles}`
+      }
+    ]
+  })
 ) as Record<SelectColor, Record<ColorTheme, string>>
 
 const selectTriggerVariants = cva(
@@ -263,25 +366,56 @@ const contentRadiusForShape: Record<SelectShape, string> = {
 }
 
 // SelectItem의 hover/focus 배경 + 텍스트 색, ItemIndicator(체크) 색을 color별로 매핑.
-const selectItemColorStyles: Record<SelectTriggerColor, { focus: string; check: string }> = {
+const selectItemColorStyles: Record<SelectTriggerColor, { text: string; focus: string; check: string }> = {
   blue: {
+    text: 'text-fg-default',
     focus: 'focus:bg-primary-blue-1/10 focus:text-primary-blue-1',
     check: 'text-primary-blue-1'
   },
-  red: { focus: 'focus:bg-ui-pale-red focus:text-ui-red', check: 'text-ui-red' },
-  orange: { focus: 'focus:bg-ui-pale-orange focus:text-ui-orange', check: 'text-ui-orange' },
-  yellow: { focus: 'focus:bg-ui-pale-yellow focus:text-ui-yellow', check: 'text-ui-yellow' },
-  olive: { focus: 'focus:bg-ui-olive/10 focus:text-ui-olive', check: 'text-ui-olive' },
-  green: { focus: 'focus:bg-ui-pale-green focus:text-ui-green', check: 'text-ui-green' },
-  skyblue: { focus: 'focus:bg-ui-skyblue/10 focus:text-ui-skyblue', check: 'text-ui-skyblue' },
-  purple: { focus: 'focus:bg-ui-pale-purple focus:text-ui-purple', check: 'text-ui-purple' },
-  pink: { focus: 'focus:bg-ui-pale-pink focus:text-ui-pink', check: 'text-ui-pink' },
+  red: { text: 'text-fg-default', focus: 'focus:bg-ui-pale-red focus:text-ui-red', check: 'text-ui-red' },
+  orange: {
+    text: 'text-fg-default',
+    focus: 'focus:bg-ui-pale-orange focus:text-ui-orange',
+    check: 'text-ui-orange'
+  },
+  yellow: {
+    text: 'text-fg-default',
+    focus: 'focus:bg-ui-pale-yellow focus:text-ui-yellow',
+    check: 'text-ui-yellow'
+  },
+  olive: {
+    text: 'text-fg-default',
+    focus: 'focus:bg-ui-olive/10 focus:text-ui-olive',
+    check: 'text-ui-olive'
+  },
+  green: {
+    text: 'text-fg-default',
+    focus: 'focus:bg-ui-pale-green focus:text-ui-green',
+    check: 'text-ui-green'
+  },
+  skyblue: {
+    text: 'text-fg-default',
+    focus: 'focus:bg-ui-skyblue/10 focus:text-ui-skyblue',
+    check: 'text-ui-skyblue'
+  },
+  purple: {
+    text: 'text-fg-default',
+    focus: 'focus:bg-ui-pale-purple focus:text-ui-purple',
+    check: 'text-ui-purple'
+  },
+  pink: {
+    text: 'text-fg-default',
+    focus: 'focus:bg-ui-pale-pink focus:text-ui-pink',
+    check: 'text-ui-pink'
+  },
   white: {
+    text: 'text-fg-default',
     focus:
       'focus:bg-[var(--color-cool-grey-white)]/10 focus:text-[var(--color-cool-grey-white)]',
     check: 'text-[var(--color-cool-grey-white)]'
   },
   'gradient-blue': {
+    text: 'text-fg-default',
     focus: 'focus:bg-primary-blue-1/10 focus:text-primary-blue-1',
     check: 'text-primary-blue-1'
   },
@@ -350,8 +484,9 @@ const SelectItem = ({ className, children, ...props }: SelectPrimitive.Item.Prop
     <SelectPrimitive.Item
       data-slot='select-item'
       className={cn(
-        "text-fg-default data-disabled:opacity-50 relative flex w-full cursor-default items-center gap-2 rounded-md py-1.5 pr-8 pl-2 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "data-disabled:opacity-50 relative flex w-full cursor-default items-center gap-2 rounded-md py-1.5 pr-8 pl-2 outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         itemTypoBySize[size],
+        colorClasses.text,
         colorClasses.focus,
         className
       )}
