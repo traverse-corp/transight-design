@@ -152,7 +152,7 @@ const Checkbox = ({
   const isActive = Boolean(isChecked) || Boolean(indeterminate)
   const stateClasses = isActive
     ? checkboxColorStyles[resolvedColor]
-    : 'bg-bg-card border-border-default text-transparent'
+    : 'bg-bg-card border-border-strong text-transparent'
 
   return (
     <CheckboxProvider
