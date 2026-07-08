@@ -98,15 +98,15 @@ const grayScaleSelectTriggerText: Record<GrayScaleColor, string> = {
 
 const grayScaleSelectPlaceholderText: Record<GrayScaleColor, string> = {
   gray01:
-    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-05)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-06)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
   gray02:
-    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-05)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-06)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
   gray03:
-    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-05)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-06)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
   gray04:
-    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-05)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-06)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
   gray05:
-    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-05)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-06)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
   gray06:
     '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
   gray07:
@@ -127,69 +127,69 @@ const isGrayScaleColor = (color: CommonColor): color is GrayScaleColor =>
 // Tailwind scanner용 리터럴 나열 필수.
 const grayScaleSelectItem: Record<GrayScaleColor, { text: string; focus: string; check: string }> = {
   gray01: {
-    text: 'text-[var(--color-cool-grey-05)]',
+    text: 'text-[var(--color-cool-grey-06)]',
     focus:
-      'hover:bg-[var(--color-cool-grey-01)]/15 hover:text-[var(--color-cool-grey-06)] focus:bg-[var(--color-cool-grey-01)]/15 focus:text-[var(--color-cool-grey-06)] data-highlighted:bg-[var(--color-cool-grey-01)]/15 data-highlighted:text-[var(--color-cool-grey-06)]',
-    check: 'text-[var(--color-cool-grey-05)]'
+      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+    check: 'text-[var(--color-cool-grey-06)]'
   },
   gray02: {
-    text: 'text-[var(--color-cool-grey-05)]',
+    text: 'text-[var(--color-cool-grey-06)]',
     focus:
-      'hover:bg-[var(--color-cool-grey-02)]/15 hover:text-[var(--color-cool-grey-06)] focus:bg-[var(--color-cool-grey-02)]/15 focus:text-[var(--color-cool-grey-06)] data-highlighted:bg-[var(--color-cool-grey-02)]/15 data-highlighted:text-[var(--color-cool-grey-06)]',
-    check: 'text-[var(--color-cool-grey-05)]'
+      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+    check: 'text-[var(--color-cool-grey-06)]'
   },
   gray03: {
-    text: 'text-[var(--color-cool-grey-05)]',
+    text: 'text-[var(--color-cool-grey-06)]',
     focus:
-      'hover:bg-[var(--color-cool-grey-03)]/15 hover:text-[var(--color-cool-grey-06)] focus:bg-[var(--color-cool-grey-03)]/15 focus:text-[var(--color-cool-grey-06)] data-highlighted:bg-[var(--color-cool-grey-03)]/15 data-highlighted:text-[var(--color-cool-grey-06)]',
-    check: 'text-[var(--color-cool-grey-05)]'
+      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+    check: 'text-[var(--color-cool-grey-06)]'
   },
   gray04: {
-    text: 'text-[var(--color-cool-grey-05)]',
+    text: 'text-[var(--color-cool-grey-06)]',
     focus:
-      'hover:bg-[var(--color-cool-grey-04)]/15 hover:text-[var(--color-cool-grey-06)] focus:bg-[var(--color-cool-grey-04)]/15 focus:text-[var(--color-cool-grey-06)] data-highlighted:bg-[var(--color-cool-grey-04)]/15 data-highlighted:text-[var(--color-cool-grey-06)]',
-    check: 'text-[var(--color-cool-grey-05)]'
+      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+    check: 'text-[var(--color-cool-grey-06)]'
   },
   gray05: {
-    text: 'text-[var(--color-cool-grey-05)]',
+    text: 'text-[var(--color-cool-grey-06)]',
     focus:
-      'hover:bg-[var(--color-cool-grey-05)]/15 hover:text-[var(--color-cool-grey-06)] focus:bg-[var(--color-cool-grey-05)]/15 focus:text-[var(--color-cool-grey-06)] data-highlighted:bg-[var(--color-cool-grey-05)]/15 data-highlighted:text-[var(--color-cool-grey-06)]',
-    check: 'text-[var(--color-cool-grey-05)]'
+      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+    check: 'text-[var(--color-cool-grey-06)]'
   },
   gray06: {
     text: 'text-[var(--color-cool-grey-07)]',
     focus:
-      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-09)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-09)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-09)]',
     check: 'text-[var(--color-cool-grey-07)]'
   },
   gray07: {
     text: 'text-[var(--color-cool-grey-07)]',
     focus:
-      'hover:bg-[var(--color-cool-grey-07)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-07)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-07)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-09)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-09)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-09)]',
     check: 'text-[var(--color-cool-grey-07)]'
   },
   gray08: {
     text: 'text-[var(--color-cool-grey-07)]',
     focus:
-      'hover:bg-[var(--color-cool-grey-08)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-08)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-08)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-09)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-09)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-09)]',
     check: 'text-[var(--color-cool-grey-07)]'
   },
   gray09: {
     text: 'text-[var(--color-cool-grey-07)]',
     focus:
-      'hover:bg-[var(--color-cool-grey-09)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-09)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-09)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-09)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-09)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-09)]',
     check: 'text-[var(--color-cool-grey-07)]'
   },
   gray10: {
     text: 'text-[var(--color-cool-grey-07)]',
     focus:
-      'hover:bg-[var(--color-cool-grey-10)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-10)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-10)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-09)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-09)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-09)]',
     check: 'text-[var(--color-cool-grey-07)]'
   },
   gray11: {
     text: 'text-[var(--color-cool-grey-07)]',
     focus:
-      'hover:bg-[var(--color-cool-grey-11)]/15 hover:text-[var(--color-cool-grey-08)] focus:bg-[var(--color-cool-grey-11)]/15 focus:text-[var(--color-cool-grey-08)] data-highlighted:bg-[var(--color-cool-grey-11)]/15 data-highlighted:text-[var(--color-cool-grey-08)]',
+      'hover:bg-[var(--color-cool-grey-06)]/15 hover:text-[var(--color-cool-grey-09)] focus:bg-[var(--color-cool-grey-06)]/15 focus:text-[var(--color-cool-grey-09)] data-highlighted:bg-[var(--color-cool-grey-06)]/15 data-highlighted:text-[var(--color-cool-grey-09)]',
     check: 'text-[var(--color-cool-grey-07)]'
   }
 }
