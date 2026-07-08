@@ -83,11 +83,11 @@ const grayScaleSelectFocus = Object.fromEntries(
 ) as Record<GrayScaleColor, string>
 
 const grayScaleSelectTriggerText: Record<GrayScaleColor, string> = {
-  gray01: 'text-[var(--color-cool-grey-06)]',
-  gray02: 'text-[var(--color-cool-grey-06)]',
-  gray03: 'text-[var(--color-cool-grey-06)]',
-  gray04: 'text-[var(--color-cool-grey-06)]',
-  gray05: 'text-[var(--color-cool-grey-06)]',
+  gray01: 'text-[var(--color-cool-grey-08)]',
+  gray02: 'text-[var(--color-cool-grey-08)]',
+  gray03: 'text-[var(--color-cool-grey-08)]',
+  gray04: 'text-[var(--color-cool-grey-08)]',
+  gray05: 'text-[var(--color-cool-grey-08)]',
   gray06: 'text-[var(--color-cool-grey-08)]',
   gray07: 'text-[var(--color-cool-grey-08)]',
   gray08: 'text-[var(--color-cool-grey-08)]',
@@ -108,17 +108,17 @@ const grayScaleSelectPlaceholderText: Record<GrayScaleColor, string> = {
   gray05:
     '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-06)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
   gray06:
-    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-06)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
   gray07:
-    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-06)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
   gray08:
-    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-06)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
   gray09:
-    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-06)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
   gray10:
-    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-06)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100',
   gray11:
-    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-07)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100'
+    '[&[data-placeholder]_[data-slot=select-value]]:text-[var(--color-cool-grey-06)] [&[data-placeholder]_[data-slot=select-value]]:!opacity-100'
 }
 
 const isGrayScaleColor = (color: CommonColor): color is GrayScaleColor =>
