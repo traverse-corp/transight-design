@@ -1,5 +1,11 @@
 # @transight-design/cli
 
+## Unreleased
+
+### Patch Changes
+
+- `update` now refreshes local registry dependencies that carry design-system CSS or Markdown guide files, so component updates also pick up changed style tokens and agent guidance without overwriting ordinary lib/hook/component dependencies.
+
 ## 0.5.2
 
 ### Patch Changes
