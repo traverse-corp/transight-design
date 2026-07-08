@@ -126,7 +126,9 @@ const Switch = ({
       onClick={() => onCheckedChange(!checked)}
       className={cn(
         switchClassVariants({ color: resolvedColor, shape: resolvedShape, size: resolvedSize }),
-        checked ? switchColorStyles[resolvedColor] : 'bg-bg-muted',
+        checked
+          ? switchColorStyles[resolvedColor]
+          : 'bg-[var(--color-cool-grey-04)] dark:bg-[var(--color-cool-grey-10)]',
         className
       )}
       {...props}
