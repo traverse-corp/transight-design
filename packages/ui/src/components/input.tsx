@@ -16,6 +16,37 @@ const grayScaleInputFocusStyles = Object.fromEntries(
   GRAY_SCALE_COLORS.map((c) => [c, 'focus-within:border-primary-blue-1'])
 ) as Record<GrayScaleColor, string>
 
+const grayScaleInputTextStyles: Record<GrayScaleColor, string> = {
+  gray01: 'text-[var(--color-cool-grey-06)]',
+  gray02: 'text-[var(--color-cool-grey-06)]',
+  gray03: 'text-[var(--color-cool-grey-06)]',
+  gray04: 'text-[var(--color-cool-grey-06)]',
+  gray05: 'text-[var(--color-cool-grey-06)]',
+  gray06: 'text-[var(--color-cool-grey-07)]',
+  gray07: 'text-[var(--color-cool-grey-07)]',
+  gray08: 'text-[var(--color-cool-grey-07)]',
+  gray09: 'text-[var(--color-cool-grey-07)]',
+  gray10: 'text-[var(--color-cool-grey-07)]',
+  gray11: 'text-[var(--color-cool-grey-07)]'
+}
+
+const grayScaleInputPlaceholderStyles: Record<GrayScaleColor, string> = {
+  gray01: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray02: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray03: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray04: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray05: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray06: '[&_input::placeholder]:text-[var(--color-cool-grey-07)] [&_input::placeholder]:opacity-100',
+  gray07: '[&_input::placeholder]:text-[var(--color-cool-grey-07)] [&_input::placeholder]:opacity-100',
+  gray08: '[&_input::placeholder]:text-[var(--color-cool-grey-07)] [&_input::placeholder]:opacity-100',
+  gray09: '[&_input::placeholder]:text-[var(--color-cool-grey-07)] [&_input::placeholder]:opacity-100',
+  gray10: '[&_input::placeholder]:text-[var(--color-cool-grey-07)] [&_input::placeholder]:opacity-100',
+  gray11: '[&_input::placeholder]:text-[var(--color-cool-grey-07)] [&_input::placeholder]:opacity-100'
+}
+
+const isGrayScaleColor = (color: CommonColor): color is GrayScaleColor =>
+  GRAY_SCALE_COLORS.includes(color as GrayScaleColor)
+
 // Input 고유 인터랙션 레이어 — focus-within (필드 활성 시 primary-blue-1 하이라이트).
 // Select와 동일 패턴. 색·테마 identity는 inlineColorThemeStyles(정본)에서 상속.
 const inputFocusStyles: Record<CommonColor, string> = {
@@ -54,14 +85,20 @@ const INPUT_COLORS: InputColor[] = [
 ]
 
 const inputColorStyles = Object.fromEntries(
-  INPUT_COLORS.map((c) => [
-    c,
-    {
-      solid: `${inlineColorThemeStyles[c].solid} border-transparent ${inputFocusStyles[c]}`,
-      outline: `${inlineColorThemeStyles[c].outline} ${inputFocusStyles[c]}`,
-      soft: `${inlineColorThemeStyles[c].soft} border-transparent ${inputFocusStyles[c]}`
-    }
-  ])
+  INPUT_COLORS.map((c) => {
+    const grayTextStyles = isGrayScaleColor(c)
+      ? `${grayScaleInputTextStyles[c]} ${grayScaleInputPlaceholderStyles[c]}`
+      : ''
+
+    return [
+      c,
+      {
+        solid: `${inlineColorThemeStyles[c].solid} border-transparent ${inputFocusStyles[c]} ${grayTextStyles}`,
+        outline: `${inlineColorThemeStyles[c].outline} ${inputFocusStyles[c]} ${grayTextStyles}`,
+        soft: `${inlineColorThemeStyles[c].soft} border-transparent ${inputFocusStyles[c]} ${grayTextStyles}`
+      }
+    ]
+  })
 ) as Record<InputColor, Record<ColorTheme, string>>
 
 const inputCompoundVariants = Object.entries(inputColorStyles).flatMap(([color, styles]) =>
