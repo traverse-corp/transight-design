@@ -31,17 +31,28 @@ const grayScaleInputTextStyles: Record<GrayScaleColor, string> = {
 }
 
 const grayScaleInputPlaceholderStyles: Record<GrayScaleColor, string> = {
-  gray01: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
-  gray02: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
-  gray03: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
-  gray04: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
-  gray05: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
-  gray06: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
-  gray07: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
-  gray08: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
-  gray09: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
-  gray10: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
-  gray11: '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100'
+  gray01:
+    '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray02:
+    '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray03:
+    '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray04:
+    '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray05:
+    '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray06:
+    '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray07:
+    '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray08:
+    '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray09:
+    '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray10:
+    '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100',
+  gray11:
+    '[&_input::placeholder]:text-[var(--color-cool-grey-06)] [&_input::placeholder]:opacity-100'
 }
 
 const isGrayScaleColor = (color: CommonColor): color is GrayScaleColor =>
@@ -113,7 +124,7 @@ const inputCompoundVariants = Object.entries(inputColorStyles).flatMap(([color, 
 // 호출자는 <Input aria-invalid={hasError} /> 또는 react-hook-form 등 폼 라이브러리가
 // 자동으로 박아주는 aria-invalid에 의존. 별도 prop은 두지 않는다.
 const inputClassVariants = cva(
-  'flex w-full items-center border shadow-card transition-colors has-[input[aria-invalid="true"]]:border-ui-red has-[input[aria-invalid="true"]]:focus-within:border-ui-red has-[input[aria-invalid="true"]]:shadow-[0_0_0_1px_rgba(239,68,68,0.1)] has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-50',
+  'flex w-full items-center border shadow-card transition-colors has-[input[aria-invalid="true"]]:border-ui-red has-[input[aria-invalid="true"]]:ring-1 has-[input[aria-invalid="true"]]:ring-ui-red/10 has-[input[aria-invalid="true"]]:focus-within:border-ui-red has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-50 has-[input:read-only]:cursor-default',
   {
     variants: {
       color: {
@@ -156,10 +167,6 @@ const inputClassVariants = cva(
         md: 'h-10 px-3 typo-m13',
         lg: 'h-12 px-4 typo-m15',
         xl: 'h-14 px-5 typo-m16'
-      },
-      decoDir: {
-        start: '',
-        end: ''
       }
     },
     compoundVariants: inputCompoundVariants,
@@ -167,26 +174,48 @@ const inputClassVariants = cva(
       color: 'gray06',
       theme: 'outline',
       shape: 'default',
-      size: 'md',
-      decoDir: 'start'
+      size: 'md'
     }
   }
 )
 
 type InputVariantProps = VariantProps<typeof inputClassVariants>
+export type InputDecoratorDirection = 'start' | 'end'
 
 export interface InputProps extends Omit<BaseInput.Props, 'size'>, InputVariantProps {
   /** 시작/끝 데코레이터 — decoDir로 위치 지정 */
   decorator?: React.ReactNode
+  /** decorator가 붙는 방향. */
+  decoDir?: InputDecoratorDirection
   /**
    * decorator 클릭 핸들러. 지정 시 decorator wrapper가 button으로 렌더되어 클릭 가능.
    * search/submit/clear 등 input 옆 액션 트리거에 사용.
    */
   onDecoratorClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  /** 클릭 가능한 decorator에 전달할 접근성·상태 속성. */
+  decoratorButtonProps?: Omit<
+    React.ComponentProps<'button'>,
+    'children' | 'className' | 'onClick' | 'type'
+  >
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, color, theme, shape, size, decoDir, decorator, onDecoratorClick, type, ...props }, ref) => {
+  (
+    {
+      className,
+      color,
+      theme,
+      shape,
+      size,
+      decoDir,
+      decorator,
+      onDecoratorClick,
+      decoratorButtonProps,
+      type,
+      ...props
+    },
+    ref
+  ) => {
     const resolvedDecoDir = decoDir ?? 'start'
 
     const hasStartDecorator = decorator && resolvedDecoDir === 'start'
@@ -198,9 +227,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       if (onDecoratorClick) {
         return (
           <button
-            type='button'
+            {...decoratorButtonProps}
+            type="button"
             onClick={onDecoratorClick}
-            className={`${base} hover:text-fg-default cursor-pointer transition-colors`}
+            className={`${base} hover:text-fg-default focus-visible:ring-ring-focus cursor-pointer rounded-sm transition-colors focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`}
           >
             {decorator}
           </button>
@@ -211,20 +241,22 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div
+        data-slot="input-root"
+        data-decorator-direction={decorator ? resolvedDecoDir : undefined}
         className={cn(
           inputClassVariants({
             color,
             theme,
             shape,
             size,
-            decoDir: resolvedDecoDir,
             className
           })
         )}
       >
         {hasStartDecorator && renderDecorator('start')}
         <BaseInput
-          className='flex w-full bg-transparent text-current placeholder:text-current placeholder:opacity-60 focus-visible:outline-none disabled:cursor-not-allowed'
+          data-slot="input"
+          className="flex w-full bg-transparent text-current placeholder:text-current placeholder:opacity-60 focus-visible:outline-none disabled:cursor-not-allowed"
           ref={ref}
           type={type}
           {...props}
@@ -236,4 +268,4 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 )
 Input.displayName = 'Input'
 
-export { Input, inputClassVariants }
+export { Input, inputClassVariants, inputColorStyles }

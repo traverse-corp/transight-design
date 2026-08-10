@@ -28,7 +28,8 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
       name: 'variant',
       type: "'destructive' | 'success' | 'icon'",
       defaultValue: "'default'",
-      description: '반복해서 쓰는 버튼 조합을 preset으로 호출합니다. icon은 아이콘 전용 정사각 버튼입니다.'
+      description:
+        '반복해서 쓰는 버튼 조합을 preset으로 호출합니다. icon은 아이콘 전용 정사각 버튼입니다.'
     },
     {
       name: 'color',
@@ -103,6 +104,41 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
       type: '(e: MouseEvent<HTMLButtonElement>) => void',
       description:
         '지정 시 decorator wrapper가 button으로 렌더되어 클릭 가능. 검색/clear 등 input 옆 액션 트리거에 사용.'
+    },
+    {
+      name: 'decoratorButtonProps',
+      type: "Omit<ComponentProps<'button'>, 'children' | 'className' | 'onClick' | 'type'>",
+      description:
+        '클릭 가능한 decorator 버튼에 aria-label, title, disabled 같은 접근성·상태 속성을 전달합니다.'
+    }
+  ],
+  field: [
+    {
+      name: 'orientation',
+      type: "'vertical' | 'horizontal' | 'responsive'",
+      defaultValue: "'vertical'",
+      description:
+        '라벨과 control의 배치 방향입니다. responsive는 field-group 컨테이너의 md 구간부터 가로로 전환합니다.'
+    }
+  ],
+  'input-group': [
+    {
+      title: 'InputGroupAddon',
+      description: 'control 앞·뒤 또는 위·아래에 텍스트, 아이콘, 버튼을 배치합니다.',
+      props: [
+        {
+          name: 'align',
+          type: "'inline-start' | 'inline-end' | 'block-start' | 'block-end'",
+          defaultValue: "'inline-start'",
+          description: 'addon이 배치될 위치입니다. control의 레이아웃 방향도 함께 결정합니다.'
+        }
+      ]
+    },
+    {
+      title: 'InputGroupButton',
+      description:
+        '현행 Button API를 그대로 사용합니다. 기본값은 theme=soft, size=xs이며 필요한 STYLE prop으로 덮어쓸 수 있습니다.',
+      props: []
     }
   ],
   'search-input': [
@@ -160,7 +196,8 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
         {
           name: 'children',
           type: 'React.ReactNode',
-          description: 'render를 안 쓸 때 trigger 안 내용. 기본 element는 <button> data-slot="tooltip-trigger".'
+          description:
+            'render를 안 쓸 때 trigger 안 내용. 기본 element는 <button> data-slot="tooltip-trigger".'
         }
       ]
     },
@@ -224,21 +261,20 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
     },
     {
       title: 'SelectTrigger',
-      description: 'select가 닫혀있을 때 보이는 트리거. Button과 동일한 color × theme 12×3 매트릭스.',
+      description:
+        'select가 닫혀있을 때 보이는 트리거. Button과 동일한 color × theme 12×3 매트릭스.',
       props: [
         {
           name: 'color',
           type: "'gray01' | 'gray02' | 'gray03' | 'gray04' | 'gray05' | 'gray06' | 'gray07' | 'gray08' | 'gray09' | 'gray10' | 'gray11' | 'blue' | 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'skyblue' | 'purple' | 'pink' | 'white' | 'gradient-blue'",
           defaultValue: "'gray06'",
-          description:
-            'Trigger의 border/text/focus 톤을 결정. Button과 같은 12색.'
+          description: 'Trigger의 border/text/focus 톤을 결정. Button과 같은 12색.'
         },
         {
           name: 'theme',
           type: "'solid' | 'outline' | 'soft'",
           defaultValue: "'outline'",
-          description:
-            'solid는 채움(흰 글씨), outline은 border만(기본), soft는 옅은 색 배경.'
+          description: 'solid는 채움(흰 글씨), outline은 border만(기본), soft는 옅은 색 배경.'
         },
         {
           name: 'shape',
@@ -370,6 +406,12 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
   ],
   textarea: [
     {
+      name: 'containerClassName',
+      type: 'string',
+      description:
+        'textarea와 counter를 감싸는 root의 className입니다. w-* 같은 너비 클래스는 여기에 지정합니다.'
+    },
+    {
       name: 'shape',
       type: "'default' | 'pill' | 'square'",
       defaultValue: "'default'",
@@ -379,13 +421,14 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
       name: 'size',
       type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
       defaultValue: "'md'",
-      description: 'min-height + padding + 폰트 크기를 결정합니다. field-sizing-content로 내용에 맞춰 자랍니다.'
+      description:
+        'min-height + padding + 폰트 크기를 결정합니다. field-sizing-content로 내용에 맞춰 자랍니다.'
     },
     {
       name: 'maxLength',
       type: 'number',
       description:
-        '지정 시 우측 하단에 자동 counter(현재길이/maxLength) 표시. 값이 controlled(value)일 때만 길이가 정확합니다.'
+        '지정 시 우측 하단에 자동 counter(현재길이/maxLength)를 표시합니다. controlled와 uncontrolled 입력을 모두 추적합니다.'
     }
   ],
   'date-time-input': [
@@ -513,7 +556,7 @@ const PropsTable = ({ props }: { props: PropDoc[] }) => (
         {props.map((prop) => (
           <tr key={prop.name} className="border-border-default border-t align-top">
             <td className="px-3 py-2">
-              <code className="typo-mono-m12 text-fg-strong">{prop.name}</code>
+              <code className="typo-mono-m12 text-fg-strong break-all">{prop.name}</code>
             </td>
             <td className="px-3 py-2">
               <code className="typo-mono-m12 text-fg-default break-words">{prop.type}</code>
@@ -575,7 +618,9 @@ export const ComponentPropsDocs = ({ name }: { name: string }) => {
                 <span className="bg-primary-blue-1 inline-block h-3.5 w-1 rounded-sm" />
                 <h4 className="typo-b16 text-fg-strong">{group.title}</h4>
               </div>
-              {group.description && <p className="typo-r12 text-fg-muted -mt-1">{group.description}</p>}
+              {group.description && (
+                <p className="typo-r12 text-fg-muted -mt-1">{group.description}</p>
+              )}
               <PropsTable props={group.props} />
             </div>
           ))}

@@ -393,18 +393,6 @@
       "variant": "default"
     }
   },
-  "field": {
-    "groups": {
-      "orientation": [
-        "vertical",
-        "horizontal",
-        "responsive"
-      ]
-    },
-    "defaults": {
-      "orientation": "vertical"
-    }
-  },
   "hover-card": {
     "groups": {
       "shape": [
@@ -424,15 +412,53 @@
   },
   "input-group": {
     "groups": {
-      "align": [
-        "inline-start",
-        "inline-end",
-        "block-start",
-        "block-end"
+      "color": [
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
+      ],
+      "theme": [
+        "solid",
+        "outline",
+        "soft"
+      ],
+      "shape": [
+        "default",
+        "pill",
+        "square"
+      ],
+      "size": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
       ]
     },
     "defaults": {
-      "align": "inline-start"
+      "color": "gray06",
+      "theme": "outline",
+      "shape": "default",
+      "size": "md"
     }
   },
   "input-otp": {
@@ -488,18 +514,13 @@
         "md",
         "lg",
         "xl"
-      ],
-      "decoDir": [
-        "start",
-        "end"
       ]
     },
     "defaults": {
       "color": "gray06",
       "theme": "outline",
       "shape": "default",
-      "size": "md",
-      "decoDir": "start"
+      "size": "md"
     }
   },
   "label": {
@@ -629,10 +650,7 @@
       ]
     },
     "defaults": {
-      "color": "gray06",
-      "theme": "outline",
-      "shape": "default",
-      "size": "md"
+      "theme": "outline"
     }
   },
   "separator": {
@@ -858,6 +876,35 @@
   },
   "textarea": {
     "groups": {
+      "color": [
+        "gray01",
+        "gray02",
+        "gray03",
+        "gray04",
+        "gray05",
+        "gray06",
+        "gray07",
+        "gray08",
+        "gray09",
+        "gray10",
+        "gray11",
+        "blue",
+        "red",
+        "orange",
+        "yellow",
+        "olive",
+        "green",
+        "skyblue",
+        "purple",
+        "pink",
+        "white",
+        "gradient-blue"
+      ],
+      "theme": [
+        "solid",
+        "outline",
+        "soft"
+      ],
       "shape": [
         "default",
         "pill",
@@ -872,6 +919,8 @@
       ]
     },
     "defaults": {
+      "color": "gray06",
+      "theme": "outline",
       "shape": "default",
       "size": "md"
     }
