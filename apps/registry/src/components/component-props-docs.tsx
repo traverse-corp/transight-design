@@ -404,6 +404,75 @@ const PROPS_DOCS: Record<string, PropsEntry> = {
       description: 'true면 가운데 가로줄(─) indicator로 부분 선택 상태 표시. 체크 색상도 함께 발동.'
     }
   ],
+  table: [
+    {
+      title: 'Table',
+      description: 'table과 horizontal scroll container를 함께 렌더링합니다.',
+      props: [
+        {
+          name: 'embedded',
+          type: 'boolean',
+          defaultValue: 'false',
+          description: '패널 안에 삽입할 때 외곽 border, radius, shadow, background를 제거합니다.'
+        },
+        {
+          name: 'containerClassName',
+          type: 'string',
+          description: 'horizontal scroll container에 전달할 className입니다.'
+        }
+      ]
+    },
+    {
+      title: 'TableHead',
+      description: '열 제목과 선택적 정렬 button을 렌더링합니다.',
+      props: [
+        {
+          name: 'align',
+          type: "'start' | 'center' | 'end'",
+          defaultValue: "'start'",
+          description: '헤더 콘텐츠의 수평 정렬입니다.'
+        },
+        {
+          name: 'onSort',
+          type: 'MouseEventHandler<HTMLButtonElement>',
+          description: '지정하면 헤더 전체가 정렬 button으로 동작합니다.'
+        },
+        {
+          name: 'sortDirection',
+          type: "'asc' | 'desc' | null",
+          defaultValue: 'null',
+          description: '현재 정렬 방향이며 aria-sort와 정렬 아이콘에 반영됩니다.'
+        },
+        {
+          name: 'sortLabel',
+          type: 'string',
+          description: '정렬 button에 별도 접근성 이름이 필요할 때 사용합니다.'
+        }
+      ]
+    },
+    {
+      title: 'TableCell',
+      props: [
+        {
+          name: 'align',
+          type: "'start' | 'center' | 'end'",
+          defaultValue: "'start'",
+          description: '셀 콘텐츠의 수평 정렬입니다.'
+        }
+      ]
+    },
+    {
+      title: 'TableEmpty',
+      description: 'tbody 안에서 빈 상태를 한 행으로 표시합니다.',
+      props: [
+        {
+          name: 'colSpan',
+          type: 'number',
+          description: '빈 상태가 차지할 전체 열 개수입니다.'
+        }
+      ]
+    }
+  ],
   textarea: [
     {
       name: 'containerClassName',

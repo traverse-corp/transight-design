@@ -35,7 +35,7 @@
   "sonner": { "category": "base", "ready": false, "essential": false },
   "spinner": { "category": "base", "ready": true, "essential": true },
   "switch": { "category": "base", "ready": true, "essential": true },
-  "table": { "category": "base", "ready": false, "essential": false },
+  "table": { "category": "base", "ready": true, "essential": false },
   "tabs": { "category": "base", "ready": true, "essential": false },
   "textarea": { "category": "base", "ready": true, "essential": true },
   "toggle": { "category": "base", "ready": false, "essential": false },

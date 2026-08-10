@@ -816,13 +816,19 @@
   },
   "table": {
     "groups": {
-      "variant": [
+      "shape": [
         "default",
-        "embedded"
+        "square"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
       ]
     },
     "defaults": {
-      "variant": "default"
+      "shape": "default",
+      "size": "md"
     }
   },
   "tabs": {
