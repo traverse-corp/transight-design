@@ -4,7 +4,7 @@
 
 ## 사전 요구사항
 
-- Node.js >= 20
+- Node.js 22.23.4 기준 (`.nvmrc` 참고)
 - npm (Workspaces 사용)
 - Git
 
@@ -214,7 +214,7 @@ git push                # 태그·릴리즈는 별도 워크플로우에서
 
 `.github/workflows/ci.yml`이 PR/푸시마다 다음 실행:
 
-1. Node 20, npm install
+1. `.nvmrc`의 Node 22.23.4, npm ci
 2. 전 패키지 typecheck
 3. `packages/ui` registry validate + build
 4. `apps/registry` build

@@ -6,7 +6,7 @@
 
 필요한 환경:
 
-- Node.js 20 이상
+- Node.js 22.23.4 기준 (`.nvmrc` 참고)
 - npm 11 계열 권장
 - Git
 
